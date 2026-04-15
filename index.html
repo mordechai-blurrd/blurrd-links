@@ -1,0 +1,3639 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0057B8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#001D36" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BLURRD Links">
+<meta name="description" content="Team task management and communication by BLURRD">
+<title>BLURRD Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500;700&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,1,0" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   MATERIAL DESIGN 3 EXPRESSIVE — BLURRD LINKS
+═══════════════════════════════════════════════ */
+
+/* Light theme tokens */
+:root {
+  --font-display: 'Google Sans Display', 'Google Sans', sans-serif;
+  --font-ui: 'Google Sans', sans-serif;
+  --font-body: 'Roboto Flex', 'Google Sans', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* Shape */
+  --r-xs: 4px; --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 24px; --r-2xl: 28px; --r-3xl: 36px; --r-full: 9999px;
+
+  /* Elevation */
+  --el1: 0 1px 2px rgba(0,0,0,.12),0 1px 3px 1px rgba(0,0,0,.07);
+  --el2: 0 1px 2px rgba(0,0,0,.12),0 2px 6px 2px rgba(0,0,0,.07);
+  --el3: 0 4px 8px 3px rgba(0,0,0,.07),0 1px 3px rgba(0,0,0,.12);
+
+  /* Durations */
+  --dur-fast: 120ms; --dur-med: 250ms; --dur-slow: 400ms;
+  --ease-out: cubic-bezier(0.05,0.7,0.1,1);
+  --ease-in: cubic-bezier(0.3,0,1,1);
+  --ease-std: cubic-bezier(0.2,0,0,1);
+}
+
+[data-theme="light"], :root[data-resolved="light"] {
+  --c-primary: #0057B8;
+  --c-on-primary: #fff;
+  --c-primary-cont: #D7E3FF;
+  --c-on-primary-cont: #001946;
+  --c-secondary: #545F71;
+  --c-on-secondary: #fff;
+  --c-secondary-cont: #D8E3F8;
+  --c-on-secondary-cont: #111C2B;
+  --c-tertiary: #6D5677;
+  --c-on-tertiary: #fff;
+  --c-tertiary-cont: #F6D9FF;
+  --c-error: #BA1A1A;
+  --c-on-error: #fff;
+  --c-error-cont: #FFDAD6;
+  --c-surface: #F8F9FF;
+  --c-surface-dim: #D8DAE5;
+  --c-surface-bright: #F8F9FF;
+  --c-surf1: #ECF0FC;
+  --c-surf2: #E5EAF9;
+  --c-surf3: #DDE4F7;
+  --c-surf4: #DBE2F5;
+  --c-surf5: #D6DDF3;
+  --c-on-surface: #191C22;
+  --c-on-surf-var: #42474E;
+  --c-outline: #72777F;
+  --c-outline-var: #C2C7CF;
+  --c-inv-surface: #2E3136;
+  --c-inv-on-surface: #EFF0F7;
+  --c-inv-primary: #ADC6FF;
+  --c-scrim: rgba(0,0,0,.32);
+  --c-shadow: rgba(0,0,0,1);
+  --bg-nav: rgba(232,236,251,0.92);
+  --bg-modal: rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"], :root[data-resolved="dark"] {
+  --c-primary: #ADC6FF;
+  --c-on-primary: #002E6A;
+  --c-primary-cont: #00429A;
+  --c-on-primary-cont: #D7E3FF;
+  --c-secondary: #BBC7DB;
+  --c-on-secondary: #253141;
+  --c-secondary-cont: #3C4758;
+  --c-on-secondary-cont: #D8E3F8;
+  --c-tertiary: #DABDE5;
+  --c-on-tertiary: #3D2947;
+  --c-tertiary-cont: #553F5F;
+  --c-error: #FFB4AB;
+  --c-on-error: #690005;
+  --c-error-cont: #93000A;
+  --c-surface: #111318;
+  --c-surface-dim: #111318;
+  --c-surface-bright: #37393E;
+  --c-surf1: #191C22;
+  --c-surf2: #1E2128;
+  --c-surf3: #23262D;
+  --c-surf4: #242730;
+  --c-surf5: #272A32;
+  --c-on-surface: #E1E2E9;
+  --c-on-surf-var: #C3C6CF;
+  --c-outline: #8D9199;
+  --c-outline-var: #43474E;
+  --c-inv-surface: #E1E2E9;
+  --c-inv-on-surface: #2E3136;
+  --c-inv-primary: #0057B8;
+  --c-scrim: rgba(0,0,0,.6);
+  --c-shadow: rgba(0,0,0,1);
+  --bg-nav: rgba(25,28,34,0.92);
+  --bg-modal: rgba(0,0,0,0.6);
+}
+
+/* ── Base Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--c-surface);
+  color: var(--c-on-surface);
+  height: 100%;
+  overflow: hidden;
+  transition: background var(--dur-med) var(--ease-std), color var(--dur-med) var(--ease-std);
+}
+#app { height: 100%; display: flex; flex-direction: column; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+input, textarea, select { font: inherit; color: inherit; background: none; border: none; outline: none; }
+a { color: var(--c-primary); text-decoration: none; }
+ul, ol { list-style: none; }
+img { max-width: 100%; display: block; }
+.ms { font-family: 'Material Symbols Rounded'; font-size: 24px; font-weight: 400;
+  font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap; word-wrap: normal; direction: ltr;
+  -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased; user-select: none; flex-shrink: 0; }
+.ms.filled { font-variation-settings: 'FILL' 1; }
+.ms.sm { font-size: 18px; } .ms.lg { font-size: 32px; } .ms.xl { font-size: 48px; }
+
+/* ── Typography ── */
+.display-lg { font-family: var(--font-display); font-size: 57px; font-weight: 400; line-height: 64px; letter-spacing: -.25px; }
+.display-md { font-family: var(--font-display); font-size: 45px; font-weight: 400; line-height: 52px; }
+.display-sm { font-family: var(--font-display); font-size: 36px; font-weight: 400; line-height: 44px; }
+.headline-lg { font-family: var(--font-display); font-size: 32px; font-weight: 400; line-height: 40px; }
+.headline-md { font-family: var(--font-display); font-size: 28px; font-weight: 400; line-height: 36px; }
+.headline-sm { font-family: var(--font-display); font-size: 24px; font-weight: 400; line-height: 32px; }
+.title-lg { font-family: var(--font-ui); font-size: 22px; font-weight: 400; line-height: 28px; }
+.title-md { font-family: var(--font-ui); font-size: 16px; font-weight: 500; line-height: 24px; letter-spacing: .15px; }
+.title-sm { font-family: var(--font-ui); font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: .1px; }
+.label-lg { font-family: var(--font-ui); font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: .1px; }
+.label-md { font-family: var(--font-ui); font-size: 12px; font-weight: 500; line-height: 16px; letter-spacing: .5px; }
+.label-sm { font-family: var(--font-ui); font-size: 11px; font-weight: 500; line-height: 16px; letter-spacing: .5px; }
+.body-lg { font-size: 16px; line-height: 24px; letter-spacing: .5px; }
+.body-md { font-size: 14px; line-height: 20px; letter-spacing: .25px; }
+.body-sm { font-size: 12px; line-height: 16px; letter-spacing: .4px; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-outline-var); border-radius: var(--r-full); border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--c-outline); background-clip: padding-box; }
+
+/* ── Ripple ── */
+.ripple { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.ripple::after { content: ''; position: absolute; inset: 0; background: currentColor; opacity: 0; border-radius: inherit; transition: opacity var(--dur-fast); }
+.ripple:hover::after { opacity: .08; }
+.ripple:active::after { opacity: .12; }
+
+/* ══════════════════════════════════════
+   LOGIN SCREEN
+══════════════════════════════════════ */
+.login-screen {
+  height: 100%; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--c-primary-cont) 0%, var(--c-tertiary-cont) 100%);
+  padding: 24px;
+}
+.login-card {
+  background: var(--c-surface); border-radius: var(--r-3xl); padding: 48px 40px;
+  box-shadow: var(--el3); max-width: 480px; width: 100%;
+  animation: slideUp var(--dur-slow) var(--ease-out);
+}
+.login-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.login-logo-mark {
+  width: 48px; height: 48px; border-radius: var(--r-xl);
+  background: var(--c-primary); display: flex; align-items: center; justify-content: center;
+  color: var(--c-on-primary);
+}
+.login-logo-mark .ms { font-size: 28px; }
+.login-logo-text { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--c-primary); letter-spacing: -0.5px; }
+.login-logo-sub { font-size: 13px; color: var(--c-on-surf-var); letter-spacing: .5px; text-transform: uppercase; font-weight: 500; }
+.login-tagline { font-family: var(--font-body); font-size: 15px; color: var(--c-on-surf-var); margin: 16px 0 32px; line-height: 1.5; }
+.login-label { font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--c-on-surf-var); margin-bottom: 12px; }
+.login-users { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; max-height: 280px; overflow-y: auto; }
+.login-user-btn {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  background: var(--c-surf1); border-radius: var(--r-xl); cursor: pointer;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+  border: 1.5px solid transparent;
+}
+.login-user-btn:hover { background: var(--c-surf2); border-color: var(--c-outline-var); transform: translateX(2px); }
+.login-user-btn:active { transform: scale(.98); }
+.login-user-info { flex: 1; text-align: left; }
+.login-user-name { font-family: var(--font-ui); font-size: 15px; font-weight: 500; }
+.login-user-role { font-size: 12px; color: var(--c-on-surf-var); margin-top: 2px; text-transform: capitalize; }
+.login-add-btn {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  border: 1.5px dashed var(--c-outline-var); border-radius: var(--r-xl);
+  cursor: pointer; color: var(--c-primary); font-family: var(--font-ui); font-size: 14px; font-weight: 500;
+  transition: all var(--dur-fast);
+}
+.login-add-btn:hover { background: var(--c-primary-cont); border-color: var(--c-primary); border-style: solid; }
+
+/* ══════════════════════════════════════
+   APP LAYOUT
+══════════════════════════════════════ */
+.app-layout { display: flex; height: 100%; overflow: hidden; }
+
+/* ── Navigation Rail / Drawer ── */
+.nav-rail {
+  width: 80px; height: 100%; display: flex; flex-direction: column;
+  align-items: center; padding: 12px 0; gap: 4px;
+  background: var(--bg-nav); backdrop-filter: blur(20px) saturate(180%);
+  border-right: 1px solid var(--c-outline-var);
+  transition: width var(--dur-med) var(--ease-std);
+  flex-shrink: 0; z-index: 10;
+  overflow: hidden;
+}
+.nav-rail.expanded { width: 256px; align-items: stretch; padding: 12px 8px; }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px; padding: 12px 8px;
+  margin-bottom: 8px; flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 40px; height: 40px; border-radius: var(--r-lg); flex-shrink: 0;
+  background: var(--c-primary); display: flex; align-items: center; justify-content: center;
+  color: var(--c-on-primary);
+}
+.nav-logo-mark .ms { font-size: 22px; }
+.nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--c-primary); white-space: nowrap; overflow: hidden; }
+.nav-logo-sub { font-size: 10px; color: var(--c-on-surf-var); letter-spacing: .8px; text-transform: uppercase; white-space: nowrap; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 8px;
+  border-radius: var(--r-xl); cursor: pointer; color: var(--c-on-surf-var);
+  transition: all var(--dur-fast); position: relative; white-space: nowrap;
+  min-height: 56px; width: 100%;
+  justify-content: center;
+}
+.nav-rail.expanded .nav-item { justify-content: flex-start; padding: 12px 16px; }
+.nav-item:hover { background: var(--c-surf2); color: var(--c-on-surface); }
+.nav-item.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.nav-item .ms { font-size: 22px; flex-shrink: 0; }
+.nav-item-label { font-family: var(--font-ui); font-size: 14px; font-weight: 500; display: none; }
+.nav-rail.expanded .nav-item-label { display: block; }
+.nav-badge {
+  background: var(--c-error); color: var(--c-on-error); border-radius: var(--r-full);
+  font-size: 10px; font-weight: 700; min-width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center; padding: 0 4px;
+  position: absolute; top: 8px; right: 8px;
+}
+.nav-rail.expanded .nav-badge { position: static; margin-left: auto; }
+.nav-divider { height: 1px; background: var(--c-outline-var); margin: 8px 0; width: 100%; }
+.nav-spacer { flex: 1; }
+.nav-user {
+  display: flex; align-items: center; gap: 10px; padding: 10px 8px;
+  cursor: pointer; border-radius: var(--r-xl);
+  transition: background var(--dur-fast);
+  width: 100%;
+}
+.nav-user:hover { background: var(--c-surf2); }
+.nav-user-info { overflow: hidden; display: none; }
+.nav-rail.expanded .nav-user-info { display: block; }
+.nav-user-name { font-size: 13px; font-weight: 500; font-family: var(--font-ui); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-user-role { font-size: 11px; color: var(--c-on-surf-var); text-transform: capitalize; }
+.nav-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: var(--r-full); cursor: pointer;
+  transition: background var(--dur-fast); color: var(--c-on-surf-var);
+  margin: 4px auto;
+}
+.nav-rail.expanded .nav-toggle { margin: 4px 0 4px auto; }
+.nav-toggle:hover { background: var(--c-surf2); }
+
+/* ── Main Content ── */
+.main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+
+/* ── Top Bar ── */
+.topbar {
+  display: flex; align-items: center; gap: 8px; padding: 12px 20px; height: 64px;
+  background: var(--c-surface); border-bottom: 1px solid var(--c-outline-var);
+  flex-shrink: 0; z-index: 5;
+}
+.topbar-title { font-family: var(--font-display); font-size: 20px; font-weight: 500; flex: 1; }
+.topbar-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--c-surf1); border-radius: var(--r-full);
+  padding: 8px 16px; border: 1.5px solid transparent;
+  transition: all var(--dur-fast); min-width: 0;
+}
+.topbar-search:focus-within { background: var(--c-surface); border-color: var(--c-primary); }
+.topbar-search input { font-size: 14px; width: 0; transition: width var(--dur-med) var(--ease-std); min-width: 0; }
+.topbar-search.open input { width: 180px; }
+.topbar-search .ms { color: var(--c-on-surf-var); font-size: 20px; cursor: pointer; flex-shrink: 0; }
+.topbar-search:focus-within .ms { color: var(--c-primary); }
+.icon-btn {
+  width: 40px; height: 40px; border-radius: var(--r-full); display: flex;
+  align-items: center; justify-content: center; cursor: pointer;
+  color: var(--c-on-surf-var); transition: background var(--dur-fast);
+  position: relative;
+}
+.icon-btn:hover { background: var(--c-surf2); }
+.icon-btn .nav-badge { top: 4px; right: 4px; }
+
+/* ── Page Content ── */
+.page-content { flex: 1; overflow-y: auto; overflow-x: hidden; position: relative; }
+
+/* ══════════════════════════════════════
+   COMMON COMPONENTS
+══════════════════════════════════════ */
+
+/* Avatar */
+.avatar {
+  width: 40px; height: 40px; border-radius: var(--r-full); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+  color: #fff; background: var(--c-primary); overflow: hidden; user-select: none;
+}
+.avatar.sm { width: 28px; height: 28px; font-size: 11px; }
+.avatar.lg { width: 56px; height: 56px; font-size: 20px; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 24px; border-radius: var(--r-full); font-family: var(--font-ui);
+  font-size: 14px; font-weight: 500; letter-spacing: .1px; cursor: pointer;
+  transition: all var(--dur-fast); white-space: nowrap;
+  border: none; position: relative; overflow: hidden;
+}
+.btn:active { transform: scale(.97); }
+.btn-filled { background: var(--c-primary); color: var(--c-on-primary); box-shadow: var(--el1); }
+.btn-filled:hover { box-shadow: var(--el2); filter: brightness(1.05); }
+.btn-tonal { background: var(--c-secondary-cont); color: var(--c-on-secondary-cont); }
+.btn-tonal:hover { filter: brightness(.96); }
+.btn-outlined { border: 1.5px solid var(--c-outline); color: var(--c-primary); padding: 9px 23px; }
+.btn-outlined:hover { background: var(--c-primary-cont); }
+.btn-text { color: var(--c-primary); padding: 10px 12px; }
+.btn-text:hover { background: var(--c-primary-cont); }
+.btn-error { background: var(--c-error); color: var(--c-on-error); }
+.btn-sm { padding: 6px 16px; font-size: 13px; }
+.btn .ms { font-size: 18px; }
+
+/* FAB */
+.fab {
+  position: fixed; bottom: 28px; right: 24px; z-index: 20;
+  background: var(--c-primary-cont); color: var(--c-on-primary-cont);
+  border-radius: var(--r-xl); padding: 16px 20px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-ui); font-size: 14px; font-weight: 500;
+  box-shadow: var(--el3); cursor: pointer;
+  transition: all var(--dur-med) var(--ease-out);
+}
+.fab:hover { box-shadow: var(--el3), 0 8px 20px rgba(0,87,184,.2); transform: translateY(-2px); }
+.fab:active { transform: scale(.97); }
+.fab .ms { font-size: 24px; }
+
+/* Chip */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+  border-radius: var(--r-full); font-size: 13px; font-weight: 500;
+  font-family: var(--font-ui); background: var(--c-surf2);
+  color: var(--c-on-surface); border: 1px solid var(--c-outline-var);
+  cursor: pointer; transition: all var(--dur-fast); white-space: nowrap;
+}
+.chip.active { background: var(--c-secondary-cont); color: var(--c-on-secondary-cont); border-color: transparent; }
+.chip:hover { background: var(--c-surf3); }
+.chip .ms { font-size: 16px; }
+.chip-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Card */
+.card {
+  background: var(--c-surf1); border-radius: var(--r-xl);
+  border: 1px solid var(--c-outline-var); overflow: hidden;
+}
+.card:hover { box-shadow: var(--el1); }
+.card.elevated { box-shadow: var(--el1); background: var(--c-surface); }
+
+/* Input Field */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-label { font-family: var(--font-ui); font-size: 12px; font-weight: 500; color: var(--c-on-surf-var); letter-spacing: .5px; }
+.field-input {
+  background: var(--c-surf1); border-radius: var(--r-lg); padding: 12px 16px;
+  border: 1.5px solid var(--c-outline-var); font-size: 14px;
+  transition: all var(--dur-fast); display: flex; align-items: center; gap: 10px;
+}
+.field-input:focus-within { border-color: var(--c-primary); background: var(--c-surface); }
+.field-input input, .field-input textarea { flex: 1; resize: none; background: none; }
+.field-input textarea { min-height: 80px; resize: vertical; }
+
+/* Badge */
+.badge {
+  background: var(--c-primary-cont); color: var(--c-on-primary-cont);
+  border-radius: var(--r-full); padding: 2px 8px; font-size: 11px; font-weight: 600;
+  font-family: var(--font-ui); white-space: nowrap;
+}
+.badge.error { background: var(--c-error-cont); color: var(--c-error); }
+.badge.success { background: #C8F5D0; color: #1A5C2A; }
+.badge.warn { background: #FFF0CC; color: #7A4F00; }
+
+/* Priority dot */
+.priority-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.prio-low { background: #4CAF50; }
+.prio-medium { background: #FF9800; }
+.prio-high { background: #F44336; }
+.prio-urgent { background: #9C27B0; box-shadow: 0 0 0 3px rgba(156,39,176,.2); }
+
+/* Divider */
+.divider { height: 1px; background: var(--c-outline-var); margin: 8px 0; }
+
+/* Empty state */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 64px 24px; text-align: center; gap: 16px; color: var(--c-on-surf-var);
+}
+.empty-state .ms { font-size: 56px; opacity: .4; }
+.empty-state h3 { font-family: var(--font-display); font-size: 20px; color: var(--c-on-surface); }
+.empty-state p { font-size: 14px; max-width: 280px; line-height: 1.6; }
+
+/* ══════════════════════════════════════
+   MODAL / DIALOG
+══════════════════════════════════════ */
+.modal-backdrop {
+  position: fixed; inset: 0; background: var(--bg-modal);
+  backdrop-filter: blur(4px); z-index: 100;
+  display: flex; align-items: flex-end; justify-content: center;
+  animation: fadeIn var(--dur-med) var(--ease-out);
+}
+@media (min-width: 600px) {
+  .modal-backdrop { align-items: center; }
+}
+.modal {
+  background: var(--c-surface); border-radius: var(--r-3xl) var(--r-3xl) 0 0;
+  padding: 32px 28px 40px; width: 100%; max-width: 600px; max-height: 92vh;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 20px;
+  animation: slideUp var(--dur-slow) var(--ease-out);
+  position: relative;
+}
+@media (min-width: 600px) {
+  .modal { border-radius: var(--r-3xl); max-height: 88vh; }
+}
+.modal-handle {
+  width: 32px; height: 4px; background: var(--c-outline-var);
+  border-radius: var(--r-full); margin: 0 auto -12px;
+}
+.modal-header { display: flex; align-items: center; justify-content: space-between; }
+.modal-title { font-family: var(--font-display); font-size: 22px; font-weight: 500; }
+.modal-close {
+  width: 40px; height: 40px; border-radius: var(--r-full);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--c-on-surf-var); transition: background var(--dur-fast);
+}
+.modal-close:hover { background: var(--c-surf2); }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+
+/* ══════════════════════════════════════
+   TASKS PAGE
+══════════════════════════════════════ */
+.page-tasks { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.task-filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.task-list { display: flex; flex-direction: column; gap: 8px; }
+.task-card {
+  background: var(--c-surface); border-radius: var(--r-xl);
+  border: 1px solid var(--c-outline-var); padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px; cursor: pointer;
+  transition: all var(--dur-fast);
+}
+.task-card:hover { box-shadow: var(--el2); border-color: var(--c-primary); transform: translateY(-1px); }
+.task-card.done { opacity: .6; }
+.task-card.done .task-title { text-decoration: line-through; }
+.task-card-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.task-check {
+  width: 22px; height: 22px; border-radius: var(--r-sm); flex-shrink: 0;
+  border: 2px solid var(--c-outline); display: flex; align-items: center; justify-content: center;
+  transition: all var(--dur-fast); cursor: pointer;
+}
+.task-check:hover { border-color: var(--c-primary); background: var(--c-primary-cont); }
+.task-check.checked { background: var(--c-primary); border-color: var(--c-primary); }
+.task-check.checked .ms { color: var(--c-on-primary); font-size: 16px; }
+.task-meta { flex: 1; min-width: 0; }
+.task-title { font-family: var(--font-ui); font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.task-sub { display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+.task-due { font-size: 12px; color: var(--c-on-surf-var); display: flex; align-items: center; gap: 4px; }
+.task-due.overdue { color: var(--c-error); font-weight: 500; }
+.task-due .ms { font-size: 14px; }
+.task-assignees { display: flex; margin-left: 4px; }
+.task-assignees .avatar { margin-left: -8px; border: 2px solid var(--c-surface); width: 24px; height: 24px; font-size: 10px; }
+.task-card-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.task-attach-count { display: flex; align-items: center; gap: 3px; font-size: 12px; color: var(--c-on-surf-var); }
+.task-attach-count .ms { font-size: 15px; }
+.task-actions { display: flex; gap: 4px; opacity: 0; transition: opacity var(--dur-fast); }
+.task-card:hover .task-actions { opacity: 1; }
+
+/* Task Detail Modal extras */
+.task-section { display: flex; flex-direction: column; gap: 8px; }
+.task-section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--c-on-surf-var); }
+.assignee-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.assignee-chip {
+  display: flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px;
+  background: var(--c-surf1); border-radius: var(--r-full); font-size: 13px;
+  border: 1px solid var(--c-outline-var);
+}
+.attachments-list { display: flex; flex-direction: column; gap: 6px; }
+.attachment-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  background: var(--c-surf1); border-radius: var(--r-lg); cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.attachment-item:hover { background: var(--c-surf2); }
+.attachment-item .ms { font-size: 20px; color: var(--c-primary); }
+.attachment-name { flex: 1; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.attachment-size { font-size: 12px; color: var(--c-on-surf-var); }
+.attach-drop {
+  border: 2px dashed var(--c-outline-var); border-radius: var(--r-lg);
+  padding: 24px; text-align: center; cursor: pointer; transition: all var(--dur-fast);
+  color: var(--c-on-surf-var);
+}
+.attach-drop:hover { border-color: var(--c-primary); background: var(--c-primary-cont); color: var(--c-primary); }
+.attach-drop.dragging { border-color: var(--c-primary); background: var(--c-primary-cont); }
+.comments-list { display: flex; flex-direction: column; gap: 12px; max-height: 200px; overflow-y: auto; }
+.comment-item { display: flex; gap: 10px; }
+.comment-body { flex: 1; background: var(--c-surf1); border-radius: 0 var(--r-lg) var(--r-lg) var(--r-lg); padding: 10px 14px; }
+.comment-author { font-size: 13px; font-weight: 500; font-family: var(--font-ui); }
+.comment-time { font-size: 11px; color: var(--c-on-surf-var); }
+.comment-text { font-size: 14px; margin-top: 4px; line-height: 1.5; }
+.comment-input-row { display: flex; gap: 10px; align-items: flex-end; }
+.comment-input {
+  flex: 1; background: var(--c-surf1); border-radius: var(--r-lg); padding: 10px 14px;
+  border: 1.5px solid var(--c-outline-var); font-size: 14px; resize: none; min-height: 44px;
+  transition: border-color var(--dur-fast);
+}
+.comment-input:focus { border-color: var(--c-primary); }
+
+/* Status select */
+.status-select {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.status-btn {
+  flex: 1; padding: 10px 8px; border-radius: var(--r-lg); font-size: 13px;
+  font-family: var(--font-ui); font-weight: 500; text-align: center; cursor: pointer;
+  border: 2px solid var(--c-outline-var); transition: all var(--dur-fast); min-width: 80px;
+}
+.status-btn.active { border-color: transparent; }
+.status-btn[data-status="todo"].active { background: var(--c-secondary-cont); color: var(--c-on-secondary-cont); }
+.status-btn[data-status="in_progress"].active { background: #FFF0CC; color: #7A4F00; }
+.status-btn[data-status="review"].active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.status-btn[data-status="done"].active { background: #C8F5D0; color: #1A5C2A; }
+
+/* ══════════════════════════════════════
+   KANBAN PAGE
+══════════════════════════════════════ */
+.page-kanban { padding: 24px; height: 100%; display: flex; flex-direction: column; gap: 16px; }
+.kanban-board { display: flex; gap: 16px; flex: 1; overflow-x: auto; padding-bottom: 24px; }
+.kanban-col {
+  background: var(--c-surf1); border-radius: var(--r-xl); padding: 16px;
+  min-width: 280px; max-width: 320px; flex: 1; display: flex; flex-direction: column; gap: 12px;
+  border: 1px solid var(--c-outline-var);
+}
+.kanban-col-header { display: flex; align-items: center; gap: 8px; padding-bottom: 4px; }
+.kanban-col-title { font-family: var(--font-ui); font-weight: 600; font-size: 14px; flex: 1; }
+.kanban-col-count {
+  background: var(--c-outline-var); color: var(--c-on-surf-var);
+  border-radius: var(--r-full); font-size: 12px; font-weight: 600;
+  min-width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; padding: 0 6px;
+}
+.kanban-col-dot { width: 10px; height: 10px; border-radius: 50%; }
+.kanban-cards { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 60px; }
+.kanban-card {
+  background: var(--c-surface); border-radius: var(--r-lg); padding: 14px;
+  border: 1px solid var(--c-outline-var); cursor: grab;
+  transition: all var(--dur-fast); display: flex; flex-direction: column; gap: 8px;
+}
+.kanban-card:hover { box-shadow: var(--el2); transform: translateY(-1px); border-color: var(--c-primary); }
+.kanban-card.dragging { opacity: .5; transform: rotate(2deg) scale(.97); cursor: grabbing; }
+.kanban-card.drag-over { border-color: var(--c-primary); border-style: dashed; background: var(--c-primary-cont); }
+.kanban-col.drag-over-col { background: var(--c-surf2); border-color: var(--c-primary); border-style: dashed; }
+.kanban-card-title { font-family: var(--font-ui); font-size: 14px; font-weight: 500; line-height: 1.4; }
+.kanban-card-footer { display: flex; align-items: center; gap: 6px; }
+.kanban-card-footer .task-assignees { margin-left: 0; }
+.kanban-add-btn {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  border-radius: var(--r-lg); color: var(--c-primary); font-size: 13px; font-family: var(--font-ui); font-weight: 500;
+  cursor: pointer; transition: background var(--dur-fast); border: 1.5px dashed var(--c-outline-var); justify-content: center;
+}
+.kanban-add-btn:hover { background: var(--c-primary-cont); border-style: solid; border-color: var(--c-primary); }
+
+/* ══════════════════════════════════════
+   CALENDAR PAGE
+══════════════════════════════════════ */
+.page-calendar { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.cal-header { display: flex; align-items: center; gap: 12px; }
+.cal-nav-btn {
+  width: 36px; height: 36px; border-radius: var(--r-full); display: flex;
+  align-items: center; justify-content: center; cursor: pointer; transition: background var(--dur-fast);
+  color: var(--c-on-surf-var);
+}
+.cal-nav-btn:hover { background: var(--c-surf2); }
+.cal-month-year { font-family: var(--font-display); font-size: 20px; font-weight: 500; flex: 1; }
+.cal-grid { background: var(--c-surface); border-radius: var(--r-xl); border: 1px solid var(--c-outline-var); overflow: hidden; }
+.cal-day-labels { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-day-label {
+  padding: 12px 0; text-align: center; font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .5px; color: var(--c-on-surf-var);
+  border-bottom: 1px solid var(--c-outline-var);
+}
+.cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-day {
+  min-height: 80px; padding: 8px; border-right: 1px solid var(--c-outline-var);
+  border-bottom: 1px solid var(--c-outline-var); cursor: pointer;
+  transition: background var(--dur-fast); position: relative;
+}
+.cal-day:hover { background: var(--c-surf1); }
+.cal-day.other-month { opacity: .4; }
+.cal-day.today .cal-day-num {
+  background: var(--c-primary); color: var(--c-on-primary);
+  border-radius: var(--r-full); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+}
+.cal-day.selected { background: var(--c-primary-cont); }
+.cal-day-num { font-size: 13px; font-weight: 500; font-family: var(--font-ui); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+.cal-task-dots { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 4px; }
+.cal-task-dot {
+  padding: 1px 6px; border-radius: var(--r-full); font-size: 10px; font-weight: 500;
+  background: var(--c-secondary-cont); color: var(--c-on-secondary-cont);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+  font-family: var(--font-ui);
+}
+.cal-task-dot.overdue { background: var(--c-error-cont); color: var(--c-error); }
+.cal-selected-tasks { background: var(--c-surface); border-radius: var(--r-xl); border: 1px solid var(--c-outline-var); padding: 20px; }
+.cal-selected-header { font-family: var(--font-display); font-size: 16px; font-weight: 500; margin-bottom: 12px; }
+
+/* ══════════════════════════════════════
+   MESSAGES PAGE
+══════════════════════════════════════ */
+.page-messages { display: flex; height: 100%; overflow: hidden; }
+
+/* Channels sidebar */
+.msg-sidebar {
+  width: 260px; flex-shrink: 0; display: flex; flex-direction: column;
+  border-right: 1px solid var(--c-outline-var); overflow-y: auto;
+  background: var(--bg-nav); backdrop-filter: blur(8px);
+}
+.msg-sidebar-section { padding: 16px 12px 8px; }
+.msg-sidebar-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--c-on-surf-var); padding: 0 4px; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.msg-channel-item {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  border-radius: var(--r-lg); cursor: pointer; transition: background var(--dur-fast);
+  color: var(--c-on-surf-var); font-family: var(--font-ui); font-size: 14px;
+}
+.msg-channel-item:hover { background: var(--c-surf2); color: var(--c-on-surface); }
+.msg-channel-item.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); font-weight: 500; }
+.msg-channel-item .ms { font-size: 18px; }
+.msg-channel-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-unread {
+  background: var(--c-primary); color: var(--c-on-primary);
+  border-radius: var(--r-full); font-size: 10px; font-weight: 700;
+  min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+
+/* Message area */
+.msg-main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+.msg-header {
+  padding: 12px 20px; border-bottom: 1px solid var(--c-outline-var);
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.msg-header-name { font-family: var(--font-ui); font-size: 16px; font-weight: 600; flex: 1; }
+.msg-header-desc { font-size: 13px; color: var(--c-on-surf-var); }
+.msg-feed { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 2px; }
+.msg-day-divider {
+  display: flex; align-items: center; gap: 12px; padding: 8px 0; margin: 8px 0;
+}
+.msg-day-divider::before, .msg-day-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--c-outline-var);
+}
+.msg-day-text { font-size: 12px; color: var(--c-on-surf-var); font-family: var(--font-ui); font-weight: 500; white-space: nowrap; }
+.msg-group { display: flex; gap: 12px; padding: 4px 0; }
+.msg-group.mine { flex-direction: row-reverse; }
+.msg-group-avatar { margin-top: 4px; flex-shrink: 0; }
+.msg-group-content { display: flex; flex-direction: column; gap: 2px; max-width: 70%; }
+.msg-group.mine .msg-group-content { align-items: flex-end; }
+.msg-sender { font-size: 13px; font-weight: 500; font-family: var(--font-ui); margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+.msg-time-label { font-size: 11px; color: var(--c-on-surf-var); font-weight: 400; }
+.msg-bubble {
+  background: var(--c-surf2); border-radius: var(--r-lg) var(--r-lg) var(--r-lg) 4px;
+  padding: 10px 14px; font-size: 14px; line-height: 1.6;
+  max-width: 100%; word-break: break-word; position: relative;
+  cursor: default; transition: background var(--dur-fast);
+}
+.msg-bubble:hover { background: var(--c-surf3); }
+.msg-group.mine .msg-bubble { background: var(--c-primary-cont); border-radius: var(--r-lg) var(--r-lg) 4px var(--r-lg); }
+.msg-bubble .mention { color: var(--c-primary); font-weight: 500; cursor: pointer; }
+.msg-bubble .mention:hover { text-decoration: underline; }
+.msg-reactions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.msg-reaction {
+  display: flex; align-items: center; gap: 4px; padding: 2px 8px;
+  background: var(--c-surf1); border: 1px solid var(--c-outline-var);
+  border-radius: var(--r-full); font-size: 13px; cursor: pointer;
+  transition: all var(--dur-fast);
+}
+.msg-reaction:hover { background: var(--c-primary-cont); border-color: var(--c-primary); }
+.msg-reaction.mine { background: var(--c-primary-cont); border-color: var(--c-primary); }
+.msg-reaction-count { font-size: 12px; font-family: var(--font-ui); font-weight: 500; }
+.msg-actions {
+  display: flex; gap: 2px; opacity: 0; transition: opacity var(--dur-fast);
+  margin-top: 4px;
+}
+.msg-group:hover .msg-actions { opacity: 1; }
+.msg-action-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: var(--r-md); cursor: pointer;
+  background: var(--c-surf1); border: 1px solid var(--c-outline-var);
+  color: var(--c-on-surf-var); font-size: 15px; transition: all var(--dur-fast);
+}
+.msg-action-btn:hover { background: var(--c-surf3); color: var(--c-primary); }
+.msg-thread-count {
+  font-size: 12px; color: var(--c-primary); font-family: var(--font-ui); font-weight: 500;
+  cursor: pointer; display: flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+.msg-thread-count:hover { text-decoration: underline; }
+.msg-thread-count .ms { font-size: 14px; }
+
+/* Message input */
+.msg-input-area { padding: 12px 16px; border-top: 1px solid var(--c-outline-var); flex-shrink: 0; }
+.msg-input-wrap {
+  background: var(--c-surf1); border-radius: var(--r-xl); padding: 8px 8px 8px 16px;
+  border: 1.5px solid var(--c-outline-var); transition: border-color var(--dur-fast);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.msg-input-wrap:focus-within { border-color: var(--c-primary); background: var(--c-surface); }
+.msg-input-toolbar { display: flex; align-items: center; gap: 4px; }
+.msg-input-field {
+  font-size: 14px; width: 100%; min-height: 40px; max-height: 120px; resize: none;
+  line-height: 1.5; padding: 4px 0;
+}
+.msg-input-field::placeholder { color: var(--c-on-surf-var); opacity: .7; }
+.msg-input-bottom { display: flex; align-items: center; justify-content: space-between; }
+.msg-input-tools { display: flex; gap: 4px; }
+.msg-input-tool {
+  width: 32px; height: 32px; border-radius: var(--r-md); display: flex;
+  align-items: center; justify-content: center; cursor: pointer;
+  color: var(--c-on-surf-var); transition: all var(--dur-fast); font-size: 18px;
+}
+.msg-input-tool:hover { background: var(--c-surf2); color: var(--c-primary); }
+.msg-send-btn {
+  width: 36px; height: 36px; border-radius: var(--r-full); background: var(--c-primary);
+  color: var(--c-on-primary); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--dur-fast); flex-shrink: 0;
+}
+.msg-send-btn:hover { transform: scale(1.08); box-shadow: var(--el2); }
+.msg-send-btn:disabled { opacity: .4; cursor: default; transform: none; }
+.msg-send-btn .ms { font-size: 18px; }
+
+/* Mention autocomplete */
+.mention-popup {
+  position: absolute; bottom: calc(100% + 8px); left: 16px;
+  background: var(--c-surface); border-radius: var(--r-xl); box-shadow: var(--el3);
+  border: 1px solid var(--c-outline-var); overflow: hidden; min-width: 200px;
+  z-index: 50;
+}
+.mention-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  cursor: pointer; transition: background var(--dur-fast);
+}
+.mention-item:hover, .mention-item.selected { background: var(--c-primary-cont); }
+.mention-item-name { font-size: 14px; font-weight: 500; font-family: var(--font-ui); }
+
+/* Thread panel */
+.msg-thread-panel {
+  width: 340px; flex-shrink: 0; border-left: 1px solid var(--c-outline-var);
+  display: flex; flex-direction: column; overflow: hidden;
+  animation: slideInRight var(--dur-med) var(--ease-out);
+}
+.msg-thread-header {
+  padding: 14px 16px; border-bottom: 1px solid var(--c-outline-var);
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.msg-thread-title { font-family: var(--font-ui); font-size: 16px; font-weight: 600; flex: 1; }
+.msg-thread-feed { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.msg-thread-root {
+  background: var(--c-surf1); border-radius: var(--r-xl); padding: 14px;
+  border-left: 3px solid var(--c-primary);
+}
+.msg-thread-input { padding: 12px 16px; border-top: 1px solid var(--c-outline-var); }
+
+/* Emoji picker */
+.emoji-picker {
+  position: absolute; bottom: calc(100% + 8px); right: 0;
+  background: var(--c-surface); border-radius: var(--r-xl); box-shadow: var(--el3);
+  border: 1px solid var(--c-outline-var); padding: 8px 12px;
+  display: flex; gap: 4px; z-index: 50;
+}
+.emoji-opt {
+  width: 36px; height: 36px; border-radius: var(--r-md); display: flex;
+  align-items: center; justify-content: center; font-size: 20px; cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.emoji-opt:hover { background: var(--c-surf2); transform: scale(1.2); }
+
+/* ══════════════════════════════════════
+   ADMIN PAGE
+══════════════════════════════════════ */
+.page-admin { padding: 24px; max-width: 800px; display: flex; flex-direction: column; gap: 24px; }
+.admin-section { background: var(--c-surface); border-radius: var(--r-xl); border: 1px solid var(--c-outline-var); overflow: hidden; }
+.admin-section-header {
+  padding: 20px 24px 16px; border-bottom: 1px solid var(--c-outline-var);
+  display: flex; align-items: center; gap: 12px;
+}
+.admin-section-header .ms { color: var(--c-primary); font-size: 22px; }
+.admin-section-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; }
+.admin-section-body { padding: 20px 24px; }
+.user-table { display: flex; flex-direction: column; gap: 8px; }
+.user-row {
+  display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+  background: var(--c-surf1); border-radius: var(--r-lg); border: 1px solid var(--c-outline-var);
+}
+.user-row-info { flex: 1; min-width: 0; }
+.user-row-name { font-size: 15px; font-weight: 500; font-family: var(--font-ui); }
+.user-row-email { font-size: 12px; color: var(--c-on-surf-var); margin-top: 2px; }
+.user-row-role { display: flex; gap: 4px; }
+.role-badge {
+  padding: 3px 10px; border-radius: var(--r-full); font-size: 12px; font-weight: 600;
+  font-family: var(--font-ui); letter-spacing: .3px;
+}
+.role-admin { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.role-manager { background: var(--c-secondary-cont); color: var(--c-on-secondary-cont); }
+.role-member { background: var(--c-surf3); color: var(--c-on-surf-var); }
+.theme-controls { display: flex; flex-direction: column; gap: 20px; }
+.color-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.color-swatch {
+  width: 40px; height: 40px; border-radius: var(--r-full); cursor: pointer;
+  border: 3px solid transparent; transition: all var(--dur-fast); flex-shrink: 0;
+}
+.color-swatch.active { border-color: var(--c-on-surface); transform: scale(1.15); box-shadow: var(--el2); }
+.color-swatch:hover { transform: scale(1.1); }
+.font-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.font-chip {
+  padding: 8px 16px; border-radius: var(--r-full); border: 1.5px solid var(--c-outline-var);
+  font-size: 14px; cursor: pointer; transition: all var(--dur-fast); background: var(--c-surf1);
+}
+.font-chip.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); border-color: var(--c-primary); }
+.theme-mode-row { display: flex; gap: 8px; }
+.theme-mode-btn {
+  flex: 1; padding: 12px; border-radius: var(--r-lg); border: 1.5px solid var(--c-outline-var);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; transition: all var(--dur-fast); background: var(--c-surf1);
+  font-size: 13px; font-family: var(--font-ui); font-weight: 500;
+}
+.theme-mode-btn .ms { font-size: 24px; color: var(--c-on-surf-var); }
+.theme-mode-btn.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); border-color: var(--c-primary); }
+.theme-mode-btn.active .ms { color: var(--c-on-primary-cont); }
+.notif-section { display: flex; align-items: center; gap: 16px; padding: 14px 16px;
+  background: var(--c-surf1); border-radius: var(--r-lg); border: 1px solid var(--c-outline-var); }
+.notif-section-info { flex: 1; }
+.notif-section-title { font-size: 14px; font-weight: 500; font-family: var(--font-ui); }
+.notif-section-sub { font-size: 12px; color: var(--c-on-surf-var); margin-top: 2px; }
+
+/* ══════════════════════════════════════
+   NOTIFICATION CENTER
+══════════════════════════════════════ */
+.notif-panel {
+  position: fixed; top: 64px; right: 16px; width: 360px; max-height: 480px;
+  background: var(--c-surface); border-radius: var(--r-2xl); box-shadow: var(--el3);
+  border: 1px solid var(--c-outline-var); overflow: hidden; z-index: 50;
+  display: flex; flex-direction: column;
+  animation: slideDown var(--dur-med) var(--ease-out);
+}
+.notif-panel-header { padding: 16px 20px; border-bottom: 1px solid var(--c-outline-var); display: flex; align-items: center; }
+.notif-panel-title { font-family: var(--font-ui); font-size: 16px; font-weight: 600; flex: 1; }
+.notif-list { flex: 1; overflow-y: auto; }
+.notif-item {
+  display: flex; gap: 12px; padding: 14px 20px; cursor: pointer;
+  border-bottom: 1px solid var(--c-outline-var); transition: background var(--dur-fast);
+}
+.notif-item:hover { background: var(--c-surf1); }
+.notif-item.unread { background: var(--c-primary-cont); }
+.notif-item.unread:hover { background: var(--c-surf2); }
+.notif-body { flex: 1; }
+.notif-text { font-size: 13px; line-height: 1.5; }
+.notif-time { font-size: 11px; color: var(--c-on-surf-var); margin-top: 3px; }
+.notif-icon .ms { font-size: 22px; color: var(--c-primary); }
+.snooze-popup {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: var(--c-surface); border-radius: var(--r-xl); box-shadow: var(--el3);
+  border: 1px solid var(--c-outline-var); overflow: hidden; min-width: 180px; z-index: 60;
+}
+.snooze-item {
+  padding: 12px 16px; cursor: pointer; font-size: 14px; font-family: var(--font-ui);
+  transition: background var(--dur-fast); display: flex; align-items: center; gap: 10px;
+}
+.snooze-item:hover { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.snooze-item .ms { font-size: 18px; }
+
+/* ══════════════════════════════════════
+   TASK REFERENCE IN MESSAGES
+══════════════════════════════════════ */
+.msg-task-ref {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--c-surf1); border: 1px solid var(--c-outline-var);
+  border-left: 3px solid var(--c-primary); border-radius: var(--r-lg);
+  padding: 10px 14px; cursor: pointer; margin: 6px 0;
+  transition: all var(--dur-fast); max-width: 360px;
+}
+.msg-task-ref:hover { background: var(--c-primary-cont); border-left-color: var(--c-primary); box-shadow: var(--el1); }
+.msg-task-ref-icon { flex-shrink: 0; }
+.msg-task-ref-icon .ms { color: var(--c-primary); font-size: 20px; }
+.msg-task-ref-body { flex: 1; min-width: 0; }
+.msg-task-ref-title { font-size: 13px; font-weight: 500; font-family: var(--font-ui); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msg-task-ref-meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.msg-task-ref-meta .badge { font-size: 10px; padding: 1px 6px; }
+.msg-task-ref-meta .priority-dot { width: 7px; height: 7px; }
+.msg-task-ref-due { font-size: 11px; color: var(--c-on-surf-var); display: flex; align-items: center; gap: 3px; }
+.msg-task-ref-due .ms { font-size: 12px; }
+.msg-task-ref-due.overdue { color: var(--c-error); }
+.msg-group.mine .msg-task-ref { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); }
+.msg-group.mine .msg-task-ref:hover { background: rgba(255,255,255,.2); }
+
+/* Task Picker Popup */
+.task-picker-popup {
+  position: absolute; bottom: calc(100% + 8px); left: 16px; right: 16px;
+  background: var(--c-surface); border-radius: var(--r-xl); box-shadow: var(--el3);
+  border: 1px solid var(--c-outline-var); overflow: hidden; z-index: 50;
+  animation: slideUp var(--dur-fast) var(--ease-out);
+  max-height: 280px; overflow-y: auto;
+}
+.task-picker-header {
+  padding: 10px 16px; border-bottom: 1px solid var(--c-outline-var);
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px;
+  color: var(--c-on-surf-var); position: sticky; top: 0; background: var(--c-surface);
+  display: flex; align-items: center; gap: 6px;
+}
+.task-picker-header .ms { font-size: 14px; color: var(--c-primary); }
+.task-picker-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+  cursor: pointer; transition: background var(--dur-fast);
+}
+.task-picker-item:hover, .task-picker-item.selected { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.task-picker-item:hover .task-picker-status, .task-picker-item.selected .task-picker-status { opacity: .8; }
+.task-picker-title { flex: 1; font-size: 13px; font-weight: 500; font-family: var(--font-ui); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task-picker-status { font-size: 11px; color: var(--c-on-surf-var); font-family: var(--font-ui); flex-shrink: 0; }
+
+/* Firebase Admin Section extras */
+.firebase-status {
+  display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+  border-radius: var(--r-lg); font-size: 13px; font-family: var(--font-ui);
+}
+.firebase-status.connected { background: #C8F5D0; color: #1A5C2A; }
+.firebase-status.disconnected { background: var(--c-surf2); color: var(--c-on-surf-var); }
+.firebase-status.error { background: var(--c-error-cont); color: var(--c-error); }
+.firebase-status .ms { font-size: 18px; }
+.fcm-token-box {
+  background: var(--c-surf1); border-radius: var(--r-lg); padding: 12px 14px;
+  font-family: var(--font-mono); font-size: 11px; word-break: break-all;
+  border: 1px solid var(--c-outline-var); line-height: 1.6; color: var(--c-on-surf-var);
+  max-height: 80px; overflow-y: auto;
+}
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .config-grid { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast-container {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  z-index: 200; display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none;
+}
+.toast {
+  background: var(--c-inv-surface); color: var(--c-inv-on-surface);
+  border-radius: var(--r-full); padding: 12px 24px; font-size: 14px; font-family: var(--font-ui);
+  box-shadow: var(--el3); pointer-events: auto; display: flex; align-items: center; gap: 10px;
+  animation: slideUp var(--dur-med) var(--ease-out);
+  max-width: 400px; text-align: center;
+}
+.toast.exiting { animation: slideDown var(--dur-fast) var(--ease-in) forwards; }
+.toast .ms { font-size: 18px; }
+.toast-action { color: var(--c-inv-primary); font-weight: 600; cursor: pointer; margin-left: 4px; }
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(16px); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+.spin { animation: spin 1s linear infinite; }
+.pulse { animation: pulse 1.5s ease-in-out infinite; }
+
+/* ── Scrollbar in messages feed ── */
+.msg-feed, .msg-thread-feed { scrollbar-width: thin; scrollbar-color: var(--c-outline-var) transparent; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-rail { width: 64px; }
+  .msg-sidebar { width: 200px; }
+  .msg-thread-panel { display: none; }
+  .page-tasks, .page-admin { padding: 16px; }
+  .kanban-col { min-width: 240px; }
+}
+@media (max-width: 540px) {
+  .nav-rail { display: none; }
+  .fab { bottom: 80px; }
+}
+
+/* ── User select none for UI ── */
+.nav-item, .btn, .chip, .icon-btn, .task-card, .kanban-card { user-select: none; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast-container" id="toasts"></div>
+<script>
+/* ═══════════════════════════════════════════════
+   BLURRD LINKS — JavaScript Part 2
+   State, Default Data, Utils, Login, Shell, Tasks
+═══════════════════════════════════════════════ */
+
+// ═══════════════════════════
+// CONSTANTS
+// ═══════════════════════════
+const STATUSES = ['todo','in_progress','review','done'];
+const STATUS_LABELS = { todo:'To Do', in_progress:'In Progress', review:'In Review', done:'Done' };
+const PRIORITIES = ['low','medium','high','urgent'];
+const PRIORITY_LABELS = { low:'Low', medium:'Medium', high:'High', urgent:'Urgent' };
+const ROLES = ['admin','manager','member'];
+const EMOJIS = ['👍','❤️','😂','🔥','👏','😮'];
+const COLORS = [
+  { name:'Ocean', value:'#0057B8' }, { name:'Emerald', value:'#00695C' },
+  { name:'Violet', value:'#6750A4' }, { name:'Rose', value:'#B5294C' },
+  { name:'Amber', value:'#B45309' }, { name:'Slate', value:'#334155' },
+  { name:'Indigo', value:'#3730A3' }, { name:'Teal', value:'#0D9488' }
+];
+const FONTS = [
+  { name:'Google Sans', css:"'Google Sans', sans-serif" },
+  { name:'Roboto Flex', css:"'Roboto Flex', sans-serif" },
+  { name:'Nunito', css:"'Nunito', sans-serif" },
+  { name:'Inter', css:"'Inter', sans-serif" },
+  { name:'Poppins', css:"'Poppins', sans-serif" }
+];
+
+// ═══════════════════════════
+// DEFAULT DATA
+// ═══════════════════════════
+const DEFAULT_USERS = [
+  { id:'u1', name:'Jordan Blake', email:'jordan@blurrdinc.com', role:'admin', color:'#0057B8', initials:'JB', online: true },
+  { id:'u2', name:'Morgan Lee', email:'morgan@blurrdinc.com', role:'manager', color:'#00695C', initials:'ML', online: true },
+  { id:'u3', name:'Sam Rivera', email:'sam@blurrdinc.com', role:'member', color:'#6750A4', initials:'SR', online: false },
+  { id:'u4', name:'Casey Kim', email:'casey@blurrdinc.com', role:'member', color:'#B5294C', initials:'CK', online: true }
+];
+
+const DEFAULT_CHANNELS = [
+  { id:'ch1', name:'general', description:'Team-wide announcements and chatter', type:'channel', members:['u1','u2','u3','u4'] },
+  { id:'ch2', name:'design', description:'Design work, feedback, and assets', type:'channel', members:['u1','u2','u3'] },
+  { id:'ch3', name:'dev', description:'Engineering discussions and code reviews', type:'channel', members:['u1','u3','u4'] },
+  { id:'dm-u2', name:'Morgan Lee', description:'', type:'dm', members:['u1','u2'], partnerId:'u2' },
+  { id:'dm-u3', name:'Sam Rivera', description:'', type:'dm', members:['u1','u3'], partnerId:'u3' }
+];
+
+const now = Date.now();
+const D = (d) => new Date(Date.now() + d * 86400000).toISOString().split('T')[0];
+
+const DEFAULT_TASKS = [
+  { id:'t1', title:'Finalize Q2 campaign brief', description:'Complete the full creative brief for the summer campaign including target audience, messaging pillars, and channel strategy.', status:'in_progress', priority:'high', dueDate: D(2), assignees:['u1','u2'], notes:'Check with Mordechai on budget approval first.', attachments:[], comments:[{ id:'c1', userId:'u2', text:'Brief template is in the shared drive', timestamp: now - 3600000 }], createdBy:'u1', createdAt: now - 86400000, updatedAt: now - 3600000 },
+  { id:'t2', title:'BLURRD Links app testing & QA', description:'Full QA pass on the new internal communications platform across all devices.', status:'todo', priority:'urgent', dueDate: D(1), assignees:['u3','u4'], notes:'', attachments:[], comments:[], createdBy:'u1', createdAt: now - 7200000, updatedAt: now - 7200000 },
+  { id:'t3', title:'Brand identity refresh — typography update', description:'Update the primary font across all brand touchpoints to reflect the new expressive direction.', status:'review', priority:'medium', dueDate: D(5), assignees:['u2'], notes:'See Google Slides deck for before/after comparison.', attachments:[], comments:[], createdBy:'u2', createdAt: now - 172800000, updatedAt: now - 43200000 },
+  { id:'t4', title:'Social media content calendar — May', description:'Plan and schedule all social posts for May across Instagram, LinkedIn, and X.', status:'done', priority:'low', dueDate: D(-1), assignees:['u3'], notes:'', attachments:[], comments:[], createdBy:'u2', createdAt: now - 259200000, updatedAt: now - 86400000 },
+  { id:'t5', title:'Client deck for onboarding presentation', description:'Build a polished deck for the new client onboarding session next week.', status:'todo', priority:'high', dueDate: D(3), assignees:['u1','u2','u3'], notes:'Use the updated brand template from the drive.', attachments:[], comments:[], createdBy:'u1', createdAt: now - 43200000, updatedAt: now - 43200000 }
+];
+
+const DEFAULT_MESSAGES = [
+  { id:'m1', channelId:'ch1', userId:'u2', content:'Morning everyone! Quick heads up — the BLURRD Links app is now live for internal testing 🎉', timestamp: now - 7200000, reactions:{'👍':['u1','u3'],'🔥':['u4']}, threadId:null, edited:false },
+  { id:'m2', channelId:'ch1', userId:'u1', content:'Amazing! @Morgan Lee can you send the QA checklist to @Sam Rivera and @Casey Kim?', timestamp: now - 7100000, reactions:{}, threadId:null, edited:false },
+  { id:'m3', channelId:'ch1', userId:'u3', content:"On it! I'll start going through the task manager and messaging features first.", timestamp: now - 6900000, reactions:{'👏':['u1','u2']}, threadId:'m1', edited:false },
+  { id:'m4', channelId:'ch1', userId:'u4', content:'The Kanban board drag and drop is smooth 🔥 Really good work team.', timestamp: now - 3600000, reactions:{'❤️':['u1','u2','u3']}, threadId:null, edited:false },
+  { id:'m5', channelId:'ch2', userId:'u2', content:'Sharing the new typography specs here. Heading font is now Google Sans Display, body is Roboto Flex.', timestamp: now - 86400000, reactions:{'👍':['u1']}, threadId:null, edited:false },
+  { id:'m6', channelId:'ch2', userId:'u1', content:"Love the direction. @Morgan Lee let's align on the colour tokens next week.", timestamp: now - 82800000, reactions:{}, threadId:null, edited:false },
+  { id:'m7', channelId:'ch3', userId:'u3', content:'PWA service worker registered successfully. Install prompt is working on Chrome and Edge.', timestamp: now - 172800000, reactions:{'🔥':['u1','u4']}, threadId:null, edited:false },
+  { id:'m8', channelId:'ch3', userId:'u4', content:'Safari on iOS shows the Add to Home Screen prompt too. Push notifications need FCM but the UI is all wired.', timestamp: now - 169200000, reactions:{'👍':['u1','u3']}, threadId:null, edited:false },
+  { id:'m9', channelId:'dm-u2', userId:'u2', content:"Hey! Can you review the Q2 brief when you get a chance?", timestamp: now - 1800000, reactions:{}, threadId:null, edited:false },
+  { id:'m10', channelId:'dm-u2', userId:'u1', content:"Sure! I'll look at it this afternoon.", timestamp: now - 1500000, reactions:{}, threadId:null, edited:false }
+];
+
+const DEFAULT_NOTIFICATIONS = [
+  { id:'n1', type:'mention', text:'Morgan Lee mentioned you in #general', time: now - 7100000, read: false, page:'messages', channelId:'ch1' },
+  { id:'n2', type:'task', text:'Task "BLURRD Links app testing & QA" is due tomorrow', time: now - 3600000, read: false, page:'tasks', taskId:'t2' },
+  { id:'n3', type:'message', text:'Casey Kim replied in #dev', time: now - 169200000, read: true, page:'messages', channelId:'ch3' }
+];
+
+// ═══════════════════════════
+// STATE
+// ═══════════════════════════
+let S = {
+  currentUser: null,
+  page: 'tasks',
+  navExpanded: false,
+  users: JSON.parse(JSON.stringify(DEFAULT_USERS)),
+  tasks: JSON.parse(JSON.stringify(DEFAULT_TASKS)),
+  channels: JSON.parse(JSON.stringify(DEFAULT_CHANNELS)),
+  messages: JSON.parse(JSON.stringify(DEFAULT_MESSAGES)),
+  notifications: JSON.parse(JSON.stringify(DEFAULT_NOTIFICATIONS)),
+  theme: { primary: '#0057B8', font: "'Google Sans', sans-serif", mode: 'auto' },
+  // UI state
+  modal: null,
+  editingTaskId: null,
+  selectedChannelId: 'ch1',
+  activeThreadMsgId: null,
+  notifPanelOpen: false,
+  taskFilter: { status: 'all', priority: 'all' },
+  calDate: new Date(),
+  calSelectedDate: null,
+  searchOpen: false,
+  searchQuery: '',
+  msgInput: {},
+  threadInput: '',
+  mentionQuery: null,
+  mentionIndex: 0,
+  taskPickerQuery: null,
+  taskPickerIndex: 0,
+  emojiTarget: null,
+  snoozeTarget: null,
+  msgFromTask: null  // taskId to pre-fill when navigating to messages
+};
+
+// ═══════════════════════════
+// PERSISTENCE
+// ═══════════════════════════
+function saveState() {
+  try {
+    const toSave = {
+      users: S.users, tasks: S.tasks, channels: S.channels,
+      messages: S.messages, notifications: S.notifications,
+      theme: S.theme, currentUserId: S.currentUser?.id,
+      selectedChannelId: S.selectedChannelId
+    };
+    localStorage.setItem('blurrd_state', JSON.stringify(toSave));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem('blurrd_state');
+    if (!raw) return;
+    const d = JSON.parse(raw);
+    if (d.users?.length) S.users = d.users;
+    if (d.tasks?.length) S.tasks = d.tasks;
+    if (d.channels?.length) S.channels = d.channels;
+    if (d.messages?.length) S.messages = d.messages;
+    if (d.notifications?.length) S.notifications = d.notifications;
+    if (d.theme) S.theme = d.theme;
+    if (d.selectedChannelId) S.selectedChannelId = d.selectedChannelId;
+    if (d.currentUserId) {
+      const u = S.users.find(u => u.id === d.currentUserId);
+      if (u) S.currentUser = u;
+    }
+  } catch(e) {}
+}
+
+// ═══════════════════════════
+// UTILITIES
+// ═══════════════════════════
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+
+function initials(name) {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+}
+
+function avatarColors() {
+  return ['#0057B8','#00695C','#6750A4','#B5294C','#B45309','#334155','#3730A3','#0D9488'];
+}
+function userColor(name) {
+  const colors = avatarColors();
+  let h = 0; for (let c of name) h = (h * 31 + c.charCodeAt(0)) % colors.length;
+  return colors[h];
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+
+function formatDateShort(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+
+function isOverdue(iso) {
+  if (!iso) return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return new Date(iso + 'T00:00:00') < today;
+}
+
+function isDueToday(iso) {
+  if (!iso) return false;
+  const today = new Date().toISOString().split('T')[0];
+  return iso === today;
+}
+
+function timeAgo(ts) {
+  const s = Math.floor((Date.now() - ts) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s/60)}m ago`;
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+  if (s < 604800) return `${Math.floor(s/86400)}d ago`;
+  return new Date(ts).toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+
+function formatTime(ts) {
+  return new Date(ts).toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit', hour12:true });
+}
+
+function isSameDay(ts1, ts2) {
+  const d1 = new Date(ts1), d2 = new Date(ts2);
+  return d1.getFullYear()===d2.getFullYear() && d1.getMonth()===d2.getMonth() && d1.getDate()===d2.getDate();
+}
+
+function getUser(id) { return S.users.find(u => u.id === id); }
+function getTask(id) { return S.tasks.find(t => t.id === id); }
+function getChannel(id) { return S.channels.find(c => c.id === id); }
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function parseMentions(text) {
+  // handles @mentions only, used in places where task refs aren't expected
+  return escHtml(text).replace(/@([\w ]+?)(?=\s|$|[^a-zA-Z ])/g, (match, name) => {
+    const u = S.users.find(u => u.name.toLowerCase().startsWith(name.toLowerCase()));
+    if (u) return `<span class="mention" data-uid="${u.id}">@${escHtml(u.name)}</span>`;
+    return match;
+  });
+}
+
+// Full message content parser — handles @mentions AND [task:id] embeds
+function parseMessageContent(text) {
+  // Split on [task:id] tokens, preserve them
+  const parts = text.split(/(\[task:[a-z0-9]+\])/gi);
+  return parts.map(part => {
+    const taskMatch = part.match(/^\[task:([a-z0-9]+)\]$/i);
+    if (taskMatch) {
+      const t = getTask(taskMatch[1]);
+      if (t) return renderTaskRef(t);
+      return `<span style="opacity:.5;font-size:12px">[task not found]</span>`;
+    }
+    return parseMentions(part);
+  }).join('');
+}
+
+function renderTaskRef(t) {
+  const overdue = isOverdue(t.dueDate) && t.status !== 'done';
+  const today = isDueToday(t.dueDate);
+  return `<div class="msg-task-ref" onclick="event.stopPropagation();openTaskModal('${t.id}')">
+    <div class="msg-task-ref-icon"><span class="ms filled">task_alt</span></div>
+    <div class="msg-task-ref-body">
+      <div class="msg-task-ref-title">${escHtml(t.title)}</div>
+      <div class="msg-task-ref-meta">
+        <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
+        <span class="badge ${getStatusColor(t.status)}">${STATUS_LABELS[t.status]}</span>
+        ${t.dueDate ? `<span class="msg-task-ref-due${overdue?' overdue':''}">
+          <span class="ms">schedule</span>${overdue ? 'Overdue' : today ? 'Today' : formatDateShort(t.dueDate)}
+        </span>` : ''}
+        ${t.assignees.length ? `<div style="display:flex;margin-left:2px">${t.assignees.slice(0,2).map(id => renderAvatar(id,'sm')).join('')}</div>` : ''}
+      </div>
+    </div>
+    <span class="ms sm" style="color:var(--c-on-surf-var);flex-shrink:0">open_in_new</span>
+  </div>`;
+}
+
+function renderAvatar(userId, sizeClass = '') {
+  const u = getUser(userId);
+  if (!u) return `<div class="avatar ${sizeClass}" style="background:#888">?</div>`;
+  return `<div class="avatar ${sizeClass}" style="background:${u.color || userColor(u.name)}" title="${escHtml(u.name)}">${escHtml(u.initials || initials(u.name))}</div>`;
+}
+
+function getPriorityClass(p) {
+  return { low:'prio-low', medium:'prio-medium', high:'prio-high', urgent:'prio-urgent' }[p] || '';
+}
+
+function getStatusColor(s) {
+  return { todo:'', in_progress:'warn', review:'', done:'success' }[s] || '';
+}
+
+function unreadCount(channelId) {
+  // In a real app this tracks per-user. Here we just count recent unread
+  const ch = getChannel(channelId);
+  if (!ch) return 0;
+  return S.messages.filter(m => m.channelId === channelId && !m._read && m.userId !== S.currentUser?.id).length;
+}
+
+function totalUnread() {
+  return S.notifications.filter(n => !n.read).length;
+}
+
+// ═══════════════════════════
+// THEME
+// ═══════════════════════════
+function applyTheme(theme) {
+  const root = document.documentElement;
+  // Resolve mode
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const resolved = theme.mode === 'auto' ? (prefersDark ? 'dark' : 'light') : theme.mode;
+  root.setAttribute('data-theme', theme.mode === 'auto' ? 'auto' : resolved);
+  root.setAttribute('data-resolved', resolved);
+  // Primary color — generate simple tonal palette
+  const hex = theme.primary || '#0057B8';
+  root.style.setProperty('--c-primary', hex);
+  root.style.setProperty('--c-primary-cont', hexToTonal(hex, resolved === 'dark' ? 30 : 90));
+  root.style.setProperty('--c-on-primary-cont', hexToTonal(hex, resolved === 'dark' ? 90 : 10));
+  root.style.setProperty('--c-inv-primary', hexToTonal(hex, resolved === 'dark' ? 40 : 80));
+  // Font
+  if (theme.font) {
+    root.style.setProperty('--font-display', theme.font);
+    root.style.setProperty('--font-ui', theme.font);
+  }
+}
+
+function hexToTonal(hex, lightness) {
+  // Convert hex to HSL, adjust lightness, return hex
+  let r = parseInt(hex.slice(1,3),16)/255;
+  let g = parseInt(hex.slice(3,5),16)/255;
+  let b = parseInt(hex.slice(5,7),16)/255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  let h, s, l = (max+min)/2;
+  if (max === min) { h = s = 0; }
+  else {
+    const d = max - min;
+    s = l > .5 ? d/(2-max-min) : d/(max+min);
+    switch(max) {
+      case r: h = ((g-b)/d + (g<b?6:0))/6; break;
+      case g: h = ((b-r)/d + 2)/6; break;
+      case b: h = ((r-g)/d + 4)/6; break;
+    }
+  }
+  const nl = lightness / 100;
+  const q = nl < .5 ? nl*(1+s) : nl+s-nl*s;
+  const p = 2*nl - q;
+  const hue2rgb = (p,q,t) => {
+    if (t<0) t+=1; if (t>1) t-=1;
+    if (t<1/6) return p+(q-p)*6*t;
+    if (t<1/2) return q;
+    if (t<2/3) return p+(q-p)*(2/3-t)*6;
+    return p;
+  };
+  const toHex = v => Math.round(v*255).toString(16).padStart(2,'0');
+  if (s===0) { const v = Math.round(nl*255).toString(16).padStart(2,'0'); return `#${v}${v}${v}`; }
+  return `#${toHex(hue2rgb(p,q,h+1/3))}${toHex(hue2rgb(p,q,h))}${toHex(hue2rgb(p,q,h-1/3))}`;
+}
+
+// ═══════════════════════════
+// RENDER SYSTEM
+// ═══════════════════════════
+const app = document.getElementById('app');
+
+function render() {
+  if (!S.currentUser) { renderLogin(); return; }
+  renderApp();
+}
+
+// ═══════════════════════════
+// LOGIN PAGE
+// ═══════════════════════════
+function renderLogin() {
+  app.innerHTML = `
+  <div class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-mark"><span class="ms filled">golf_course</span></div>
+        <div>
+          <div class="login-logo-text">BLURRD Links</div>
+          <div class="login-logo-sub">Team Communication</div>
+        </div>
+      </div>
+      <p class="login-tagline">Your team's task management and communication hub — all in one place.</p>
+      <div class="login-label">Select your profile</div>
+      <div class="login-users">
+        ${S.users.map(u => `
+          <button class="login-user-btn ripple" onclick="doLogin('${u.id}')">
+            <div class="avatar" style="background:${u.color || userColor(u.name)}">${escHtml(u.initials || initials(u.name))}</div>
+            <div class="login-user-info">
+              <div class="login-user-name">${escHtml(u.name)}</div>
+              <div class="login-user-role">${escHtml(u.role)}</div>
+            </div>
+            <span class="ms" style="color:var(--c-on-surf-var);font-size:18px">chevron_right</span>
+          </button>
+        `).join('')}
+      </div>
+      <button class="login-add-btn ripple" onclick="openAddUserModal()">
+        <span class="ms sm">person_add</span> Add new user
+      </button>
+    </div>
+  </div>`;
+}
+
+function doLogin(userId) {
+  const u = getUser(userId);
+  if (!u) return;
+  S.currentUser = u;
+  saveState();
+  render();
+  toast(`Welcome back, ${u.name.split(' ')[0]}! 👋`);
+}
+
+// ═══════════════════════════
+// APP SHELL
+// ═══════════════════════════
+function renderApp() {
+  const unread = totalUnread();
+  const msgUnread = S.channels.reduce((acc, ch) => acc + unreadCount(ch.id), 0);
+
+  app.innerHTML = `
+  <div class="app-layout">
+    <!-- Nav Rail -->
+    <nav class="nav-rail${S.navExpanded ? ' expanded' : ''}" id="nav-rail">
+      <div class="nav-logo" onclick="toggleNav()">
+        <div class="nav-logo-mark"><span class="ms filled">golf_course</span></div>
+        <div class="nav-logo-text">BLURRD Links<div class="nav-logo-sub">Communicator</div></div>
+      </div>
+      ${navItem('tasks','check_circle','Tasks')}
+      ${navItem('kanban','view_kanban','Kanban')}
+      ${navItem('calendar','calendar_month','Calendar')}
+      ${navItem('messages','forum','Messages', msgUnread)}
+      ${S.currentUser?.role === 'admin' ? navItem('admin','admin_panel_settings','Admin') : ''}
+      <div class="nav-spacer"></div>
+      <div class="nav-user ripple" onclick="logout()">
+        <div class="avatar sm" style="background:${S.currentUser.color || userColor(S.currentUser.name)}">${escHtml(S.currentUser.initials || initials(S.currentUser.name))}</div>
+        <div class="nav-user-info">
+          <div class="nav-user-name">${escHtml(S.currentUser.name)}</div>
+          <div class="nav-user-role">${escHtml(S.currentUser.role)} · Sign out</div>
+        </div>
+      </div>
+      <div class="nav-toggle ripple" onclick="toggleNav()">
+        <span class="ms sm">${S.navExpanded ? 'chevron_left' : 'chevron_right'}</span>
+      </div>
+    </nav>
+
+    <!-- Main Area -->
+    <div class="main-area">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-title">${pageTitle()}</div>
+        <div class="topbar-search${S.searchOpen ? ' open' : ''}" id="topbar-search" onclick="openSearch(this)">
+          <span class="ms sm">search</span>
+          <input type="text" placeholder="Search…" id="search-input" value="${escHtml(S.searchQuery)}"
+            oninput="onSearch(this.value)" onblur="closeSearch()" />
+        </div>
+        <div class="icon-btn ripple" onclick="toggleNotifPanel()" title="Notifications">
+          <span class="ms${unread ? ' filled' : ''}">notifications</span>
+          ${unread ? `<div class="nav-badge">${unread > 9 ? '9+' : unread}</div>` : ''}
+        </div>
+        <div class="icon-btn ripple" onclick="toggleThemeMode()" title="Toggle theme">
+          <span class="ms">contrast</span>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content" id="page-content">
+        ${renderPage()}
+      </div>
+    </div>
+
+    <!-- Notification Panel -->
+    ${S.notifPanelOpen ? renderNotifPanel() : ''}
+  </div>
+
+  <!-- Modal -->
+  <div id="modal-container">${S.modal ? renderModal() : ''}</div>
+  `;
+}
+
+function navItem(page, icon, label, badge = 0) {
+  const active = S.page === page;
+  return `
+    <div class="nav-item ripple${active ? ' active' : ''}" onclick="navigate('${page}')" title="${label}">
+      <span class="ms${active ? ' filled' : ''}">${icon}</span>
+      <span class="nav-item-label">${label}</span>
+      ${badge > 0 ? `<div class="nav-badge">${badge > 9 ? '9+' : badge}</div>` : ''}
+    </div>`;
+}
+
+function pageTitle() {
+  const titles = { tasks:'Tasks', kanban:'Kanban Board', calendar:'Calendar', messages:'Messages', admin:'Admin Dashboard' };
+  return titles[S.page] || 'BLURRD Links';
+}
+
+function navigate(page) {
+  S.page = page;
+  S.notifPanelOpen = false;
+  S.modal = null;
+  render();
+}
+
+function toggleNav() {
+  S.navExpanded = !S.navExpanded;
+  const rail = document.getElementById('nav-rail');
+  if (rail) rail.classList.toggle('expanded', S.navExpanded);
+}
+
+function logout() {
+  S.currentUser = null;
+  S.page = 'tasks';
+  saveState();
+  render();
+}
+
+function openSearch(el) {
+  S.searchOpen = true;
+  el.classList.add('open');
+  setTimeout(() => document.getElementById('search-input')?.focus(), 50);
+}
+function closeSearch() {
+  setTimeout(() => { S.searchOpen = false; S.searchQuery = ''; render(); }, 150);
+}
+function onSearch(val) { S.searchQuery = val; renderPageContent(); }
+
+function toggleNotifPanel() {
+  S.notifPanelOpen = !S.notifPanelOpen;
+  render();
+}
+
+function toggleThemeMode() {
+  const modes = ['auto','light','dark'];
+  const cur = modes.indexOf(S.theme.mode);
+  S.theme.mode = modes[(cur+1) % modes.length];
+  applyTheme(S.theme);
+  saveState();
+  render();
+  toast(`Theme: ${S.theme.mode.charAt(0).toUpperCase() + S.theme.mode.slice(1)}`);
+}
+
+function renderPage() {
+  switch(S.page) {
+    case 'tasks': return renderTasksPage();
+    case 'kanban': return renderKanbanPage();
+    case 'calendar': return renderCalendarPage();
+    case 'messages': return renderMessagesPage();
+    case 'admin': return renderAdminPage();
+    default: return renderTasksPage();
+  }
+}
+
+function renderPageContent() {
+  const pc = document.getElementById('page-content');
+  if (pc) pc.innerHTML = renderPage();
+}
+
+// ═══════════════════════════
+// TASKS PAGE
+// ═══════════════════════════
+function renderTasksPage() {
+  let tasks = S.tasks;
+  if (S.taskFilter.status !== 'all') tasks = tasks.filter(t => t.status === S.taskFilter.status);
+  if (S.taskFilter.priority !== 'all') tasks = tasks.filter(t => t.priority === S.taskFilter.priority);
+  if (S.searchQuery) {
+    const q = S.searchQuery.toLowerCase();
+    tasks = tasks.filter(t => t.title.toLowerCase().includes(q) || t.description?.toLowerCase().includes(q));
+  }
+
+  const counts = {};
+  STATUSES.forEach(s => counts[s] = S.tasks.filter(t => t.status === s).length);
+
+  return `
+  <div class="page-tasks">
+    <!-- Stats row -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      ${['todo','in_progress','review','done'].map(s => `
+        <div class="card elevated" style="flex:1;min-width:120px;padding:16px 20px;cursor:pointer" onclick="setTaskFilter('status','${s}')">
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-bottom:4px">${STATUS_LABELS[s]}</div>
+          <div class="headline-sm" style="font-family:var(--font-display)">${counts[s]}</div>
+        </div>`).join('')}
+    </div>
+
+    <!-- Filters -->
+    <div class="task-filters">
+      <div class="chip${S.taskFilter.status==='all'?' active':''} ripple" onclick="setTaskFilter('status','all')">All</div>
+      ${STATUSES.map(s => `<div class="chip${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')">${STATUS_LABELS[s]}</div>`).join('')}
+      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 4px"></div>
+      ${PRIORITIES.map(p => `<div class="chip${S.taskFilter.priority===p?' active':''} ripple" onclick="setTaskFilter('priority','${p}')"><span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}</div>`).join('')}
+    </div>
+
+    <!-- Task List -->
+    ${tasks.length === 0 ? `<div class="empty-state"><span class="ms">task_alt</span><h3>No tasks found</h3><p>Try adjusting your filters or create a new task.</p></div>` : `
+    <div class="task-list">
+      ${tasks.map(t => renderTaskCard(t)).join('')}
+    </div>`}
+  </div>
+
+  <!-- FAB -->
+  <div class="fab ripple" onclick="openTaskModal(null)">
+    <span class="ms">add</span> New Task
+  </div>`;
+}
+
+function renderTaskCard(t) {
+  const overdue = isOverdue(t.dueDate) && t.status !== 'done';
+  const today = isDueToday(t.dueDate);
+  const assigneeHtml = t.assignees.slice(0,3).map(id => renderAvatar(id, 'sm')).join('');
+  const extra = t.assignees.length > 3 ? `<div class="avatar sm" style="background:var(--c-outline)">+${t.assignees.length-3}</div>` : '';
+  return `
+  <div class="task-card ripple${t.status==='done'?' done':''}" onclick="openTaskModal('${t.id}')">
+    <div class="task-card-left">
+      <div class="task-check${t.status==='done'?' checked':''} ripple" onclick="toggleTaskDone(event,'${t.id}')">
+        ${t.status==='done' ? '<span class="ms sm">check</span>' : ''}
+      </div>
+      <div class="task-meta">
+        <div class="task-title">${escHtml(t.title)}</div>
+        <div class="task-sub">
+          <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
+          <span class="badge ${getStatusColor(t.status)}">${STATUS_LABELS[t.status]}</span>
+          ${t.dueDate ? `<span class="task-due${overdue?' overdue':''}">
+            <span class="ms">schedule</span>${overdue ? 'Overdue' : today ? 'Today' : formatDateShort(t.dueDate)}
+          </span>` : ''}
+          ${t.comments.length ? `<span class="task-attach-count"><span class="ms">chat_bubble</span>${t.comments.length}</span>` : ''}
+          ${t.attachments.length ? `<span class="task-attach-count"><span class="ms">attach_file</span>${t.attachments.length}</span>` : ''}
+        </div>
+      </div>
+    </div>
+    <div class="task-card-right">
+      <div class="task-assignees">${assigneeHtml}${extra}</div>
+      <div class="task-actions">
+        <div class="icon-btn ripple" onclick="event.stopPropagation();messageAboutTask('${t.id}')" title="Message about this task">
+          <span class="ms sm">forum</span>
+        </div>
+        <div class="icon-btn ripple" onclick="deleteTask(event,'${t.id}')" title="Delete">
+          <span class="ms sm" style="color:var(--c-error)">delete</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function setTaskFilter(type, val) {
+  S.taskFilter[type] = val;
+  renderPageContent();
+}
+
+function toggleTaskDone(e, taskId) {
+  e.stopPropagation();
+  const t = getTask(taskId);
+  if (!t) return;
+  t.status = t.status === 'done' ? 'todo' : 'done';
+  t.updatedAt = Date.now();
+  saveState();
+  renderPageContent();
+  toast(t.status === 'done' ? '✅ Task marked complete!' : 'Task reopened');
+}
+
+function deleteTask(e, taskId) {
+  e.stopPropagation();
+  if (!confirm('Delete this task?')) return;
+  S.tasks = S.tasks.filter(t => t.id !== taskId);
+  saveState();
+  renderPageContent();
+  toast('Task deleted');
+}
+
+// ═══════════════════════════
+// TASK MODAL
+// ═══════════════════════════
+function openTaskModal(taskId) {
+  S.modal = { type: 'task', taskId };
+  S.editingTaskId = taskId;
+  render();
+}
+
+function renderModal() {
+  if (!S.modal) return '';
+  switch(S.modal.type) {
+    case 'task': return renderTaskModal();
+    case 'addUser': return renderAddUserModal();
+    default: return '';
+  }
+}
+
+function renderTaskModal() {
+  const isNew = !S.editingTaskId;
+  const t = isNew ? {
+    id: null, title:'', description:'', status:'todo', priority:'medium',
+    dueDate:'', assignees:[], notes:'', attachments:[], comments: []
+  } : getTask(S.editingTaskId);
+  if (!t) { closeModal(); return ''; }
+
+  return `
+  <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
+    <div class="modal" id="task-modal">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h2 class="modal-title">${isNew ? 'New Task' : 'Edit Task'}</h2>
+        <div class="modal-close ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+
+      <!-- Title -->
+      <div class="field">
+        <label class="field-label">Task Title *</label>
+        <div class="field-input">
+          <input id="task-title" type="text" placeholder="What needs to be done?" value="${escHtml(t.title)}" />
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="field">
+        <label class="field-label">Description</label>
+        <div class="field-input">
+          <textarea id="task-desc" placeholder="Add more details…">${escHtml(t.description)}</textarea>
+        </div>
+      </div>
+
+      <!-- Status + Priority row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="field">
+          <label class="field-label">Status</label>
+          <div class="status-select">
+            ${STATUSES.map(s => `<div class="status-btn${t.status===s?' active':''}" data-status="${s}" onclick="setEditStatus('${s}')">${STATUS_LABELS[s]}</div>`).join('')}
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Priority</label>
+          <div class="chip-group">
+            ${PRIORITIES.map(p => `<div class="chip${t.priority===p?' active':''} ripple" onclick="setEditPriority('${p}')"><span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Due Date -->
+      <div class="field">
+        <label class="field-label">Due Date</label>
+        <div class="field-input">
+          <span class="ms sm" style="color:var(--c-on-surf-var)">calendar_today</span>
+          <input id="task-due" type="date" value="${t.dueDate || ''}" />
+        </div>
+      </div>
+
+      <!-- Assignees -->
+      <div class="task-section">
+        <div class="task-section-title">Assignees</div>
+        <div class="assignee-chips" id="assignee-chips">
+          ${S.users.map(u => {
+            const assigned = t.assignees.includes(u.id);
+            return `<div class="chip${assigned?' active':''} ripple" onclick="toggleAssignee('${u.id}')">
+              <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+              ${escHtml(u.name.split(' ')[0])}
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="field">
+        <label class="field-label">Notes</label>
+        <div class="field-input">
+          <textarea id="task-notes" placeholder="Add internal notes, links, or context…">${escHtml(t.notes)}</textarea>
+        </div>
+      </div>
+
+      <!-- Attachments -->
+      <div class="task-section">
+        <div class="task-section-title">Attachments (${t.attachments.length})</div>
+        ${t.attachments.length ? `<div class="attachments-list">
+          ${t.attachments.map((a,i) => `
+            <div class="attachment-item">
+              <span class="ms">${a.type?.startsWith('image') ? 'image' : 'attach_file'}</span>
+              <span class="attachment-name">${escHtml(a.name)}</span>
+              <span class="attachment-size">${formatSize(a.size)}</span>
+              <div class="icon-btn ripple" onclick="removeAttachment(${i})" title="Remove">
+                <span class="ms sm" style="color:var(--c-error)">close</span>
+              </div>
+            </div>`).join('')}
+        </div>` : ''}
+        <div class="attach-drop" id="attach-drop" onclick="document.getElementById('attach-input').click()"
+          ondragover="event.preventDefault();this.classList.add('dragging')"
+          ondragleave="this.classList.remove('dragging')"
+          ondrop="handleAttachDrop(event)">
+          <span class="ms" style="font-size:32px;opacity:.5">cloud_upload</span>
+          <div style="font-size:14px;margin-top:8px">Drop files here or <strong>click to browse</strong></div>
+          <div style="font-size:12px;opacity:.7;margin-top:4px">Images, PDFs, docs — up to 5MB each</div>
+        </div>
+        <input type="file" id="attach-input" style="display:none" multiple onchange="handleAttachInput(this)" />
+      </div>
+
+      <!-- Comments -->
+      ${!isNew ? `<div class="task-section">
+        <div class="task-section-title">Comments (${t.comments.length})</div>
+        <div class="comments-list">
+          ${t.comments.length ? t.comments.map(c => {
+            const u = getUser(c.userId);
+            return `<div class="comment-item">
+              ${renderAvatar(c.userId, 'sm')}
+              <div class="comment-body">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="comment-author">${escHtml(u?.name || 'Unknown')}</span>
+                  <span class="comment-time">${timeAgo(c.timestamp)}</span>
+                  <button class="btn btn-text btn-sm ripple" style="padding:2px 6px;font-size:11px;margin-left:auto"
+                    onclick="messageAboutComment('${t.id}','${escHtml(c.text.replace(/'/g,'&#39;'))}')" title="Share this comment in a message">
+                    <span class="ms sm" style="font-size:14px">forum</span>
+                  </button>
+                </div>
+                <div class="comment-text">${escHtml(c.text)}</div>
+              </div>
+            </div>`;
+          }).join('') : '<div style="font-size:13px;color:var(--c-on-surf-var);padding:4px 0">No comments yet.</div>'}
+        </div>
+        <div class="comment-input-row" style="margin-top:8px">
+          ${renderAvatar(S.currentUser.id, 'sm')}
+          <textarea class="comment-input" id="new-comment" placeholder="Add a comment…" rows="1"></textarea>
+          <button class="btn btn-tonal btn-sm ripple" onclick="addComment()">Post</button>
+        </div>
+      </div>` : ''}
+
+      <!-- Actions -->
+      <div class="modal-actions" style="flex-wrap:wrap">
+        <button class="btn btn-outlined btn-sm ripple" onclick="closeModal()">Cancel</button>
+        ${!isNew ? `
+        <button class="btn btn-tonal btn-sm ripple" onclick="messageAboutTask('${t.id}')" title="Open a message pre-linked to this task">
+          <span class="ms sm">forum</span> Message
+        </button>
+        <button class="btn btn-error btn-sm ripple" onclick="deleteTask(event,'${t.id}');closeModal()">Delete</button>` : ''}
+        <button class="btn btn-filled btn-sm ripple" onclick="saveTask()">${isNew ? 'Create Task' : 'Save Changes'}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function closeModal() {
+  S.modal = null;
+  S.editingTaskId = null;
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = '';
+}
+
+function backdropClick(e) {
+  if (e.target.id === 'modal-backdrop') closeModal();
+}
+
+function setEditStatus(status) {
+  const t = S.editingTaskId ? getTask(S.editingTaskId) : null;
+  if (t) t.status = status;
+  // Re-render status buttons in modal without full re-render
+  document.querySelectorAll('.status-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.status === status);
+  });
+  if (t) saveState();
+}
+
+function setEditPriority(priority) {
+  const t = S.editingTaskId ? getTask(S.editingTaskId) : null;
+  if (t) { t.priority = priority; saveState(); }
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function toggleAssignee(userId) {
+  const t = S.editingTaskId ? getTask(S.editingTaskId) : null;
+  if (!t) return;
+  const idx = t.assignees.indexOf(userId);
+  if (idx >= 0) t.assignees.splice(idx, 1); else t.assignees.push(userId);
+  saveState();
+  const ac = document.getElementById('assignee-chips');
+  if (ac) ac.innerHTML = S.users.map(u => {
+    const assigned = t.assignees.includes(u.id);
+    return `<div class="chip${assigned?' active':''} ripple" onclick="toggleAssignee('${u.id}')">
+      <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+      ${escHtml(u.name.split(' ')[0])}
+    </div>`;
+  }).join('');
+}
+
+function saveTask() {
+  const title = document.getElementById('task-title')?.value?.trim();
+  if (!title) { toast('Please enter a task title', 'error'); return; }
+  const isNew = !S.editingTaskId;
+  if (isNew) {
+    const t = {
+      id: uid(), title,
+      description: document.getElementById('task-desc')?.value || '',
+      status: 'todo', priority: 'medium',
+      dueDate: document.getElementById('task-due')?.value || '',
+      assignees: [], notes: document.getElementById('task-notes')?.value || '',
+      attachments: [], comments: [],
+      createdBy: S.currentUser.id, createdAt: Date.now(), updatedAt: Date.now()
+    };
+    S.tasks.unshift(t);
+  } else {
+    const t = getTask(S.editingTaskId);
+    if (t) {
+      t.title = title;
+      t.description = document.getElementById('task-desc')?.value || '';
+      t.dueDate = document.getElementById('task-due')?.value || '';
+      t.notes = document.getElementById('task-notes')?.value || '';
+      t.updatedAt = Date.now();
+    }
+  }
+  saveState();
+  closeModal();
+  renderPageContent();
+  toast(isNew ? '✅ Task created!' : '✅ Task updated!');
+  scheduleTaskNotification(isNew ? S.tasks[0] : getTask(S.editingTaskId));
+}
+
+function addComment() {
+  const text = document.getElementById('new-comment')?.value?.trim();
+  if (!text) return;
+  const t = getTask(S.editingTaskId);
+  if (!t) return;
+  t.comments.push({ id: uid(), userId: S.currentUser.id, text, timestamp: Date.now() });
+  saveState();
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+  toast('Comment added');
+}
+
+// "Message about this task" — navigates to messages and pre-seeds the input with [task:id]
+function messageAboutTask(taskId) {
+  const t = getTask(taskId);
+  if (!t) return;
+  closeModal();
+  S.page = 'messages';
+  // Pre-fill the selected channel input with a task ref
+  const channelId = S.selectedChannelId || (S.channels.find(c => c.type === 'channel')?.id);
+  if (channelId) {
+    S.selectedChannelId = channelId;
+    const existing = S.msgInput[channelId] || '';
+    S.msgInput[channelId] = (existing ? existing + ' ' : '') + `[task:${taskId}] `;
+  }
+  render();
+  // Focus the input
+  setTimeout(() => {
+    const input = document.querySelector('[id^="msg-input-"]');
+    if (input) { input.focus(); input.selectionStart = input.selectionEnd = input.value.length; }
+    const sendBtn = input?.closest('.msg-input-area')?.querySelector('.msg-send-btn');
+    if (sendBtn) sendBtn.disabled = !input?.value?.trim();
+  }, 100);
+  toast('Task linked — add your message and send ⛳');
+}
+
+// "Message about this comment" — same idea but includes the comment text quoted
+function messageAboutComment(taskId, commentText) {
+  const t = getTask(taskId);
+  if (!t) return;
+  closeModal();
+  S.page = 'messages';
+  const channelId = S.selectedChannelId || (S.channels.find(c => c.type === 'channel')?.id);
+  if (channelId) {
+    S.selectedChannelId = channelId;
+    const quote = commentText.length > 80 ? commentText.slice(0, 77) + '…' : commentText;
+    S.msgInput[channelId] = `[task:${taskId}] Re: "${quote}" — `;
+  }
+  render();
+  setTimeout(() => {
+    const input = document.querySelector('[id^="msg-input-"]');
+    if (input) { input.focus(); input.selectionStart = input.selectionEnd = input.value.length; }
+    const sendBtn = input?.closest('.msg-input-area')?.querySelector('.msg-send-btn');
+    if (sendBtn) sendBtn.disabled = false;
+  }, 100);
+  toast('Comment linked — add your message and send');
+}
+
+function formatSize(bytes) {
+  if (!bytes) return '';
+  if (bytes < 1024) return bytes + 'B';
+  if (bytes < 1048576) return (bytes/1024).toFixed(1) + 'KB';
+  return (bytes/1048576).toFixed(1) + 'MB';
+}
+
+function handleAttachInput(input) {
+  const t = S.editingTaskId ? getTask(S.editingTaskId) : null;
+  if (!t) return;
+  Array.from(input.files).forEach(f => {
+    if (f.size > 5*1024*1024) { toast('File too large (max 5MB)', 'error'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      t.attachments.push({ id: uid(), name: f.name, size: f.size, type: f.type, data: e.target.result });
+      saveState();
+      const mc = document.getElementById('modal-container');
+      if (mc) mc.innerHTML = renderModal();
+    };
+    reader.readAsDataURL(f);
+  });
+}
+
+function handleAttachDrop(e) {
+  e.preventDefault();
+  document.getElementById('attach-drop')?.classList.remove('dragging');
+  const fakeInput = { files: e.dataTransfer.files };
+  handleAttachInput(fakeInput);
+}
+
+function removeAttachment(idx) {
+  const t = S.editingTaskId ? getTask(S.editingTaskId) : null;
+  if (!t) return;
+  t.attachments.splice(idx, 1);
+  saveState();
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+// ═══════════════════════════
+// NOTIFICATIONS PANEL
+// ═══════════════════════════
+function renderNotifPanel() {
+  return `
+  <div class="notif-panel" id="notif-panel">
+    <div class="notif-panel-header">
+      <div class="notif-panel-title">Notifications</div>
+      <button class="btn btn-text btn-sm ripple" onclick="markAllNotifRead()">Mark all read</button>
+      <div class="icon-btn ripple" onclick="toggleNotifPanel()"><span class="ms sm">close</span></div>
+    </div>
+    <div class="notif-list">
+      ${S.notifications.length === 0 ? `<div style="padding:32px;text-align:center;color:var(--c-on-surf-var);font-size:14px">All caught up! 🎉</div>` :
+        S.notifications.map(n => `
+        <div class="notif-item${n.read?'':' unread'}" onclick="clickNotif('${n.id}')">
+          <div class="notif-icon"><span class="ms">${n.type==='mention'?'alternate_email':n.type==='task'?'task_alt':'forum'}</span></div>
+          <div class="notif-body">
+            <div class="notif-text">${escHtml(n.text)}</div>
+            <div class="notif-time">${timeAgo(n.time)}</div>
+          </div>
+          <div style="position:relative">
+            <div class="icon-btn ripple" onclick="openSnooze(event,'${n.id}')" title="Snooze">
+              <span class="ms sm">snooze</span>
+            </div>
+            ${S.snoozeTarget === n.id ? renderSnoozeMenu(n.id) : ''}
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderSnoozeMenu(nid) {
+  return `<div class="snooze-popup">
+    <div class="snooze-item" onclick="snoozeNotif('${nid}',15)"><span class="ms">schedule</span>Snooze 15 min</div>
+    <div class="snooze-item" onclick="snoozeNotif('${nid}',60)"><span class="ms">schedule</span>Snooze 1 hour</div>
+    <div class="snooze-item" onclick="snoozeNotif('${nid}',1440)"><span class="ms">today</span>Snooze until tomorrow</div>
+    <div class="snooze-item" onclick="dismissNotif('${nid}')"><span class="ms">check</span>Dismiss</div>
+  </div>`;
+}
+
+function clickNotif(id) {
+  const n = S.notifications.find(x => x.id === id);
+  if (!n) return;
+  n.read = true;
+  saveState();
+  if (n.page) { S.page = n.page; if (n.channelId) S.selectedChannelId = n.channelId; }
+  S.notifPanelOpen = false;
+  render();
+}
+
+function markAllNotifRead() {
+  S.notifications.forEach(n => n.read = true);
+  saveState();
+  render();
+}
+
+function openSnooze(e, nid) {
+  e.stopPropagation();
+  S.snoozeTarget = S.snoozeTarget === nid ? null : nid;
+  render();
+}
+
+function snoozeNotif(nid, minutes) {
+  const n = S.notifications.find(x => x.id === nid);
+  if (!n) return;
+  n.read = true;
+  S.snoozeTarget = null;
+  saveState();
+  const ms = minutes * 60 * 1000;
+  setTimeout(() => {
+    n.read = false;
+    n.time = Date.now();
+    n.text = `[Snoozed] ${n.text}`;
+    saveState();
+    sendBrowserNotif('BLURRD Links', n.text, nid);
+    render();
+  }, ms);
+  render();
+  toast(`Snoozed for ${minutes < 60 ? minutes + ' min' : minutes === 60 ? '1 hour' : 'tomorrow'}`);
+}
+
+function dismissNotif(nid) {
+  S.notifications = S.notifications.filter(n => n.id !== nid);
+  S.snoozeTarget = null;
+  saveState();
+  render();
+}
+
+// ═══════════════════════════
+// TOAST
+// ═══════════════════════════
+function toast(msg, type = 'default') {
+  const tc = document.getElementById('toasts');
+  if (!tc) return;
+  const icons = { default:'check_circle', error:'error', info:'info' };
+  const id = uid();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.id = 'toast_' + id;
+  el.innerHTML = `<span class="ms sm">${icons[type]||'check_circle'}</span>${escHtml(msg)}`;
+  tc.appendChild(el);
+  setTimeout(() => {
+    el.classList.add('exiting');
+    setTimeout(() => el.remove(), 200);
+  }, 3000);
+}
+
+// ═══════════════════════════
+// BROWSER NOTIFICATIONS
+// ═══════════════════════════
+function requestNotifPermission() {
+  if (!('Notification' in window)) return;
+  Notification.requestPermission();
+}
+
+function sendBrowserNotif(title, body, tag = 'blurrd') {
+  if (Notification.permission !== 'granted') return;
+  const n = new Notification(title, {
+    body, tag,
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="%230057B8"/><text x="24" y="32" font-size="24" text-anchor="middle" fill="white">⛳</text></svg>'
+  });
+  n.onclick = () => { window.focus(); n.close(); };
+}
+
+function scheduleTaskNotification(task) {
+  if (!task?.dueDate) return;
+  const due = new Date(task.dueDate + 'T09:00:00').getTime();
+  const dayBefore = due - 86400000;
+  const now = Date.now();
+  if (dayBefore > now) {
+    const delay = dayBefore - now;
+    setTimeout(() => {
+      sendBrowserNotif('Task Due Tomorrow', `"${task.title}" is due tomorrow`, task.id);
+      addNotification({ type:'task', text:`"${task.title}" is due tomorrow`, page:'tasks', taskId: task.id });
+    }, Math.min(delay, 2147483647));
+  }
+}
+
+function addNotification(data) {
+  S.notifications.unshift({ id: uid(), ...data, time: Date.now(), read: false });
+  saveState();
+  render();
+}
+
+
+/* ═══════════════════════════════════════════════
+   BLURRD LINKS — JavaScript Part 3
+   Kanban, Calendar, Messages, Admin, Events, PWA
+═══════════════════════════════════════════════ */
+
+// ═══════════════════════════
+// KANBAN PAGE
+// ═══════════════════════════
+function renderKanbanPage() {
+  const cols = STATUSES.map(s => ({
+    status: s,
+    label: STATUS_LABELS[s],
+    tasks: S.tasks.filter(t => t.status === s),
+    color: { todo:'#78909C', in_progress:'#FF9800', review:'#0057B8', done:'#4CAF50' }[s]
+  }));
+
+  return `
+  <div class="page-kanban">
+    <div class="kanban-board" id="kanban-board">
+      ${cols.map(col => `
+        <div class="kanban-col" data-status="${col.status}"
+          ondragover="kanbanDragOver(event,'${col.status}')"
+          ondragleave="kanbanDragLeave(event)"
+          ondrop="kanbanDrop(event,'${col.status}')">
+          <div class="kanban-col-header">
+            <div class="kanban-col-dot" style="background:${col.color}"></div>
+            <div class="kanban-col-title">${col.label}</div>
+            <div class="kanban-col-count">${col.tasks.length}</div>
+          </div>
+          <div class="kanban-cards" id="kcol-${col.status}">
+            ${col.tasks.map(t => renderKanbanCard(t)).join('')}
+          </div>
+          <div class="kanban-add-btn ripple" onclick="openTaskModalWithStatus('${col.status}')">
+            <span class="ms sm">add</span> Add task
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderKanbanCard(t) {
+  const overdue = isOverdue(t.dueDate) && t.status !== 'done';
+  return `
+  <div class="kanban-card ripple" id="kcard-${t.id}"
+    draggable="true"
+    ondragstart="kanbanDragStart(event,'${t.id}')"
+    ondragend="kanbanDragEnd(event)"
+    onclick="openTaskModal('${t.id}')">
+    <div style="display:flex;align-items:flex-start;gap:8px">
+      <span class="priority-dot ${getPriorityClass(t.priority)}" style="margin-top:6px;flex-shrink:0"></span>
+      <div class="kanban-card-title">${escHtml(t.title)}</div>
+    </div>
+    ${t.dueDate ? `<div class="task-due${overdue?' overdue':''}" style="font-size:12px;display:flex;align-items:center;gap:4px">
+      <span class="ms" style="font-size:14px">schedule</span>${overdue ? 'Overdue' : formatDateShort(t.dueDate)}
+    </div>` : ''}
+    <div class="kanban-card-footer">
+      <div class="task-assignees">
+        ${t.assignees.slice(0,3).map(id => renderAvatar(id,'sm')).join('')}
+        ${t.assignees.length > 3 ? `<div class="avatar sm" style="background:var(--c-outline)">+${t.assignees.length-3}</div>` : ''}
+      </div>
+      ${t.comments.length ? `<span class="task-attach-count" style="margin-left:auto"><span class="ms" style="font-size:14px">chat_bubble</span>${t.comments.length}</span>` : ''}
+      ${t.attachments.length ? `<span class="task-attach-count"><span class="ms" style="font-size:14px">attach_file</span>${t.attachments.length}</span>` : ''}
+    </div>
+  </div>`;
+}
+
+let _dragTaskId = null;
+let _dragOriginStatus = null;
+
+function kanbanDragStart(e, taskId) {
+  _dragTaskId = taskId;
+  const t = getTask(taskId);
+  _dragOriginStatus = t?.status;
+  e.dataTransfer.effectAllowed = 'move';
+  setTimeout(() => document.getElementById('kcard-'+taskId)?.classList.add('dragging'), 10);
+}
+
+function kanbanDragEnd(e) {
+  document.querySelectorAll('.kanban-card.dragging').forEach(el => el.classList.remove('dragging'));
+  document.querySelectorAll('.kanban-col.drag-over-col').forEach(el => el.classList.remove('drag-over-col'));
+  _dragTaskId = null;
+}
+
+function kanbanDragOver(e, status) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  document.querySelectorAll('.kanban-col').forEach(el => el.classList.remove('drag-over-col'));
+  e.currentTarget.classList.add('drag-over-col');
+}
+
+function kanbanDragLeave(e) {
+  if (!e.currentTarget.contains(e.relatedTarget)) {
+    e.currentTarget.classList.remove('drag-over-col');
+  }
+}
+
+function kanbanDrop(e, status) {
+  e.preventDefault();
+  if (!_dragTaskId) return;
+  const t = getTask(_dragTaskId);
+  if (t && t.status !== status) {
+    t.status = status;
+    t.updatedAt = Date.now();
+    saveState();
+    renderPageContent();
+    toast(`Moved to ${STATUS_LABELS[status]}`);
+  } else {
+    document.querySelectorAll('.kanban-col.drag-over-col').forEach(el => el.classList.remove('drag-over-col'));
+  }
+}
+
+function openTaskModalWithStatus(status) {
+  S.modal = { type: 'task', taskId: null, defaultStatus: status };
+  S.editingTaskId = null;
+  render();
+}
+
+// ═══════════════════════════
+// CALENDAR PAGE
+// ═══════════════════════════
+function renderCalendarPage() {
+  const d = S.calDate;
+  const year = d.getFullYear(), month = d.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const today = new Date().toISOString().split('T')[0];
+  const monthName = d.toLocaleDateString('en-US', { month:'long', year:'numeric' });
+
+  // Build grid cells
+  let cells = [];
+  // Previous month padding
+  const prevDays = new Date(year, month, 0).getDate();
+  for (let i = firstDay-1; i >= 0; i--) cells.push({ day: prevDays-i, other: true, date: null });
+  // Current month
+  for (let i = 1; i <= daysInMonth; i++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+    cells.push({ day: i, other: false, date: dateStr, isToday: dateStr === today, selected: S.calSelectedDate === dateStr });
+  }
+  // Next month padding
+  const remaining = 42 - cells.length;
+  for (let i = 1; i <= remaining; i++) cells.push({ day: i, other: true, date: null });
+
+  const tasksByDate = {};
+  S.tasks.filter(t => t.dueDate).forEach(t => {
+    if (!tasksByDate[t.dueDate]) tasksByDate[t.dueDate] = [];
+    tasksByDate[t.dueDate].push(t);
+  });
+
+  const selectedTasks = S.calSelectedDate ? (tasksByDate[S.calSelectedDate] || []) : [];
+
+  return `
+  <div class="page-calendar">
+    <div class="cal-header">
+      <div class="cal-nav-btn ripple" onclick="calPrevMonth()"><span class="ms">chevron_left</span></div>
+      <div class="cal-month-year">${monthName}</div>
+      <div class="cal-nav-btn ripple" onclick="calNextMonth()"><span class="ms">chevron_right</span></div>
+      <button class="btn btn-tonal btn-sm ripple" onclick="calGoToday()">Today</button>
+    </div>
+
+    <div class="cal-grid">
+      <div class="cal-day-labels">
+        ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => `<div class="cal-day-label">${d}</div>`).join('')}
+      </div>
+      <div class="cal-days">
+        ${cells.map(cell => {
+          const tasks = cell.date ? (tasksByDate[cell.date] || []) : [];
+          return `<div class="cal-day${cell.other?' other-month':''}${cell.isToday?' today':''}${cell.selected?' selected':''}"
+            ${cell.date ? `onclick="calSelectDate('${cell.date}')"` : ''}>
+            <div class="cal-day-num">${cell.day}</div>
+            <div class="cal-task-dots">
+              ${tasks.slice(0,3).map(t => `<div class="cal-task-dot${isOverdue(t.dueDate) && t.status!=='done'?' overdue':''}">${escHtml(t.title.slice(0,12))}${t.title.length>12?'…':''}</div>`).join('')}
+              ${tasks.length > 3 ? `<div class="cal-task-dot">+${tasks.length-3} more</div>` : ''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    ${S.calSelectedDate ? `
+    <div class="cal-selected-tasks">
+      <div class="cal-selected-header">
+        Tasks for ${formatDate(S.calSelectedDate)} (${selectedTasks.length})
+      </div>
+      ${selectedTasks.length === 0 ?
+        `<div style="font-size:14px;color:var(--c-on-surf-var)">No tasks due on this date.</div>` :
+        `<div class="task-list">${selectedTasks.map(t => renderTaskCard(t)).join('')}</div>`}
+    </div>` : ''}
+  </div>
+
+  <div class="fab ripple" onclick="openTaskModal(null)">
+    <span class="ms">add</span> New Task
+  </div>`;
+}
+
+function calPrevMonth() {
+  S.calDate = new Date(S.calDate.getFullYear(), S.calDate.getMonth()-1, 1);
+  renderPageContent();
+}
+function calNextMonth() {
+  S.calDate = new Date(S.calDate.getFullYear(), S.calDate.getMonth()+1, 1);
+  renderPageContent();
+}
+function calGoToday() {
+  S.calDate = new Date();
+  S.calSelectedDate = new Date().toISOString().split('T')[0];
+  renderPageContent();
+}
+function calSelectDate(date) {
+  S.calSelectedDate = S.calSelectedDate === date ? null : date;
+  renderPageContent();
+}
+
+// ═══════════════════════════
+// MESSAGES PAGE
+// ═══════════════════════════
+function renderMessagesPage() {
+  const ch = getChannel(S.selectedChannelId);
+  return `
+  <div class="page-messages">
+    ${renderMsgSidebar()}
+    ${ch ? renderMsgMain(ch) : '<div class="empty-state" style="flex:1"><span class="ms">forum</span><h3>Select a channel</h3></div>'}
+    ${S.activeThreadMsgId ? renderThreadPanel() : ''}
+  </div>`;
+}
+
+function renderMsgSidebar() {
+  const channels = S.channels.filter(c => c.type === 'channel');
+  const dms = S.channels.filter(c => c.type === 'dm');
+
+  return `
+  <div class="msg-sidebar">
+    <div class="msg-sidebar-section">
+      <div class="msg-sidebar-title">
+        Channels
+        <div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:24px;height:24px">
+          <span class="ms sm">add</span>
+        </div>
+      </div>
+      ${channels.map(ch => {
+        const uc = unreadCount(ch.id);
+        return `<div class="msg-channel-item ripple${ch.id===S.selectedChannelId?' active':''}" onclick="selectChannel('${ch.id}')">
+          <span class="ms sm">tag</span>
+          <span class="msg-channel-name">${escHtml(ch.name)}</span>
+          ${uc > 0 ? `<span class="msg-unread">${uc > 9 ? '9+' : uc}</span>` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="msg-sidebar-section">
+      <div class="msg-sidebar-title">Direct Messages</div>
+      ${dms.map(ch => {
+        const partner = getUser(ch.partnerId);
+        if (!partner) return '';
+        const uc = unreadCount(ch.id);
+        return `<div class="msg-channel-item ripple${ch.id===S.selectedChannelId?' active':''}" onclick="selectChannel('${ch.id}')">
+          <div class="avatar sm" style="background:${partner.color||userColor(partner.name)}">${escHtml(partner.initials||initials(partner.name))}</div>
+          <span class="msg-channel-name">${escHtml(partner.name)}</span>
+          ${uc > 0 ? `<span class="msg-unread">${uc > 9 ? '9+' : uc}</span>` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="msg-sidebar-section">
+      <div class="msg-sidebar-title">Team Members</div>
+      ${S.users.map(u => `
+        <div class="msg-channel-item" style="cursor:default">
+          <div style="position:relative">
+            <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+            <div style="width:8px;height:8px;border-radius:50%;background:${u.online?'#4CAF50':'#9E9E9E'};position:absolute;bottom:0;right:0;border:1.5px solid var(--c-surface)"></div>
+          </div>
+          <span class="msg-channel-name">${escHtml(u.name)}</span>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderMsgMain(ch) {
+  const msgs = S.messages.filter(m => m.channelId === ch.id && !m.threadId);
+  // Mark as read
+  S.messages.filter(m => m.channelId === ch.id).forEach(m => m._read = true);
+
+  // Group messages by day, then by sender (consecutive)
+  const groups = [];
+  let lastDay = null, lastUserId = null, lastGroup = null;
+  msgs.forEach(m => {
+    const day = new Date(m.timestamp).toDateString();
+    if (day !== lastDay) {
+      groups.push({ type:'day', label: formatDayLabel(m.timestamp) });
+      lastDay = day; lastUserId = null; lastGroup = null;
+    }
+    const isMine = m.userId === S.currentUser.id;
+    if (m.userId !== lastUserId) {
+      lastGroup = { type:'group', userId: m.userId, isMine, msgs: [] };
+      groups.push(lastGroup);
+      lastUserId = m.userId;
+    }
+    lastGroup.msgs.push(m);
+  });
+
+  return `
+  <div class="msg-main">
+    <div class="msg-header">
+      <span class="ms sm" style="color:var(--c-primary)">${ch.type==='dm'?'person':'tag'}</span>
+      <div>
+        <div class="msg-header-name">${escHtml(ch.name)}</div>
+        ${ch.description ? `<div class="msg-header-desc">${escHtml(ch.description)}</div>` : ''}
+      </div>
+    </div>
+    <div class="msg-feed" id="msg-feed">
+      ${groups.map(g => g.type === 'day' ?
+        `<div class="msg-day-divider"><span class="msg-day-text">${g.label}</span></div>` :
+        renderMsgGroup(g)
+      ).join('')}
+    </div>
+    ${renderMsgInput(ch.id)}
+  </div>`;
+}
+
+function formatDayLabel(ts) {
+  const d = new Date(ts);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const yesterday = new Date(today); yesterday.setDate(today.getDate()-1);
+  if (d >= today) return 'Today';
+  if (d >= yesterday) return 'Yesterday';
+  return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+}
+
+function renderMsgGroup(g) {
+  const u = getUser(g.userId);
+  return `
+  <div class="msg-group${g.isMine?' mine':''}">
+    <div class="msg-group-avatar">${g.isMine ? '' : renderAvatar(g.userId)}</div>
+    <div class="msg-group-content">
+      ${!g.isMine ? `<div class="msg-sender">${escHtml(u?.name||'?')}<span class="msg-time-label">${formatTime(g.msgs[0].timestamp)}</span></div>` : ''}
+      ${g.msgs.map(m => renderMsgBubble(m, g.isMine)).join('')}
+    </div>
+    ${g.isMine ? `<div class="msg-group-avatar">${renderAvatar(g.userId)}</div>` : ''}
+  </div>`;
+}
+
+function renderMsgBubble(m, isMine) {
+  const threadReplies = S.messages.filter(r => r.threadId === m.id);
+  const reactions = m.reactions || {};
+  const emojiHtml = Object.entries(reactions).filter(([,ids]) => ids.length).map(([emoji, ids]) =>
+    `<div class="msg-reaction${ids.includes(S.currentUser.id)?' mine':''} ripple" onclick="toggleReaction('${m.id}','${emoji}')" title="${ids.map(id=>getUser(id)?.name).join(', ')}">${emoji}<span class="msg-reaction-count">${ids.length}</span></div>`
+  ).join('');
+
+  return `
+  <div style="display:flex;flex-direction:column;align-items:${isMine?'flex-end':'flex-start'}">
+    ${isMine ? `<div class="msg-time-label" style="margin-bottom:2px">${formatTime(m.timestamp)}</div>` : ''}
+    <div class="msg-bubble" id="msg-${m.id}">${parseMessageContent(m.content)}${m.edited?'<span style="font-size:11px;opacity:.6;margin-left:6px">(edited)</span>':''}</div>
+    ${emojiHtml ? `<div class="msg-reactions">${emojiHtml}</div>` : ''}
+    ${threadReplies.length ? `<div class="msg-thread-count" onclick="openThread('${m.id}')"><span class="ms">forum</span>${threadReplies.length} ${threadReplies.length===1?'reply':'replies'}</div>` : ''}
+    <div class="msg-actions">
+      <div class="msg-action-btn ripple" onclick="openEmojiPicker('${m.id}')" title="React">😊</div>
+      <div class="msg-action-btn ripple" onclick="openThread('${m.id}')" title="Reply in thread"><span class="ms sm">reply</span></div>
+      ${isMine ? `<div class="msg-action-btn ripple" onclick="deleteMessage('${m.id}')" title="Delete"><span class="ms sm" style="color:var(--c-error)">delete</span></div>` : ''}
+    </div>
+  </div>`;
+}
+
+function renderMsgInput(channelId) {
+  const val = S.msgInput[channelId] || '';
+  const ch = getChannel(channelId);
+  const placeholder = ch?.type === 'dm' ? `Message ${ch.name}` : `Message #${ch?.name||'channel'} — use @ to mention, # to link a task`;
+  return `
+  <div class="msg-input-area" style="position:relative">
+    ${S.mentionQuery !== null ? renderMentionPopup() : ''}
+    ${S.taskPickerQuery !== null ? renderTaskPicker() : ''}
+    ${S.emojiTarget ? renderEmojiPicker() : ''}
+    <div class="msg-input-wrap">
+      <textarea class="msg-input-field" id="msg-input-${channelId}" placeholder="${escHtml(placeholder)}"
+        onkeydown="msgKeyDown(event,'${channelId}')"
+        oninput="msgInput(event,'${channelId}')"
+        onblur="closeAllPopups()">${escHtml(val)}</textarea>
+      <div class="msg-input-bottom">
+        <div class="msg-input-tools">
+          <div class="msg-input-tool ripple" onclick="document.getElementById('msg-file-${channelId}').click()" title="Attach file">
+            <span class="ms sm">attach_file</span>
+          </div>
+          <div class="msg-input-tool ripple" onclick="insertEmoji('${channelId}')" title="Emoji">
+            <span class="ms sm">mood</span>
+          </div>
+          <div class="msg-input-tool ripple" onclick="insertAtMention('${channelId}')" title="Mention someone (@)">
+            <span class="ms sm">alternate_email</span>
+          </div>
+          <div class="msg-input-tool ripple" onclick="insertTaskTrigger('${channelId}')" title="Link a task (#)">
+            <span class="ms sm">task_alt</span>
+          </div>
+          <input type="file" id="msg-file-${channelId}" style="display:none" onchange="handleMsgFile(this,'${channelId}')" />
+        </div>
+        <button class="msg-send-btn ripple" onclick="sendMessage('${channelId}')" ${!val.trim()?'disabled':''}>
+          <span class="ms">send</span>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderMentionPopup() {
+  const q = (S.mentionQuery || '').toLowerCase();
+  const filtered = S.users.filter(u => u.name.toLowerCase().includes(q) && u.id !== S.currentUser.id);
+  if (!filtered.length) return '';
+  return `<div class="mention-popup">
+    ${filtered.map((u, i) => `
+      <div class="mention-item${i===S.mentionIndex?' selected':''} ripple" onmousedown="insertMention('${u.id}')">
+        <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+        <div class="mention-item-name">${escHtml(u.name)}</div>
+      </div>`).join('')}
+  </div>`;
+}
+
+function renderEmojiPicker() {
+  return `<div class="emoji-picker" id="emoji-picker" style="bottom:calc(100% + 8px);right:80px">
+    ${EMOJIS.map(e => `<div class="emoji-opt" onmousedown="addReaction('${S.emojiTarget}','${e}')">${e}</div>`).join('')}
+  </div>`;
+}
+
+function renderTaskPicker() {
+  const q = (S.taskPickerQuery || '').toLowerCase();
+  const filtered = S.tasks
+    .filter(t => t.status !== 'done' && (t.title.toLowerCase().includes(q) || t.description?.toLowerCase().includes(q)))
+    .slice(0, 7);
+  const all = q === '' ? S.tasks.slice(0, 7) : filtered;
+
+  return `<div class="task-picker-popup" id="task-picker">
+    <div class="task-picker-header"><span class="ms">task_alt</span> Link a Task${q ? ` — "${escHtml(q)}"` : ' — type to search'}</div>
+    ${all.length === 0 ? `<div style="padding:14px 16px;font-size:13px;color:var(--c-on-surf-var)">No tasks found</div>` :
+      all.map((t, i) => `
+        <div class="task-picker-item${i===S.taskPickerIndex?' selected':''}" onmousedown="insertTaskRef('${t.id}')">
+          <span class="priority-dot ${getPriorityClass(t.priority)}" style="flex-shrink:0"></span>
+          <div class="task-picker-title">${escHtml(t.title)}</div>
+          <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+            <span class="task-picker-status">${STATUS_LABELS[t.status]}</span>
+            ${t.dueDate ? `<span style="font-size:11px;color:var(--c-on-surf-var)">${formatDateShort(t.dueDate)}</span>` : ''}
+          </div>
+        </div>`).join('')}
+  </div>`;
+}
+
+function selectChannel(channelId) {
+  S.selectedChannelId = channelId;
+  S.activeThreadMsgId = null;
+  S.notifPanelOpen = false;
+  saveState();
+  render();
+  // Scroll to bottom
+  setTimeout(() => {
+    const feed = document.getElementById('msg-feed');
+    if (feed) feed.scrollTop = feed.scrollHeight;
+  }, 50);
+}
+
+function msgInput(e, channelId) {
+  const val = e.target.value;
+  S.msgInput[channelId] = val;
+  const sendBtn = e.target.closest('.msg-input-area')?.querySelector('.msg-send-btn');
+  if (sendBtn) sendBtn.disabled = !val.trim();
+
+  const cursor = e.target.selectionStart;
+  const textBefore = val.slice(0, cursor);
+
+  // @mention detection
+  const atMatch = textBefore.match(/@([\w ]*)$/);
+  if (atMatch) {
+    S.mentionQuery = atMatch[1];
+    S.mentionIndex = 0;
+    S.taskPickerQuery = null;
+    const inputArea = e.target.closest('.msg-input-area');
+    if (inputArea) {
+      document.getElementById('task-picker')?.remove();
+      const existing = inputArea.querySelector('.mention-popup');
+      if (!existing) inputArea.insertAdjacentHTML('afterbegin', renderMentionPopup());
+      else existing.outerHTML = renderMentionPopup();
+    }
+    return;
+  }
+  S.mentionQuery = null;
+  document.querySelector('.mention-popup')?.remove();
+
+  // # task picker detection (match # at word boundary)
+  const hashMatch = textBefore.match(/#([\w ]*)$/);
+  if (hashMatch) {
+    S.taskPickerQuery = hashMatch[1];
+    S.taskPickerIndex = 0;
+    const inputArea = e.target.closest('.msg-input-area');
+    if (inputArea) {
+      const existing = document.getElementById('task-picker');
+      const newEl = document.createElement('div');
+      newEl.innerHTML = renderTaskPicker();
+      if (!existing) inputArea.insertAdjacentHTML('afterbegin', renderTaskPicker());
+      else existing.outerHTML = renderTaskPicker();
+    }
+    return;
+  }
+  S.taskPickerQuery = null;
+  document.getElementById('task-picker')?.remove();
+}
+
+function msgKeyDown(e, channelId) {
+  // Handle @mention navigation
+  if (S.mentionQuery !== null) {
+    const filtered = S.users.filter(u => u.name.toLowerCase().includes(S.mentionQuery.toLowerCase()) && u.id !== S.currentUser.id);
+    if (filtered.length) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); S.mentionIndex = (S.mentionIndex+1) % filtered.length; document.querySelector('.mention-popup')?.replaceWith(htmlToEl(renderMentionPopup())); return; }
+      if (e.key === 'ArrowUp') { e.preventDefault(); S.mentionIndex = (S.mentionIndex-1+filtered.length) % filtered.length; document.querySelector('.mention-popup')?.replaceWith(htmlToEl(renderMentionPopup())); return; }
+      if ((e.key === 'Enter' || e.key === 'Tab') && filtered.length) { e.preventDefault(); insertMention(filtered[S.mentionIndex]?.id); return; }
+    }
+    if (e.key === 'Escape') { S.mentionQuery = null; document.querySelector('.mention-popup')?.remove(); return; }
+  }
+  // Handle # task picker navigation
+  if (S.taskPickerQuery !== null) {
+    const q = S.taskPickerQuery.toLowerCase();
+    const filtered = S.tasks.filter(t => t.status !== 'done' && (q === '' || t.title.toLowerCase().includes(q))).slice(0, 7);
+    if (filtered.length) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); S.taskPickerIndex = (S.taskPickerIndex+1) % filtered.length; document.getElementById('task-picker')?.replaceWith(htmlToEl(renderTaskPicker())); return; }
+      if (e.key === 'ArrowUp') { e.preventDefault(); S.taskPickerIndex = (S.taskPickerIndex-1+filtered.length) % filtered.length; document.getElementById('task-picker')?.replaceWith(htmlToEl(renderTaskPicker())); return; }
+      if ((e.key === 'Enter' || e.key === 'Tab') && filtered.length) { e.preventDefault(); insertTaskRef(filtered[S.taskPickerIndex]?.id); return; }
+    }
+    if (e.key === 'Escape') { S.taskPickerQuery = null; document.getElementById('task-picker')?.remove(); return; }
+  }
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage(channelId);
+  }
+}
+
+function htmlToEl(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return d.firstChild;
+}
+
+function insertMention(userId) {
+  const u = getUser(userId);
+  if (!u) return;
+  S.mentionQuery = null;
+  document.querySelector('.mention-popup')?.remove();
+  const input = document.querySelector('[id^="msg-input-"]');
+  if (!input) return;
+  const val = input.value;
+  const cursor = input.selectionStart;
+  const textBefore = val.slice(0, cursor);
+  const textAfter = val.slice(cursor);
+  const replaced = textBefore.replace(/@[\w ]*$/, `@${u.name} `);
+  input.value = replaced + textAfter;
+  S.msgInput[S.selectedChannelId] = input.value;
+  input.focus();
+}
+
+function insertAtMention(channelId) {
+  const input = document.getElementById('msg-input-'+channelId);
+  if (!input) return;
+  input.value += '@';
+  input.dispatchEvent(new Event('input'));
+  input.focus();
+}
+
+function insertTaskTrigger(channelId) {
+  const input = document.getElementById('msg-input-'+channelId);
+  if (!input) return;
+  input.value += '#';
+  input.dispatchEvent(new Event('input'));
+  input.focus();
+}
+
+function insertTaskRef(taskId) {
+  if (!taskId) return;
+  const t = getTask(taskId);
+  if (!t) return;
+  S.taskPickerQuery = null;
+  document.getElementById('task-picker')?.remove();
+  const input = document.querySelector('[id^="msg-input-"]');
+  if (!input) return;
+  const val = input.value;
+  const cursor = input.selectionStart;
+  const textBefore = val.slice(0, cursor);
+  const textAfter = val.slice(cursor);
+  // Replace the #query trigger with the task token
+  const replaced = textBefore.replace(/#[\w ]*$/, `[task:${t.id}] `);
+  input.value = replaced + textAfter;
+  S.msgInput[S.selectedChannelId] = input.value;
+  // Enable send
+  const sendBtn = input.closest('.msg-input-area')?.querySelector('.msg-send-btn');
+  if (sendBtn) sendBtn.disabled = !input.value.trim();
+  input.focus();
+  input.selectionStart = input.selectionEnd = replaced.length;
+}
+
+function insertEmoji(channelId) {
+  const emojis = ['😊','🎉','👍','🙏','💪','🚀','⛳','🏌️'];
+  const e = emojis[Math.floor(Math.random()*emojis.length)];
+  const input = document.getElementById('msg-input-'+channelId);
+  if (input) { input.value += e; S.msgInput[channelId] = input.value; }
+}
+
+function closeMentionPopup() {
+  setTimeout(() => { S.mentionQuery = null; document.querySelector('.mention-popup')?.remove(); }, 150);
+}
+
+function closeAllPopups() {
+  setTimeout(() => {
+    S.mentionQuery = null;
+    S.taskPickerQuery = null;
+    document.querySelector('.mention-popup')?.remove();
+    document.getElementById('task-picker')?.remove();
+  }, 150);
+}
+
+function sendMessage(channelId) {
+  const input = document.getElementById('msg-input-'+channelId);
+  const content = (input?.value || S.msgInput[channelId] || '').trim();
+  if (!content) return;
+  const msg = {
+    id: uid(), channelId, userId: S.currentUser.id,
+    content, timestamp: Date.now(), reactions: {}, threadId: null, edited: false, _read: true
+  };
+  S.messages.push(msg);
+  S.msgInput[channelId] = '';
+  if (input) input.value = '';
+  saveState();
+  // Detect task refs and log them
+  const taskRefs = [...content.matchAll(/\[task:([a-z0-9]+)\]/gi)].map(m => m[1]);
+  if (taskRefs.length) {
+    taskRefs.forEach(tid => {
+      const t = getTask(tid);
+      if (t) addInAppNotif(`${S.currentUser.name} linked task "${t.title}" in #${getChannel(channelId)?.name}`, 'task', channelId);
+    });
+  }
+
+  // Notify mentioned users (in-app + browser + FCM)
+  const mentionedNames = [...content.matchAll(/@([\w]+(?:\s[\w]+)?)/g)].map(m => m[1]);
+  mentionedNames.forEach(name => {
+    const u = S.users.find(u => u.name.toLowerCase().startsWith(name.toLowerCase()) && u.id !== S.currentUser.id);
+    if (u) {
+      const notifText = `${S.currentUser.name} mentioned you in #${getChannel(channelId)?.name}`;
+      addInAppNotif(notifText, 'mention', channelId);
+      sendBrowserNotif(`${S.currentUser.name} mentioned you`, content, 'mention-'+u.id);
+      // FCM push — sends to the current device token (in a real app, you'd look up the user's token from DB)
+      if (window._fcmToken) {
+        sendFCMPush(window._fcmToken, `${S.currentUser.name} mentioned you`, content.slice(0,100), { type:'mention', channelId });
+      }
+    }
+  });
+  // Re-render messages area only
+  const feed = document.getElementById('msg-feed');
+  const inputArea = document.querySelector('.msg-input-area');
+  if (feed) {
+    feed.insertAdjacentHTML('beforeend', (() => {
+      const isMine = true;
+      return `<div class="msg-group mine">
+        <div class="msg-group-avatar">${renderAvatar(S.currentUser.id)}</div>
+        <div class="msg-group-content" style="align-items:flex-end">
+          <div style="display:flex;flex-direction:column;align-items:flex-end">
+            <div class="msg-time-label" style="margin-bottom:2px">${formatTime(msg.timestamp)}</div>
+            <div class="msg-bubble" id="msg-${msg.id}" style="border-radius:var(--r-lg) var(--r-lg) 4px var(--r-lg)">${parseMessageContent(msg.content)}</div>
+          </div>
+        </div>
+      </div>`;
+    })());
+    feed.scrollTop = feed.scrollHeight;
+  }
+  if (inputArea) {
+    const sendBtn = inputArea.querySelector('.msg-send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+  }
+}
+
+function addInAppNotif(text, type, channelId) {
+  S.notifications.unshift({ id: uid(), type, text, time: Date.now(), read: false, page: 'messages', channelId });
+  if (S.notifications.length > 50) S.notifications = S.notifications.slice(0, 50);
+}
+
+function openThread(msgId) {
+  S.activeThreadMsgId = S.activeThreadMsgId === msgId ? null : msgId;
+  render();
+}
+
+function renderThreadPanel() {
+  const root = S.messages.find(m => m.id === S.activeThreadMsgId);
+  if (!root) return '';
+  const replies = S.messages.filter(m => m.threadId === root.id);
+  const rootUser = getUser(root.userId);
+
+  return `
+  <div class="msg-thread-panel">
+    <div class="msg-thread-header">
+      <div class="msg-thread-title">Thread</div>
+      <div class="icon-btn ripple" onclick="S.activeThreadMsgId=null;render()"><span class="ms sm">close</span></div>
+    </div>
+    <div class="msg-thread-feed">
+      <div class="msg-thread-root">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          ${renderAvatar(root.userId)}
+          <div>
+            <div style="font-weight:500;font-size:14px;font-family:var(--font-ui)">${escHtml(rootUser?.name||'?')}</div>
+            <div style="font-size:11px;color:var(--c-on-surf-var)">${formatTime(root.timestamp)}</div>
+          </div>
+        </div>
+        <div style="font-size:14px;line-height:1.6">${parseMessageContent(root.content)}</div>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--c-on-surf-var);padding:4px 0">${replies.length} ${replies.length===1?'Reply':'Replies'}</div>
+
+      ${replies.map(r => {
+        const ru = getUser(r.userId);
+        const isMine = r.userId === S.currentUser.id;
+        return `<div style="display:flex;gap:10px">
+          ${renderAvatar(r.userId, 'sm')}
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="font-size:13px;font-weight:500;font-family:var(--font-ui)">${escHtml(ru?.name||'?')}</span>
+              <span style="font-size:11px;color:var(--c-on-surf-var)">${formatTime(r.timestamp)}</span>
+            </div>
+            <div style="font-size:14px;line-height:1.6">${parseMessageContent(r.content)}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="msg-thread-input">
+      <div class="msg-input-wrap">
+        <textarea class="msg-input-field" id="thread-input" placeholder="Reply in thread…" style="min-height:36px"
+          onkeydown="threadKeyDown(event)"
+          oninput="S.threadInput=this.value">${escHtml(S.threadInput)}</textarea>
+        <div class="msg-input-bottom">
+          <div></div>
+          <button class="msg-send-btn ripple" onclick="sendThreadReply()" ${!S.threadInput.trim()?'disabled':''}>
+            <span class="ms">send</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function threadKeyDown(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendThreadReply();
+  }
+}
+
+function sendThreadReply() {
+  const content = S.threadInput.trim();
+  if (!content || !S.activeThreadMsgId) return;
+  const reply = {
+    id: uid(), channelId: S.selectedChannelId, userId: S.currentUser.id,
+    content, timestamp: Date.now(), reactions: {}, threadId: S.activeThreadMsgId, edited: false, _read: true
+  };
+  S.messages.push(reply);
+  S.threadInput = '';
+  saveState();
+  render();
+  toast('Reply sent');
+}
+
+function toggleReaction(msgId, emoji) {
+  const m = S.messages.find(x => x.id === msgId);
+  if (!m) return;
+  if (!m.reactions[emoji]) m.reactions[emoji] = [];
+  const idx = m.reactions[emoji].indexOf(S.currentUser.id);
+  if (idx >= 0) m.reactions[emoji].splice(idx, 1);
+  else m.reactions[emoji].push(S.currentUser.id);
+  saveState();
+  renderPageContent();
+}
+
+function openEmojiPicker(msgId) {
+  S.emojiTarget = S.emojiTarget === msgId ? null : msgId;
+  renderPageContent();
+}
+
+function addReaction(msgId, emoji) {
+  S.emojiTarget = null;
+  toggleReaction(msgId, emoji);
+}
+
+function deleteMessage(msgId) {
+  if (!confirm('Delete this message?')) return;
+  S.messages = S.messages.filter(m => m.id !== msgId && m.threadId !== msgId);
+  saveState();
+  renderPageContent();
+}
+
+function openAddChannelPrompt() {
+  const name = prompt('New channel name:');
+  if (!name?.trim()) return;
+  const ch = {
+    id: 'ch-' + uid(), name: name.trim().toLowerCase().replace(/\s+/g,'-'),
+    description: '', type: 'channel', members: S.users.map(u => u.id)
+  };
+  S.channels.push(ch);
+  S.selectedChannelId = ch.id;
+  saveState();
+  render();
+  toast(`#${ch.name} created`);
+}
+
+function handleMsgFile(input, channelId) {
+  const f = input.files[0];
+  if (!f) return;
+  const content = `📎 Attached: ${f.name} (${formatSize(f.size)})`;
+  S.msgInput[channelId] = content;
+  sendMessage(channelId);
+}
+
+// ═══════════════════════════
+// ADMIN PAGE
+// ═══════════════════════════
+function renderAdminPage() {
+  if (S.currentUser?.role !== 'admin') {
+    return `<div class="empty-state"><span class="ms">lock</span><h3>Admin Only</h3><p>You need admin access to view this page.</p></div>`;
+  }
+
+  return `
+  <div class="page-admin">
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">group</span>
+        <div>
+          <div class="admin-section-title">Team Members</div>
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">${S.users.length} members</div>
+        </div>
+        <button class="btn btn-tonal btn-sm ripple" onclick="openAddUserModal()" style="margin-left:auto">
+          <span class="ms sm">person_add</span> Add User
+        </button>
+      </div>
+      <div class="admin-section-body">
+        <div class="user-table">
+          ${S.users.map(u => `
+            <div class="user-row">
+              <div class="avatar" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+              <div class="user-row-info">
+                <div class="user-row-name">${escHtml(u.name)}</div>
+                <div class="user-row-email">${escHtml(u.email||'')}</div>
+              </div>
+              <div class="user-row-role">
+                <select class="role-badge role-${u.role}" onchange="changeUserRole('${u.id}',this.value)" style="background:transparent;border:none;cursor:pointer;font-family:var(--font-ui);font-size:12px;font-weight:600">
+                  ${ROLES.map(r => `<option value="${r}"${u.role===r?' selected':''}>${r.charAt(0).toUpperCase()+r.slice(1)}</option>`).join('')}
+                </select>
+              </div>
+              ${u.id !== S.currentUser.id ? `
+              <div class="icon-btn ripple" onclick="removeUser('${u.id}')" title="Remove user">
+                <span class="ms sm" style="color:var(--c-error)">person_remove</span>
+              </div>` : '<div style="width:40px"></div>'}
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">palette</span>
+        <div>
+          <div class="admin-section-title">Theme & Branding</div>
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">Customize colors, fonts, and appearance</div>
+        </div>
+      </div>
+      <div class="admin-section-body">
+        <div class="theme-controls">
+          <div class="field">
+            <div class="field-label">Accent Color</div>
+            <div class="color-row">
+              ${COLORS.map(c => `
+                <div class="color-swatch${S.theme.primary===c.value?' active':''}"
+                  style="background:${c.value}" title="${c.name}"
+                  onclick="setThemeColor('${c.value}')"></div>`).join('')}
+              <label class="color-swatch" style="background:${S.theme.primary};display:flex;align-items:center;justify-content:center" title="Custom color">
+                <span class="ms sm" style="color:white;font-size:16px">colorize</span>
+                <input type="color" value="${S.theme.primary}" style="opacity:0;position:absolute;width:0;height:0" onchange="setThemeColor(this.value)">
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">Font Family</div>
+            <div class="font-row">
+              ${FONTS.map((f,fi) => `
+                <div class="font-chip${S.theme.font===f.css?' active':''} ripple"
+                  style="font-family:${f.css}" onclick="setThemeFontByIndex(${fi})">
+                  ${f.name}
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label">Color Mode</div>
+            <div class="theme-mode-row">
+              <div class="theme-mode-btn${S.theme.mode==='auto'?' active':''} ripple" onclick="setThemeMode('auto')">
+                <span class="ms">brightness_auto</span> Auto
+              </div>
+              <div class="theme-mode-btn${S.theme.mode==='light'?' active':''} ripple" onclick="setThemeMode('light')">
+                <span class="ms">light_mode</span> Light
+              </div>
+              <div class="theme-mode-btn${S.theme.mode==='dark'?' active':''} ripple" onclick="setThemeMode('dark')">
+                <span class="ms">dark_mode</span> Dark
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">notifications</span>
+        <div>
+          <div class="admin-section-title">Push Notifications</div>
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">Manage notification permissions and delivery</div>
+        </div>
+      </div>
+      <div class="admin-section-body" style="display:flex;flex-direction:column;gap:12px">
+        <div class="notif-section">
+          <div class="notif-section-info">
+            <div class="notif-section-title">Browser Notifications</div>
+            <div class="notif-section-sub">Get alerts when the app is open. Permission status: <strong>${Notification?.permission||'not supported'}</strong></div>
+          </div>
+          <button class="btn btn-tonal btn-sm ripple" onclick="requestNotifPermission();toast('Permission requested')">
+            ${Notification?.permission === 'granted' ? '✅ Enabled' : 'Enable'}
+          </button>
+        </div>
+        <div class="notif-section">
+          <div class="notif-section-info">
+            <div class="notif-section-title">Background Push Notifications</div>
+            <div class="notif-section-sub">Full background push (when app is closed) requires hosting with Firebase Cloud Messaging. All frontend hooks are built-in — connect your FCM server key in settings.</div>
+          </div>
+          <button class="btn btn-outlined btn-sm ripple" onclick="toast('FCM setup guide coming soon ⛳','info')">Setup FCM</button>
+        </div>
+        <div class="notif-section">
+          <div class="notif-section-info">
+            <div class="notif-section-title">Install as App (PWA)</div>
+            <div class="notif-section-sub">Install BLURRD Links on your device for a native app experience. Works on Android, iOS (Add to Home Screen), Windows, and Mac.</div>
+          </div>
+          <button class="btn btn-filled btn-sm ripple" id="install-btn" onclick="triggerInstall()" style="display:none">Install App</button>
+          <span id="install-status" class="badge">Hosted required for install</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">info</span>
+        <div>
+          <div class="admin-section-title">App Information</div>
+        </div>
+      </div>
+      <div class="admin-section-body" style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
+          <span style="color:var(--c-on-surf-var)">App Name</span><span style="font-weight:500">BLURRD Links</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
+          <span style="color:var(--c-on-surf-var)">Version</span><span style="font-weight:500">1.0.0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
+          <span style="color:var(--c-on-surf-var)">Total Users</span><span style="font-weight:500">${S.users.length}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
+          <span style="color:var(--c-on-surf-var)">Total Tasks</span><span style="font-weight:500">${S.tasks.length}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0">
+          <span style="color:var(--c-on-surf-var)">Total Messages</span><span style="font-weight:500">${S.messages.length}</span>
+        </div>
+        <div style="margin-top:8px">
+          <button class="btn btn-error btn-sm ripple" onclick="resetApp()">Reset All Data</button>
+        </div>
+      </div>
+    </div>
+
+    ${renderFirebaseSection()}
+
+  </div>`;
+}
+
+function setThemeColor(hex) {
+  S.theme.primary = hex;
+  applyTheme(S.theme);
+  saveState();
+  renderPageContent();
+  toast('Theme color updated');
+}
+
+function setThemeFontByIndex(idx) {
+  const f = FONTS[idx];
+  if (f) setThemeFont(f.css, f.name);
+}
+function setThemeFont(font, name) {
+  S.theme.font = font;
+  applyTheme(S.theme);
+  saveState();
+  renderPageContent();
+  toast(`Font changed to ${name}`);
+}
+
+function setThemeMode(mode) {
+  S.theme.mode = mode;
+  applyTheme(S.theme);
+  saveState();
+  render();
+  toast(`Theme: ${mode.charAt(0).toUpperCase()+mode.slice(1)}`);
+}
+
+function changeUserRole(userId, role) {
+  const u = getUser(userId);
+  if (u) { u.role = role; saveState(); toast(`${u.name}'s role updated to ${role}`); }
+}
+
+function removeUser(userId) {
+  const u = getUser(userId);
+  if (!u) return;
+  if (!confirm(`Remove ${u.name} from the team?`)) return;
+  S.users = S.users.filter(x => x.id !== userId);
+  saveState();
+  renderPageContent();
+  toast(`${u.name} removed`);
+}
+
+function resetApp() {
+  if (!confirm('⚠️ Reset ALL data? This cannot be undone.')) return;
+  localStorage.removeItem('blurrd_state');
+  localStorage.removeItem('blurrd_firebase');
+  location.reload();
+}
+
+// ═══════════════════════════
+// FIREBASE ADMIN SECTION
+// ═══════════════════════════
+function renderFirebaseSection() {
+  const cfg = loadFirebaseConfig();
+  const connected = !!window._fcmToken;
+  const token = window._fcmToken || '';
+
+  return `
+  <div class="admin-section">
+    <div class="admin-section-header">
+      <span class="ms">wifi_tethering</span>
+      <div>
+        <div class="admin-section-title">Firebase Push Notifications</div>
+        <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">
+          Wire in Firebase for real background push — mentions, task assignments, due date reminders
+        </div>
+      </div>
+    </div>
+    <div class="admin-section-body" style="display:flex;flex-direction:column;gap:16px">
+
+      <!-- Status -->
+      <div class="firebase-status ${connected ? 'connected' : 'disconnected'}">
+        <span class="ms">${connected ? 'check_circle' : 'cloud_off'}</span>
+        ${connected ? 'Firebase connected — push notifications active' : 'Not connected — enter your Firebase config below'}
+      </div>
+
+      <!-- Config fields -->
+      <div class="config-grid">
+        ${[
+          ['apiKey','API Key','AIzaSy...'],
+          ['authDomain','Auth Domain','yourapp.firebaseapp.com'],
+          ['projectId','Project ID','your-project-id'],
+          ['messagingSenderId','Sender ID','1234567890'],
+          ['appId','App ID','1:123:web:abc123'],
+          ['vapidKey','VAPID Key (Web Push)','BNtGa...']
+        ].map(([k, label, ph]) => `
+          <div class="field">
+            <label class="field-label">${label}</label>
+            <div class="field-input">
+              <input id="fcm-${k}" type="${k === 'apiKey' || k === 'vapidKey' ? 'password' : 'text'}"
+                placeholder="${ph}" value="${escHtml(cfg[k]||'')}"
+                oninput="updateFirebaseConfig()" autocomplete="off" />
+            </div>
+          </div>`).join('')}
+      </div>
+
+      <!-- Server Key for sending pushes directly from app -->
+      <div class="field">
+        <label class="field-label">Server Key <span style="font-weight:400;opacity:.7">(used to send pushes — keep private)</span></label>
+        <div class="field-input">
+          <input id="fcm-serverKey" type="password" placeholder="AAAA..." value="${escHtml(cfg.serverKey||'')}"
+            oninput="updateFirebaseConfig()" autocomplete="off" />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-filled btn-sm ripple" onclick="connectFirebase()">
+          <span class="ms sm">rocket_launch</span> Connect Firebase
+        </button>
+        <button class="btn btn-outlined btn-sm ripple" onclick="testPushNotification()">
+          <span class="ms sm">notifications</span> Send Test Push
+        </button>
+        <button class="btn btn-text btn-sm ripple" onclick="downloadSWFile()">
+          <span class="ms sm">download</span> Download firebase-messaging-sw.js
+        </button>
+      </div>
+
+      <!-- Token display -->
+      ${token ? `
+      <div class="field">
+        <label class="field-label">Your Device Push Token <span style="font-weight:400;opacity:.7">(share with backend to send pushes)</span></label>
+        <div class="fcm-token-box" id="fcm-token-box">${escHtml(token)}</div>
+        <button class="btn btn-text btn-sm ripple" onclick="copyFCMToken()" style="align-self:flex-start;margin-top:4px">
+          <span class="ms sm">content_copy</span> Copy Token
+        </button>
+      </div>` : ''}
+
+      <!-- Setup guide -->
+      <div style="background:var(--c-surf2);border-radius:var(--r-lg);padding:16px;font-size:13px;line-height:1.7;color:var(--c-on-surf-var)">
+        <div style="font-weight:600;margin-bottom:6px;color:var(--c-on-surface);display:flex;align-items:center;gap:6px">
+          <span class="ms sm" style="color:var(--c-primary)">menu_book</span> Quick Setup Guide
+        </div>
+        <ol style="padding-left:18px;display:flex;flex-direction:column;gap:4px">
+          <li>Go to <strong>console.firebase.google.com</strong> → New project</li>
+          <li>Add a Web app → copy the config values above</li>
+          <li>Go to <strong>Project Settings → Cloud Messaging</strong> → Generate VAPID key pair</li>
+          <li>Copy your Server Key from Cloud Messaging → Legacy API</li>
+          <li>Click <strong>Connect Firebase</strong> — allow notifications when prompted</li>
+          <li>Download <strong>firebase-messaging-sw.js</strong> and host it at the root of your domain alongside index.html</li>
+          <li>Deploy — push notifications now work even when the app is closed ⛳</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════
+// FIREBASE FUNCTIONS
+// ═══════════════════════════
+function loadFirebaseConfig() {
+  try { return JSON.parse(localStorage.getItem('blurrd_firebase') || '{}'); } catch(e) { return {}; }
+}
+
+function saveFirebaseConfig(cfg) {
+  localStorage.setItem('blurrd_firebase', JSON.stringify(cfg));
+}
+
+function updateFirebaseConfig() {
+  const keys = ['apiKey','authDomain','projectId','messagingSenderId','appId','vapidKey','serverKey'];
+  const cfg = {};
+  keys.forEach(k => { const el = document.getElementById('fcm-'+k); if (el) cfg[k] = el.value.trim(); });
+  saveFirebaseConfig(cfg);
+}
+
+async function connectFirebase() {
+  const cfg = loadFirebaseConfig();
+  const required = ['apiKey','projectId','messagingSenderId','appId'];
+  if (required.some(k => !cfg[k])) {
+    toast('Please fill in all required Firebase config fields', 'error');
+    return;
+  }
+  if (!cfg.vapidKey) {
+    toast('VAPID key is required for push notifications', 'error');
+    return;
+  }
+  try {
+    toast('Connecting to Firebase…');
+    // Dynamically load Firebase SDK
+    await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
+
+    // Init or get existing app
+    if (typeof firebase === 'undefined') throw new Error('Firebase SDK failed to load');
+    let app;
+    try { app = firebase.app(); } catch(e) {
+      app = firebase.initializeApp({
+        apiKey: cfg.apiKey, authDomain: cfg.authDomain,
+        projectId: cfg.projectId, messagingSenderId: cfg.messagingSenderId, appId: cfg.appId
+      });
+    }
+
+    const messaging = firebase.messaging();
+
+    // Request notification permission
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') throw new Error('Notification permission denied');
+
+    // Register service worker
+    let swReg;
+    try {
+      swReg = await navigator.serviceWorker.register('firebase-messaging-sw.js');
+    } catch(e) {
+      // Fallback: try to use existing SW or create an inline one
+      swReg = await navigator.serviceWorker.ready;
+    }
+
+    // Get FCM token
+    const token = await messaging.getToken({ vapidKey: cfg.vapidKey, serviceWorkerRegistration: swReg });
+    window._fcmToken = token;
+    window._fcmMessaging = messaging;
+
+    // Handle foreground messages
+    messaging.onMessage(payload => {
+      const { title, body } = payload.notification || {};
+      if (title) {
+        addNotification({ type: 'message', text: `${title}: ${body}` });
+        toast(`🔔 ${title}: ${body}`);
+      }
+    });
+
+    saveState();
+    toast('Firebase connected! Push notifications active ⛳');
+    renderPageContent();
+  } catch(e) {
+    console.error('Firebase init error:', e);
+    toast(`Firebase error: ${e.message}`, 'error');
+  }
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = resolve; s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+async function sendFCMPush(targetToken, title, body, data = {}) {
+  const cfg = loadFirebaseConfig();
+  if (!cfg.serverKey || !targetToken) return;
+  try {
+    await fetch('https://fcm.googleapis.com/fcm/send', {
+      method: 'POST',
+      headers: { 'Authorization': `key=${cfg.serverKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: targetToken,
+        notification: { title, body, icon: '/icon-192.png', click_action: '/' },
+        data: { ...data, url: window.location.href }
+      })
+    });
+  } catch(e) { console.warn('FCM send error:', e); }
+}
+
+async function testPushNotification() {
+  if (!window._fcmToken) {
+    toast('Connect Firebase first', 'error');
+    return;
+  }
+  const cfg = loadFirebaseConfig();
+  if (!cfg.serverKey) {
+    toast('Add Server Key to send pushes', 'error');
+    return;
+  }
+  await sendFCMPush(window._fcmToken, 'BLURRD Links ⛳', 'Test notification — push is working!', { type: 'test' });
+  toast('Test push sent! Check your notifications.');
+}
+
+function copyFCMToken() {
+  if (!window._fcmToken) return;
+  navigator.clipboard.writeText(window._fcmToken).then(() => toast('Token copied to clipboard'));
+}
+
+function downloadSWFile() {
+  const cfg = loadFirebaseConfig();
+  const swContent = `/* firebase-messaging-sw.js — BLURRD Links Push Notifications
+   Host this file at the ROOT of your domain (same level as index.html)
+   e.g. https://yourdomain.com/firebase-messaging-sw.js
+*/
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
+
+firebase.initializeApp({
+  apiKey: "${cfg.apiKey || 'YOUR_API_KEY'}",
+  authDomain: "${cfg.authDomain || 'YOUR_PROJECT.firebaseapp.com'}",
+  projectId: "${cfg.projectId || 'YOUR_PROJECT_ID'}",
+  messagingSenderId: "${cfg.messagingSenderId || 'YOUR_SENDER_ID'}",
+  appId: "${cfg.appId || 'YOUR_APP_ID'}"
+});
+
+const messaging = firebase.messaging();
+
+// Handle background messages
+messaging.onBackgroundMessage(payload => {
+  const { title = 'BLURRD Links', body = 'You have a new notification' } = payload.notification || {};
+  self.registration.showNotification(title, {
+    body,
+    icon: payload.notification?.icon || '/icon-192.png',
+    badge: '/badge-72.png',
+    data: payload.data || {},
+    actions: [
+      { action: 'open', title: 'Open App' },
+      { action: 'snooze', title: 'Snooze 15 min' }
+    ],
+    requireInteraction: false,
+    tag: payload.data?.tag || 'blurrd-notif'
+  });
+});
+
+// Notification click handler with snooze support
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  if (e.action === 'snooze') {
+    // Reschedule via background sync or just re-show after 15 min
+    e.waitUntil(
+      new Promise(resolve => {
+        setTimeout(() => {
+          self.registration.showNotification(e.notification.title, {
+            body: '[Snoozed] ' + e.notification.body,
+            icon: e.notification.icon
+          });
+          resolve();
+        }, 15 * 60 * 1000);
+      })
+    );
+    return;
+  }
+  // Open or focus the app
+  e.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+      for (const client of windowClients) {
+        if (client.url.includes(self.location.origin) && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      return clients.openWindow(e.notification.data?.url || '/');
+    })
+  );
+});
+
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+`;
+
+  const blob = new Blob([swContent], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'firebase-messaging-sw.js'; a.click();
+  URL.revokeObjectURL(url);
+  toast('firebase-messaging-sw.js downloaded — host it at your domain root');
+}
+
+// ═══════════════════════════
+// ADD USER MODAL
+// ═══════════════════════════
+function openAddUserModal() {
+  S.modal = { type: 'addUser' };
+  render();
+}
+
+function renderAddUserModal() {
+  return `
+  <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
+    <div class="modal" id="add-user-modal">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h2 class="modal-title">Add Team Member</h2>
+        <div class="modal-close ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Full Name *</label>
+        <div class="field-input"><input id="new-user-name" type="text" placeholder="e.g. Alex Johnson" /></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Email Address</label>
+        <div class="field-input"><input id="new-user-email" type="email" placeholder="alex@company.com" /></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Role</label>
+        <div class="chip-group" id="new-user-role-group">
+          ${ROLES.map((r,i) => `<div class="chip${i===2?' active':''} ripple" data-role="${r}" onclick="selectNewUserRole('${r}')">${r.charAt(0).toUpperCase()+r.slice(1)}</div>`).join('')}
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Accent Color</label>
+        <div class="color-row">
+          ${COLORS.map((c,i) => `<div class="color-swatch${i===0?' active':''}" style="background:${c.value}" data-color="${c.value}" onclick="selectNewUserColor('${c.value}')"></div>`).join('')}
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outlined btn-sm ripple" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-filled btn-sm ripple" onclick="saveNewUser()">Add User</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+let _newUserRole = 'member';
+let _newUserColor = COLORS[0].value;
+
+function selectNewUserRole(role) {
+  _newUserRole = role;
+  document.querySelectorAll('#new-user-role-group .chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.role === role);
+  });
+}
+
+function selectNewUserColor(color) {
+  _newUserColor = color;
+  document.querySelectorAll('[data-color]').forEach(c => {
+    c.classList.toggle('active', c.dataset.color === color);
+  });
+}
+
+function saveNewUser() {
+  const name = document.getElementById('new-user-name')?.value?.trim();
+  if (!name) { toast('Please enter a name', 'error'); return; }
+  const email = document.getElementById('new-user-email')?.value?.trim() || '';
+  const u = {
+    id: uid(), name, email, role: _newUserRole || 'member',
+    color: _newUserColor || COLORS[0].value,
+    initials: initials(name), online: false
+  };
+  S.users.push(u);
+  saveState();
+  closeModal();
+  render();
+  toast(`${name} added to the team! 🎉`);
+}
+
+// ═══════════════════════════
+// PWA + INSTALL
+// ═══════════════════════════
+let _deferredInstall = null;
+
+function setupPWA() {
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    _deferredInstall = e;
+    const btn = document.getElementById('install-btn');
+    const status = document.getElementById('install-status');
+    if (btn) btn.style.display = 'flex';
+    if (status) status.style.display = 'none';
+  });
+  window.addEventListener('appinstalled', () => {
+    toast('BLURRD Links installed! ⛳');
+    _deferredInstall = null;
+  });
+}
+
+function triggerInstall() {
+  if (!_deferredInstall) { toast('Host the app to enable installation', 'info'); return; }
+  _deferredInstall.prompt();
+  _deferredInstall.userChoice.then(r => {
+    if (r.outcome === 'accepted') toast('Installing BLURRD Links… ⛳');
+    _deferredInstall = null;
+  });
+}
+
+// ═══════════════════════════
+// INIT
+// ═══════════════════════════
+loadState();
+applyTheme(S.theme);
+
+// Watch system color scheme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (S.theme.mode === 'auto') applyTheme(S.theme);
+});
+
+render();
+setupPWA();
+requestNotifPermission();
+
+// Scroll to bottom of messages on load
+setTimeout(() => {
+  const feed = document.getElementById('msg-feed');
+  if (feed) feed.scrollTop = feed.scrollHeight;
+}, 100);
+
+// Close notification panel on outside click
+document.addEventListener('click', e => {
+  if (S.notifPanelOpen && !e.target.closest('#notif-panel') && !e.target.closest('.icon-btn[onclick*="toggleNotifPanel"]')) {
+    S.notifPanelOpen = false;
+    const panel = document.getElementById('notif-panel');
+    if (panel) panel.remove();
+  }
+  if (S.emojiTarget && !e.target.closest('#emoji-picker') && !e.target.closest('.msg-action-btn')) {
+    S.emojiTarget = null;
+  }
+  if (S.snoozeTarget && !e.target.closest('.snooze-popup') && !e.target.closest('.icon-btn[onclick*="openSnooze"]')) {
+    S.snoozeTarget = null;
+  }
+});
+
+</script>
+</body>
+</html>
