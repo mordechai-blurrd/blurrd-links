@@ -1016,21 +1016,352 @@ img { max-width: 100%; display: block; }
 /* ── Scrollbar in messages feed ── */
 .msg-feed, .msg-thread-feed { scrollbar-width: thin; scrollbar-color: var(--c-outline-var) transparent; }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .nav-rail { width: 64px; }
-  .msg-sidebar { width: 200px; }
-  .msg-thread-panel { display: none; }
-  .page-tasks, .page-admin { padding: 16px; }
-  .kanban-col { min-width: 240px; }
-}
-@media (max-width: 540px) {
-  .nav-rail { display: none; }
-  .fab { bottom: 80px; }
-}
-
 /* ── User select none for UI ── */
 .nav-item, .btn, .chip, .icon-btn, .task-card, .kanban-card { user-select: none; }
+
+/* ══════════════════════════════════════
+   MATERIAL DESIGN 3 — MOBILE NATIVE
+   Google Material Expressive
+══════════════════════════════════════ */
+
+/* ── MD3 Bottom Navigation Bar ── */
+.mobile-nav-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  height: 80px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--bg-nav);
+  backdrop-filter: blur(24px) saturate(200%);
+  border-top: 1px solid var(--c-outline-var);
+  box-shadow: 0 -2px 12px rgba(0,0,0,.08);
+}
+.mobile-nav-inner {
+  display: flex; height: 80px; align-items: center;
+}
+.mobile-nav-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 10px 4px 8px; cursor: pointer; position: relative;
+  -webkit-tap-highlight-color: transparent; min-width: 0;
+}
+.mobile-nav-item .ms { font-size: 24px; color: var(--c-on-surf-var); transition: color var(--dur-fast), transform var(--dur-fast) var(--ease-out); }
+.mobile-nav-item .mobile-nav-label { font-family: var(--font-ui); font-size: 11px; font-weight: 500; color: var(--c-on-surf-var); white-space: nowrap; letter-spacing: .3px; transition: color var(--dur-fast); }
+.mobile-nav-item.active .ms { color: var(--c-on-primary-cont); }
+.mobile-nav-item.active .mobile-nav-label { color: var(--c-on-primary-cont); font-weight: 700; }
+/* MD3 indicator pill */
+.mobile-nav-indicator {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 32px; border-radius: var(--r-full);
+  background: transparent; transition: background var(--dur-fast) var(--ease-out);
+}
+.mobile-nav-item.active .mobile-nav-indicator { background: var(--c-primary-cont); }
+.mobile-nav-badge {
+  position: absolute; top: 4px; right: calc(50% - 20px);
+  background: var(--c-error); color: var(--c-on-error);
+  border-radius: var(--r-full); font-size: 9px; font-weight: 700;
+  min-width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
+  padding: 0 3px; border: 1.5px solid var(--c-surface);
+}
+
+/* ── MD3 Navigation Drawer (bottom sheet "More") ── */
+.nav-drawer-scrim {
+  position: fixed; inset: 0; background: var(--bg-modal); z-index: 90;
+  animation: fadeIn var(--dur-med) ease; backdrop-filter: blur(2px);
+}
+.nav-drawer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 95;
+  background: var(--c-surface);
+  border-radius: var(--r-3xl) var(--r-3xl) 0 0;
+  padding: 8px 0 calc(32px + env(safe-area-inset-bottom, 0px));
+  box-shadow: var(--el3);
+  animation: slideUp var(--dur-med) var(--ease-out);
+  max-height: 85vh; overflow-y: auto;
+}
+.nav-drawer-handle {
+  width: 40px; height: 4px; background: var(--c-outline-var);
+  border-radius: var(--r-full); margin: 8px auto 16px;
+}
+.nav-drawer-header {
+  padding: 4px 24px 12px; display: flex; align-items: center; gap: 14px;
+  border-bottom: 1px solid var(--c-outline-var); margin-bottom: 8px;
+}
+.nav-drawer-logo-mark {
+  width: 40px; height: 40px; border-radius: var(--r-lg);
+  background: var(--c-primary); display: flex; align-items: center; justify-content: center; color: var(--c-on-primary);
+}
+.nav-drawer-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--c-primary); }
+.nav-drawer-sub { font-size: 11px; color: var(--c-on-surf-var); text-transform: uppercase; letter-spacing: .6px; }
+.nav-drawer-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 24px; cursor: pointer; color: var(--c-on-surface);
+  transition: background var(--dur-fast); -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.nav-drawer-item:hover, .nav-drawer-item:active { background: var(--c-surf1); }
+.nav-drawer-item.active { color: var(--c-on-primary-cont); }
+.nav-drawer-item.active::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--c-primary); border-radius: 0 var(--r-full) var(--r-full) 0;
+}
+.nav-drawer-item .ms { font-size: 22px; color: var(--c-on-surf-var); flex-shrink: 0; }
+.nav-drawer-item.active .ms { color: var(--c-primary); }
+.nav-drawer-item-text { font-family: var(--font-ui); font-size: 15px; font-weight: 500; flex: 1; }
+.nav-drawer-badge { background: var(--c-error); color: var(--c-on-error); border-radius: var(--r-full); font-size: 11px; font-weight: 700; min-width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; padding: 0 5px; }
+.nav-drawer-divider { height: 1px; background: var(--c-outline-var); margin: 8px 24px; }
+.nav-drawer-section-label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--c-on-surf-var); padding: 8px 24px 4px; }
+
+/* ── MD3 Mobile Topbar ── */
+.mobile-topbar {
+  display: none; position: sticky; top: 0; z-index: 20;
+  height: 56px; padding: 0 4px 0 8px;
+  align-items: center; gap: 4px;
+  background: var(--c-surface);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.mobile-topbar.scrolled { border-color: var(--c-outline-var); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.mobile-topbar-title { font-family: var(--font-display); font-size: 22px; font-weight: 500; flex: 1; padding-left: 8px; color: var(--c-on-surface); }
+.mobile-search-overlay {
+  display: flex; position: fixed; inset: 0; z-index: 80;
+  background: var(--c-surface);
+  flex-direction: column; gap: 0; padding-top: 12px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  animation: slideUp var(--dur-med) var(--ease-out);
+}
+.mobile-search-bar {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  border-bottom: 1px solid var(--c-outline-var); flex-shrink: 0;
+}
+.mobile-search-bar input {
+  flex: 1; font-size: 17px; font-family: var(--font-ui); background: none; border: none; outline: none; color: var(--c-on-surface); padding: 8px 4px;
+}
+.mobile-search-results { flex: 1; overflow-y: auto; padding: 8px 16px; }
+.mobile-search-result-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 8px;
+  border-radius: var(--r-lg); cursor: pointer; transition: background var(--dur-fast);
+}
+.mobile-search-result-item:hover, .mobile-search-result-item:active { background: var(--c-surf1); }
+
+/* ── MD3 Bottom Sheet (Full-width modal) ── */
+.md3-sheet-overlay {
+  position: fixed; inset: 0; z-index: 100; background: var(--bg-modal);
+  backdrop-filter: blur(4px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  animation: fadeIn var(--dur-fast) ease;
+}
+.md3-sheet {
+  background: var(--c-surface);
+  border-radius: var(--r-3xl) var(--r-3xl) 0 0;
+  width: 100%;
+  max-height: 96vh; overflow-y: auto;
+  padding: 0 0 calc(24px + env(safe-area-inset-bottom, 0px));
+  animation: slideUp var(--dur-med) var(--ease-out);
+  overscroll-behavior: contain;
+}
+.md3-sheet-handle {
+  width: 40px; height: 4px; background: var(--c-outline-var);
+  border-radius: var(--r-full); margin: 12px auto 0;
+}
+.md3-sheet-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px 8px;
+}
+.md3-sheet-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; }
+.md3-sheet-close { width: 40px; height: 40px; border-radius: var(--r-full); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--dur-fast); }
+.md3-sheet-close:hover { background: var(--c-surf2); }
+.md3-sheet-body { padding: 8px 24px 16px; display: flex; flex-direction: column; gap: 16px; }
+
+/* ── MD3 Page transitions ── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: pageEnter var(--dur-med) var(--ease-out); }
+
+/* ── MD3 FAB (Extended + Compact) ── */
+.fab {
+  position: fixed; right: 20px; bottom: 24px;
+  background: var(--c-primary-cont); color: var(--c-on-primary-cont);
+  border-radius: var(--r-2xl); padding: 14px 20px;
+  box-shadow: var(--el3); display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-ui); font-size: 15px; font-weight: 600;
+  cursor: pointer; z-index: 30; transition: all var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.fab:hover { box-shadow: var(--el3), 0 0 0 4px var(--c-primary-cont); transform: scale(1.02); }
+.fab:active { transform: scale(0.97); }
+.fab .ms { font-size: 22px; }
+
+/* ── Swipe-to-dismiss hint on task cards ── */
+.task-card {
+  transition: all var(--dur-fast), transform .15s ease;
+}
+.task-card:active { transform: scale(0.985); }
+
+/* ── MD3 Chip improvements ── */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: var(--r-full);
+  font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+  background: var(--c-surf2); color: var(--c-on-surf-var);
+  cursor: pointer; border: 1px solid transparent;
+  transition: all var(--dur-fast); white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 32px;
+}
+.chip:hover { background: var(--c-surf3); }
+.chip.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); border-color: var(--c-primary); font-weight: 600; }
+
+/* ── MD3 Button overrides ── */
+.btn-filled, .btn.btn-filled { min-height: 40px; }
+.btn-sm { min-height: 36px; }
+
+/* ── MD3 Avatar with online indicator ── */
+.avatar-online::after {
+  content: ''; position: absolute; bottom: 0; right: 0;
+  width: 10px; height: 10px; border-radius: 50%; background: #22C55E;
+  border: 2px solid var(--c-surface);
+}
+.avatar { position: relative; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MD3 BREAKPOINTS
+══════════════════════════════════════ */
+
+/* Tablet: 601–840px */
+@media (max-width: 840px) {
+  .nav-rail { width: 72px; }
+  .msg-sidebar { width: 200px; }
+  .msg-thread-panel { display: none; }
+  .page-tasks, .page-admin, .page-changelog, .page-integrations { padding: 16px; }
+  .kanban-col { min-width: 220px; }
+  .page-mytasks, .page-accountability { padding: 16px; }
+  .integration-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Mobile: ≤600px — full MD3 mobile layout */
+@media (max-width: 600px) {
+  /* Hide desktop nav */
+  .nav-rail { display: none !important; }
+
+  /* Show mobile nav */
+  .mobile-nav-bar { display: block; }
+  .mobile-topbar { display: flex; }
+
+  /* Hide desktop topbar */
+  .topbar { display: none; }
+
+  /* Page content needs bottom nav padding */
+  .page-content {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* FAB above bottom nav */
+  .fab {
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    right: 16px; padding: 14px 16px; border-radius: var(--r-2xl);
+  }
+
+  /* Task page */
+  .page-tasks { padding: 12px 12px 0; gap: 12px; }
+  .task-filters { gap: 6px; padding-bottom: 4px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 6px; }
+  .task-filters::-webkit-scrollbar { display: none; }
+  .task-card { padding: 14px 14px; }
+  .task-title { font-size: 15px; white-space: normal; line-height: 1.4; }
+  .task-actions { opacity: 1; } /* Always visible on mobile */
+
+  /* Kanban */
+  .page-kanban { padding: 0 12px 0; }
+  .kanban-board { gap: 10px; padding: 12px 0 20px; }
+  .kanban-col { min-width: 260px; max-width: 82vw; }
+
+  /* Calendar */
+  .page-calendar { padding: 12px; }
+
+  /* Messages — single pane */
+  .msg-layout { flex-direction: column; }
+  .msg-sidebar { display: none; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 10; background: var(--c-surface); }
+  .msg-sidebar.mobile-visible { display: flex; flex-direction: column; }
+  .msg-main { flex: 1; display: flex; flex-direction: column; }
+  .msg-thread-panel { display: none !important; }
+
+  /* Admin */
+  .page-admin { padding: 12px 12px 0; }
+  .config-grid { grid-template-columns: 1fr; }
+  .accountability-grid { grid-template-columns: 1fr; }
+
+  /* Modals become full bottom sheets */
+  .modal {
+    border-radius: var(--r-3xl) var(--r-3xl) 0 0;
+    max-height: 95vh;
+    padding: 8px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .modal-actions { flex-wrap: wrap; }
+  .modal-actions .btn { flex: 1; justify-content: center; min-height: 44px; }
+
+  /* Status select wraps */
+  .status-select { grid-template-columns: 1fr 1fr; }
+
+  /* Fields */
+  .field-input { min-height: 44px; }
+  .field-input input, .field-input select { font-size: 16px; } /* prevent iOS zoom */
+
+  /* Chips on mobile */
+  .chip { min-height: 36px; padding: 6px 12px; font-size: 13px; }
+
+  /* Charts / page variants */
+  .page-mytasks, .page-accountability { padding: 12px 12px 0; gap: 14px; }
+  .mytasks-hero { padding: 20px; border-radius: var(--r-2xl); }
+  .accountability-leaderboard { padding: 16px; }
+  .page-integrations, .page-changelog { padding: 12px 12px 0; }
+
+  /* Notif panel full screen */
+  .notif-panel {
+    position: fixed; inset: 0; right: 0; top: 0; bottom: 0;
+    width: 100% !important; max-width: 100% !important;
+    border-radius: 0; z-index: 60;
+    border-left: none; border-top: 1px solid var(--c-outline-var);
+  }
+  /* Bottom bar inside notif panel */
+  .notif-panel::before { content: ''; display: block; height: env(safe-area-inset-top, 0); }
+
+  /* What's New overlay */
+  .whats-new-overlay { padding: 0; align-items: flex-end; }
+  .whats-new-card { border-radius: var(--r-3xl) var(--r-3xl) 0 0; max-width: 100%; }
+
+  /* Profile modal */
+  .modal-sheet { max-width: 100% !important; }
+
+  /* Integrations */
+  .integration-card-header { padding: 14px 16px; gap: 10px; }
+  .integration-body { padding: 0 16px 16px; }
+  .integration-grid { grid-template-columns: 1fr; }
+  .integration-info-box { font-size: 12px; }
+  .cal-export-row { flex-direction: column; }
+  .cal-btn { width: 100%; justify-content: center; padding: 12px; }
+
+  /* Toast */
+  .toast-container { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); width: calc(100% - 32px); }
+  .toast { border-radius: var(--r-xl); width: 100%; justify-content: center; }
+}
+
+/* ── Safe area handling ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .mobile-nav-bar { padding-bottom: env(safe-area-inset-bottom); height: calc(64px + env(safe-area-inset-bottom)); }
+  .mobile-nav-inner { height: 64px; margin-bottom: env(safe-area-inset-bottom); }
+}
+
+/* ── iOS momentum scroll ── */
+.page-content, .msg-feed, .task-list, .comments-list {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Landscape phone ── */
+@media (max-width: 900px) and (orientation: landscape) {
+  .mobile-nav-bar { height: 52px; }
+  .mobile-nav-inner { height: 52px; }
+  .mobile-nav-item { padding: 6px 4px; }
+  .mobile-nav-label { display: none; }
+}
 
 /* ══════════════════════════════════════
    INTEGRATIONS PAGE
@@ -1473,12 +1804,205 @@ img { max-width: 100%; display: block; }
 ══════════════════════════════════════ */
 .data-mgmt-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
 
+/* ══════════════════════════════════════
+   HOME / FOCUS DASHBOARD PAGE
+══════════════════════════════════════ */
+.page-home { padding: 0; display: flex; flex-direction: column; gap: 0; overflow-x: hidden; }
+.home-omnibox-wrap {
+  padding: 16px 24px 12px;
+  position: sticky; top: 0; z-index: 10;
+  background: var(--c-surface);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.home-omnibox-wrap.scrolled { border-color: var(--c-outline-var); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.home-omnibox {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--c-surf2); border-radius: var(--r-full);
+  padding: 12px 20px; cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.home-omnibox:hover { border-color: var(--c-primary); box-shadow: 0 2px 12px rgba(0,87,184,.12); }
+.home-omnibox.focused { border-color: var(--c-primary); background: var(--c-surface); box-shadow: 0 4px 20px rgba(0,87,184,.16); }
+.home-omnibox input {
+  flex: 1; border: none; background: transparent; outline: none;
+  font-size: 16px; font-family: var(--font-ui); color: var(--c-on-surface);
+}
+.home-omnibox input::placeholder { color: var(--c-on-surf-var); }
+.home-omnibox-icon { color: var(--c-on-surf-var); font-size: 22px !important; }
+.home-omnibox-avatar { flex-shrink: 0; }
+
+.home-greeting-section { padding: 20px 24px 0; }
+.home-greeting { font-family: var(--font-display); font-size: 24px; font-weight: 500; color: var(--c-on-surface); }
+.home-subgreeting { font-size: 14px; color: var(--c-on-surf-var); margin-top: 4px; }
+
+.home-stats-row {
+  display: flex; gap: 12px; padding: 16px 24px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.home-stats-row::-webkit-scrollbar { display: none; }
+.home-stat-chip {
+  flex-shrink: 0; display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: var(--r-xl);
+  background: var(--c-surf1); border: 1px solid var(--c-outline-var);
+  cursor: pointer; transition: box-shadow var(--dur-fast), transform var(--dur-fast);
+  white-space: nowrap;
+}
+.home-stat-chip:hover { box-shadow: var(--el1); transform: translateY(-1px); }
+.home-stat-chip.urgent { background: #FFF0F0; border-color: #FFCDD2; }
+.home-stat-chip.today { background: #FFF8E7; border-color: #FFE082; }
+.home-stat-chip.done { background: #E8F5E9; border-color: #A5D6A7; }
+.home-stat-chip .ms { font-size: 18px; }
+.home-stat-chip-count { font-family: var(--font-display); font-size: 20px; font-weight: 700; line-height: 1; }
+.home-stat-chip-label { font-size: 12px; color: var(--c-on-surf-var); font-weight: 500; }
+
+.home-section { padding: 20px 24px 0; }
+.home-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.home-section-title {
+  font-family: var(--font-ui); font-size: 13px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase; color: var(--c-on-surf-var);
+  display: flex; align-items: center; gap: 8px;
+}
+.home-section-title .ms { font-size: 16px; }
+.home-section-link { font-size: 13px; color: var(--c-primary); font-weight: 500; cursor: pointer; }
+
+.home-task-card {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  background: var(--c-surf1); border-radius: var(--r-xl);
+  margin-bottom: 8px; cursor: pointer;
+  border: 1px solid var(--c-outline-var);
+  transition: box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+.home-task-card:hover { box-shadow: var(--el1); transform: translateY(-1px); }
+.home-task-card:active { transform: scale(.98); }
+.home-task-card.urgent-border { border-left: 3px solid var(--c-error); }
+.home-task-card.today-border { border-left: 3px solid #F59E0B; }
+.home-task-card-icon { font-size: 20px !important; flex-shrink: 0; }
+.home-task-card-title { font-size: 14px; font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.home-task-card-meta { font-size: 11px; color: var(--c-on-surf-var); margin-top: 2px; white-space: nowrap; }
+.home-task-card-chevron { font-size: 18px !important; color: var(--c-on-surf-var); flex-shrink: 0; }
+
+.home-recent-msg {
+  display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px;
+  background: var(--c-surf1); border-radius: var(--r-xl); margin-bottom: 8px;
+  cursor: pointer; border: 1px solid var(--c-outline-var);
+  transition: box-shadow var(--dur-fast);
+}
+.home-recent-msg:hover { box-shadow: var(--el1); }
+.home-msg-content { flex: 1; min-width: 0; }
+.home-msg-sender { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.home-msg-text { font-size: 13px; color: var(--c-on-surf-var); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-msg-time { font-size: 11px; color: var(--c-on-surf-var); flex-shrink: 0; margin-top: 2px; }
+
+.home-quick-actions { display: flex; gap: 10px; flex-wrap: wrap; padding: 20px 24px; }
+.home-quick-action {
+  display: flex; align-items: center; gap: 8px; padding: 12px 18px;
+  border-radius: var(--r-xl); background: var(--c-primary-cont);
+  color: var(--c-on-primary-cont); font-size: 14px; font-weight: 500;
+  cursor: pointer; flex: 1; min-width: 140px; justify-content: center;
+  transition: box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+.home-quick-action:hover { box-shadow: var(--el1); transform: translateY(-1px); }
+.home-quick-action .ms { font-size: 20px; }
+.home-quick-action.secondary { background: var(--c-surf2); color: var(--c-on-surf-var); }
+
+/* ══════════════════════════════════════
+   OMNIBOX DROPDOWN RESULTS
+══════════════════════════════════════ */
+.omnibox-results {
+  position: absolute; left: 24px; right: 24px; top: calc(100% + 4px); z-index: 200;
+  background: var(--c-surface); border-radius: var(--r-2xl);
+  box-shadow: var(--el3); border: 1px solid var(--c-outline-var);
+  overflow: hidden; max-height: 480px; overflow-y: auto;
+  animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.omnibox-result-section { padding: 8px 0; }
+.omnibox-result-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--c-on-surf-var); padding: 8px 20px 4px;
+}
+.omnibox-result-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 20px; cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.omnibox-result-item:hover, .omnibox-result-item.selected { background: var(--c-surf2); }
+.omnibox-result-item .ms { font-size: 20px; color: var(--c-primary); flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   MOBILE KANBAN CAROUSEL
+══════════════════════════════════════ */
+.kanban-mobile-carousel {
+  display: none;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; padding: 0 16px 16px;
+  gap: 12px; -webkit-overflow-scrolling: touch;
+}
+.kanban-mobile-carousel::-webkit-scrollbar { display: none; }
+.kanban-mobile-carousel .kanban-col {
+  scroll-snap-align: start; flex-shrink: 0;
+  width: calc(100vw - 96px); min-width: 280px; max-width: 360px;
+}
+.kanban-mobile-tabs {
+  display: none; gap: 8px; padding: 12px 16px 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.kanban-mobile-tabs::-webkit-scrollbar { display: none; }
+.kanban-mobile-tab {
+  flex-shrink: 0; padding: 6px 16px; border-radius: var(--r-full);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--c-surf2); color: var(--c-on-surf-var);
+  transition: background var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+}
+.kanban-mobile-tab.active { background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+
+@media (max-width: 600px) {
+  .kanban-mobile-carousel { display: flex; }
+  .kanban-mobile-tabs { display: flex; }
+  .kanban-board { display: none; }
+  .page-home .home-omnibox-wrap { padding: 12px 16px 8px; }
+  .home-greeting-section { padding: 12px 16px 0; }
+  .home-section { padding: 16px 16px 0; }
+  .home-stats-row { padding: 12px 16px 0; }
+  .home-quick-actions { padding: 16px 16px; }
+  .home-greeting { font-size: 20px; }
+}
+
+/* ══════════════════════════════════════
+   INLINE EDITING
+══════════════════════════════════════ */
+.inline-edit-input {
+  border: none; background: transparent; outline: none; width: 100%;
+  font-family: inherit; font-size: inherit; font-weight: inherit;
+  color: inherit; padding: 0; cursor: text;
+  border-bottom: 2px solid var(--c-primary);
+}
+.inline-edit-input:focus { background: rgba(0,87,184,.04); border-radius: 4px 4px 0 0; padding: 2px 4px; }
+
+/* ══════════════════════════════════════
+   GOOGLE DRIVE PICKER
+══════════════════════════════════════ */
+.drive-picker-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: var(--r-lg);
+  background: #1A73E8; color: #fff; font-size: 14px; font-weight: 500;
+  cursor: pointer; border: none; font-family: var(--font-ui);
+  transition: background var(--dur-fast), box-shadow var(--dur-fast);
+  box-shadow: 0 1px 4px rgba(26,115,232,.3);
+}
+.drive-picker-btn:hover { background: #1557B0; box-shadow: 0 3px 8px rgba(26,115,232,.4); }
+.drive-picker-btn .ms { font-size: 18px; }
+
 </style>
 </head>
 <body>
 <div id="app"></div>
 <div class="toast-container" id="toasts"></div>
-
 <script>
 /* ═══════════════════════════════════════════════
    BLURRD LINKS — JavaScript Part 2
@@ -1793,7 +2317,7 @@ const DEFAULT_NOTIFICATIONS = [
 // ═══════════════════════════
 let S = {
   currentUser: null,
-  page: 'tasks',
+  page: 'home',
   navExpanded: false,
   users: JSON.parse(JSON.stringify(DEFAULT_USERS)),
   tasks: JSON.parse(JSON.stringify(DEFAULT_TASKS)),
@@ -1828,7 +2352,12 @@ let S = {
   _taskTimeLogOpen: false,
   _integrationOpen: {},   // which integration panels are expanded
   _digestVisible: false,
-  _emailToTaskOpen: false
+  _emailToTaskOpen: false,
+  // Mobile-specific UI state
+  mobileMoreOpen: false,
+  mobileShowChannelList: false,
+  mobileSearchOpen: false,
+  _kanbanActiveCol: 'todo'
 };
 
 // ═══════════════════════════
@@ -2290,15 +2819,19 @@ function doLogin(userId) {
 function renderApp() {
   const unread = totalUnread();
   const msgUnread = S.channels.reduce((acc, ch) => acc + unreadCount(ch.id), 0);
+  const avatarHtml = S.currentUser.avatar
+    ? `<div class="avatar sm" style="background:${S.currentUser.color || userColor(S.currentUser.name)}"><img src="${escHtml(S.currentUser.avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"></div>`
+    : `<div class="avatar sm" style="background:${S.currentUser.color || userColor(S.currentUser.name)}">${escHtml(S.currentUser.initials || initials(S.currentUser.name))}</div>`;
 
   app.innerHTML = `
   <div class="app-layout">
-    <!-- Nav Rail -->
+    <!-- Desktop Nav Rail -->
     <nav class="nav-rail${S.navExpanded ? ' expanded' : ''}" id="nav-rail">
       <div class="nav-logo" onclick="toggleNav()">
         <div class="nav-logo-mark"><span class="ms filled">golf_course</span></div>
         <div class="nav-logo-text">BLURRD Links<div class="nav-logo-sub">Communicator</div></div>
       </div>
+      ${navItem('home','home','Home')}
       ${navItem('tasks','check_circle','Tasks')}
       ${navItem('kanban','view_kanban','Kanban')}
       ${navItem('calendar','calendar_month','Calendar')}
@@ -2310,9 +2843,7 @@ function renderApp() {
       ${S.currentUser?.role === 'admin' ? navItem('admin','admin_panel_settings','Admin') : ''}
       <div class="nav-spacer"></div>
       <div class="nav-user ripple" onclick="openProfileModal()" title="Edit profile">
-        ${S.currentUser.avatar
-          ? `<div class="avatar sm" style="background:${S.currentUser.color || userColor(S.currentUser.name)}"><img src="${escHtml(S.currentUser.avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"></div>`
-          : `<div class="avatar sm" style="background:${S.currentUser.color || userColor(S.currentUser.name)}">${escHtml(S.currentUser.initials || initials(S.currentUser.name))}</div>`}
+        ${avatarHtml}
         <div class="nav-user-info">
           <div class="nav-user-name">${escHtml(S.currentUser.name)}</div>
           <div class="nav-user-role">${escHtml(S.currentUser.role)} · Edit profile</div>
@@ -2330,7 +2861,7 @@ function renderApp() {
 
     <!-- Main Area -->
     <div class="main-area">
-      <!-- Top Bar -->
+      <!-- Desktop Top Bar -->
       <header class="topbar">
         <div class="topbar-title">${pageTitle()}</div>
         <div class="topbar-search${S.searchOpen ? ' open' : ''}" id="topbar-search" onclick="openSearch(this)">
@@ -2347,6 +2878,23 @@ function renderApp() {
         </div>
       </header>
 
+      <!-- Mobile Top Bar -->
+      <header class="mobile-topbar" id="mobile-topbar">
+        ${S.page === 'messages' && !S.mobileShowChannelList
+          ? `<div class="icon-btn ripple" onclick="mobileShowChannels()" style="margin-right:4px"><span class="ms">arrow_back</span></div>`
+          : `<div class="mobile-topbar-logo" onclick="toggleMobileMore()"><span class="ms filled" style="color:var(--c-primary);font-size:22px">golf_course</span></div>`
+        }
+        <div class="mobile-topbar-title">${S.page === 'messages' && !S.mobileShowChannelList && getChannel(S.selectedChannelId) ? escHtml(getChannel(S.selectedChannelId).name) : pageTitle()}</div>
+        <div style="display:flex;gap:4px;margin-left:auto">
+          <div class="icon-btn ripple" onclick="openMobileSearch()"><span class="ms">search</span></div>
+          <div class="icon-btn ripple" onclick="toggleNotifPanel()" style="position:relative">
+            <span class="ms${unread ? ' filled' : ''}">notifications</span>
+            ${unread ? `<div class="nav-badge" style="top:-2px;right:-2px">${unread > 9 ? '9+' : unread}</div>` : ''}
+          </div>
+          <div class="icon-btn ripple" onclick="openProfileModal()">${avatarHtml}</div>
+        </div>
+      </header>
+
       <!-- Page Content -->
       <div class="page-content" id="page-content">
         ${renderPage()}
@@ -2355,11 +2903,197 @@ function renderApp() {
 
     <!-- Notification Panel -->
     ${S.notifPanelOpen ? renderNotifPanel() : ''}
+
+    <!-- Mobile Bottom Nav Bar -->
+    ${renderMobileNav(msgUnread)}
+
+    <!-- Mobile More Drawer -->
+    ${S.mobileMoreOpen ? renderNavDrawer() : ''}
+
+    <!-- Mobile Search Overlay -->
+    ${S.mobileSearchOpen ? renderMobileSearch() : ''}
   </div>
 
   <!-- Modal -->
   <div id="modal-container">${S.modal ? renderModal() : ''}</div>
   `;
+}
+
+function renderMobileNav(msgUnread = 0) {
+  const items = [
+    { page:'home',     icon:'home',          label:'Home'     },
+    { page:'tasks',    icon:'check_circle',  label:'Tasks'    },
+    { page:'kanban',   icon:'view_kanban',   label:'Board'    },
+    { page:'messages', icon:'forum',         label:'Chat', badge: msgUnread },
+  ];
+
+  const navItemsHtml = items.map(item => {
+    const active = S.page === item.page;
+    return `
+    <div class="mobile-nav-item${active ? ' active' : ''}" onclick="navigate('${item.page}')">
+      <div class="mobile-nav-indicator"></div>
+      <span class="ms${active ? ' filled' : ''}" style="font-size:22px;position:relative;z-index:1">
+        ${item.icon}
+        ${item.badge > 0 ? `<div class="nav-badge" style="position:absolute;top:-6px;right:-6px;font-size:9px;min-width:16px;height:16px;line-height:16px">${item.badge > 9 ? '9+' : item.badge}</div>` : ''}
+      </span>
+      <span style="font-size:10px;font-weight:500;position:relative;z-index:1">${item.label}</span>
+    </div>`;
+  }).join('');
+
+  const moreActive = ['calendar','mytasks','accountability','integrations','changelog','admin'].includes(S.page);
+  return `
+  <nav class="mobile-nav-bar">
+    <div style="display:flex;align-items:stretch;height:100%;width:100%">
+      ${navItemsHtml}
+      <div class="mobile-nav-item${moreActive ? ' active' : ''}" onclick="toggleMobileMore()">
+        <div class="mobile-nav-indicator"></div>
+        <span class="ms${moreActive ? ' filled' : ''}" style="font-size:22px;position:relative;z-index:1">more_horiz</span>
+        <span style="font-size:10px;font-weight:500;position:relative;z-index:1">More</span>
+      </div>
+    </div>
+  </nav>`;
+}
+
+function renderNavDrawer() {
+  const unread = totalUnread();
+  const isAdmin = S.currentUser?.role === 'admin';
+  const avatarHtml = S.currentUser.avatar
+    ? `<div class="avatar md" style="background:${S.currentUser.color || userColor(S.currentUser.name)}"><img src="${escHtml(S.currentUser.avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"></div>`
+    : `<div class="avatar md" style="background:${S.currentUser.color || userColor(S.currentUser.name)}">${escHtml(S.currentUser.initials || initials(S.currentUser.name))}</div>`;
+
+  const drawerItem = (page, icon, label, badge = 0) => {
+    const active = S.page === page;
+    return `<div class="nav-drawer-item ripple${active ? ' active' : ''}" onclick="navigate('${page}');toggleMobileMore()">
+      <span class="ms${active ? ' filled' : ''}">${icon}</span>
+      <span>${label}</span>
+      ${badge > 0 ? `<div class="nav-badge" style="margin-left:auto;position:static">${badge > 9 ? '9+' : badge}</div>` : ''}
+    </div>`;
+  };
+
+  return `
+  <div class="bottom-sheet-scrim" onclick="toggleMobileMore()"></div>
+  <div class="nav-drawer" id="nav-drawer">
+    <div class="nav-drawer-handle"></div>
+
+    <!-- Profile header -->
+    <div style="display:flex;align-items:center;gap:14px;padding:16px 20px 12px;border-bottom:1px solid var(--c-outline-var)">
+      ${avatarHtml}
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:15px">${escHtml(S.currentUser.name)}</div>
+        <div style="font-size:12px;color:var(--c-on-surf-var);margin-top:1px">${escHtml(S.currentUser.role)} · ${escHtml(S.currentUser.email || '')}</div>
+      </div>
+      <div class="icon-btn ripple" onclick="openProfileModal();toggleMobileMore()" title="Edit profile">
+        <span class="ms sm">edit</span>
+      </div>
+    </div>
+
+    <!-- Navigation items -->
+    <div style="padding:8px 0">
+      ${drawerItem('calendar','calendar_month','Calendar')}
+      ${drawerItem('accountability','leaderboard','Accountability')}
+      ${drawerItem('integrations','extension','Integrations')}
+      ${drawerItem('changelog','history','Changelog')}
+      ${isAdmin ? drawerItem('admin','admin_panel_settings','Admin') : ''}
+    </div>
+
+    <div style="height:1px;background:var(--c-outline-var);margin:4px 16px"></div>
+    <div style="padding:8px 0">
+      <div class="nav-drawer-item ripple" onclick="toggleThemeMode();toggleMobileMore()">
+        <span class="ms">contrast</span>
+        <span>Toggle theme (${S.theme.mode})</span>
+      </div>
+      <div class="nav-drawer-item ripple" style="color:var(--c-error)" onclick="logout()">
+        <span class="ms">logout</span>
+        <span>Sign out</span>
+      </div>
+    </div>
+
+    <!-- Safe area spacer -->
+    <div style="height:env(safe-area-inset-bottom,0px)"></div>
+  </div>`;
+}
+
+function renderMobileSearch() {
+  return `
+  <div class="mobile-search-overlay" id="mobile-search-overlay">
+    <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--c-surf2);border-radius:var(--r-xl);margin:0 16px">
+      <span class="ms" style="color:var(--c-on-surf-var)">search</span>
+      <input type="text" id="mobile-search-input" placeholder="Search tasks, messages…"
+        value="${escHtml(S.searchQuery)}"
+        oninput="onSearch(this.value)"
+        style="flex:1;border:none;background:transparent;outline:none;font-size:16px;color:var(--c-on-surf)"
+        autocomplete="off" autofocus />
+      <div class="icon-btn ripple" onclick="closeMobileSearch()"><span class="ms">close</span></div>
+    </div>
+    ${S.searchQuery ? `
+    <div style="padding:8px 16px;flex:1;overflow-y:auto">
+      ${renderSearchResults(S.searchQuery)}
+    </div>` : `
+    <div class="empty-state" style="padding-top:48px">
+      <span class="ms" style="font-size:48px;color:var(--c-outline)">search</span>
+      <p style="color:var(--c-on-surf-var);margin-top:8px">Search tasks, messages, channels…</p>
+    </div>`}
+  </div>`;
+}
+
+function renderSearchResults(q) {
+  if (!q || q.length < 2) return '';
+  const ql = q.toLowerCase();
+  const tasks = S.tasks.filter(t => t.title.toLowerCase().includes(ql) || t.description?.toLowerCase().includes(ql)).slice(0,6);
+  const msgs = S.messages.filter(m => m.content.toLowerCase().includes(ql)).slice(0,4);
+  let html = '';
+  if (tasks.length) {
+    html += `<div style="font-size:11px;font-weight:600;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Tasks</div>`;
+    html += tasks.map(t => `
+      <div class="ripple" onclick="openTask('${t.id}');closeMobileSearch()" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-lg);margin-bottom:4px;background:var(--c-surf2)">
+        <span class="ms" style="font-size:18px;color:var(--c-primary)">${STATUS_ICONS[t.status]}</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(t.title)}</div>
+          <div style="font-size:12px;color:var(--c-on-surf-var)">${STATUS_LABELS[t.status]} · ${PRIORITY_LABELS[t.priority]}</div>
+        </div>
+      </div>`).join('');
+  }
+  if (msgs.length) {
+    html += `<div style="font-size:11px;font-weight:600;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.6px;margin:12px 0 8px">Messages</div>`;
+    html += msgs.map(m => {
+      const u = getUser(m.userId);
+      const ch = getChannel(m.channelId);
+      return `
+      <div class="ripple" onclick="navigate('messages');S.selectedChannelId='${m.channelId}';closeMobileSearch()" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-lg);margin-bottom:4px;background:var(--c-surf2)">
+        <span class="ms" style="font-size:18px;color:var(--c-primary)">forum</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(m.content.slice(0,60))}</div>
+          <div style="font-size:12px;color:var(--c-on-surf-var)">${escHtml(u?.name||'?')} · #${escHtml(ch?.name||'?')}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  if (!tasks.length && !msgs.length) {
+    html = `<div class="empty-state"><span class="ms" style="font-size:36px">search_off</span><p>No results for "${escHtml(q)}"</p></div>`;
+  }
+  return html;
+}
+
+function toggleMobileMore() {
+  S.mobileMoreOpen = !S.mobileMoreOpen;
+  render();
+}
+
+function openMobileSearch() {
+  S.mobileSearchOpen = true;
+  render();
+  setTimeout(() => document.getElementById('mobile-search-input')?.focus(), 80);
+}
+
+function closeMobileSearch() {
+  S.mobileSearchOpen = false;
+  S.searchQuery = '';
+  render();
+}
+
+function mobileShowChannels() {
+  S.mobileShowChannelList = true;
+  render();
 }
 
 function navItem(page, icon, label, badge = 0) {
@@ -2373,7 +3107,7 @@ function navItem(page, icon, label, badge = 0) {
 }
 
 function pageTitle() {
-  const titles = { tasks:'Tasks', kanban:'Kanban Board', calendar:'Calendar', messages:'Messages', admin:'Admin Dashboard', mytasks:'My Tasks', accountability:'Accountability', changelog:'Changelog', integrations:'Integrations' };
+  const titles = { home:'BLURRD Links', tasks:'Tasks', kanban:'Kanban Board', calendar:'Calendar', messages:'Messages', admin:'Admin Dashboard', mytasks:'My Tasks', accountability:'Accountability', changelog:'Changelog', integrations:'Integrations' };
   return titles[S.page] || 'BLURRD Links';
 }
 
@@ -2381,6 +3115,9 @@ function navigate(page) {
   S.page = page;
   S.notifPanelOpen = false;
   S.modal = null;
+  S.mobileMoreOpen = false;
+  // On mobile messages, show chat view (not channel list) unless coming from elsewhere
+  if (page === 'messages') S.mobileShowChannelList = false;
   render();
 }
 
@@ -2424,6 +3161,7 @@ function toggleThemeMode() {
 
 function renderPage() {
   switch(S.page) {
+    case 'home': return renderHomePage();
     case 'tasks': return renderTasksPage();
     case 'kanban': return renderKanbanPage();
     case 'calendar': return renderCalendarPage();
@@ -2433,7 +3171,7 @@ function renderPage() {
     case 'accountability': return renderAccountabilityPage();
     case 'changelog': return renderChangelogPage();
     case 'integrations': return renderIntegrationsPage();
-    default: return renderTasksPage();
+    default: return renderHomePage();
   }
 }
 
@@ -2519,7 +3257,8 @@ function renderTaskCard(t) {
         ${t.status==='done' ? '<span class="ms sm">check</span>' : ''}
       </div>
       <div class="task-meta" style="flex:1;min-width:0">
-        <div class="task-title">${escHtml(t.title)}</div>
+        <div class="task-title" ondblclick="event.stopPropagation();startInlineEdit(event,'${t.id}')"
+          title="Double-click to quick-edit title">${escHtml(t.title)}</div>
         ${taskTags.length ? `<div class="tags-row">${taskTags.map(tag => `<span class="task-tag" style="background:${tag.color}22;color:${tag.color}">${escHtml(tag.name)}</span>`).join('')}</div>` : ''}
         <div class="task-sub">
           <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
@@ -2579,6 +3318,40 @@ function deleteTask(e, taskId) {
   saveState();
   renderPageContent();
   toast('Task deleted');
+}
+
+function startInlineEdit(e, taskId) {
+  if (!canEdit()) return;
+  e.stopPropagation();
+  const titleEl = e.currentTarget;
+  const t = getTask(taskId);
+  if (!t) return;
+  const original = t.title;
+  titleEl.innerHTML = `<input class="inline-edit-input" value="${escHtml(original)}"
+    onclick="event.stopPropagation()"
+    onblur="commitInlineEdit(this,'${taskId}','${escHtml(original).replace(/'/g,'&#39;')}')"
+    onkeydown="if(event.key==='Enter'){this.blur()}else if(event.key==='Escape'){this.value='__cancel__';this.blur()}"
+    />`;
+  const inp = titleEl.querySelector('input');
+  if (inp) { inp.focus(); inp.select(); }
+}
+
+function commitInlineEdit(input, taskId, original) {
+  const val = input.value.trim();
+  const t = getTask(taskId);
+  if (!t) return;
+  if (val === '__cancel__' || !val) {
+    renderPageContent();
+    return;
+  }
+  if (val !== t.title) {
+    t.title = val;
+    t.updatedAt = Date.now();
+    logActivity(t.id, 'edited', `Title changed to "${val}"`);
+    saveState();
+    toast('Title updated ✏️');
+  }
+  renderPageContent();
 }
 
 // ═══════════════════════════
@@ -2806,6 +3579,14 @@ function renderTaskModal() {
               <input type="url" id="cloud-link-input" placeholder="Paste Google Drive, Dropbox, Figma, or any URL…" />
             </div>
             <button class="btn btn-tonal btn-sm ripple" onclick="addCloudLink('${t.id||''}')">Attach Link</button>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="drive-picker-btn ripple" onclick="openDrivePicker('${t.id||''}')">
+              <span class="ms">add_to_drive</span> Pick from Drive
+            </button>
+            <button class="btn btn-tonal btn-sm ripple" onclick="openDropboxPicker('${t.id||''}')">
+              <span style="font-size:14px">📦</span> Dropbox
+            </button>
           </div>
           <div class="attach-drop" id="attach-drop" onclick="document.getElementById('attach-input').click()"
             ondragover="event.preventDefault();this.classList.add('dragging')"
@@ -3161,6 +3942,113 @@ function addCloudLink(taskId) {
   if (mc) mc.innerHTML = renderModal();
 }
 
+// ── Google Drive Picker ──
+// Uses Google Picker API (requires API key configured in Admin → Integrations)
+let _drivePickerTaskId = null;
+function openDrivePicker(taskId) {
+  _drivePickerTaskId = taskId || S.editingTaskId;
+  const integration = getIntegration('gdrive');
+  const apiKey = integration.apiKey || '';
+  const clientId = integration.clientId || '';
+
+  if (!apiKey || !clientId) {
+    // Show setup prompt
+    const url = prompt('Google Drive Picker requires API setup.\n\nFor now, paste a Google Drive URL directly:');
+    if (url && url.startsWith('http')) {
+      const el = document.getElementById('cloud-link-input');
+      if (el) { el.value = url; addCloudLink(_drivePickerTaskId); }
+    }
+    return;
+  }
+
+  // Load Google API and open picker
+  if (!window.gapi) {
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/api.js';
+    script.onload = () => _initDrivePicker(apiKey, clientId);
+    document.head.appendChild(script);
+  } else {
+    _initDrivePicker(apiKey, clientId);
+  }
+}
+
+function _initDrivePicker(apiKey, clientId) {
+  window.gapi.load('picker', () => {
+    // Simple token-less picker using picker view
+    const picker = new window.google.picker.PickerBuilder()
+      .addView(window.google.picker.ViewId.DOCS)
+      .setOAuthToken('') // user must be logged in
+      .setDeveloperKey(apiKey)
+      .setCallback(_drivePickerCallback)
+      .build();
+    picker.setVisible(true);
+  });
+}
+
+function _drivePickerCallback(data) {
+  if (data.action !== 'picked') return;
+  const doc = data.docs[0];
+  if (!doc) return;
+  const url = doc.url;
+  const name = doc.name;
+  const t = getTask(_drivePickerTaskId);
+  if (!t) return;
+  const cloud = detectCloudService(url) || { service:'Google Drive', icon:'📄', type:'Google Drive', color:'#FEF3C7' };
+  t.attachments.push({ id: uid(), linkType: true, url, name, service: cloud.service, icon: cloud.icon, type: cloud.type });
+  logActivity(t.id, 'attachment', `Linked Google Drive: ${name}`);
+  saveState();
+  toast(`📄 "${name}" linked from Google Drive!`);
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function openDropboxPicker(taskId) {
+  _drivePickerTaskId = taskId || S.editingTaskId;
+  const integration = getIntegration('dropbox');
+  const appKey = integration.appKey || '';
+
+  if (!appKey) {
+    const url = prompt('Dropbox Chooser requires an App Key.\n\nFor now, paste a Dropbox URL directly:');
+    if (url && url.startsWith('http')) {
+      const el = document.getElementById('cloud-link-input');
+      if (el) { el.value = url; addCloudLink(_drivePickerTaskId); }
+    }
+    return;
+  }
+
+  // Load Dropbox Chooser SDK
+  if (!window.Dropbox) {
+    const script = document.createElement('script');
+    script.src = 'https://www.dropbox.com/static/api/2/dropins.js';
+    script.id = 'dropboxjs';
+    script.setAttribute('data-app-key', appKey);
+    script.onload = () => _openDropboxChooser();
+    document.head.appendChild(script);
+  } else {
+    _openDropboxChooser();
+  }
+}
+
+function _openDropboxChooser() {
+  if (!window.Dropbox) return;
+  window.Dropbox.choose({
+    success: (files) => {
+      const file = files[0];
+      if (!file) return;
+      const t = getTask(_drivePickerTaskId);
+      if (!t) return;
+      t.attachments.push({ id: uid(), linkType: true, url: file.link, name: file.name, service:'Dropbox', icon:'📦', type:'Dropbox File' });
+      logActivity(t.id, 'attachment', `Linked Dropbox: ${file.name}`);
+      saveState();
+      toast(`📦 "${file.name}" linked from Dropbox!`);
+      const mc = document.getElementById('modal-container');
+      if (mc) mc.innerHTML = renderModal();
+    },
+    linkType: 'preview',
+    multiselect: false,
+  });
+}
+
 // ═══════════════════════════
 // PROFILE EDITOR
 // ═══════════════════════════
@@ -3426,33 +4314,55 @@ function addNotification(data) {
 // KANBAN PAGE
 // ═══════════════════════════
 function renderKanbanPage() {
+  const colColors = { todo:'#78909C', in_progress:'#FF9800', blocked:'#BA1A1A', review:'#0057B8', done:'#4CAF50' };
   const cols = STATUSES.map(s => ({
     status: s,
     label: STATUS_LABELS[s],
     tasks: S.tasks.filter(t => t.status === s),
-    color: { todo:'#78909C', in_progress:'#FF9800', review:'#0057B8', done:'#4CAF50' }[s]
+    color: colColors[s]
   }));
+
+  const colHtml = (col) => `
+    <div class="kanban-col" data-status="${col.status}"
+      ondragover="kanbanDragOver(event,'${col.status}')"
+      ondragleave="kanbanDragLeave(event)"
+      ondrop="kanbanDrop(event,'${col.status}')">
+      <div class="kanban-col-header">
+        <div class="kanban-col-dot" style="background:${col.color}"></div>
+        <div class="kanban-col-title">${col.label}</div>
+        <div class="kanban-col-count">${col.tasks.length}</div>
+      </div>
+      <div class="kanban-cards" id="kcol-${col.status}">
+        ${col.tasks.map(t => renderKanbanCard(t)).join('')}
+      </div>
+      <div class="kanban-add-btn ripple" onclick="openTaskModalWithStatus('${col.status}')">
+        <span class="ms sm">add</span> Add task
+      </div>
+    </div>`;
+
+  // Mobile status tabs (scroll indicators)
+  const mobileTabsHtml = STATUSES.map(s => `
+    <div class="kanban-mobile-tab${S._kanbanActiveCol === s ? ' active' : ''}"
+      onclick="scrollKanbanToCol('${s}')">${STATUS_LABELS[s]}
+      <span style="margin-left:4px;font-size:11px;opacity:.7">${S.tasks.filter(t=>t.status===s).length}</span>
+    </div>`).join('');
 
   return `
   <div class="page-kanban">
+    <!-- Mobile tabs -->
+    <div class="kanban-mobile-tabs" id="kanban-mobile-tabs">
+      ${mobileTabsHtml}
+    </div>
+
+    <!-- Desktop board -->
     <div class="kanban-board" id="kanban-board">
-      ${cols.map(col => `
-        <div class="kanban-col" data-status="${col.status}"
-          ondragover="kanbanDragOver(event,'${col.status}')"
-          ondragleave="kanbanDragLeave(event)"
-          ondrop="kanbanDrop(event,'${col.status}')">
-          <div class="kanban-col-header">
-            <div class="kanban-col-dot" style="background:${col.color}"></div>
-            <div class="kanban-col-title">${col.label}</div>
-            <div class="kanban-col-count">${col.tasks.length}</div>
-          </div>
-          <div class="kanban-cards" id="kcol-${col.status}">
-            ${col.tasks.map(t => renderKanbanCard(t)).join('')}
-          </div>
-          <div class="kanban-add-btn ripple" onclick="openTaskModalWithStatus('${col.status}')">
-            <span class="ms sm">add</span> Add task
-          </div>
-        </div>`).join('')}
+      ${cols.map(colHtml).join('')}
+    </div>
+
+    <!-- Mobile carousel -->
+    <div class="kanban-mobile-carousel" id="kanban-mobile-carousel"
+      onscroll="updateKanbanActiveTab(this)">
+      ${cols.map(colHtml).join('')}
     </div>
   </div>`;
 }
@@ -3539,6 +4449,31 @@ function openTaskModalWithStatus(status) {
   S.modal = { type: 'task', taskId: null, defaultStatus: status };
   S.editingTaskId = null;
   render();
+}
+
+function scrollKanbanToCol(status) {
+  S._kanbanActiveCol = status;
+  const carousel = document.getElementById('kanban-mobile-carousel');
+  if (!carousel) return;
+  const idx = STATUSES.indexOf(status);
+  if (idx < 0) return;
+  const col = carousel.children[idx];
+  if (col) col.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  // Update tab active state
+  document.querySelectorAll('.kanban-mobile-tab').forEach((el, i) => {
+    el.classList.toggle('active', STATUSES[i] === status);
+  });
+}
+
+function updateKanbanActiveTab(carousel) {
+  const scrollLeft = carousel.scrollLeft;
+  const width = carousel.clientWidth;
+  const idx = Math.round(scrollLeft / (width - 48));
+  const status = STATUSES[Math.min(idx, STATUSES.length - 1)];
+  S._kanbanActiveCol = status;
+  document.querySelectorAll('.kanban-mobile-tab').forEach((el, i) => {
+    el.classList.toggle('active', STATUSES[i] === status);
+  });
 }
 
 // ═══════════════════════════
@@ -3641,26 +4576,66 @@ function calSelectDate(date) {
 // ═══════════════════════════
 function renderMessagesPage() {
   const ch = getChannel(S.selectedChannelId);
+  // On mobile (≤600px) use S.mobileShowChannelList to toggle single-pane view.
+  // We detect mobile via window.innerWidth; the flag is also used in CSS visibility.
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
+
+  if (isMobile && S.mobileShowChannelList) {
+    // Show channel/DM list only
+    return `<div class="page-messages">${renderMsgSidebar(true)}</div>`;
+  }
+
+  if (isMobile && !S.mobileShowChannelList) {
+    // Show chat view only (no sidebar)
+    return `
+    <div class="page-messages">
+      ${ch ? renderMsgMain(ch) : renderMsgSidebarMobileFallback()}
+    </div>`;
+  }
+
+  // Desktop: full two-pane layout
   return `
   <div class="page-messages">
-    ${renderMsgSidebar()}
+    ${renderMsgSidebar(false)}
     ${ch ? renderMsgMain(ch) : '<div class="empty-state" style="flex:1"><span class="ms">forum</span><h3>Select a channel</h3></div>'}
     ${S.activeThreadMsgId ? renderThreadPanel() : ''}
   </div>`;
 }
 
-function renderMsgSidebar() {
+function renderMsgSidebarMobileFallback() {
+  return `
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px 24px">
+    <span class="ms" style="font-size:56px;color:var(--c-primary)">forum</span>
+    <div style="text-align:center">
+      <div style="font-size:18px;font-weight:600;margin-bottom:8px">Pick a Channel</div>
+      <div style="font-size:14px;color:var(--c-on-surf-var)">Tap below to choose a channel or DM</div>
+    </div>
+    <button class="btn filled ripple" onclick="mobileShowChannels()" style="padding:14px 28px;font-size:15px">
+      <span class="ms">list</span> Browse Channels
+    </button>
+  </div>`;
+}
+
+function renderMsgSidebar(mobileMode = false) {
   const channels = S.channels.filter(c => c.type === 'channel');
   const dms = S.channels.filter(c => c.type === 'dm');
 
   return `
-  <div class="msg-sidebar">
+  <div class="msg-sidebar${mobileMode ? ' mobile-visible' : ''}">
+    ${mobileMode ? `
+    <div style="display:flex;align-items:center;gap:8px;padding:16px 16px 8px;border-bottom:1px solid var(--c-outline-var)">
+      <span class="ms filled" style="color:var(--c-primary)">forum</span>
+      <div style="font-size:17px;font-weight:700;flex:1">Messages</div>
+      <div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:36px;height:36px">
+        <span class="ms">add</span>
+      </div>
+    </div>` : ''}
     <div class="msg-sidebar-section">
       <div class="msg-sidebar-title">
         Channels
-        <div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:24px;height:24px">
+        ${!mobileMode ? `<div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:24px;height:24px">
           <span class="ms sm">add</span>
-        </div>
+        </div>` : ''}
       </div>
       ${channels.map(ch => {
         const uc = unreadCount(ch.id);
@@ -3866,6 +4841,7 @@ function selectChannel(channelId) {
   S.selectedChannelId = channelId;
   S.activeThreadMsgId = null;
   S.notifPanelOpen = false;
+  S.mobileShowChannelList = false; // On mobile: switch to chat view after selecting
   saveState();
   render();
   // Scroll to bottom
@@ -5178,6 +6154,245 @@ function deleteTag(tagId) {
   saveState();
   renderPageContent();
   toast('Label deleted');
+}
+
+// ═══════════════════════════
+// HOME / FOCUS DASHBOARD PAGE
+// ═══════════════════════════
+function renderHomePage() {
+  const myId = S.currentUser?.id;
+  const now2 = Date.now();
+  const today = new Date().toISOString().split('T')[0];
+  const tomorrow = new Date(now2 + 86400000).toISOString().split('T')[0];
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const firstName = S.currentUser?.name?.split(' ')[0] || 'there';
+
+  const allMyTasks = S.tasks.filter(t => t.assignees?.includes(myId));
+  const overdueTasks = allMyTasks.filter(t => t.status !== 'done' && t.dueDate && t.dueDate < today);
+  const todayTasks = allMyTasks.filter(t => t.status !== 'done' && t.dueDate === today);
+  const urgentTasks = allMyTasks.filter(t => t.status !== 'done' && (t.priority === 'urgent' || t.priority === 'high') && t.status !== 'blocked').slice(0,5);
+  const doneMine = allMyTasks.filter(t => t.status === 'done').length;
+  const blockedTasks = allMyTasks.filter(t => t.status === 'blocked');
+
+  // Recent messages — last 3 across all channels
+  const recentMsgs = [...S.messages]
+    .filter(m => m.userId !== myId)
+    .sort((a,b) => b.timestamp - a.timestamp)
+    .slice(0,3);
+
+  // Focus list = overdue + today + urgent (deduplicated)
+  const seen = new Set();
+  const focusList = [...overdueTasks, ...todayTasks, ...urgentTasks].filter(t => {
+    if (seen.has(t.id)) return false;
+    seen.add(t.id);
+    return true;
+  }).slice(0,8);
+
+  const subgreeting = focusList.length === 0
+    ? "You're all clear — no urgent tasks today. ⛳"
+    : `${overdueTasks.length > 0 ? overdueTasks.length + ' overdue · ' : ''}${todayTasks.length} due today · ${urgentTasks.length} urgent`;
+
+  function homeTaskCard(t) {
+    const isOverdueTask = t.dueDate && t.dueDate < today && t.status !== 'done';
+    const isTodayTask = t.dueDate === today;
+    const borderClass = isOverdueTask ? 'urgent-border' : isTodayTask ? 'today-border' : '';
+    const assignees = (t.assignees || []).slice(0,3).map(uid => {
+      const u = getUser(uid);
+      return u ? `<div class="avatar" style="width:20px;height:20px;font-size:9px;background:${u.color||userColor(u.name)};flex-shrink:0">${escHtml(u.initials||initials(u.name))}</div>` : '';
+    }).join('');
+
+    return `
+    <div class="home-task-card ${borderClass} ripple" onclick="openTaskModal('${t.id}')">
+      <span class="ms home-task-card-icon" style="color:${{todo:'#78909C',in_progress:'#FF9800',blocked:'#BA1A1A',review:'#0057B8',done:'#4CAF50'}[t.status]}">${STATUS_ICONS[t.status]}</span>
+      <div style="flex:1;min-width:0">
+        <div class="home-task-card-title">${escHtml(t.title)}</div>
+        <div class="home-task-card-meta">
+          ${isOverdueTask ? `<span style="color:var(--c-error);font-weight:600">Overdue · </span>` : isTodayTask ? `<span style="color:#B45309;font-weight:600">Due today · </span>` : ''}
+          ${STATUS_LABELS[t.status]} · ${PRIORITY_LABELS[t.priority]}
+        </div>
+      </div>
+      <div style="display:flex;gap:-4px;flex-shrink:0">${assignees}</div>
+      <span class="ms home-task-card-chevron">chevron_right</span>
+    </div>`;
+  }
+
+  const avatarHtml = S.currentUser.avatar
+    ? `<div class="avatar sm" style="background:${S.currentUser.color||userColor(S.currentUser.name)}"><img src="${escHtml(S.currentUser.avatar)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"></div>`
+    : `<div class="avatar sm" style="background:${S.currentUser.color||userColor(S.currentUser.name)}">${escHtml(S.currentUser.initials||initials(S.currentUser.name))}</div>`;
+
+  return `
+  <div class="page-home" id="page-home">
+
+    <!-- Omnibox Search Bar -->
+    <div class="home-omnibox-wrap" id="home-omnibox-wrap">
+      <div class="home-omnibox${S.searchQuery ? ' focused' : ''}" id="home-omnibox" onclick="focusOmnibox()">
+        <span class="ms home-omnibox-icon">search</span>
+        <input type="text" id="home-search-input" placeholder="Search tasks, messages, files…"
+          value="${escHtml(S.searchQuery)}"
+          oninput="onSearch(this.value);renderOmniboxResults(this.value)"
+          onfocus="document.getElementById('home-omnibox').classList.add('focused')"
+          onblur="setTimeout(()=>{document.getElementById('home-omnibox')?.classList.remove('focused');hideOmniboxResults()},200)"
+          autocomplete="off" />
+        ${S.searchQuery ? `<div class="icon-btn ripple" onclick="clearSearch()" style="padding:0"><span class="ms sm">close</span></div>` : ''}
+        <div class="home-omnibox-avatar">${avatarHtml}</div>
+      </div>
+      <div id="omnibox-results-dropdown"></div>
+    </div>
+
+    <!-- Greeting -->
+    <div class="home-greeting-section">
+      <div class="home-greeting">${greeting}, ${escHtml(firstName)} 👋</div>
+      <div class="home-subgreeting">${subgreeting}</div>
+    </div>
+
+    <!-- Stats chips row -->
+    <div class="home-stats-row">
+      <div class="home-stat-chip urgent ripple" onclick="navigate('mytasks')">
+        <span class="ms" style="color:var(--c-error)">warning</span>
+        <div><div class="home-stat-chip-count" style="color:var(--c-error)">${overdueTasks.length}</div><div class="home-stat-chip-label">Overdue</div></div>
+      </div>
+      <div class="home-stat-chip today ripple" onclick="navigate('mytasks')">
+        <span class="ms" style="color:#B45309">today</span>
+        <div><div class="home-stat-chip-count" style="color:#B45309">${todayTasks.length}</div><div class="home-stat-chip-label">Due Today</div></div>
+      </div>
+      ${blockedTasks.length > 0 ? `
+      <div class="home-stat-chip ripple" onclick="navigate('tasks')" style="background:#FFF0F0;border-color:#FFCDD2">
+        <span class="ms" style="color:#BA1A1A">block</span>
+        <div><div class="home-stat-chip-count" style="color:#BA1A1A">${blockedTasks.length}</div><div class="home-stat-chip-label">Blocked</div></div>
+      </div>` : ''}
+      <div class="home-stat-chip done ripple" onclick="navigate('mytasks')">
+        <span class="ms" style="color:#1A5C2A">check_circle</span>
+        <div><div class="home-stat-chip-count" style="color:#1A5C2A">${doneMine}</div><div class="home-stat-chip-label">Done</div></div>
+      </div>
+      <div class="home-stat-chip ripple" onclick="navigate('tasks')">
+        <span class="ms" style="color:var(--c-primary)">task_alt</span>
+        <div><div class="home-stat-chip-count">${allMyTasks.length}</div><div class="home-stat-chip-label">Total</div></div>
+      </div>
+    </div>
+
+    <!-- Focus Tasks -->
+    ${focusList.length > 0 ? `
+    <div class="home-section">
+      <div class="home-section-header">
+        <div class="home-section-title"><span class="ms" style="color:var(--c-error)">bolt</span> Focus Now</div>
+        <div class="home-section-link" onclick="navigate('mytasks')">See all →</div>
+      </div>
+      ${focusList.map(homeTaskCard).join('')}
+    </div>` : `
+    <div class="home-section">
+      <div style="text-align:center;padding:32px 16px;background:var(--c-surf1);border-radius:var(--r-2xl);border:1px solid var(--c-outline-var)">
+        <div style="font-size:48px;margin-bottom:8px">⛳</div>
+        <div style="font-family:var(--font-display);font-size:18px;font-weight:600;margin-bottom:6px">Hole in one!</div>
+        <div style="color:var(--c-on-surf-var);font-size:14px">Nothing urgent. Enjoy the fairway.</div>
+      </div>
+    </div>`}
+
+    <!-- Recent Messages -->
+    ${recentMsgs.length > 0 ? `
+    <div class="home-section">
+      <div class="home-section-header">
+        <div class="home-section-title"><span class="ms">chat</span> Recent Activity</div>
+        <div class="home-section-link" onclick="navigate('messages')">Open chat →</div>
+      </div>
+      ${recentMsgs.map(m => {
+        const u = getUser(m.userId);
+        const ch = getChannel(m.channelId);
+        return `
+        <div class="home-recent-msg ripple" onclick="navigate('messages');S.selectedChannelId='${m.channelId}';render()">
+          ${u ? `<div class="avatar sm" style="background:${u.color||userColor(u.name)};flex-shrink:0">${escHtml(u.initials||initials(u.name))}</div>` : ''}
+          <div class="home-msg-content">
+            <div class="home-msg-sender">${escHtml(u?.name||'?')} <span style="font-weight:400;color:var(--c-on-surf-var)">in #${escHtml(ch?.name||'?')}</span></div>
+            <div class="home-msg-text">${escHtml(m.content.slice(0,80))}</div>
+          </div>
+          <div class="home-msg-time">${timeAgo(m.timestamp)}</div>
+        </div>`;
+      }).join('')}
+    </div>` : ''}
+
+    <!-- Quick Actions -->
+    <div class="home-quick-actions">
+      <div class="home-quick-action ripple" onclick="openNewTaskModal()">
+        <span class="ms">add_task</span> New Task
+      </div>
+      <div class="home-quick-action secondary ripple" onclick="navigate('kanban')">
+        <span class="ms">view_kanban</span> Board
+      </div>
+      <div class="home-quick-action secondary ripple" onclick="navigate('messages')">
+        <span class="ms">forum</span> Chat
+      </div>
+    </div>
+
+    <!-- bottom padding -->
+    <div style="height:24px"></div>
+  </div>`;
+}
+
+function focusOmnibox() {
+  document.getElementById('home-omnibox')?.classList.add('focused');
+  document.getElementById('home-search-input')?.focus();
+}
+
+function clearSearch() {
+  S.searchQuery = '';
+  document.getElementById('home-search-input') && (document.getElementById('home-search-input').value = '');
+  renderOmniboxResults('');
+  renderPageContent();
+}
+
+function renderOmniboxResults(q) {
+  const container = document.getElementById('omnibox-results-dropdown');
+  if (!container) return;
+  if (!q || q.length < 2) { container.innerHTML = ''; return; }
+
+  const ql = q.toLowerCase();
+  const tasks = S.tasks.filter(t =>
+    t.title.toLowerCase().includes(ql) || t.description?.toLowerCase().includes(ql)
+  ).slice(0,5);
+  const msgs = S.messages.filter(m => m.content.toLowerCase().includes(ql)).slice(0,3);
+
+  if (!tasks.length && !msgs.length) {
+    container.innerHTML = `<div class="omnibox-results"><div style="padding:20px;text-align:center;color:var(--c-on-surf-var);font-size:14px">No results for "${escHtml(q)}"</div></div>`;
+    return;
+  }
+
+  let html = '<div class="omnibox-results">';
+  if (tasks.length) {
+    html += `<div class="omnibox-result-section"><div class="omnibox-result-label">Tasks</div>`;
+    html += tasks.map(t => `
+      <div class="omnibox-result-item ripple" onclick="openTaskModal('${t.id}');clearSearch()">
+        <span class="ms" style="color:${{todo:'#78909C',in_progress:'#FF9800',blocked:'#BA1A1A',review:'#0057B8',done:'#4CAF50'}[t.status]}">${STATUS_ICONS[t.status]}</span>
+        <div><div style="font-size:14px;font-weight:500">${escHtml(t.title)}</div><div style="font-size:12px;color:var(--c-on-surf-var)">${STATUS_LABELS[t.status]} · ${PRIORITY_LABELS[t.priority]}</div></div>
+      </div>`).join('');
+    html += '</div>';
+  }
+  if (msgs.length) {
+    html += `<div class="omnibox-result-section"><div class="omnibox-result-label">Messages</div>`;
+    html += msgs.map(m => {
+      const u = getUser(m.userId);
+      const ch = getChannel(m.channelId);
+      return `
+      <div class="omnibox-result-item ripple" onclick="navigate('messages');S.selectedChannelId='${m.channelId}';render();clearSearch()">
+        <span class="ms">forum</span>
+        <div><div style="font-size:14px;font-weight:500">${escHtml(m.content.slice(0,60))}</div><div style="font-size:12px;color:var(--c-on-surf-var)">${escHtml(u?.name||'?')} · #${escHtml(ch?.name||'?')}</div></div>
+      </div>`;
+    }).join('');
+    html += '</div>';
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function hideOmniboxResults() {
+  const el = document.getElementById('omnibox-results-dropdown');
+  if (el) el.innerHTML = '';
+}
+
+function openNewTaskModal() {
+  if (!canEdit()) return;
+  S.modal = { type: 'task', taskId: null };
+  render();
 }
 
 // ═══════════════════════════
