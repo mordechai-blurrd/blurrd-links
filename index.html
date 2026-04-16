@@ -2197,8 +2197,8 @@ img { max-width: 100%; display: block; }
    AI PANEL
 ══════════════════════════════════════ */
 .ai-fab {
-  position: fixed; bottom: calc(72px + env(safe-area-inset-bottom));
-  right: 20px; z-index: 500;
+  position: fixed; bottom: calc(148px + env(safe-area-inset-bottom));
+  right: 20px; z-index: 490;
   width: 52px; height: 52px; border-radius: var(--r-full);
   background: linear-gradient(135deg, var(--c-primary), #8B5CF6);
   color: #fff; border: none; cursor: pointer;
@@ -2209,7 +2209,7 @@ img { max-width: 100%; display: block; }
 .ai-fab:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(0,87,184,.5); }
 .ai-fab:active { transform: scale(.96); }
 @media (min-width: 601px) {
-  .ai-fab { bottom: 24px; }
+  .ai-fab { bottom: 96px; }
 }
 
 .ai-panel {
@@ -2470,14 +2470,14 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════════════
-   EMOJI PICKER (enhanced)
+   EMOJI PICKER (reactions)
 ══════════════════════════════════════ */
 .emoji-picker {
   position: absolute; z-index: 300;
   background: var(--c-surface); border-radius: var(--r-2xl);
   box-shadow: var(--el3); border: 1px solid var(--c-outline-var);
   padding: 10px; display: flex; flex-wrap: wrap; gap: 4px;
-  max-width: 260px; animation: slideUp var(--dur-fast) var(--ease-out);
+  max-width: 300px; animation: slideUp var(--dur-fast) var(--ease-out);
 }
 .emoji-opt {
   font-size: 22px; cursor: pointer; padding: 4px 5px;
@@ -2486,12 +2486,136 @@ img { max-width: 100%; display: block; }
 }
 .emoji-opt:hover { background: var(--c-surf2); transform: scale(1.2); }
 
+/* ══════════════════════════════════════
+   COMPOSE EMOJI PICKER
+══════════════════════════════════════ */
+.compose-emoji-picker {
+  position: absolute; bottom: calc(100% + 8px); left: 0;
+  background: var(--c-surface); border-radius: var(--r-2xl);
+  box-shadow: var(--el3); border: 1px solid var(--c-outline-var);
+  width: 320px; max-height: 360px;
+  display: flex; flex-direction: column;
+  animation: slideUp var(--dur-fast) var(--ease-out);
+  z-index: 100; overflow: hidden;
+}
+@media (max-width: 600px) {
+  .compose-emoji-picker { width: calc(100vw - 32px); left: 0; }
+}
+.compose-emoji-search-wrap {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 12px; border-bottom: 1px solid var(--c-outline-var);
+  background: var(--c-surf2); flex-shrink: 0;
+}
+.compose-emoji-search {
+  flex: 1; border: none; outline: none;
+  background: transparent; font-family: var(--font-ui);
+  font-size: 13px; color: var(--c-on-surface);
+}
+.compose-emoji-search::placeholder { color: var(--c-on-surf-var); }
+.compose-emoji-cats {
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  border-bottom: 1px solid var(--c-outline-var); padding: 0 4px;
+  flex-shrink: 0;
+}
+.compose-emoji-cats::-webkit-scrollbar { display: none; }
+.compose-emoji-cat-btn {
+  padding: 6px 8px; font-size: 18px; cursor: pointer; flex-shrink: 0;
+  border-radius: var(--r-lg); transition: background var(--dur-fast), opacity var(--dur-fast);
+  opacity: 0.5; line-height: 1;
+}
+.compose-emoji-cat-btn:hover { opacity: 0.9; }
+.compose-emoji-cat-btn.active { opacity: 1; background: var(--c-surf2); }
+.compose-emoji-cat-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--c-on-surf-var);
+  padding: 8px 8px 2px; width: 100%;
+}
+.compose-emoji-grid {
+  display: flex; flex-wrap: wrap; padding: 6px;
+  overflow-y: auto; flex: 1; align-content: flex-start;
+}
+.compose-emoji-item {
+  font-size: 22px; padding: 5px 6px; cursor: pointer;
+  border-radius: var(--r-md); transition: background var(--dur-fast), transform var(--dur-fast);
+  line-height: 1;
+}
+.compose-emoji-item:hover { background: var(--c-surf2); transform: scale(1.2); }
+
+/* ══════════════════════════════════════
+   TOAST UNDO
+══════════════════════════════════════ */
+.toast-undo {
+  display: flex; align-items: center; gap: 10px;
+  background: #1C1B1F; color: #E6E1E5;
+  border-radius: var(--r-lg); padding: 12px 8px 12px 16px;
+  min-width: 260px; box-shadow: var(--el3);
+  animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.toast-undo .ms { font-size: 18px; color: #FFB4AB; }
+.toast-undo-btn {
+  padding: 6px 14px; border-radius: var(--r-full); border: none;
+  background: transparent; color: #B4C5FF; font-family: var(--font-ui);
+  font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: .3px;
+  transition: background var(--dur-fast); text-transform: uppercase;
+  white-space: nowrap;
+}
+.toast-undo-btn:hover { background: rgba(180,197,255,.15); }
+
+/* ══════════════════════════════════════
+   INLINE MESSAGE EDITING
+══════════════════════════════════════ */
+.msg-inline-edit-wrap {
+  display: flex; flex-direction: column; gap: 8px; width: 100%;
+}
+.msg-inline-edit-input {
+  width: 100%; min-height: 60px; max-height: 200px;
+  border: 1.5px solid var(--c-primary); border-radius: var(--r-lg);
+  background: var(--c-surface); color: var(--c-on-surface);
+  font-family: var(--font-ui); font-size: 14px; line-height: 1.5;
+  padding: 8px 10px; resize: none; outline: none; box-sizing: border-box;
+  box-shadow: 0 0 0 3px rgba(0,87,184,.12);
+}
+.msg-inline-edit-actions {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+
+/* ══════════════════════════════════════
+   MODAL OVERLAY + CARD (labels/boards)
+══════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; background: var(--bg-modal);
+  backdrop-filter: blur(4px); z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: fadeIn var(--dur-med) var(--ease-out);
+}
+.modal-card {
+  background: var(--c-surface); border-radius: var(--r-3xl);
+  padding: 24px; display: flex; flex-direction: column; gap: 16px;
+  max-height: 90vh; overflow: hidden; box-shadow: var(--el3);
+  animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.modal-body { overflow-y: auto; flex: 1; }
+.modal-card .modal-header {
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.modal-card .modal-title {
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+@media (max-width: 600px) {
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal-card {
+    border-radius: var(--r-3xl) var(--r-3xl) 0 0;
+    max-width: 100% !important; width: 100%;
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 </style>
 </head>
 <body>
 <div id="app"></div>
 <div class="toast-container" id="toasts"></div>
-
 <script>
 /* ═══════════════════════════════════════════════
    BLURRD LINKS — JavaScript Part 2
@@ -2553,9 +2677,17 @@ async function loadFirebaseSDK() {
 }
 
 async function initFirestore() {
-  const cfg = getIntegration('firebase');
+  // Merge: prefer blurrd_integrations['firebase'], fall back to Push Notifications config (blurrd_firebase)
+  let cfg = getIntegration('firebase');
   if (!cfg.apiKey || !cfg.projectId) {
-    toast('Add Firebase config in Admin → Integrations first', 'error');
+    const fcmCfg = loadFirebaseConfig();
+    if (fcmCfg.apiKey && fcmCfg.projectId) {
+      cfg = { ...fcmCfg, ...cfg };          // push-notif cfg fills gaps
+      setIntegration('firebase', cfg);       // sync so Firestore section sees it
+    }
+  }
+  if (!cfg.apiKey || !cfg.projectId) {
+    toast('Add Firebase config in Admin → Integrations → Firebase Push Notifications first', 'error');
     return false;
   }
   try {
@@ -3143,23 +3275,66 @@ function createTaskFromEmail(subject, body) {
   return t;
 }
 
+// CHANGELOG — always kept in sync with APP_VERSION. Add a new entry for every release.
 const CHANGELOG = [
   {
-    version: '1.2.0',
+    version: '1.5.0',
     date: 'April 2026',
     latest: true,
     items: [
-      { type: 'new', text: 'My Tasks — personal view showing only your assigned tasks grouped by urgency' },
-      { type: 'new', text: 'Accountability Dashboard — per-member task metrics and completion leaderboard' },
-      { type: 'new', text: 'What\'s New modal — highlights new features on each version update' },
-      { type: 'new', text: 'Changelog section — full version history accessible from the nav' },
-      { type: 'new', text: 'Persistent memory — data now survives app updates with schema migration' },
-      { type: 'new', text: 'Data export & import — back up and restore your team\'s data as JSON' },
-      { type: 'new', text: 'Avatar editor — change your profile picture (URL or initials) and display name' },
-      { type: 'new', text: 'Golf-themed animations — celebration effects for task completions' },
-      { type: 'new', text: 'Account passwords — secure each profile with an optional PIN/password' },
-      { type: 'improved', text: 'Nav rail now includes My Tasks and Accountability for quick access' },
-      { type: 'improved', text: 'Profile click from nav opens inline editor for name and avatar' },
+      { type: 'new',      text: 'Direct messaging fixed — click any teammate in the sidebar to open or create a DM instantly' },
+      { type: 'new',      text: 'Compose button — new ✏️ button opens a modal to start a DM or jump to any channel' },
+      { type: 'new',      text: 'Sidebar message search — search bar at the top of the channel list searches all messages across every channel' },
+      { type: 'new',      text: 'User invite emails — "Add User" generates a shareable invite link; recipient sets their own password on first visit' },
+      { type: 'new',      text: 'Undo delete — message deletion now shows a 5-second undo toast instead of a confirm dialog' },
+      { type: 'new',      text: 'Undo send — tap Undo within 5 seconds of sending to retract a message' },
+      { type: 'new',      text: 'Inline message editing — tap edit on your own message to edit it directly in the bubble (no more prompt dialog)' },
+      { type: 'new',      text: 'Admin delete — admins can delete any message from any user' },
+      { type: 'improved', text: 'Channels cleared of placeholder messages — all channels start clean' },
+      { type: 'improved', text: 'Integrations moved inside Admin for a cleaner navigation rail' },
+      { type: 'improved', text: 'App version in App Information section now always reflects the current build' },
+    ]
+  },
+  {
+    version: '1.4.0',
+    date: 'April 2026',
+    latest: false,
+    items: [
+      { type: 'new',      text: 'Emoji reactions — 20-emoji quick-reaction picker (👍 ❤️ 🔥 ⛳ 🏌️ and more) on every message' },
+      { type: 'new',      text: 'File & image attachments — send images, PDFs, and any file directly in chat; images expand in a full-screen lightbox' },
+      { type: 'new',      text: 'Rich link unfurling — pasting a URL auto-generates a preview card with title, description, and image' },
+      { type: 'new',      text: 'Per-channel message search — search icon in the message header filters messages with highlighted matches' },
+      { type: 'new',      text: 'Inline message editing — edit your own messages with an in-bubble text editor' },
+      { type: 'improved', text: 'Message actions toolbar (reply, react, thread, edit, delete) revealed on hover/tap' },
+    ]
+  },
+  {
+    version: '1.3.0',
+    date: 'April 2026',
+    latest: false,
+    items: [
+      { type: 'new',      text: 'Firebase Firestore real-time messaging — messages sync live across devices via onSnapshot listeners' },
+      { type: 'new',      text: 'Typing indicators — animated dots appear when a teammate is composing a message' },
+      { type: 'new',      text: 'Read receipts — avatar stack on sent messages shows who has read them' },
+      { type: 'new',      text: 'Inline replies — tap reply on any message to quote it; quoted context shows in the thread' },
+      { type: 'new',      text: 'BLURRD AI — floating ✦ AI assistant powered by Claude API; handles task creation from natural language' },
+      { type: 'new',      text: 'Admin Firestore config — set up real-time sync from the Admin page without editing code' },
+      { type: 'new',      text: 'Admin Claude config — enter your API key and model to enable the AI assistant' },
+    ]
+  },
+  {
+    version: '1.2.0',
+    date: 'March 2026',
+    latest: false,
+    items: [
+      { type: 'new',      text: 'MD3 Expressive mobile UI — bottom nav bar, navigation drawer, mobile search overlay, single-pane messaging' },
+      { type: 'new',      text: 'Home dashboard — today\'s focus list, team stats, recent messages, and quick-action buttons' },
+      { type: 'new',      text: 'Omnibox search — Google-style search bar on the home page searches tasks and messages simultaneously' },
+      { type: 'new',      text: 'Multiple Kanban boards — create, switch, and manage separate boards per project' },
+      { type: 'new',      text: 'Kanban swipe carousel on mobile — swipe between columns natively' },
+      { type: 'new',      text: 'Task filter panel — collapsible filter panel with status, priority, assignee, and label chips' },
+      { type: 'new',      text: 'Quick label creation — add new labels inline from the task page' },
+      { type: 'improved', text: 'Search bar fully wired — results update live for tasks and messages' },
     ]
   },
   {
@@ -3167,12 +3342,16 @@ const CHANGELOG = [
     date: 'March 2026',
     latest: false,
     items: [
-      { type: 'new', text: 'Firebase Cloud Messaging — real background push notifications via FCM' },
-      { type: 'new', text: 'Task references in messages — type # to link a task in any message' },
-      { type: 'new', text: 'Message from task — start a conversation directly from any task or comment' },
-      { type: 'new', text: 'Notification snooze — snooze any notification for 5, 15, or 60 minutes' },
-      { type: 'improved', text: 'Push notification download for firebase-messaging-sw.js service worker' },
-      { type: 'improved', text: 'Admin Firebase config panel with dynamic SDK loading' },
+      { type: 'new',      text: 'My Tasks — personal view showing only your assigned tasks, grouped by urgency' },
+      { type: 'new',      text: 'Accountability Dashboard — per-member task metrics and completion leaderboard' },
+      { type: 'new',      text: 'Firebase Cloud Messaging — real background push notifications via FCM' },
+      { type: 'new',      text: 'Task references in messages — type # to link a task in any channel message' },
+      { type: 'new',      text: 'Message from task — start a channel conversation directly from a task card' },
+      { type: 'new',      text: 'Notification snooze — snooze any notification for 5, 15, or 60 minutes' },
+      { type: 'new',      text: 'Data export & import — full JSON backup and restore of all app data' },
+      { type: 'new',      text: 'Avatar editor — change your profile picture (URL or initials) and display name' },
+      { type: 'new',      text: 'Golf-themed animations — celebration confetti and effects on task completions' },
+      { type: 'new',      text: 'Account passwords — secure each profile with an optional PIN or password' },
     ]
   },
   {
@@ -3181,13 +3360,13 @@ const CHANGELOG = [
     latest: false,
     items: [
       { type: 'new', text: 'Initial launch of BLURRD Links — team task management + communication hub' },
-      { type: 'new', text: 'Task manager with status, priority, due dates, comments, and attachments' },
+      { type: 'new', text: 'Task manager with status, priority, due dates, comments, and file attachments' },
       { type: 'new', text: 'Kanban board with drag-and-drop columns' },
-      { type: 'new', text: 'Calendar view with task heat-map and day detail' },
+      { type: 'new', text: 'Calendar view with task heat-map and day detail panel' },
       { type: 'new', text: 'Team messaging — channels, DMs, threads, @mentions, emoji reactions' },
       { type: 'new', text: 'PWA with install prompt and browser push notifications' },
-      { type: 'new', text: 'Admin dashboard — user management, theme colours, fonts' },
-      { type: 'new', text: 'Material Design 3 Expressive styling with dark / light / auto mode' },
+      { type: 'new', text: 'Admin dashboard — user management, roles, theme colours, and fonts' },
+      { type: 'new', text: 'Material Design 3 Expressive styling with dark / light / auto theme' },
     ]
   }
 ];
@@ -3210,7 +3389,17 @@ const DEFAULT_TAGS = [
   { id:'tag4', name:'Bug', color:'#BA1A1A' },
   { id:'tag5', name:'Feature', color:'#00695C' },
 ];
-const EMOJIS = ['👍','❤️','😂','🔥','👏','😮','⛳','🏌️','🎉','💪','🙏','😅','🤔','✅','👀','🚀','💯','😊','🫶','🤝'];
+const EMOJIS = ['👍','👎','❤️','😂','🔥','👏','😮','🎉','💪','🙏','😅','🤔','✅','👀','🚀','💯','😊','🫶','🤝','⛳','🏌️','😍','🥳','😭','🤯','🤣','💀','🫡','🤌','💅','🫠','👌','✌️','🤞','💔','🫂','🙌','✨','🌟','💫','🏆','🎯','💡','⚡','🌈','🍕','🍺','☕','🎵','🔥'];
+const EMOJI_CATEGORIES = [
+  { icon: '😀', name: 'Smileys', emojis: ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇','🥰','😍','🤩','😘','😗','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🫡','🤫','🤔','🫢','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖'] },
+  { icon: '👋', name: 'Gestures', emojis: ['👋','🤚','🖐️','✋','🖖','👌','🤌','🤏','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','👍','👎','✊','👊','🤛','🤜','👏','🙌','🫶','👐','🤲','🤝','🙏','✍️','💅','💪','🫀','🦵','🦶','👂','👃','👀','👅','👄','💋','🫦'] },
+  { icon: '🐶', name: 'Animals', emojis: ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐔','🐧','🐦','🐤','🦆','🦅','🦉','🦇','🐺','🐗','🐴','🦄','🐝','🐛','🦋','🐌','🐞','🐜','🦟','🦗','🕷️','🦂','🐢','🐍','🦎','🐊','🦕','🦖','🐉','🐲','🐳','🐋','🐬','🦭','🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦞','🦀','🐚','🦜','🦢','🦩','🕊️','🐇','🦝','🦨','🦡','🦦','🦥','🐁','🐀','🐿️','🦔'] },
+  { icon: '🍎', name: 'Food', emojis: ['🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🫐','🍈','🍒','🍑','🥭','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥬','🥒','🌶️','🫑','🧄','🧅','🥔','🌽','🥕','🥜','🫘','🍞','🥐','🥖','🫓','🥨','🥯','🧀','🥚','🍳','🧈','🥞','🧇','🥓','🥩','🍗','🍖','🌭','🍔','🍟','🍕','🫔','🌮','🌯','🥙','🍱','🍘','🍙','🍚','🍛','🍜','🍝','🍢','🍣','🍤','🍦','🍧','🍨','🍩','🍪','🎂','🍰','🧁','🍫','🍬','🍭','🍮','🍯','🍼','🥛','☕','🫖','🍵','🧃','🥤','🧋','🍶','🍺','🍻','🥂','🍷','🍸','🍹','🧉','🍾'] },
+  { icon: '⚽', name: 'Activities', emojis: ['⚽','🏀','🏈','⚾','🥎','🎾','🏐','🏉','🥏','🎱','🪀','🏓','🏸','🏒','🏑','🥍','🏏','🥅','⛳','🎣','🤿','🎽','🎿','🛷','🥌','🎯','🎮','🎲','♟️','🧩','🧸','🎨','🎭','🎤','🎧','🎼','🎹','🥁','🎷','🎺','🎸','🎻','🎬','🎉','🎊','🎈','🎀','🎁','🏆','🥇','🥈','🥉','🏅','🎖️','🏵️'] },
+  { icon: '✈️', name: 'Travel', emojis: ['🌍','🌎','🌏','🗺️','🧭','🏔️','⛰️','🌋','🏕️','🏖️','🏜️','🏝️','🏞️','🏟️','🏛️','🏠','🏡','🏢','🏥','🏦','🏨','🏪','🏫','🏬','🏭','🏯','🏰','💒','🗼','🗽','⛪','🕌','🛕','⛩️','🌃','🏙️','🌄','🌅','🌆','🌇','🌉','🌌','🌈','🚗','🚕','🚙','🚌','🏎️','🚓','🚑','🚒','🚐','🛻','🚚','🚜','🏍️','🛵','🚲','🛴','✈️','🚀','🛸','🚁','⛵','🚤','🛥️','🚢','⚓'] },
+  { icon: '💡', name: 'Objects', emojis: ['📱','💻','⌨️','🖥️','🖨️','🖱️','💾','💿','📷','📸','📹','🎥','📞','☎️','📺','📻','⏰','⌛','⏳','💡','🔦','🕯️','🧯','💰','💵','💳','✏️','✒️','🖋️','📝','📚','📖','📰','📁','📂','📅','📆','📋','📌','📍','✂️','🔒','🔓','🔑','🗝️','🔨','🪓','⛏️','🛠️','🔧','🪛','🔩','⚙️','🧲','🪜','🧰','💊','💉','🩺','🩹','🔬','🔭','📡','🧪','🧬','🎁','🎀','🎊','🎉','🎈','🪄','🖼️','🎨','🧵','🧶','🪡','🧷'] },
+  { icon: '❤️', name: 'Symbols', emojis: ['❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','💟','☮️','✝️','☪️','🕉️','☸️','✡️','🔯','🕎','☯️','☦️','🛐','♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓','⛎','🆔','⚛️','☢️','☣️','🈶','🈚','🈸','🈺','🈷️','✴️','🆚','㊙️','㊗️','🈴','🈵','🈹','🈲','🅰️','🅱️','🆎','🆑','🅾️','🆘','❌','⭕','🛑','⛔','📛','🚫','💯','❗','❕','❓','❔','‼️','⁉️','♻️','✅','❎','🌟','⭐','💫','✨','🎇','🎆','🔱','⚜️','🔰'] }
+];
 const COLORS = [
   { name:'Ocean', value:'#0057B8' }, { name:'Emerald', value:'#00695C' },
   { name:'Violet', value:'#6750A4' }, { name:'Rose', value:'#B5294C' },
@@ -3254,18 +3443,9 @@ const DEFAULT_TASKS = [
   { id:'t5', title:'Client deck for onboarding presentation', description:'Build a polished deck for the new client onboarding session next week.', status:'blocked', priority:'high', dueDate: D(3), assignees:['u1','u2','u3'], notes:'Use the updated brand template from the drive.', tags:['tag1','tag3'], timeEstimate:5, timeLogs:[], subtasks:[{id:'st12',text:'Create slide structure',done:false},{id:'st13',text:'Add brand assets',done:false},{id:'st14',text:'Review with team',done:false}], attachments:[], comments:[], activityLog:[{id:uid(),userId:'u1',action:'created',details:'Task created',timestamp:now-43200000},{id:uid(),userId:'u1',action:'status_changed',details:'Status changed to Blocked — awaiting client brief',timestamp:now-10000000}], createdBy:'u1', createdAt: now - 43200000, updatedAt: now - 43200000 }
 ];
 
-const DEFAULT_MESSAGES = [
-  { id:'m1', channelId:'ch1', userId:'u2', content:'Morning everyone! Quick heads up — the BLURRD Links app is now live for internal testing 🎉', timestamp: now - 7200000, reactions:{'👍':['u1','u3'],'🔥':['u4']}, threadId:null, edited:false },
-  { id:'m2', channelId:'ch1', userId:'u1', content:'Amazing! @Morgan Lee can you send the QA checklist to @Sam Rivera and @Casey Kim?', timestamp: now - 7100000, reactions:{}, threadId:null, edited:false },
-  { id:'m3', channelId:'ch1', userId:'u3', content:"On it! I'll start going through the task manager and messaging features first.", timestamp: now - 6900000, reactions:{'👏':['u1','u2']}, threadId:'m1', edited:false },
-  { id:'m4', channelId:'ch1', userId:'u4', content:'The Kanban board drag and drop is smooth 🔥 Really good work team.', timestamp: now - 3600000, reactions:{'❤️':['u1','u2','u3']}, threadId:null, edited:false },
-  { id:'m5', channelId:'ch2', userId:'u2', content:'Sharing the new typography specs here. Heading font is now Google Sans Display, body is Roboto Flex.', timestamp: now - 86400000, reactions:{'👍':['u1']}, threadId:null, edited:false },
-  { id:'m6', channelId:'ch2', userId:'u1', content:"Love the direction. @Morgan Lee let's align on the colour tokens next week.", timestamp: now - 82800000, reactions:{}, threadId:null, edited:false },
-  { id:'m7', channelId:'ch3', userId:'u3', content:'PWA service worker registered successfully. Install prompt is working on Chrome and Edge.', timestamp: now - 172800000, reactions:{'🔥':['u1','u4']}, threadId:null, edited:false },
-  { id:'m8', channelId:'ch3', userId:'u4', content:'Safari on iOS shows the Add to Home Screen prompt too. Push notifications need FCM but the UI is all wired.', timestamp: now - 169200000, reactions:{'👍':['u1','u3']}, threadId:null, edited:false },
-  { id:'m9', channelId:'dm-u2', userId:'u2', content:"Hey! Can you review the Q2 brief when you get a chance?", timestamp: now - 1800000, reactions:{}, threadId:null, edited:false },
-  { id:'m10', channelId:'dm-u2', userId:'u1', content:"Sure! I'll look at it this afternoon.", timestamp: now - 1500000, reactions:{}, threadId:null, edited:false }
-];
+const DEFAULT_MESSAGES = [];
+// IDs of old demo messages — purged on first load after this update
+const DEMO_MSG_IDS = new Set(['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10']);
 
 const DEFAULT_NOTIFICATIONS = [
   { id:'n1', type:'mention', text:'Morgan Lee mentioned you in #general', time: now - 7100000, read: false, page:'messages', channelId:'ch1' },
@@ -3308,6 +3488,7 @@ let S = {
   taskPickerQuery: null,
   taskPickerIndex: 0,
   emojiTarget: null,
+  composeEmojiChannel: null,
   snoozeTarget: null,
   msgFromTask: null,
   _showWhatsNew: false,
@@ -3371,7 +3552,10 @@ function loadState() {
       }));
     }
     if (d.channels?.length) S.channels = d.channels;
-    if (d.messages?.length) S.messages = d.messages;
+    if (d.messages?.length) {
+      // Strip old demo messages on first load after v1.5
+      S.messages = d.messages.filter(m => !DEMO_MSG_IDS.has(m.id));
+    }
     if (d.notifications?.length) S.notifications = d.notifications;
     if (d.tags?.length) S.tags = d.tags;
     if (d.boards?.length) S.boards = d.boards;
@@ -5913,9 +6097,14 @@ function onSidebarSearch(val) {
   S.sidebarSearchQuery = val;
   clearTimeout(window._sidebarSearchTimer);
   window._sidebarSearchTimer = setTimeout(() => {
-    // Re-render just the sidebar portion
     renderPageContent();
-  }, 150);
+    // Restore focus + cursor position after re-render (the input gets replaced)
+    const input = document.querySelector('.msg-sidebar-search');
+    if (input) {
+      input.focus();
+      input.setSelectionRange(val.length, val.length);
+    }
+  }, 80);
 }
 
 function openSearchedMessage(channelId, msgId) {
@@ -6143,12 +6332,13 @@ function renderMsgBubble(m, isMine, searchQuery) {
     ${threadReplies.length ? `<div class="msg-thread-count" onclick="openThread('${m.id}')"><span class="ms">forum</span>${threadReplies.length} ${threadReplies.length===1?'reply':'replies'} · View thread</div>` : ''}
     <div class="msg-actions">
       <div class="msg-action-btn ripple" onclick="startInlineReply('${m.id}')" title="Reply"><span class="ms sm">reply</span></div>
-      <div class="msg-action-btn ripple" onclick="openEmojiPicker('${m.id}')" title="React">😊</div>
+      <div class="msg-action-btn ripple" onclick="openEmojiPicker('${m.id}')" title="React"><span style="font-size:15px">😊</span></div>
       <div class="msg-action-btn ripple" onclick="openThread('${m.id}')" title="Thread"><span class="ms sm">forum</span></div>
-      ${isMine ? `
-        <div class="msg-action-btn ripple" onclick="editMessage('${m.id}')" title="Edit"><span class="ms sm">edit</span></div>
-        <div class="msg-action-btn ripple" onclick="deleteMessage('${m.id}')" title="Delete"><span class="ms sm" style="color:var(--c-error)">delete</span></div>
-      ` : ''}
+      ${isMine ? `<div class="msg-action-btn ripple" onclick="startInlineEdit('msgwrap-${m.id}','${m.id}')" title="Edit"><span class="ms sm">edit</span></div>` : ''}
+      ${(isMine || S.currentUser?.role === 'admin') ? `
+        <div class="msg-action-btn ripple" onclick="deleteMessage('${m.id}')" title="${isMine ? 'Delete' : 'Delete (Admin)'}">
+          <span class="ms sm" style="color:var(--c-error)">delete</span>
+        </div>` : ''}
     </div>
     <div class="msg-timestamp-tooltip">${formatTime(m.timestamp)}</div>
   </div>`;
@@ -6190,7 +6380,7 @@ function renderLinkPreview(preview) {
 function highlightText(html, query) {
   if (!query) return html;
   // Only highlight in text nodes (simple approach: use a regex on the final HTML)
-  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\</body>');
   return html.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark class="msg-search-match">$1</mark>');
 }
 
@@ -6235,6 +6425,7 @@ function renderMsgInput(channelId) {
     ${S.mentionQuery !== null ? renderMentionPopup() : ''}
     ${S.taskPickerQuery !== null ? renderTaskPicker() : ''}
     ${S.emojiTarget ? renderEmojiPicker() : ''}
+    ${S.composeEmojiChannel === channelId ? renderComposeEmojiPicker(channelId) : ''}
     <div class="msg-input-wrap">
       <textarea class="msg-input-field" id="msg-input-${channelId}" placeholder="${escHtml(placeholder)}"
         onkeydown="msgKeyDown(event,'${channelId}')"
@@ -6245,7 +6436,7 @@ function renderMsgInput(channelId) {
           <div class="msg-input-tool ripple" onclick="document.getElementById('msg-file-${channelId}').click()" title="Attach file">
             <span class="ms sm">attach_file</span>
           </div>
-          <div class="msg-input-tool ripple" onclick="insertEmoji('${channelId}')" title="Emoji">
+          <div class="msg-input-tool ripple${S.composeEmojiChannel===channelId?' active':''}" onclick="toggleComposeEmoji('${channelId}')" title="Add emoji">
             <span class="ms sm">mood</span>
           </div>
           <div class="msg-input-tool ripple" onclick="insertAtMention('${channelId}')" title="Mention someone (@)">
@@ -6262,6 +6453,96 @@ function renderMsgInput(channelId) {
       </div>
     </div>
   </div>`;
+}
+
+function toggleComposeEmoji(channelId) {
+  S.composeEmojiChannel = S.composeEmojiChannel === channelId ? null : channelId;
+  S._composeEmojiCat = S._composeEmojiCat || 0;
+  S._composeEmojiSearch = '';
+  const inputArea = document.querySelector('.msg-input-area');
+  if (inputArea) {
+    const existing = inputArea.querySelector('.compose-emoji-picker');
+    if (existing) { existing.remove(); S.composeEmojiChannel = null; return; }
+    if (S.composeEmojiChannel) {
+      inputArea.insertAdjacentHTML('afterbegin', renderComposeEmojiPicker(channelId));
+      setTimeout(() => inputArea.querySelector('.compose-emoji-search')?.focus(), 50);
+    }
+  } else {
+    renderPageContent();
+  }
+}
+
+function renderComposeEmojiPicker(channelId) {
+  const cat = S._composeEmojiCat || 0;
+  const searchQ = (S._composeEmojiSearch || '').toLowerCase();
+  const cats = EMOJI_CATEGORIES;
+  const allEmojis = cats.flatMap(c => c.emojis);
+  const displayEmojis = searchQ
+    ? allEmojis.filter(e => e.toLowerCase().includes(searchQ) || true).slice(0, 80)
+    : cats[cat]?.emojis || [];
+  // When searching, just show all emojis filtered by search (since emojis don't have text names in this impl, show all)
+  const emojiList = searchQ ? allEmojis : displayEmojis;
+
+  return `<div class="compose-emoji-picker" id="compose-emoji-picker" onmousedown="event.preventDefault()">
+    <div class="compose-emoji-search-wrap">
+      <span class="ms sm" style="color:var(--c-on-surf-var);font-size:16px">search</span>
+      <input class="compose-emoji-search" placeholder="Search emoji…" value="${escHtml(S._composeEmojiSearch||'')}"
+        oninput="composeEmojiSearch(this.value,'${channelId}')" autocomplete="off" />
+      ${S._composeEmojiSearch ? `<span class="ms sm" style="cursor:pointer;color:var(--c-on-surf-var)" onclick="composeEmojiSearch('','${channelId}')">close</span>` : ''}
+    </div>
+    ${!searchQ ? `<div class="compose-emoji-cats">
+      ${cats.map((c,i) => `<div class="compose-emoji-cat-btn${i===cat?' active':''}" onmousedown="event.preventDefault();setComposeEmojiCat(${i},'${channelId}')" title="${c.name}">${c.icon}</div>`).join('')}
+    </div>` : ''}
+    <div class="compose-emoji-grid">
+      ${emojiList.map(e => `<div class="compose-emoji-item" onmousedown="event.preventDefault();insertEmojiIntoCompose('${channelId}','${e}')" title="${e}">${e}</div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function composeEmojiSearch(val, channelId) {
+  S._composeEmojiSearch = val;
+  const picker = document.getElementById('compose-emoji-picker');
+  if (picker) { picker.outerHTML = renderComposeEmojiPicker(channelId); }
+  // Re-insert and refocus search
+  const inputArea = document.querySelector('.msg-input-area');
+  if (inputArea) {
+    const old = inputArea.querySelector('.compose-emoji-picker');
+    if (old) old.outerHTML = renderComposeEmojiPicker(channelId);
+    const search = inputArea.querySelector('.compose-emoji-search');
+    if (search) { search.focus(); search.value = val; search.setSelectionRange(val.length, val.length); }
+  }
+}
+
+function setComposeEmojiCat(idx, channelId) {
+  S._composeEmojiCat = idx;
+  const inputArea = document.querySelector('.msg-input-area');
+  if (inputArea) {
+    const old = inputArea.querySelector('.compose-emoji-picker');
+    if (old) old.outerHTML = renderComposeEmojiPicker(channelId);
+  }
+}
+
+function insertEmojiIntoCompose(channelId, emoji) {
+  const input = document.getElementById('msg-input-' + channelId);
+  if (input) {
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    const before = input.value.slice(0, start);
+    const after = input.value.slice(end);
+    input.value = before + emoji + after;
+    S.msgInput[channelId] = input.value;
+    const pos = start + emoji.length;
+    input.setSelectionRange(pos, pos);
+    input.focus();
+    // Enable send
+    const sendBtn = input.closest('.msg-input-area')?.querySelector('.msg-send-btn');
+    if (sendBtn) sendBtn.disabled = !input.value.trim();
+  }
+}
+
+function insertEmoji(channelId) {
+  // Legacy: kept for compatibility, now opens proper picker
+  toggleComposeEmoji(channelId);
 }
 
 function renderMentionPopup() {
@@ -6461,12 +6742,6 @@ function insertTaskRef(taskId) {
   input.selectionStart = input.selectionEnd = replaced.length;
 }
 
-function insertEmoji(channelId) {
-  const emojis = ['😊','🎉','👍','🙏','💪','🚀','⛳','🏌️'];
-  const e = emojis[Math.floor(Math.random()*emojis.length)];
-  const input = document.getElementById('msg-input-'+channelId);
-  if (input) { input.value += e; S.msgInput[channelId] = input.value; }
-}
 
 function closeMentionPopup() {
   setTimeout(() => { S.mentionQuery = null; document.querySelector('.mention-popup')?.remove(); }, 150);
@@ -6501,18 +6776,24 @@ function sendMessage(channelId) {
     if (feed) { renderPageContent(); feed.scrollTop = feed.scrollHeight; }
     notifyMentions(channelId, content);
     triggerLinkUnfurl(msg);
+    enableUndoSend(msg.id, channelId);
     return;
   }
 
   // Offline / localStorage path
+  const replyToIdLocal = S._replyToMsgId;
+  S._replyToMsgId = null;
+  document.querySelector('.reply-banner')?.remove();
   const msg = {
     id: uid(), channelId, userId: S.currentUser.id,
-    content, timestamp: Date.now(), reactions: {}, threadId: null, edited: false, readBy: [S.currentUser.id], _read: true
+    content, timestamp: Date.now(), reactions: {}, threadId: null,
+    replyTo: replyToIdLocal || null, edited: false, readBy: [S.currentUser.id], _read: true
   };
   S.messages.push(msg);
   S.msgInput[channelId] = '';
   if (input) input.value = '';
   saveState();
+  enableUndoSend(msg.id, channelId);
   // Detect task refs and log them
   const taskRefs = [...content.matchAll(/\[task:([a-z0-9]+)\]/gi)].map(m => m[1]);
   if (taskRefs.length) {
@@ -6543,17 +6824,69 @@ function sendMessage(channelId) {
   notifyMentions(channelId, content);
 }
 
-function editMessage(msgId) {
+function startInlineEdit(wrapId, msgId) {
   const m = S.messages.find(x => x.id === msgId);
   if (!m || m.userId !== S.currentUser.id) return;
-  const newContent = prompt('Edit message:', m.content);
-  if (newContent === null || newContent.trim() === m.content) return;
-  const trimmed = newContent.trim();
-  if (!trimmed) return;
+  const bubble = document.getElementById('msg-' + msgId);
+  if (!bubble) return;
+
+  const original = m.content;
+  const actions = bubble.parentElement?.querySelector('.msg-actions');
+  if (actions) actions.style.display = 'none';
+
+  bubble.innerHTML = `
+    <div class="msg-inline-edit-wrap">
+      <textarea class="msg-inline-edit-input" id="inline-edit-${msgId}">${escHtml(original)}</textarea>
+      <div class="msg-inline-edit-actions">
+        <span style="font-size:11px;color:var(--c-on-surf-var)">Enter to save · Esc to cancel</span>
+        <button class="btn btn-text btn-sm ripple" onclick="cancelInlineEdit('${msgId}','${escHtml(original).replace(/'/g,'\\\'')}')" style="padding:4px 10px">Cancel</button>
+        <button class="btn btn-tonal btn-sm ripple" onclick="commitInlineEdit('${msgId}')" style="padding:4px 10px">Save</button>
+      </div>
+    </div>`;
+
+  const ta = document.getElementById('inline-edit-' + msgId);
+  if (ta) {
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    ta.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); commitInlineEdit(msgId); }
+      if (e.key === 'Escape') { cancelInlineEdit(msgId, original); }
+    });
+    // Auto-resize
+    ta.addEventListener('input', () => { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; });
+    ta.style.height = ta.scrollHeight + 'px';
+  }
+}
+
+function cancelInlineEdit(msgId, original) {
+  const m = S.messages.find(x => x.id === msgId);
+  const bubble = document.getElementById('msg-' + msgId);
+  if (!bubble) return;
+  bubble.innerHTML = `<span>${parseMessageContent(original || (m && m.content) || '')}</span>${m?.edited ? '<span style="font-size:11px;opacity:.6;margin-left:6px">(edited)</span>' : ''}`;
+  const actions = bubble.parentElement?.querySelector('.msg-actions');
+  if (actions) actions.style.display = '';
+}
+
+function commitInlineEdit(msgId) {
+  const m = S.messages.find(x => x.id === msgId);
+  if (!m) return;
+  const ta = document.getElementById('inline-edit-' + msgId);
+  if (!ta) return;
+  const trimmed = ta.value.trim();
+  if (!trimmed) { cancelInlineEdit(msgId, m.content); return; }
+  if (trimmed === m.content) { cancelInlineEdit(msgId, m.content); return; }
+
   m.content = trimmed;
   m.edited = true;
   saveState();
-  renderPageContent();
+
+  const bubble = document.getElementById('msg-' + msgId);
+  if (bubble) {
+    bubble.innerHTML = `<span>${parseMessageContent(trimmed)}</span><span style="font-size:11px;opacity:.6;margin-left:6px">(edited)</span>`;
+    const actions = bubble.parentElement?.querySelector('.msg-actions');
+    if (actions) actions.style.display = '';
+  }
+
   if (isFirestoreEnabled() && _firestore) {
     try {
       _firestore.collection('threads').doc(m.channelId)
@@ -6561,6 +6894,24 @@ function editMessage(msgId) {
         .update({ content: trimmed, edited: true });
     } catch(e) {}
   }
+  toast('Message updated ✓', 'success', 1500);
+}
+
+// Undo send — called from sendMessage/sendMessageWithAttachment
+const _undoSendRegistry = {};
+
+function enableUndoSend(msgId, channelId) {
+  _undoSendRegistry[msgId] = false;
+  showUndoToast('Message sent', 'send-' + msgId, () => {
+    _undoSendRegistry[msgId] = true;
+    S.messages = S.messages.filter(x => x.id !== msgId);
+    saveState();
+    renderPageContent();
+    toast('Message unsent ↩️');
+    if (isFirestoreEnabled() && _firestore) {
+      try { _firestore.collection('threads').doc(channelId).collection('messages').doc(msgId).delete(); } catch(e) {}
+    }
+  });
 }
 
 function startInlineReply(msgId) {
@@ -6709,10 +7060,59 @@ function addReaction(msgId, emoji) {
 }
 
 function deleteMessage(msgId) {
-  if (!confirm('Delete this message?')) return;
-  S.messages = S.messages.filter(m => m.id !== msgId && m.threadId !== msgId);
+  const m = S.messages.find(x => x.id === msgId);
+  if (!m) return;
+  const isAdmin = S.currentUser?.role === 'admin';
+  if (m.userId !== S.currentUser.id && !isAdmin) return;
+
+  // Soft-delete: stash message then show undo toast
+  const idx = S.messages.indexOf(m);
+  const stashed = JSON.parse(JSON.stringify(m));
+  const threadStash = S.messages.filter(x => x.threadId === msgId).map(x => JSON.parse(JSON.stringify(x)));
+
+  S.messages = S.messages.filter(x => x.id !== msgId && x.threadId !== msgId);
   saveState();
   renderPageContent();
+
+  // Sync deletion to Firestore if enabled
+  if (isFirestoreEnabled() && _firestore) {
+    try {
+      _firestore.collection('threads').doc(m.channelId).collection('messages').doc(msgId).delete();
+    } catch(e) {}
+  }
+
+  let undone = false;
+  const toastId = 'del-' + msgId;
+  showUndoToast('Message deleted', toastId, () => {
+    if (undone) return;
+    undone = true;
+    // Restore in original position
+    S.messages.splice(idx, 0, stashed, ...threadStash);
+    saveState();
+    renderPageContent();
+    toast('Message restored ↩️');
+  });
+}
+
+let _undoToastTimer = null;
+function showUndoToast(label, id, onUndo) {
+  const existing = document.getElementById('toast-' + id);
+  if (existing) existing.remove();
+  clearTimeout(_undoToastTimer);
+
+  const el = document.createElement('div');
+  el.className = 'toast toast-undo';
+  el.id = 'toast-' + id;
+  el.innerHTML = `
+    <span class="ms sm">delete</span>
+    <span style="flex:1">${escHtml(label)}</span>
+    <button class="toast-undo-btn" onclick="this.closest('.toast-undo')._undoCallback()">Undo</button>`;
+  el._undoCallback = () => { el.remove(); onUndo(); };
+  document.getElementById('toasts')?.appendChild(el);
+
+  _undoToastTimer = setTimeout(() => {
+    if (el.parentElement) el.remove();
+  }, 5000);
 }
 
 function openAddChannelPrompt() {
@@ -7480,6 +7880,8 @@ async function connectFirebase() {
     });
 
     saveState();
+    // Sync config to integrations store so Firestore section can read it
+    setIntegration('firebase', cfg);
     toast('Firebase connected! Push notifications active ⛳');
     renderPageContent();
   } catch(e) {
@@ -8913,6 +9315,10 @@ document.addEventListener('click', e => {
   }
   if (S.emojiTarget && !e.target.closest('#emoji-picker') && !e.target.closest('.msg-action-btn')) {
     S.emojiTarget = null;
+  }
+  if (S.composeEmojiChannel && !e.target.closest('#compose-emoji-picker') && !e.target.closest('.msg-input-tool')) {
+    S.composeEmojiChannel = null;
+    document.getElementById('compose-emoji-picker')?.remove();
   }
   if (S.snoozeTarget && !e.target.closest('.snooze-popup') && !e.target.closest('.icon-btn[onclick*="openSnooze"]')) {
     S.snoozeTarget = null;
