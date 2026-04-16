@@ -7607,12 +7607,33 @@ function renderFirebaseSection() {
           </div>`).join('')}
       </div>
 
-      <!-- Server Key for sending pushes directly from app -->
-      <div class="field">
-        <label class="field-label">Server Key <span style="font-weight:400;opacity:.7">(used to send pushes — keep private)</span></label>
-        <div class="field-input">
-          <input id="fcm-serverKey" type="password" placeholder="AAAA..." value="${escHtml(cfg.serverKey||'')}"
-            oninput="updateFirebaseConfig()" autocomplete="off" />
+      <!-- Cloud Function URL for sending pushes (replaces deprecated Server Key) -->
+      <div style="background:var(--c-surf2);border-radius:var(--r-lg);padding:14px 16px;margin-top:4px">
+        <div style="font-weight:600;font-size:13px;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+          <span class="ms sm" style="color:var(--c-primary)">functions</span>
+          Cloud Function URL
+          <span style="background:#E8F5E9;color:#1A5C2A;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px">REQUIRED FOR PUSH</span>
+        </div>
+        <div style="font-size:12px;color:var(--c-on-surf-var);margin-bottom:10px;line-height:1.6">
+          The old Server Key was deprecated by Google. Deploy the included <code style="background:var(--c-surf1);padding:1px 6px;border-radius:4px">functions/index.js</code> to Firebase, then paste the URL it gives you here.
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label class="field-label">Function URL</label>
+          <div class="field-input">
+            <input id="fcm-fcmFunctionUrl" type="text"
+              placeholder="https://us-central1-your-project.cloudfunctions.net/sendPush"
+              value="${escHtml(cfg.fcmFunctionUrl||'')}"
+              oninput="updateFirebaseConfig()" autocomplete="off" />
+          </div>
+        </div>
+        <div class="field" style="margin-top:10px;margin-bottom:0">
+          <label class="field-label">Optional Secret <span style="font-weight:400;opacity:.7">(protects the function from outside calls)</span></label>
+          <div class="field-input">
+            <input id="fcm-fcmSecret" type="password"
+              placeholder="leave blank if you skipped the secret step"
+              value="${escHtml(cfg.fcmSecret||'')}"
+              oninput="updateFirebaseConfig()" autocomplete="off" />
+          </div>
         </div>
       </div>
 
@@ -7644,13 +7665,13 @@ function renderFirebaseSection() {
           <span class="ms sm" style="color:var(--c-primary)">menu_book</span> Quick Setup Guide
         </div>
         <ol style="padding-left:18px;display:flex;flex-direction:column;gap:4px">
-          <li>Go to <strong>console.firebase.google.com</strong> → New project</li>
-          <li>Add a Web app → copy the config values above</li>
-          <li>Go to <strong>Project Settings → Cloud Messaging</strong> → Generate VAPID key pair</li>
-          <li>Copy your Server Key from Cloud Messaging → Legacy API</li>
-          <li>Click <strong>Connect Firebase</strong> — allow notifications when prompted</li>
-          <li>Download <strong>firebase-messaging-sw.js</strong> and host it at the root of your domain alongside index.html</li>
-          <li>Deploy — push notifications now work even when the app is closed ⛳</li>
+          <li>Go to <strong>console.firebase.google.com</strong> → your project → add a Web app, copy the config values above</li>
+          <li><strong>Project Settings → Cloud Messaging</strong> → Web Push certificates → Generate key pair → copy VAPID Key</li>
+          <li>Fill in all fields above, then click <strong>Connect Firebase</strong> — allow notifications when prompted</li>
+          <li>Download <strong>firebase-messaging-sw.js</strong> — put it in the same folder as index.html</li>
+          <li>Open the <code style="background:var(--c-surf1);padding:1px 5px;border-radius:4px">functions/</code> folder from your outputs → run <code style="background:var(--c-surf1);padding:1px 5px;border-radius:4px">npm install</code> → run <code style="background:var(--c-surf1);padding:1px 5px;border-radius:4px">firebase deploy --only functions</code></li>
+          <li>Copy the Function URL from the terminal output → paste it into the <strong>Cloud Function URL</strong> field above</li>
+          <li>Deploy your app via Firebase Hosting — push notifications now work when the app is closed ⛳</li>
         </ol>
       </div>
 
@@ -7817,8 +7838,8 @@ function saveFirebaseConfig(cfg) {
 }
 
 function updateFirebaseConfig() {
-  const keys = ['apiKey','authDomain','projectId','messagingSenderId','appId','vapidKey','serverKey'];
-  const cfg = {};
+  const keys = ['apiKey','authDomain','projectId','messagingSenderId','appId','vapidKey','fcmFunctionUrl','fcmSecret'];
+  const cfg = loadFirebaseConfig();
   keys.forEach(k => { const el = document.getElementById('fcm-'+k); if (el) cfg[k] = el.value.trim(); });
   saveFirebaseConfig(cfg);
 }
@@ -7901,18 +7922,22 @@ function loadScript(src) {
 
 async function sendFCMPush(targetToken, title, body, data = {}) {
   const cfg = loadFirebaseConfig();
-  if (!cfg.serverKey || !targetToken) return;
+  if (!cfg.fcmFunctionUrl || !targetToken) return;
   try {
-    await fetch('https://fcm.googleapis.com/fcm/send', {
+    const secret = cfg.fcmSecret || '';
+    const headers = { 'Content-Type': 'application/json' };
+    if (secret) headers['x-blurrd-secret'] = secret;
+    await fetch(cfg.fcmFunctionUrl, {
       method: 'POST',
-      headers: { 'Authorization': `key=${cfg.serverKey}`, 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
-        to: targetToken,
-        notification: { title, body, icon: '/icon-192.png', click_action: '/' },
+        token: targetToken,
+        title,
+        body,
         data: { ...data, url: window.location.href }
       })
     });
-  } catch(e) { console.warn('FCM send error:', e); }
+  } catch(e) { console.warn('FCM push error:', e.message); }
 }
 
 async function testPushNotification() {
@@ -7921,12 +7946,17 @@ async function testPushNotification() {
     return;
   }
   const cfg = loadFirebaseConfig();
-  if (!cfg.serverKey) {
-    toast('Add Server Key to send pushes', 'error');
+  if (!cfg.fcmFunctionUrl) {
+    toast('Add your Cloud Function URL first', 'error');
     return;
   }
-  await sendFCMPush(window._fcmToken, 'BLURRD Links ⛳', 'Test notification — push is working!', { type: 'test' });
-  toast('Test push sent! Check your notifications.');
+  toast('Sending test push…');
+  try {
+    await sendFCMPush(window._fcmToken, 'BLURRD Links ⛳', 'Push notifications are working!', { type: 'test' });
+    toast('Test push sent! Check your device notifications.');
+  } catch(e) {
+    toast('Push failed: ' + e.message, 'error');
+  }
 }
 
 function copyFCMToken() {
