@@ -1998,11 +1998,500 @@ img { max-width: 100%; display: block; }
 .drive-picker-btn:hover { background: #1557B0; box-shadow: 0 3px 8px rgba(26,115,232,.4); }
 .drive-picker-btn .ms { font-size: 18px; }
 
+/* ══════════════════════════════════════
+   TASKS PAGE — TOOLBAR & FILTER PANEL
+══════════════════════════════════════ */
+.tasks-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 0 0 4px; flex-wrap: wrap;
+}
+.tasks-toolbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.tasks-toolbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.tasks-filter-btn {
+  display: flex; align-items: center; gap: 6px; padding: 8px 14px;
+  border-radius: var(--r-lg); border: 1.5px solid var(--c-outline-var);
+  background: var(--c-surface); cursor: pointer; font-size: 14px; font-weight: 500;
+  font-family: var(--font-ui); color: var(--c-on-surface);
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.tasks-filter-btn:hover, .tasks-filter-btn.has-filters { border-color: var(--c-primary); background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.tasks-filter-badge {
+  background: var(--c-primary); color: var(--c-on-primary);
+  border-radius: var(--r-full); font-size: 11px; font-weight: 700;
+  min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+.tasks-filter-summary {
+  font-size: 13px; color: var(--c-on-surf-var); background: var(--c-surf2);
+  padding: 4px 10px; border-radius: var(--r-full); border: 1px solid var(--c-outline-var);
+  max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.task-filter-panel {
+  background: var(--c-surf1); border: 1px solid var(--c-outline-var);
+  border-radius: var(--r-2xl); padding: 16px 20px; display: flex; flex-direction: column; gap: 14px;
+  animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.filter-panel-section { display: flex; flex-direction: column; gap: 8px; }
+.filter-panel-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--c-on-surf-var);
+}
+.filter-panel-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tasks-stats-row {
+  display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap;
+}
+.tasks-stats-row::-webkit-scrollbar { display: none; }
+.tasks-stat-pill {
+  display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+  border-radius: var(--r-full); border: 1.5px solid var(--c-outline-var);
+  background: var(--c-surface); cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+  font-size: 13px;
+}
+.tasks-stat-pill:hover { border-color: var(--c-primary); }
+.tasks-stat-pill.active { border-color: var(--c-primary); background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+.tasks-stat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tasks-stat-label { font-weight: 500; }
+.tasks-stat-count {
+  background: var(--c-surf2); color: var(--c-on-surf-var);
+  border-radius: var(--r-full); font-size: 11px; font-weight: 700;
+  min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+
+/* ══════════════════════════════════════
+   KANBAN BOARD HEADER (multi-board)
+══════════════════════════════════════ */
+.kanban-board-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px 0; gap: 8px; flex-wrap: wrap;
+}
+.kanban-board-tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: var(--r-full);
+  border: 1.5px solid var(--c-outline-var); background: var(--c-surface);
+  cursor: pointer; font-size: 13px; font-weight: 500; font-family: var(--font-ui);
+  transition: border-color var(--dur-fast), background var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+}
+.kanban-board-tab:hover { border-color: var(--c-primary); }
+.kanban-board-tab.active { border-color: var(--c-primary); background: var(--c-primary); color: var(--c-on-primary); }
+
+@media (max-width: 600px) {
+  .kanban-board-header { padding: 10px 16px 0; }
+  .tasks-toolbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .tasks-toolbar-right { align-self: flex-end; }
+  .task-filter-panel { padding: 12px 14px; }
+}
+
+/* ══════════════════════════════════════
+   FIREBASE STATUS BAR
+══════════════════════════════════════ */
+.firebase-status-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 16px; font-size: 12px; font-weight: 500;
+  border-bottom: 1px solid var(--c-outline-var);
+  background: var(--c-surf1); flex-shrink: 0;
+}
+.firebase-status-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  transition: background var(--dur-fast);
+}
+.firebase-status-dot.connected { background: #34A853; }
+.firebase-status-dot.connecting { background: #FBBC04; animation: pulse 1.2s infinite; }
+.firebase-status-dot.offline { background: var(--c-outline); }
+.firebase-status-text { color: var(--c-on-surf-var); }
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: .3; }
+}
+
+/* ══════════════════════════════════════
+   TYPING INDICATOR
+══════════════════════════════════════ */
+#typing-indicator {
+  min-height: 24px; padding: 0 16px 4px;
+  font-size: 13px; color: var(--c-on-surf-var); font-style: italic;
+  display: flex; align-items: center; gap: 6px;
+}
+.typing-dots {
+  display: inline-flex; align-items: center; gap: 3px;
+}
+.typing-dots span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c-on-surf-var); display: inline-block;
+  animation: typingBounce 1.4s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: .2s; }
+.typing-dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ══════════════════════════════════════
+   REPLY BANNER (inline reply composer)
+══════════════════════════════════════ */
+.reply-banner {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px 8px 16px;
+  background: var(--c-surf2); border-top: 2px solid var(--c-primary);
+  flex-shrink: 0; animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.reply-banner-content { flex: 1; min-width: 0; }
+.reply-banner-label {
+  font-size: 11px; font-weight: 700; color: var(--c-primary);
+  text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px;
+}
+.reply-banner-text {
+  font-size: 13px; color: var(--c-on-surf-var);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.reply-banner-close {
+  padding: 4px; cursor: pointer; border-radius: var(--r-full);
+  color: var(--c-on-surf-var); transition: background var(--dur-fast);
+  display: flex; align-items: center; flex-shrink: 0;
+}
+.reply-banner-close:hover { background: var(--c-surf3); }
+
+/* ══════════════════════════════════════
+   MESSAGE REPLY QUOTE & READ RECEIPTS
+══════════════════════════════════════ */
+.msg-bubble-wrap { display: flex; flex-direction: column; }
+.msg-reply-quote {
+  background: rgba(0,87,184,.08); border-left: 3px solid var(--c-primary);
+  border-radius: var(--r-lg) var(--r-lg) 0 0; padding: 6px 10px;
+  cursor: pointer; margin-bottom: 2px; max-width: 100%;
+  transition: background var(--dur-fast);
+}
+.msg-reply-quote:hover { background: rgba(0,87,184,.14); }
+.msg-reply-quote-author { font-size: 11px; font-weight: 700; color: var(--c-primary); margin-bottom: 2px; }
+.msg-reply-quote-text { font-size: 12px; color: var(--c-on-surf-var); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.msg-read-receipts {
+  display: flex; align-items: center; gap: -4px;
+  margin-top: 3px; align-self: flex-end;
+}
+.msg-read-avatar {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid var(--c-surface); margin-left: -4px;
+  font-size: 8px; display: flex; align-items: center; justify-content: center;
+  background: var(--c-secondary); color: var(--c-on-secondary);
+  font-weight: 700; overflow: hidden;
+}
+.msg-read-avatar:first-child { margin-left: 0; }
+.msg-read-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.msg-inline-reply-btn {
+  opacity: 0; transition: opacity var(--dur-fast);
+  background: var(--c-surf2); border: 1px solid var(--c-outline-var);
+  border-radius: var(--r-full); padding: 3px 8px; font-size: 12px;
+  cursor: pointer; color: var(--c-on-surf-var); display: flex; align-items: center; gap: 4px;
+  font-family: var(--font-ui);
+}
+.msg-row:hover .msg-inline-reply-btn { opacity: 1; }
+.msg-actions-row {
+  display: flex; align-items: center; gap: 4px; margin-top: 2px;
+}
+
+/* ══════════════════════════════════════
+   AI PANEL
+══════════════════════════════════════ */
+.ai-fab {
+  position: fixed; bottom: calc(72px + env(safe-area-inset-bottom));
+  right: 20px; z-index: 500;
+  width: 52px; height: 52px; border-radius: var(--r-full);
+  background: linear-gradient(135deg, var(--c-primary), #8B5CF6);
+  color: #fff; border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,87,184,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; transition: transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+.ai-fab:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(0,87,184,.5); }
+.ai-fab:active { transform: scale(.96); }
+@media (min-width: 601px) {
+  .ai-fab { bottom: 24px; }
+}
+
+.ai-panel {
+  position: fixed; bottom: calc(72px + env(safe-area-inset-bottom) + 8px);
+  right: 20px; width: 380px; max-width: calc(100vw - 32px);
+  height: 540px; max-height: calc(100vh - 120px);
+  background: var(--c-surface); border-radius: var(--r-2xl);
+  box-shadow: var(--el3); border: 1px solid var(--c-outline-var);
+  display: flex; flex-direction: column; z-index: 490;
+  animation: slideUp var(--dur-std) var(--ease-out);
+  overflow: hidden;
+}
+@media (min-width: 601px) {
+  .ai-panel { bottom: 88px; }
+}
+.ai-panel-header {
+  display: flex; align-items: center; gap: 10px; padding: 14px 16px;
+  border-bottom: 1px solid var(--c-outline-var); flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(0,87,184,.06), rgba(139,92,246,.06));
+}
+.ai-panel-title { font-size: 15px; font-weight: 700; flex: 1; }
+.ai-panel-subtitle { font-size: 11px; color: var(--c-on-surf-var); margin-top: 1px; }
+.ai-panel-close {
+  padding: 6px; border-radius: var(--r-full); cursor: pointer;
+  transition: background var(--dur-fast); display: flex; align-items: center;
+}
+.ai-panel-close:hover { background: var(--c-surf2); }
+
+.ai-feed {
+  flex: 1; overflow-y: auto; padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  scrollbar-width: thin; scrollbar-color: var(--c-outline-var) transparent;
+}
+.ai-welcome {
+  text-align: center; padding: 24px 16px; color: var(--c-on-surf-var);
+}
+.ai-welcome-icon { font-size: 40px; margin-bottom: 8px; opacity: .6; }
+.ai-welcome-text { font-size: 13px; line-height: 1.5; }
+.ai-suggestion-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px;
+}
+.ai-chip {
+  padding: 6px 14px; border-radius: var(--r-full);
+  background: var(--c-primary-cont); color: var(--c-on-primary-cont);
+  font-size: 12px; font-weight: 500; cursor: pointer; border: none;
+  font-family: var(--font-ui); transition: box-shadow var(--dur-fast);
+}
+.ai-chip:hover { box-shadow: var(--el1); }
+
+.ai-msg { display: flex; gap: 8px; align-items: flex-start; }
+.ai-msg.user { flex-direction: row-reverse; }
+.ai-msg-icon {
+  width: 28px; height: 28px; border-radius: var(--r-full); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.ai-msg.assistant .ai-msg-icon {
+  background: linear-gradient(135deg, var(--c-primary), #8B5CF6); color: #fff;
+}
+.ai-msg.user .ai-msg-icon { background: var(--c-secondary); color: var(--c-on-secondary); }
+.ai-msg-bubble {
+  max-width: 82%; padding: 9px 13px; border-radius: var(--r-2xl);
+  font-size: 13px; line-height: 1.5;
+}
+.ai-msg.assistant .ai-msg-bubble {
+  background: var(--c-surf2); color: var(--c-on-surface);
+  border-radius: 4px var(--r-2xl) var(--r-2xl) var(--r-2xl);
+}
+.ai-msg.user .ai-msg-bubble {
+  background: var(--c-primary); color: var(--c-on-primary);
+  border-radius: var(--r-2xl) 4px var(--r-2xl) var(--r-2xl);
+}
+.ai-msg-action-card {
+  margin-top: 6px; padding: 8px 12px; border-radius: var(--r-lg);
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+  font-size: 12px; font-weight: 500;
+}
+.ai-msg-loading .ai-msg-bubble {
+  background: var(--c-surf2); padding: 12px 16px;
+}
+
+.ai-input-area {
+  padding: 10px 12px; border-top: 1px solid var(--c-outline-var);
+  display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+}
+.ai-input {
+  flex: 1; border: 1.5px solid var(--c-outline-var); border-radius: var(--r-xl);
+  padding: 9px 13px; font-family: var(--font-ui); font-size: 14px;
+  background: var(--c-surface); color: var(--c-on-surface); resize: none;
+  max-height: 100px; line-height: 1.4; outline: none;
+  transition: border-color var(--dur-fast);
+}
+.ai-input:focus { border-color: var(--c-primary); }
+.ai-send-btn {
+  width: 38px; height: 38px; border-radius: var(--r-full); flex-shrink: 0;
+  background: var(--c-primary); color: var(--c-on-primary);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; transition: background var(--dur-fast), transform var(--dur-fast);
+}
+.ai-send-btn:hover { background: var(--c-primary-dark, #0046A8); transform: scale(1.05); }
+.ai-send-btn:disabled { background: var(--c-outline); cursor: not-allowed; transform: none; }
+
+/* ══════════════════════════════════════
+   ADMIN SECTION BADGES
+══════════════════════════════════════ */
+.admin-section-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: var(--r-full);
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+}
+.admin-section-badge.new { background: #D1FAE5; color: #065F46; }
+.admin-section-badge.beta { background: #EDE9FE; color: #5B21B6; }
+.admin-section-badge.live { background: #DBEAFE; color: #1E40AF; }
+
+/* ══════════════════════════════════════
+   MESSAGE SIDEBAR — SEARCH + COMPOSE
+══════════════════════════════════════ */
+.msg-sidebar-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px 10px; border-bottom: 1px solid var(--c-outline-var);
+  flex-shrink: 0;
+}
+.msg-sidebar-search-wrap {
+  display: flex; align-items: center; gap: 6px; flex: 1;
+  background: var(--c-surf2); border-radius: var(--r-lg);
+  padding: 6px 10px; border: 1.5px solid transparent;
+  transition: border-color var(--dur-fast);
+}
+.msg-sidebar-search-wrap:focus-within { border-color: var(--c-primary); }
+.msg-sidebar-search {
+  flex: 1; border: none; background: transparent; outline: none;
+  font-family: var(--font-ui); font-size: 13px; color: var(--c-on-surface);
+  min-width: 0;
+}
+.msg-sidebar-search::placeholder { color: var(--c-on-surf-var); }
+.msg-compose-btn { background: var(--c-primary-cont); border-radius: var(--r-lg) !important; color: var(--c-on-primary-cont); }
+.msg-search-results-header {
+  display: flex; align-items: center; gap: 6px; padding: 8px 14px;
+  font-size: 12px; font-weight: 600; color: var(--c-on-surf-var);
+  border-bottom: 1px solid var(--c-outline-var);
+  background: var(--c-surf1);
+}
+.msg-sidebar-results { overflow-y: auto; flex: 1; }
+.msg-search-result-item {
+  padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--c-outline-var);
+  transition: background var(--dur-fast);
+}
+.msg-search-result-item:hover { background: var(--c-surf2); }
+.msg-search-result-channel { font-size: 11px; font-weight: 700; color: var(--c-primary); margin-bottom: 2px; }
+.msg-search-result-sender { font-size: 11px; color: var(--c-on-surf-var); margin-bottom: 3px; }
+.msg-search-result-text { font-size: 13px; line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+/* Presence dots & sidebar avatars */
+.sidebar-avatar-wrap { position: relative; flex-shrink: 0; }
+.presence-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  position: absolute; bottom: -1px; right: -1px;
+  border: 2px solid var(--c-surface);
+}
+.presence-dot.online { background: #34A853; }
+.presence-dot.offline { background: var(--c-outline); }
+
+/* MESSAGE SEARCH (in-feed match highlight) */
+.msg-search-match {
+  background: #FEF08A; color: #713F12; border-radius: 2px; padding: 0 1px;
+}
+.msg-timestamp-tooltip {
+  font-size: 10px; color: var(--c-on-surf-var);
+  opacity: 0; transition: opacity var(--dur-fast);
+  position: absolute; bottom: 100%; right: 0; white-space: nowrap;
+  background: var(--c-surf3); padding: 2px 8px; border-radius: var(--r-full);
+  pointer-events: none; margin-bottom: 2px;
+}
+.msg-bubble-wrap:hover .msg-timestamp-tooltip { opacity: 1; }
+
+/* Compose modal rows */
+.compose-user-row {
+  display: flex; align-items: center; gap: 10px; padding: 10px 0;
+  border-bottom: 1px solid var(--c-outline-var); cursor: pointer;
+  border-radius: var(--r-lg); transition: background var(--dur-fast);
+  padding: 10px 8px;
+}
+.compose-user-row:hover { background: var(--c-surf2); }
+.compose-user-row:last-child { border-bottom: none; }
+
+/* Invite link box */
+.invite-link-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--c-surf2); border: 1.5px solid var(--c-outline-var);
+  border-radius: var(--r-lg); padding: 8px 10px;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   MESSAGE ATTACHMENTS
+══════════════════════════════════════ */
+.msg-attachment-img-wrap {
+  max-width: 280px; cursor: pointer; margin-bottom: 4px;
+}
+.msg-attachment-img {
+  max-width: 100%; max-height: 260px; border-radius: var(--r-lg);
+  display: block; object-fit: cover;
+  transition: opacity var(--dur-fast);
+}
+.msg-attachment-img:hover { opacity: .88; }
+.msg-attachment-label {
+  font-size: 11px; color: var(--c-on-surf-var);
+  margin-top: 3px; padding: 0 2px;
+}
+.msg-attachment-file {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: var(--r-xl);
+  background: var(--c-surf2); border: 1px solid var(--c-outline-var);
+  cursor: pointer; max-width: 280px; min-width: 200px;
+  transition: box-shadow var(--dur-fast);
+}
+.msg-attachment-file:hover { box-shadow: var(--el1); }
+.msg-attachment-file-name {
+  font-size: 13px; font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.msg-attachment-file-meta { font-size: 11px; color: var(--c-on-surf-var); margin-top: 1px; }
+.msg-attachment-file-info { flex: 1; min-width: 0; }
+
+/* ══════════════════════════════════════
+   LINK PREVIEW CARD
+══════════════════════════════════════ */
+.msg-link-preview {
+  display: flex; gap: 10px; max-width: 320px;
+  border: 1px solid var(--c-outline-var); border-radius: var(--r-xl);
+  overflow: hidden; cursor: pointer; margin-top: 6px;
+  background: var(--c-surf1);
+  transition: box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+.msg-link-preview:hover { box-shadow: var(--el1); transform: translateY(-1px); }
+.msg-link-preview-img {
+  width: 80px; height: 80px; object-fit: cover; flex-shrink: 0;
+}
+.msg-link-preview-body { padding: 10px 10px 10px 0; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.msg-link-preview-domain { font-size: 10px; color: var(--c-on-surf-var); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+.msg-link-preview-title { font-size: 13px; font-weight: 600; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.msg-link-preview-desc { font-size: 11px; color: var(--c-on-surf-var); line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+/* ══════════════════════════════════════
+   IMAGE LIGHTBOX
+══════════════════════════════════════ */
+.img-lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.img-lightbox-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.85); backdrop-filter: blur(8px);
+}
+.img-lightbox-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 24px;
+}
+
+/* ══════════════════════════════════════
+   EMOJI PICKER (enhanced)
+══════════════════════════════════════ */
+.emoji-picker {
+  position: absolute; z-index: 300;
+  background: var(--c-surface); border-radius: var(--r-2xl);
+  box-shadow: var(--el3); border: 1px solid var(--c-outline-var);
+  padding: 10px; display: flex; flex-wrap: wrap; gap: 4px;
+  max-width: 260px; animation: slideUp var(--dur-fast) var(--ease-out);
+}
+.emoji-opt {
+  font-size: 22px; cursor: pointer; padding: 4px 5px;
+  border-radius: var(--r-lg); transition: background var(--dur-fast), transform var(--dur-fast);
+  line-height: 1;
+}
+.emoji-opt:hover { background: var(--c-surf2); transform: scale(1.2); }
+
 </style>
 </head>
 <body>
 <div id="app"></div>
 <div class="toast-container" id="toasts"></div>
+
 <script>
 /* ═══════════════════════════════════════════════
    BLURRD LINKS — JavaScript Part 2
@@ -2012,7 +2501,7 @@ img { max-width: 100%; display: block; }
 // ═══════════════════════════
 // VERSION & CHANGELOG
 // ═══════════════════════════
-const APP_VERSION = '1.2.0';
+const APP_VERSION = '1.5.0';
 const STATE_SCHEMA_VERSION = 3;
 
 // ═══════════════════════════
@@ -2031,6 +2520,478 @@ function setIntegration(key, data) {
   const cfg = loadIntegrations();
   cfg[key] = { ...cfg[key], ...data };
   saveIntegrations(cfg);
+}
+
+// ═══════════════════════════════════════════
+// FIREBASE FIRESTORE — REAL-TIME MESSAGING
+// ═══════════════════════════════════════════
+let _firebaseApp = null;
+let _firestore  = null;
+let _firebaseUser = null;
+let _threadUnsub  = null;   // onSnapshot unsubscriber for messages
+let _typingUnsub  = null;   // onSnapshot unsubscriber for typing
+let _typingTimer  = null;   // debounce timer for clearing typing state
+
+function isFirestoreEnabled() {
+  return !!(S._firestoreReady && _firestore);
+}
+
+async function loadFirebaseSDK() {
+  if (window.firebase?.firestore) return;
+  const sdks = [
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js',
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js',
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js',
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js',
+  ];
+  await Promise.all(sdks.map(src => new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) return res();
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  })));
+}
+
+async function initFirestore() {
+  const cfg = getIntegration('firebase');
+  if (!cfg.apiKey || !cfg.projectId) {
+    toast('Add Firebase config in Admin → Integrations first', 'error');
+    return false;
+  }
+  try {
+    await loadFirebaseSDK();
+    if (!window.firebase) throw new Error('Firebase SDK failed to load');
+
+    if (!firebase.apps.length) {
+      _firebaseApp = firebase.initializeApp({
+        apiKey:            cfg.apiKey,
+        authDomain:        cfg.authDomain   || `${cfg.projectId}.firebaseapp.com`,
+        projectId:         cfg.projectId,
+        storageBucket:     cfg.storageBucket|| `${cfg.projectId}.appspot.com`,
+        messagingSenderId: cfg.messagingSenderId || '',
+        appId:             cfg.appId        || '',
+        databaseURL:       cfg.databaseURL  || `https://${cfg.projectId}-default-rtdb.firebaseio.com`,
+      });
+    } else {
+      _firebaseApp = firebase.apps[0];
+    }
+
+    _firestore = firebase.firestore();
+
+    // Anonymous auth — maps to blurrd user profile
+    const auth = firebase.auth();
+    const result = await auth.signInAnonymously();
+    _firebaseUser = result.user;
+
+    // Write/update user document
+    if (S.currentUser) {
+      await _firestore.collection('users').doc(S.currentUser.id).set({
+        displayName: S.currentUser.name,
+        email:       S.currentUser.email || '',
+        avatarUrl:   S.currentUser.avatar || '',
+        color:       S.currentUser.color  || '#0057B8',
+        initials:    S.currentUser.initials || '',
+        isOnline:    true,
+        lastSeen:    firebase.firestore.FieldValue.serverTimestamp(),
+        firebaseUid: _firebaseUser.uid,
+      }, { merge: true });
+    }
+
+    // Realtime Presence via Firebase Realtime Database
+    try {
+      const presenceRef = firebase.database().ref(`presence/${S.currentUser?.id}`);
+      await presenceRef.set({ isOnline: true, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+      presenceRef.onDisconnect().update({ isOnline: false, lastSeen: firebase.database.ServerValue.TIMESTAMP });
+
+      // Listen for all users' presence
+      firebase.database().ref('presence').on('value', snap => {
+        const data = snap.val() || {};
+        S.users.forEach(u => { if (data[u.id] !== undefined) u.online = !!data[u.id].isOnline; });
+        // Update presence dots in DOM without full re-render
+        document.querySelectorAll('[data-presence-uid]').forEach(el => {
+          const uid = el.dataset.presenceUid;
+          el.style.background = data[uid]?.isOnline ? '#4CAF50' : '#9E9E9E';
+        });
+      });
+    } catch(e) { console.warn('Realtime DB presence failed (check databaseURL config):', e.message); }
+
+    S._firestoreReady = true;
+
+    // Subscribe to current channel
+    if (S.selectedChannelId) fsSubscribeThread(S.selectedChannelId);
+
+    toast('🔥 Firebase connected — real-time sync active!');
+    render();
+    return true;
+  } catch(e) {
+    console.error('Firebase init error:', e);
+    toast('Firebase error: ' + e.message, 'error');
+    return false;
+  }
+}
+
+function fsSubscribeThread(channelId) {
+  if (!_firestore || !channelId) return;
+  // Unsubscribe from previous thread
+  if (_threadUnsub) { _threadUnsub(); _threadUnsub = null; }
+  if (_typingUnsub) { _typingUnsub(); _typingUnsub = null; }
+
+  // Messages sub-collection: ordered by timestamp, last 120
+  const msgsQuery = _firestore
+    .collection('threads').doc(channelId)
+    .collection('messages')
+    .orderBy('timestamp', 'asc')
+    .limitToLast(120);
+
+  _threadUnsub = msgsQuery.onSnapshot(snapshot => {
+    let changed = false;
+    snapshot.docChanges().forEach(change => {
+      const data = change.doc.data();
+      const ts = data.timestamp?.toMillis?.() || Date.now();
+      if (change.type === 'added') {
+        if (!S.messages.find(m => m.id === change.doc.id)) {
+          S.messages.push({
+            id: change.doc.id, channelId,
+            userId:    data.senderId,
+            content:   data.text || '',
+            timestamp: ts,
+            reactions: data.reactions || {},
+            threadId:  data.replyToId || null,
+            edited:    data.isEdited  || false,
+            readBy:    data.readBy    || [],
+            _fs: true,
+          });
+          changed = true;
+          // Auto mark read if user is viewing this channel
+          if (S.page === 'messages' && S.selectedChannelId === channelId && S.currentUser)
+            fsMarkRead(channelId, change.doc.id);
+        }
+      } else if (change.type === 'modified') {
+        const m = S.messages.find(m => m.id === change.doc.id);
+        if (m) {
+          m.readBy    = data.readBy    || m.readBy;
+          m.reactions = data.reactions || m.reactions;
+          m.content   = data.text      || m.content;
+          m.edited    = data.isEdited  || false;
+          changed = true;
+        }
+      }
+    });
+    if (changed && S.page === 'messages' && S.selectedChannelId === channelId) {
+      const wasAtBottom = (() => { const f = document.getElementById('msg-feed'); return f && (f.scrollHeight - f.scrollTop - f.clientHeight < 80); })();
+      renderPageContent();
+      if (wasAtBottom) setTimeout(() => { const f = document.getElementById('msg-feed'); if (f) f.scrollTop = f.scrollHeight; }, 40);
+    }
+  }, e => console.warn('Thread snapshot error:', e));
+
+  // Typing indicator listener on the thread document
+  _typingUnsub = _firestore.collection('threads').doc(channelId).onSnapshot(snap => {
+    const typing = snap.data()?.typing || {};
+    const now = Date.now();
+    S._typingUsers = Object.entries(typing)
+      .filter(([uid, ts]) => uid !== S.currentUser?.id && (now - ts) < 5000)
+      .map(([uid]) => uid);
+    updateTypingIndicatorDOM();
+  }, () => {});
+}
+
+function updateTypingIndicatorDOM() {
+  const el = document.getElementById('typing-indicator');
+  if (!el) return;
+  const names = (S._typingUsers || [])
+    .map(uid => getUser(uid)?.name?.split(' ')[0]).filter(Boolean);
+  if (!names.length) { el.innerHTML = ''; el.style.display = 'none'; return; }
+  el.style.display = 'flex';
+  el.innerHTML = `
+    <div class="typing-dots"><span></span><span></span><span></span></div>
+    <span style="font-size:13px;color:var(--c-on-surf-var)">${escHtml(names.join(', '))} ${names.length === 1 ? 'is' : 'are'} typing…</span>`;
+}
+
+async function fsSendMessage(channelId, content, replyToId = null) {
+  if (!_firestore || !S.currentUser) return false;
+  try {
+    const ch = getChannel(channelId);
+    // Upsert thread document
+    await _firestore.collection('threads').doc(channelId).set({
+      threadName:          ch?.name || channelId,
+      type:                ch?.type === 'dm' ? 'direct' : 'global',
+      participantIds:      ch?.members || [],
+      lastMessageSnippet:  content.slice(0, 80),
+      lastUpdatedAt:       firebase.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+
+    await _firestore.collection('threads').doc(channelId)
+      .collection('messages').add({
+        senderId:  S.currentUser.id,
+        text:      content,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        isEdited:  false,
+        readBy:    [S.currentUser.id],
+        reactions: {},
+        replyToId: replyToId || null,
+      });
+
+    // Clear typing
+    fsSetTyping(channelId, false);
+    return true;
+  } catch(e) {
+    console.error('fsSendMessage error:', e);
+    return false;
+  }
+}
+
+async function fsMarkRead(channelId, messageId) {
+  if (!_firestore || !S.currentUser) return;
+  try {
+    await _firestore.collection('threads').doc(channelId)
+      .collection('messages').doc(messageId)
+      .update({ readBy: firebase.firestore.FieldValue.arrayUnion(S.currentUser.id) });
+  } catch(e) {}
+}
+
+function fsSetTyping(channelId, isTyping) {
+  if (!_firestore || !S.currentUser) return;
+  clearTimeout(_typingTimer);
+  const threadRef = _firestore.collection('threads').doc(channelId);
+  if (isTyping) {
+    threadRef.set({ typing: { [S.currentUser.id]: Date.now() } }, { merge: true }).catch(() => {});
+    _typingTimer = setTimeout(() => fsSetTyping(channelId, false), 4000);
+  } else {
+    threadRef.update({ [`typing.${S.currentUser.id}`]: firebase.firestore.FieldValue.delete() }).catch(() => {});
+  }
+}
+
+async function fsMarkAllRead(channelId) {
+  if (!_firestore || !S.currentUser) return;
+  try {
+    const snap = await _firestore.collection('threads').doc(channelId)
+      .collection('messages').where('readBy', 'not-in', [[S.currentUser.id]])
+      .limit(50).get();
+    const batch = _firestore.batch();
+    snap.docs.forEach(d => batch.update(d.ref, { readBy: firebase.firestore.FieldValue.arrayUnion(S.currentUser.id) }));
+    await batch.commit();
+  } catch(e) {}
+}
+
+// ═══════════════════════════════════════════
+// CLAUDE AI ASSISTANT
+// ═══════════════════════════════════════════
+function formatAIContent(content) {
+  // Strip action blocks, escape HTML, then apply light markdown
+  const stripped = content.replace(/```action[\s\S]*?```/g, '').trim();
+  return escHtml(stripped)
+    .replace(/\n/g, '<br>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code style="background:var(--c-surf2);padding:1px 5px;border-radius:4px;font-size:12px">$1</code>');
+}
+
+async function callClaudeAPI(messages) {
+  const cfg = getIntegration('claude');
+  if (!cfg.apiKey) {
+    toast('Add Claude API key in Admin → Integrations', 'error');
+    return null;
+  }
+  // Use a CORS proxy or direct call (works when hosted, requires proxy in dev)
+  const endpoint = cfg.proxyUrl
+    ? `${cfg.proxyUrl}/v1/messages`
+    : 'https://api.anthropic.com/v1/messages';
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': cfg.apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: cfg.model || 'claude-sonnet-4-6',
+        max_tokens: 1024,
+        system: buildAISystemPrompt(),
+        messages,
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    return data.content?.[0]?.text || null;
+  } catch(e) {
+    console.error('Claude API error:', e);
+    throw e;
+  }
+}
+
+function buildAISystemPrompt() {
+  const today = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  const myTasks = S.tasks.filter(t => t.assignees?.includes(S.currentUser?.id) && t.status !== 'done');
+  const overdue = myTasks.filter(t => t.dueDate && t.dueDate < new Date().toISOString().split('T')[0]);
+  const members = S.users.map(u => `${u.name} (${u.role})`).join(', ');
+  return `You are an intelligent work assistant embedded in BLURRD Links, a team task management and communication platform used by a creative/e-commerce team.
+
+Today is ${today}.
+Current user: ${S.currentUser?.name} (${S.currentUser?.role})
+Team members: ${members}
+Open tasks assigned to current user: ${myTasks.length} (${overdue.length} overdue)
+Total tasks in system: ${S.tasks.length}
+
+Your capabilities:
+- Answer questions about tasks, deadlines, and team workload
+- Summarize what's happening across the project
+- Help draft messages, task descriptions, or emails
+- Create tasks when asked (respond with JSON action blocks)
+- Suggest priorities and next steps
+- Answer general work and productivity questions
+
+When creating a task, include a JSON block in your response:
+\`\`\`action
+{"type":"create_task","title":"...","priority":"medium","assignees":[],"dueDate":"YYYY-MM-DD"}
+\`\`\`
+
+Be concise, friendly, and focused on helping the team move faster. You understand the BLURRD Links interface.`;
+}
+
+async function sendAIMessage(userMessage) {
+  if (!userMessage.trim() || S._aiLoading) return;
+  S._aiMessages.push({ role: 'user', content: userMessage });
+  S._aiLoading = true;
+  renderAIPanel();
+  try {
+    const reply = await callClaudeAPI(
+      S._aiMessages.map(m => ({ role: m.role, content: m.content }))
+    );
+    if (reply) {
+      S._aiMessages.push({ role: 'assistant', content: reply });
+      // Parse action blocks
+      const actionMatch = reply.match(/```action\n([\s\S]+?)\n```/);
+      if (actionMatch) {
+        try {
+          const action = JSON.parse(actionMatch[1]);
+          if (action.type === 'create_task' && canEdit()) {
+            const newTask = {
+              id: uid(), title: action.title || 'New Task',
+              description: action.description || '', status: 'todo',
+              priority: action.priority || 'medium',
+              dueDate: action.dueDate || '',
+              assignees: (action.assignees || []).length ? action.assignees : [S.currentUser.id],
+              tags: [], notes: 'Created by AI assistant',
+              attachments: [], comments: [], subtasks: [],
+              timeEstimate: 0, timeLogs: [],
+              activityLog: [{ id: uid(), userId: S.currentUser.id, action:'created', details:'Task created by AI', timestamp: Date.now() }],
+              createdBy: S.currentUser.id, createdAt: Date.now(), updatedAt: Date.now(),
+            };
+            S.tasks.unshift(newTask);
+            saveState();
+            toast(`✅ AI created task: "${newTask.title}"`);
+          }
+        } catch(e) {}
+      }
+    }
+  } catch(e) {
+    S._aiMessages.push({ role: 'assistant', content: `Sorry, I ran into an error: ${e.message}. Check your API key in Admin → Integrations.` });
+  }
+  S._aiLoading = false;
+  renderAIPanel();
+}
+
+function renderAIPanel() {
+  const container = document.getElementById('ai-panel-container');
+  if (!container) return;
+  container.innerHTML = S._aiPanelOpen ? buildAIPanelHTML() : '';
+  if (S._aiPanelOpen) {
+    setTimeout(() => {
+      const feed = document.getElementById('ai-feed');
+      if (feed) feed.scrollTop = feed.scrollHeight;
+      document.getElementById('ai-input')?.focus();
+    }, 50);
+  }
+}
+
+function buildAIPanelHTML() {
+  const cfg = getIntegration('claude');
+  const hasKey = !!cfg.apiKey;
+  return `
+  <div class="ai-panel" id="ai-panel">
+    <div class="ai-panel-header">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="ai-panel-icon">✦</div>
+        <div>
+          <div style="font-weight:700;font-size:15px">BLURRD AI</div>
+          <div style="font-size:11px;color:var(--c-on-surf-var)">Powered by Claude ${cfg.model || 'claude-sonnet-4-6'}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <div class="icon-btn ripple" onclick="S._aiMessages=[];renderAIPanel()" title="Clear chat"><span class="ms sm">restart_alt</span></div>
+        <div class="icon-btn ripple" onclick="S._aiPanelOpen=false;renderAIPanel()" title="Close"><span class="ms sm">close</span></div>
+      </div>
+    </div>
+
+    ${!hasKey ? `
+    <div style="padding:20px;text-align:center">
+      <div style="font-size:32px;margin-bottom:12px">🔑</div>
+      <div style="font-weight:600;margin-bottom:6px">API Key Required</div>
+      <div style="font-size:13px;color:var(--c-on-surf-var);margin-bottom:16px">Add your Claude API key in Admin → Integrations to enable AI.</div>
+      <button class="btn filled ripple" onclick="navigate('admin')">Go to Admin</button>
+    </div>` : `
+    <div class="ai-feed" id="ai-feed">
+      ${S._aiMessages.length === 0 ? `
+      <div class="ai-welcome">
+        <div style="font-size:36px;margin-bottom:10px">✦</div>
+        <div style="font-weight:600;font-size:15px;margin-bottom:6px">Hi ${escHtml(S.currentUser?.name?.split(' ')[0] || 'there')}!</div>
+        <div style="font-size:13px;color:var(--c-on-surf-var);line-height:1.5">I can help you manage tasks, draft messages, summarize your workload, and more.</div>
+        <div class="ai-suggestion-chips">
+          <div class="ai-chip ripple" onclick="document.getElementById('ai-input').value='What are my most urgent tasks?';sendAIFromInput()">What are my urgent tasks?</div>
+          <div class="ai-chip ripple" onclick="document.getElementById('ai-input').value='Summarize today\\'s workload for the team';sendAIFromInput()">Summarize team workload</div>
+          <div class="ai-chip ripple" onclick="document.getElementById('ai-input').value='Draft a status update for my tasks';sendAIFromInput()">Draft a status update</div>
+          <div class="ai-chip ripple" onclick="document.getElementById('ai-input').value='Create a task to review the Q2 campaign brief tomorrow';sendAIFromInput()">Create a task for me</div>
+        </div>
+      </div>` :
+      S._aiMessages.map(m => `
+      <div class="ai-msg ${m.role === 'user' ? 'ai-msg-user' : 'ai-msg-assistant'}">
+        ${m.role === 'assistant' ? '<div class="ai-msg-icon">✦</div>' : ''}
+        <div class="ai-msg-bubble">
+          ${m.role === 'assistant'
+            ? formatAIContent(m.content)
+            : escHtml(m.content)}
+        </div>
+      </div>`).join('')}
+      ${S._aiLoading ? `
+      <div class="ai-msg ai-msg-assistant">
+        <div class="ai-msg-icon">✦</div>
+        <div class="ai-msg-bubble">
+          <div class="typing-dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>` : ''}
+    </div>
+
+    <div class="ai-input-row">
+      <input id="ai-input" type="text" placeholder="Ask anything about your tasks or team…"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAIFromInput()}"
+        style="flex:1;border:none;background:transparent;outline:none;font-size:14px;font-family:var(--font-ui);color:var(--c-on-surface)" />
+      <button class="ai-send-btn ripple" onclick="sendAIFromInput()" ${S._aiLoading ? 'disabled' : ''}>
+        <span class="ms">${S._aiLoading ? 'hourglass_empty' : 'send'}</span>
+      </button>
+    </div>`}
+  </div>`;
+}
+
+function sendAIFromInput() {
+  const input = document.getElementById('ai-input');
+  if (!input) return;
+  const val = input.value.trim();
+  if (!val) return;
+  input.value = '';
+  sendAIMessage(val);
+}
+
+function toggleAIPanel() {
+  S._aiPanelOpen = !S._aiPanelOpen;
+  renderAIPanel();
+  if (S._aiPanelOpen && S._aiMessages.length === 0) {
+    // Pre-load context summary
+    setTimeout(() => document.getElementById('ai-input')?.focus(), 100);
+  }
 }
 
 // Cloud storage URL detection
@@ -2249,7 +3210,7 @@ const DEFAULT_TAGS = [
   { id:'tag4', name:'Bug', color:'#BA1A1A' },
   { id:'tag5', name:'Feature', color:'#00695C' },
 ];
-const EMOJIS = ['👍','❤️','😂','🔥','👏','😮'];
+const EMOJIS = ['👍','❤️','😂','🔥','👏','😮','⛳','🏌️','🎉','💪','🙏','😅','🤔','✅','👀','🚀','💯','😊','🫶','🤝'];
 const COLORS = [
   { name:'Ocean', value:'#0057B8' }, { name:'Emerald', value:'#00695C' },
   { name:'Violet', value:'#6750A4' }, { name:'Rose', value:'#B5294C' },
@@ -2325,6 +3286,8 @@ let S = {
   messages: JSON.parse(JSON.stringify(DEFAULT_MESSAGES)),
   notifications: JSON.parse(JSON.stringify(DEFAULT_NOTIFICATIONS)),
   tags: JSON.parse(JSON.stringify(DEFAULT_TAGS)),
+  boards: [{ id: 'board1', name: 'Main Board', description: 'Default project board' }],
+  selectedBoardId: 'board1',
   theme: { primary: '#0057B8', font: "'Google Sans', sans-serif", mode: 'auto' },
   // UI state
   modal: null,
@@ -2333,6 +3296,7 @@ let S = {
   activeThreadMsgId: null,
   notifPanelOpen: false,
   taskFilter: { status: 'all', priority: 'all', assignee: 'all', tag: 'all' },
+  taskFilterOpen: false,
   calDate: new Date(),
   calSelectedDate: null,
   searchOpen: false,
@@ -2357,7 +3321,20 @@ let S = {
   mobileMoreOpen: false,
   mobileShowChannelList: false,
   mobileSearchOpen: false,
-  _kanbanActiveCol: 'todo'
+  _kanbanActiveCol: 'todo',
+  // Firebase real-time
+  _firestoreReady: false,
+  _typingUsers: [],    // userIds currently typing in selected channel
+  // AI Assistant
+  _aiPanelOpen: false,
+  _aiMessages: [],     // [{role:'user'|'assistant', content:'...'}]
+  _aiLoading: false,
+  _replyToMsgId: null, // inline reply target
+  // Message search (per-channel header search — kept for compat)
+  msgSearchOpen: false,
+  msgSearchQuery: '',
+  // Sidebar global message search
+  sidebarSearchQuery: ''
 };
 
 // ═══════════════════════════
@@ -2370,9 +3347,10 @@ function saveState() {
       _appVersion: APP_VERSION,
       users: S.users, tasks: S.tasks, channels: S.channels,
       messages: S.messages, notifications: S.notifications,
-      tags: S.tags, theme: S.theme,
+      tags: S.tags, boards: S.boards, theme: S.theme,
       currentUserId: S.currentUser?.id,
-      selectedChannelId: S.selectedChannelId
+      selectedChannelId: S.selectedChannelId,
+      selectedBoardId: S.selectedBoardId
     };
     localStorage.setItem('blurrd_state', JSON.stringify(toSave));
   } catch(e) {}
@@ -2396,6 +3374,8 @@ function loadState() {
     if (d.messages?.length) S.messages = d.messages;
     if (d.notifications?.length) S.notifications = d.notifications;
     if (d.tags?.length) S.tags = d.tags;
+    if (d.boards?.length) S.boards = d.boards;
+    if (d.selectedBoardId) S.selectedBoardId = d.selectedBoardId;
     if (d.theme) S.theme = { ...S.theme, ...d.theme };
     if (d.selectedChannelId) S.selectedChannelId = d.selectedChannelId;
     if (d.currentUserId) {
@@ -2707,6 +3687,19 @@ function render() {
 // LOGIN PAGE
 // ═══════════════════════════
 function renderLogin() {
+  // Check for invite token in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const inviteToken = urlParams.get('invite');
+  if (inviteToken) {
+    const invitedUser = S.users.find(u => u.inviteToken === inviteToken);
+    if (invitedUser) {
+      renderInviteSetup(invitedUser);
+      return;
+    }
+    // Token not found — remove from URL and continue
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+
   const pendingUser = S._loginUserId ? getUser(S._loginUserId) : null;
 
   app.innerHTML = `
@@ -2753,7 +3746,7 @@ function renderLogin() {
                 : `<div class="avatar" style="background:${u.color || userColor(u.name)}">${escHtml(u.initials || initials(u.name))}</div>`}
               <div class="login-user-info">
                 <div class="login-user-name">${escHtml(u.name)}</div>
-                <div class="login-user-role">${escHtml(u.role)}${u.password ? ' <span style="font-size:10px;opacity:.7">🔒</span>' : ''}</div>
+                <div class="login-user-role">${escHtml(u.role)}${u.password ? ' <span style="font-size:10px;opacity:.7">🔒</span>' : ''}${u.invitePending ? ' <span style="font-size:10px;color:var(--c-primary);font-weight:600">Invite pending</span>' : ''}</div>
               </div>
               <span class="ms" style="color:var(--c-on-surf-var);font-size:18px">chevron_right</span>
             </button>
@@ -2765,6 +3758,70 @@ function renderLogin() {
       `}
     </div>
   </div>`;
+}
+
+function renderInviteSetup(u) {
+  app.innerHTML = `
+  <div class="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-mark"><span class="ms filled">golf_course</span></div>
+        <div>
+          <div class="login-logo-text">BLURRD Links</div>
+          <div class="login-logo-sub">Account Setup</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin:16px 0 20px">
+        <div class="avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto 10px;background:${u.color||'#666'}">${escHtml(u.initials||initials(u.name))}</div>
+        <div style="font-size:18px;font-weight:700">Welcome, ${escHtml(u.name.split(' ')[0])}!</div>
+        <div style="font-size:13px;color:var(--c-on-surf-var);margin-top:4px">Set up your account to get started</div>
+      </div>
+      <div class="field">
+        <label class="field-label">Create a Password</label>
+        <div class="field-input"><input type="password" id="invite-pw1" placeholder="Choose a strong password" autocomplete="new-password" /></div>
+      </div>
+      <div class="field">
+        <label class="field-label">Confirm Password</label>
+        <div class="field-input"><input type="password" id="invite-pw2" placeholder="Repeat your password" autocomplete="new-password"
+          onkeydown="if(event.key==='Enter')finishInviteSetup('${u.id}')" /></div>
+      </div>
+      <div id="invite-pw-error" style="color:var(--c-error);font-size:13px;margin-bottom:8px;display:none"></div>
+      <button class="btn filled" style="width:100%;margin-top:4px" onclick="finishInviteSetup('${u.id}')">
+        <span class="ms sm">check_circle</span> Set Password &amp; Sign In
+      </button>
+    </div>
+  </div>`;
+}
+
+function finishInviteSetup(userId) {
+  const pw1 = document.getElementById('invite-pw1')?.value;
+  const pw2 = document.getElementById('invite-pw2')?.value;
+  const errEl = document.getElementById('invite-pw-error');
+
+  if (!pw1 || pw1.length < 4) {
+    errEl.textContent = 'Password must be at least 4 characters.';
+    errEl.style.display = 'block'; return;
+  }
+  if (pw1 !== pw2) {
+    errEl.textContent = 'Passwords do not match.';
+    errEl.style.display = 'block'; return;
+  }
+
+  const u = S.users.find(x => x.id === userId);
+  if (!u) return;
+  u.password = pw1;
+  u.invitePending = false;
+  u.inviteToken = null;
+  saveState();
+
+  // Remove invite token from URL
+  window.history.replaceState({}, '', window.location.pathname);
+
+  // Sign in automatically
+  S.currentUser = u;
+  saveState();
+  toast(`Welcome aboard, ${u.name.split(' ')[0]}! 🏌️`, 'success');
+  render();
 }
 
 function selectLoginUser(userId) {
@@ -2838,7 +3895,6 @@ function renderApp() {
       ${navItem('messages','forum','Messages', msgUnread)}
       ${navItem('mytasks','person','My Tasks')}
       ${navItem('accountability','leaderboard','Accountability')}
-      ${navItem('integrations','extension','Integrations')}
       ${navItem('changelog','history','Changelog')}
       ${S.currentUser?.role === 'admin' ? navItem('admin','admin_panel_settings','Admin') : ''}
       <div class="nav-spacer"></div>
@@ -2916,6 +3972,12 @@ function renderApp() {
 
   <!-- Modal -->
   <div id="modal-container">${S.modal ? renderModal() : ''}</div>
+
+  <!-- AI Panel Container + FAB -->
+  <div id="ai-panel-container">${S._aiPanelOpen ? buildAIPanelHTML() : ''}</div>
+  <button class="ai-fab ripple" onclick="toggleAIPanel()" title="Ask AI">
+    <span style="font-size:22px;line-height:1">✦</span>
+  </button>
   `;
 }
 
@@ -2940,7 +4002,7 @@ function renderMobileNav(msgUnread = 0) {
     </div>`;
   }).join('');
 
-  const moreActive = ['calendar','mytasks','accountability','integrations','changelog','admin'].includes(S.page);
+  const moreActive = ['calendar','mytasks','accountability','changelog','admin'].includes(S.page);
   return `
   <nav class="mobile-nav-bar">
     <div style="display:flex;align-items:stretch;height:100%;width:100%">
@@ -2991,7 +4053,6 @@ function renderNavDrawer() {
     <div style="padding:8px 0">
       ${drawerItem('calendar','calendar_month','Calendar')}
       ${drawerItem('accountability','leaderboard','Accountability')}
-      ${drawerItem('integrations','extension','Integrations')}
       ${drawerItem('changelog','history','Changelog')}
       ${isAdmin ? drawerItem('admin','admin_panel_settings','Admin') : ''}
     </div>
@@ -3025,14 +4086,13 @@ function renderMobileSearch() {
         autocomplete="off" autofocus />
       <div class="icon-btn ripple" onclick="closeMobileSearch()"><span class="ms">close</span></div>
     </div>
-    ${S.searchQuery ? `
-    <div style="padding:8px 16px;flex:1;overflow-y:auto">
-      ${renderSearchResults(S.searchQuery)}
-    </div>` : `
-    <div class="empty-state" style="padding-top:48px">
-      <span class="ms" style="font-size:48px;color:var(--c-outline)">search</span>
-      <p style="color:var(--c-on-surf-var);margin-top:8px">Search tasks, messages, channels…</p>
-    </div>`}
+    <div data-search-results style="padding:8px 16px;flex:1;overflow-y:auto">
+      ${S.searchQuery ? renderSearchResults(S.searchQuery) : `
+      <div class="empty-state" style="padding-top:48px">
+        <span class="ms" style="font-size:48px;color:var(--c-outline)">search</span>
+        <p style="color:var(--c-on-surf-var);margin-top:8px">Search tasks, messages, channels…</p>
+      </div>`}
+    </div>
   </div>`;
 }
 
@@ -3045,7 +4105,7 @@ function renderSearchResults(q) {
   if (tasks.length) {
     html += `<div style="font-size:11px;font-weight:600;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Tasks</div>`;
     html += tasks.map(t => `
-      <div class="ripple" onclick="openTask('${t.id}');closeMobileSearch()" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-lg);margin-bottom:4px;background:var(--c-surf2)">
+      <div class="ripple" onclick="openTaskModal('${t.id}');closeMobileSearch()" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-lg);margin-bottom:4px;background:var(--c-surf2)">
         <span class="ms" style="font-size:18px;color:var(--c-primary)">${STATUS_ICONS[t.status]}</span>
         <div style="flex:1;min-width:0">
           <div style="font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(t.title)}</div>
@@ -3142,7 +4202,22 @@ function openSearch(el) {
 function closeSearch() {
   setTimeout(() => { S.searchOpen = false; S.searchQuery = ''; render(); }, 150);
 }
-function onSearch(val) { S.searchQuery = val; renderPageContent(); }
+function onSearch(val) {
+  S.searchQuery = val;
+  if (S.page === 'home') {
+    // On home page, update omnibox results without full re-render
+    renderOmniboxResults(val);
+  } else if (S.mobileSearchOpen) {
+    // Mobile search overlay — re-render its results section only
+    const container = document.getElementById('mobile-search-overlay');
+    if (container) {
+      const resultsEl = container.querySelector('[data-search-results]');
+      if (resultsEl) resultsEl.innerHTML = val ? renderSearchResults(val) : '';
+    } else { render(); }
+  } else {
+    renderPageContent();
+  }
+}
 
 function toggleNotifPanel() {
   S.notifPanelOpen = !S.notifPanelOpen;
@@ -3197,42 +4272,114 @@ function renderTasksPage() {
   const counts = {};
   STATUSES.forEach(s => counts[s] = S.tasks.filter(t => t.status === s).length);
   const overdueCount = S.tasks.filter(t => isOverdue(t.dueDate) && t.status !== 'done').length;
+  const activeFilters = Object.entries(S.taskFilter).filter(([,v]) => v !== 'all');
+  const hasFilters = activeFilters.length > 0;
+
+  // Build active filter summary chips for the collapsed row
+  const filterSummary = activeFilters.map(([k, v]) => {
+    if (k === 'status') return STATUS_LABELS[v];
+    if (k === 'priority') return PRIORITY_LABELS[v];
+    if (k === 'assignee') return getUser(v)?.name?.split(' ')[0] || v;
+    if (k === 'tag') return S.tags.find(t => t.id === v)?.name || v;
+    return v;
+  }).join(' · ');
 
   return `
   <div class="page-tasks">
-    <!-- Stats row -->
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
+
+    <!-- Toolbar row -->
+    <div class="tasks-toolbar">
+      <div class="tasks-toolbar-left">
+        <button class="tasks-filter-btn ripple${hasFilters ? ' has-filters' : ''}" onclick="toggleTaskFilterPanel()">
+          <span class="ms" style="font-size:18px">filter_list</span>
+          <span>Filter</span>
+          ${hasFilters ? `<span class="tasks-filter-badge">${activeFilters.length}</span>` : ''}
+        </button>
+        ${hasFilters ? `
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          ${filterSummary ? `<span class="tasks-filter-summary">${escHtml(filterSummary)}</span>` : ''}
+          <button class="btn btn-text btn-sm ripple" onclick="clearTaskFilters()" style="padding:0 6px;font-size:12px;color:var(--c-error)">
+            <span class="ms sm">close</span> Clear
+          </button>
+        </div>` : ''}
+      </div>
+      <div class="tasks-toolbar-right">
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="font-size:13px;color:var(--c-on-surf-var)">${tasks.length} task${tasks.length !== 1 ? 's' : ''}</span>
+          ${canEdit() ? `
+          <button class="btn btn-tonal btn-sm ripple" onclick="openQuickLabelModal()" title="Manage labels">
+            <span class="ms sm">label</span> Labels
+          </button>` : ''}
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Panel (collapsible) -->
+    ${S.taskFilterOpen ? `
+    <div class="task-filter-panel">
+      <div class="filter-panel-section">
+        <div class="filter-panel-label">Status</div>
+        <div class="filter-panel-chips">
+          <div class="chip${S.taskFilter.status==='all'?' active':''} ripple" onclick="setTaskFilter('status','all')">All</div>
+          ${STATUSES.map(s => `<div class="chip${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')">
+            <span class="ms" style="font-size:13px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}
+          </div>`).join('')}
+        </div>
+      </div>
+      <div class="filter-panel-section">
+        <div class="filter-panel-label">Priority</div>
+        <div class="filter-panel-chips">
+          <div class="chip${S.taskFilter.priority==='all'?' active':''} ripple" onclick="setTaskFilter('priority','all')">All</div>
+          ${PRIORITIES.map(p => `<div class="chip${S.taskFilter.priority===p?' active':''} ripple" onclick="setTaskFilter('priority','${p}')">
+            <span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}
+          </div>`).join('')}
+        </div>
+      </div>
+      <div class="filter-panel-section">
+        <div class="filter-panel-label">Assignee</div>
+        <div class="filter-panel-chips">
+          <div class="chip${S.taskFilter.assignee==='all'?' active':''} ripple" onclick="setTaskFilter('assignee','all')">Anyone</div>
+          ${S.users.map(u => `<div class="chip${S.taskFilter.assignee===u.id?' active':''} ripple" onclick="setTaskFilter('assignee','${u.id}')">
+            ${renderAvatar(u.id,'sm')}<span style="font-size:12px">${escHtml(u.name.split(' ')[0])}</span>
+          </div>`).join('')}
+        </div>
+      </div>
+      ${S.tags.length ? `
+      <div class="filter-panel-section">
+        <div class="filter-panel-label">Label</div>
+        <div class="filter-panel-chips">
+          <div class="chip${S.taskFilter.tag==='all'?' active':''} ripple" onclick="setTaskFilter('tag','all')">Any</div>
+          ${S.tags.map(tag => `<div class="chip${S.taskFilter.tag===tag.id?' active':''} ripple" onclick="setTaskFilter('tag','${tag.id}')" style="${S.taskFilter.tag===tag.id?`background:${tag.color}22;border-color:${tag.color};color:${tag.color}`:''}">
+            <span style="width:8px;height:8px;border-radius:50%;background:${tag.color};flex-shrink:0;display:inline-block"></span>${escHtml(tag.name)}
+          </div>`).join('')}
+        </div>
+      </div>` : ''}
+    </div>` : ''}
+
+    <!-- Stats row (mini, scrollable on mobile) -->
+    <div class="tasks-stats-row">
       ${STATUSES.map(s => `
-        <div class="card elevated" style="flex:1;min-width:100px;padding:14px 16px;cursor:pointer;border-left:3px solid ${{todo:'#78909C',in_progress:'#FF9800',blocked:'#BA1A1A',review:'#0057B8',done:'#4CAF50'}[s]}" onclick="setTaskFilter('status','${s}')">
-          <div class="body-sm" style="color:var(--c-on-surf-var);margin-bottom:2px;display:flex;align-items:center;gap:4px">
-            <span class="ms" style="font-size:14px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}
-          </div>
-          <div class="headline-sm" style="font-family:var(--font-display)">${counts[s]}</div>
+        <div class="tasks-stat-pill${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')">
+          <span class="tasks-stat-dot" style="background:${{todo:'#78909C',in_progress:'#FF9800',blocked:'#BA1A1A',review:'#0057B8',done:'#4CAF50'}[s]}"></span>
+          <span class="tasks-stat-label">${STATUS_LABELS[s]}</span>
+          <span class="tasks-stat-count">${counts[s]}</span>
         </div>`).join('')}
       ${overdueCount > 0 ? `
-        <div class="card elevated" style="flex:1;min-width:100px;padding:14px 16px;cursor:pointer;border-left:3px solid var(--c-error)" onclick="setTaskFilter('status','all')">
-          <div class="body-sm" style="color:var(--c-error);margin-bottom:2px;display:flex;align-items:center;gap:4px">
-            <span class="ms" style="font-size:14px">warning</span>Overdue
-          </div>
-          <div class="headline-sm" style="font-family:var(--font-display);color:var(--c-error)">${overdueCount}</div>
+        <div class="tasks-stat-pill ripple" onclick="setTaskFilter('status','all')" style="border-color:var(--c-error)">
+          <span class="ms" style="font-size:13px;color:var(--c-error)">warning</span>
+          <span class="tasks-stat-label" style="color:var(--c-error)">Overdue</span>
+          <span class="tasks-stat-count" style="background:var(--c-error);color:#fff">${overdueCount}</span>
         </div>` : ''}
     </div>
 
-    <!-- Filters -->
-    <div class="task-filters" style="flex-wrap:wrap;gap:6px">
-      <div class="chip${S.taskFilter.status==='all'?' active':''} ripple" onclick="setTaskFilter('status','all')">All status</div>
-      ${STATUSES.map(s => `<div class="chip${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')"><span class="ms" style="font-size:14px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}</div>`).join('')}
-      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
-      ${PRIORITIES.map(p => `<div class="chip${S.taskFilter.priority===p?' active':''} ripple" onclick="setTaskFilter('priority','${p}')"><span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}</div>`).join('')}
-      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
-      ${S.users.map(u => `<div class="chip${S.taskFilter.assignee===u.id?' active':''} ripple" onclick="setTaskFilter('assignee','${u.id}')" title="${escHtml(u.name)}">${renderAvatar(u.id,'sm')}<span style="font-size:12px">${escHtml(u.name.split(' ')[0])}</span></div>`).join('')}
-      ${S.tags.length ? `<div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
-        ${S.tags.map(tag => `<div class="tag-filter-chip${S.taskFilter.tag===tag.id?' active':''}" onclick="setTaskFilter('tag','${tag.id}')" style="border-color:${tag.color}"><span class="tag-color-dot" style="background:${tag.color}"></span>${escHtml(tag.name)}</div>`).join('')}` : ''}
-      ${Object.values(S.taskFilter).some(v => v !== 'all') ? `<button class="btn btn-text btn-sm ripple" onclick="clearTaskFilters()" style="font-size:12px"><span class="ms sm">filter_alt_off</span>Clear</button>` : ''}
-    </div>
-
     <!-- Task List -->
-    ${tasks.length === 0 ? `<div class="empty-state"><span class="ms">task_alt</span><h3>No tasks found</h3><p>Try adjusting your filters or create a new task.</p></div>` : `
+    ${tasks.length === 0 ? `
+    <div class="empty-state">
+      <span class="ms">task_alt</span>
+      <h3>${hasFilters ? 'No matching tasks' : 'No tasks yet'}</h3>
+      <p>${hasFilters ? 'Try adjusting your filters.' : 'Create your first task to get started.'}</p>
+      ${hasFilters ? `<button class="btn btn-tonal ripple" onclick="clearTaskFilters()">Clear filters</button>` : ''}
+    </div>` : `
     <div class="task-list">
       ${tasks.map(t => renderTaskCard(t)).join('')}
     </div>`}
@@ -3240,6 +4387,11 @@ function renderTasksPage() {
 
   <!-- FAB -->
   ${canEdit() ? `<div class="fab ripple" onclick="openTaskModal(null)"><span class="ms">add</span> New Task</div>` : ''}`;
+}
+
+function toggleTaskFilterPanel() {
+  S.taskFilterOpen = !S.taskFilterOpen;
+  renderPageContent();
 }
 
 function renderTaskCard(t) {
@@ -3365,6 +4517,10 @@ function renderModal() {
     case 'task': return renderTaskModal();
     case 'addUser': return renderAddUserModal();
     case 'profile': return renderProfileModal();
+    case 'labels': return renderQuickLabelModal();
+    case 'boards': return renderBoardManagerModal();
+    case 'compose': return renderComposeModal();
+    case 'invite': return renderInviteModal();
     default: return '';
   }
 }
@@ -3456,16 +4612,22 @@ function renderTaskModal() {
       </div>
 
       <!-- Tags / Labels -->
-      ${S.tags.length ? `<div class="task-section">
-        <div class="task-section-title">Labels</div>
+      <div class="task-section">
+        <div class="task-section-title" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Labels</span>
+          ${canEdit() ? `<span class="ripple" onclick="openQuickLabelModal()" style="font-size:12px;color:var(--c-primary);cursor:pointer;padding:2px 6px;border-radius:var(--r-full)">
+            <span class="ms sm">add</span> New label
+          </span>` : ''}
+        </div>
         <div class="tag-picker">
           ${S.tags.map(tag => {
             const sel = _editingTags.includes(tag.id);
             return `<span class="tag-chip${sel?' selected':''}" style="background:${tag.color}22;color:${tag.color};border:1.5px solid ${sel?tag.color:'transparent'}"
               onclick="${canEdit()?`toggleEditTag('${tag.id}')`:''}">${escHtml(tag.name)}</span>`;
           }).join('')}
+          ${!S.tags.length ? `<span style="font-size:13px;color:var(--c-on-surf-var)">No labels yet — tap "New label" to create one.</span>` : ''}
         </div>
-      </div>` : ''}
+      </div>
 
       <!-- Assignees -->
       <div class="task-section">
@@ -4315,10 +5477,15 @@ function addNotification(data) {
 // ═══════════════════════════
 function renderKanbanPage() {
   const colColors = { todo:'#78909C', in_progress:'#FF9800', blocked:'#BA1A1A', review:'#0057B8', done:'#4CAF50' };
+  const boardTasks = S.tasks.filter(t =>
+    t.boardId === S.selectedBoardId ||
+    (!t.boardId && S.selectedBoardId === 'board1')
+  );
+  const currentBoard = S.boards.find(b => b.id === S.selectedBoardId) || S.boards[0];
   const cols = STATUSES.map(s => ({
     status: s,
     label: STATUS_LABELS[s],
-    tasks: S.tasks.filter(t => t.status === s),
+    tasks: boardTasks.filter(t => t.status === s),
     color: colColors[s]
   }));
 
@@ -4344,11 +5511,29 @@ function renderKanbanPage() {
   const mobileTabsHtml = STATUSES.map(s => `
     <div class="kanban-mobile-tab${S._kanbanActiveCol === s ? ' active' : ''}"
       onclick="scrollKanbanToCol('${s}')">${STATUS_LABELS[s]}
-      <span style="margin-left:4px;font-size:11px;opacity:.7">${S.tasks.filter(t=>t.status===s).length}</span>
+      <span style="margin-left:4px;font-size:11px;opacity:.7">${boardTasks.filter(t=>t.status===s).length}</span>
     </div>`).join('');
 
   return `
   <div class="page-kanban">
+    <!-- Board switcher header -->
+    <div class="kanban-board-header">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        ${S.boards.map(b => `
+          <div class="kanban-board-tab ripple${S.selectedBoardId === b.id ? ' active' : ''}" onclick="switchBoardInline('${b.id}')">
+            <span class="ms" style="font-size:15px">${S.selectedBoardId === b.id ? 'view_kanban' : 'dashboard'}</span>
+            ${escHtml(b.name)}
+          </div>`).join('')}
+        ${canEdit() ? `
+        <div class="kanban-board-tab ripple" onclick="openBoardManager()" style="border-style:dashed;color:var(--c-on-surf-var)">
+          <span class="ms sm">add</span> New Board
+        </div>` : ''}
+      </div>
+      <div class="icon-btn ripple" onclick="openBoardManager()" title="Manage boards">
+        <span class="ms sm">settings</span>
+      </div>
+    </div>
+
     <!-- Mobile tabs -->
     <div class="kanban-mobile-tabs" id="kanban-mobile-tabs">
       ${mobileTabsHtml}
@@ -4463,6 +5648,12 @@ function scrollKanbanToCol(status) {
   document.querySelectorAll('.kanban-mobile-tab').forEach((el, i) => {
     el.classList.toggle('active', STATUSES[i] === status);
   });
+}
+
+function switchBoardInline(boardId) {
+  S.selectedBoardId = boardId;
+  saveState();
+  renderPageContent();
 }
 
 function updateKanbanActiveTab(carousel) {
@@ -4617,68 +5808,205 @@ function renderMsgSidebarMobileFallback() {
 }
 
 function renderMsgSidebar(mobileMode = false) {
+  const sq = (S.sidebarSearchQuery || '').toLowerCase().trim();
   const channels = S.channels.filter(c => c.type === 'channel');
   const dms = S.channels.filter(c => c.type === 'dm');
 
+  // If sidebar search is active, show search results instead of normal list
+  if (sq) {
+    const results = [];
+    S.messages.forEach(m => {
+      if (!m.content.toLowerCase().includes(sq)) return;
+      const ch = getChannel(m.channelId);
+      const sender = getUser(m.userId);
+      if (!ch || !sender) return;
+      results.push({ msg: m, ch, sender });
+    });
+
+    return `
+    <div class="msg-sidebar${mobileMode ? ' mobile-visible' : ''}">
+      ${renderSidebarHeader(mobileMode, sq)}
+      <div class="msg-search-results-header">
+        <span class="ms sm">search</span> ${results.length} message${results.length!==1?'s':''} found
+      </div>
+      <div class="msg-sidebar-results">
+        ${results.length === 0 ? `<div style="padding:24px 16px;text-align:center;color:var(--c-on-surf-var);font-size:13px">No messages match "${escHtml(sq)}"</div>` :
+          results.slice(0,40).map(({msg, ch, sender}) => `
+          <div class="msg-search-result-item ripple" onclick="openSearchedMessage('${ch.id}','${msg.id}')">
+            <div class="msg-search-result-channel">${ch.type==='dm'?'👤':'#'}${escHtml(ch.name)}</div>
+            <div class="msg-search-result-sender">${escHtml(sender.name)} · ${formatTime(msg.timestamp)}</div>
+            <div class="msg-search-result-text">${highlightText(escHtml(msg.content.slice(0,100)), sq)}${msg.content.length>100?'…':''}</div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
   return `
   <div class="msg-sidebar${mobileMode ? ' mobile-visible' : ''}">
-    ${mobileMode ? `
-    <div style="display:flex;align-items:center;gap:8px;padding:16px 16px 8px;border-bottom:1px solid var(--c-outline-var)">
-      <span class="ms filled" style="color:var(--c-primary)">forum</span>
-      <div style="font-size:17px;font-weight:700;flex:1">Messages</div>
-      <div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:36px;height:36px">
-        <span class="ms">add</span>
-      </div>
-    </div>` : ''}
+    ${renderSidebarHeader(mobileMode, sq)}
     <div class="msg-sidebar-section">
       <div class="msg-sidebar-title">
         Channels
-        ${!mobileMode ? `<div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="Add channel" style="width:24px;height:24px">
+        <div class="icon-btn ripple" onclick="openAddChannelPrompt()" title="New channel" style="width:24px;height:24px">
           <span class="ms sm">add</span>
-        </div>` : ''}
+        </div>
       </div>
       ${channels.map(ch => {
         const uc = unreadCount(ch.id);
         return `<div class="msg-channel-item ripple${ch.id===S.selectedChannelId?' active':''}" onclick="selectChannel('${ch.id}')">
-          <span class="ms sm">tag</span>
+          <span class="ms sm" style="opacity:.7">tag</span>
           <span class="msg-channel-name">${escHtml(ch.name)}</span>
           ${uc > 0 ? `<span class="msg-unread">${uc > 9 ? '9+' : uc}</span>` : ''}
         </div>`;
       }).join('')}
     </div>
     <div class="msg-sidebar-section">
-      <div class="msg-sidebar-title">Direct Messages</div>
-      ${dms.map(ch => {
+      <div class="msg-sidebar-title">
+        Direct Messages
+        <div class="icon-btn ripple" onclick="openComposeModal()" title="New message" style="width:24px;height:24px">
+          <span class="ms sm">edit</span>
+        </div>
+      </div>
+      ${dms.filter(ch => getUser(ch.partnerId)).map(ch => {
         const partner = getUser(ch.partnerId);
-        if (!partner) return '';
         const uc = unreadCount(ch.id);
         return `<div class="msg-channel-item ripple${ch.id===S.selectedChannelId?' active':''}" onclick="selectChannel('${ch.id}')">
-          <div class="avatar sm" style="background:${partner.color||userColor(partner.name)}">${escHtml(partner.initials||initials(partner.name))}</div>
+          <div class="sidebar-avatar-wrap">
+            <div class="avatar sm" style="background:${partner.color||userColor(partner.name)}">${escHtml(partner.initials||initials(partner.name))}</div>
+            <div class="presence-dot ${partner.online?'online':'offline'}"></div>
+          </div>
           <span class="msg-channel-name">${escHtml(partner.name)}</span>
           ${uc > 0 ? `<span class="msg-unread">${uc > 9 ? '9+' : uc}</span>` : ''}
         </div>`;
       }).join('')}
-    </div>
-    <div class="msg-sidebar-section">
-      <div class="msg-sidebar-title">Team Members</div>
-      ${S.users.map(u => `
-        <div class="msg-channel-item" style="cursor:default">
-          <div style="position:relative">
+      ${S.users.filter(u => u.id !== S.currentUser.id && !dms.find(d => d.partnerId === u.id)).map(u => `
+        <div class="msg-channel-item ripple" onclick="startDM('${u.id}')" title="Message ${escHtml(u.name)}">
+          <div class="sidebar-avatar-wrap">
             <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
-            <div style="width:8px;height:8px;border-radius:50%;background:${u.online?'#4CAF50':'#9E9E9E'};position:absolute;bottom:0;right:0;border:1.5px solid var(--c-surface)"></div>
+            <div class="presence-dot ${u.online?'online':'offline'}"></div>
           </div>
-          <span class="msg-channel-name">${escHtml(u.name)}</span>
+          <span class="msg-channel-name" style="color:var(--c-on-surf-var)">${escHtml(u.name)}</span>
         </div>`).join('')}
     </div>
   </div>`;
 }
 
+function renderSidebarHeader(mobileMode, sq) {
+  return `
+  <div class="msg-sidebar-header">
+    ${mobileMode ? `<span class="ms filled" style="color:var(--c-primary);font-size:20px">forum</span>` : ''}
+    <div class="msg-sidebar-search-wrap">
+      <span class="ms sm" style="color:var(--c-on-surf-var);flex-shrink:0">search</span>
+      <input class="msg-sidebar-search" type="text" placeholder="Search messages…"
+        value="${escHtml(sq)}"
+        oninput="onSidebarSearch(this.value)"
+        onkeydown="if(event.key==='Escape'){this.value='';onSidebarSearch('')}" />
+      ${sq ? `<div class="icon-btn ripple" style="width:20px;height:20px;flex-shrink:0" onclick="onSidebarSearch('');document.querySelector('.msg-sidebar-search').value=''"><span class="ms sm">close</span></div>` : ''}
+    </div>
+    <div class="icon-btn ripple msg-compose-btn" onclick="openComposeModal()" title="New message or DM" style="width:36px;height:36px;flex-shrink:0">
+      <span class="ms sm">edit_note</span>
+    </div>
+  </div>`;
+}
+
+function onSidebarSearch(val) {
+  S.sidebarSearchQuery = val;
+  clearTimeout(window._sidebarSearchTimer);
+  window._sidebarSearchTimer = setTimeout(() => {
+    // Re-render just the sidebar portion
+    renderPageContent();
+  }, 150);
+}
+
+function openSearchedMessage(channelId, msgId) {
+  S.sidebarSearchQuery = '';
+  selectChannel(channelId);
+  setTimeout(() => {
+    document.getElementById('msg-' + msgId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Flash highlight
+    const el = document.getElementById('msg-' + msgId);
+    if (el) {
+      el.style.transition = 'background .3s';
+      el.style.background = 'rgba(0,87,184,.18)';
+      setTimeout(() => { el.style.background = ''; }, 1200);
+    }
+  }, 400);
+}
+
+// ── Direct Messages ─────────────────────────
+function startDM(userId) {
+  if (userId === S.currentUser.id) return;
+  // Check if DM already exists
+  let ch = S.channels.find(c => c.type === 'dm' && c.partnerId === userId);
+  if (!ch) {
+    const partner = getUser(userId);
+    if (!partner) return;
+    ch = {
+      id: 'dm-' + userId,
+      name: partner.name,
+      type: 'dm',
+      partnerId: userId,
+      members: [S.currentUser.id, userId],
+      description: ''
+    };
+    S.channels.push(ch);
+    saveState();
+  }
+  navigate('messages');
+  S.mobileShowChannelList = false;
+  selectChannel(ch.id);
+}
+
+// ── Compose Modal ────────────────────────────
+function openComposeModal() {
+  S.modal = { type: 'compose' };
+  render();
+}
+
+function renderComposeModal() {
+  const channels = S.channels.filter(c => c.type === 'channel');
+  const others = S.users.filter(u => u.id !== S.currentUser.id);
+  return `
+  <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
+    <div class="modal" id="compose-modal" style="max-width:420px">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h2 class="modal-title">New Message</h2>
+        <div class="modal-close ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+      <div style="padding:0 20px 8px">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--c-on-surf-var);margin-bottom:8px">Direct Message</div>
+        ${others.map(u => `
+          <div class="compose-user-row ripple" onclick="startDM('${u.id}');closeModal()">
+            <div class="sidebar-avatar-wrap">
+              <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
+              <div class="presence-dot ${u.online?'online':'offline'}"></div>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14px;font-weight:500">${escHtml(u.name)}</div>
+              ${u.role ? `<div style="font-size:11px;color:var(--c-on-surf-var)">${u.role}</div>` : ''}
+            </div>
+            <span class="ms sm" style="color:var(--c-primary)">chat</span>
+          </div>`).join('')}
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--c-on-surf-var);margin:16px 0 8px">Post to Channel</div>
+        ${channels.map(ch => `
+          <div class="compose-user-row ripple" onclick="selectChannel('${ch.id}');closeModal()">
+            <span class="ms sm" style="color:var(--c-primary)">tag</span>
+            <div style="flex:1;font-size:14px;font-weight:500">${escHtml(ch.name)}</div>
+            <span class="ms sm" style="color:var(--c-on-surf-var)">chevron_right</span>
+          </div>`).join('')}
+      </div>
+      <div style="height:env(safe-area-inset-bottom)"></div>
+    </div>
+  </div>`;
+}
+
 function renderMsgMain(ch) {
-  const msgs = S.messages.filter(m => m.channelId === ch.id && !m.threadId);
-  // Mark as read
+  const q = (S.msgSearchQuery || '').toLowerCase().trim();
+  let msgs = S.messages.filter(m => m.channelId === ch.id && !m.threadId);
+  if (q) msgs = msgs.filter(m => m.content.toLowerCase().includes(q) || m.attachment?.name?.toLowerCase().includes(q));
   S.messages.filter(m => m.channelId === ch.id).forEach(m => m._read = true);
 
-  // Group messages by day, then by sender (consecutive)
   const groups = [];
   let lastDay = null, lastUserId = null, lastGroup = null;
   msgs.forEach(m => {
@@ -4688,7 +6016,7 @@ function renderMsgMain(ch) {
       lastDay = day; lastUserId = null; lastGroup = null;
     }
     const isMine = m.userId === S.currentUser.id;
-    if (m.userId !== lastUserId) {
+    if (m.userId !== lastUserId || q) {
       lastGroup = { type:'group', userId: m.userId, isMine, msgs: [] };
       groups.push(lastGroup);
       lastUserId = m.userId;
@@ -4696,21 +6024,43 @@ function renderMsgMain(ch) {
     lastGroup.msgs.push(m);
   });
 
+  const firestoreStatus = isFirestoreEnabled()
+    ? `<div class="firebase-status-bar"><span class="firebase-status-dot connected"></span><span class="firebase-status-text">Live</span></div>`
+    : '';
+
+  // DM header: show partner name + online status
+  const headerRight = ch.type === 'dm' ? (() => {
+    const partner = getUser(ch.partnerId);
+    return partner ? `
+      <div class="sidebar-avatar-wrap" style="margin-right:4px">
+        <div class="avatar sm" style="background:${partner.color||userColor(partner.name)}">${escHtml(partner.initials||initials(partner.name))}</div>
+        <div class="presence-dot ${partner.online?'online':'offline'}"></div>
+      </div>` : '';
+  })() : '';
+
   return `
   <div class="msg-main">
     <div class="msg-header">
+      ${headerRight}
       <span class="ms sm" style="color:var(--c-primary)">${ch.type==='dm'?'person':'tag'}</span>
-      <div>
+      <div style="flex:1;min-width:0">
         <div class="msg-header-name">${escHtml(ch.name)}</div>
         ${ch.description ? `<div class="msg-header-desc">${escHtml(ch.description)}</div>` : ''}
       </div>
+      ${firestoreStatus}
+      <div class="icon-btn ripple" onclick="openChannelInfo('${ch.id}')" title="Info"><span class="ms sm">info</span></div>
     </div>
     <div class="msg-feed" id="msg-feed">
-      ${groups.map(g => g.type === 'day' ?
-        `<div class="msg-day-divider"><span class="msg-day-text">${g.label}</span></div>` :
-        renderMsgGroup(g)
-      ).join('')}
+      ${groups.length === 0 ? `<div class="empty-state" style="flex:1;padding:60px 24px;text-align:center">
+        <span class="ms" style="font-size:48px;color:var(--c-outline)">chat_bubble_outline</span>
+        <p style="margin-top:12px;color:var(--c-on-surf-var)">No messages yet. Say hello! 👋</p>
+      </div>` :
+        groups.map(g => g.type === 'day' ?
+          `<div class="msg-day-divider"><span class="msg-day-text">${g.label}</span></div>` :
+          renderMsgGroup(g)
+        ).join('')}
     </div>
+    <div id="typing-indicator" class="typing-indicator" style="display:none"></div>
     ${renderMsgInput(ch.id)}
   </div>`;
 }
@@ -4724,38 +6074,156 @@ function formatDayLabel(ts) {
   return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
 }
 
-function renderMsgGroup(g) {
+function renderMsgGroup(g, searchQuery) {
   const u = getUser(g.userId);
   return `
   <div class="msg-group${g.isMine?' mine':''}">
     <div class="msg-group-avatar">${g.isMine ? '' : renderAvatar(g.userId)}</div>
     <div class="msg-group-content">
       ${!g.isMine ? `<div class="msg-sender">${escHtml(u?.name||'?')}<span class="msg-time-label">${formatTime(g.msgs[0].timestamp)}</span></div>` : ''}
-      ${g.msgs.map(m => renderMsgBubble(m, g.isMine)).join('')}
+      ${g.msgs.map(m => renderMsgBubble(m, g.isMine, searchQuery)).join('')}
     </div>
     ${g.isMine ? `<div class="msg-group-avatar">${renderAvatar(g.userId)}</div>` : ''}
   </div>`;
 }
 
-function renderMsgBubble(m, isMine) {
+function renderMsgBubble(m, isMine, searchQuery) {
   const threadReplies = S.messages.filter(r => r.threadId === m.id);
   const reactions = m.reactions || {};
   const emojiHtml = Object.entries(reactions).filter(([,ids]) => ids.length).map(([emoji, ids]) =>
     `<div class="msg-reaction${ids.includes(S.currentUser.id)?' mine':''} ripple" onclick="toggleReaction('${m.id}','${emoji}')" title="${ids.map(id=>getUser(id)?.name).join(', ')}">${emoji}<span class="msg-reaction-count">${ids.length}</span></div>`
   ).join('');
 
+  // Inline reply quote
+  const replyQuote = m.replyTo ? (() => {
+    const orig = S.messages.find(x => x.id === m.replyTo);
+    if (!orig) return '';
+    const origUser = getUser(orig.userId);
+    const origContent = orig.attachment ? orig.attachment.name : orig.content;
+    return `<div class="msg-reply-quote" onclick="document.getElementById('msg-${orig.id}')?.scrollIntoView({behavior:'smooth',block:'center'})">
+      <div class="msg-reply-quote-author">${escHtml(origUser?.name||'?')}</div>
+      <div class="msg-reply-quote-text">${orig.attachment ? '📎 ' : ''}${escHtml(origContent.slice(0,80))}${origContent.length>80?'…':''}</div>
+    </div>`;
+  })() : '';
+
+  // Read receipts
+  const readBy = (m.readBy || []).filter(uid => uid !== S.currentUser.id);
+  const readAvatars = isMine && readBy.length
+    ? `<div class="msg-read-receipts" title="Seen by ${readBy.map(uid=>getUser(uid)?.name).filter(Boolean).join(', ')}">
+        ${readBy.slice(0,4).map(uid => {
+          const u = getUser(uid);
+          return u ? `<div class="avatar" style="width:14px;height:14px;font-size:7px;background:${u.color||'#666'}">${escHtml(u.initials||initials(u.name))}</div>` : '';
+        }).join('')}
+        ${readBy.length > 4 ? `<span style="font-size:10px;color:var(--c-on-surf-var)">+${readBy.length-4}</span>` : ''}
+      </div>`
+    : '';
+
+  // Attachment rendering
+  const attachHtml = m.attachment ? renderMsgAttachment(m.attachment) : '';
+
+  // Link preview rendering
+  const linkPreviewHtml = m.linkPreview ? renderLinkPreview(m.linkPreview) : '';
+
+  // Search highlight
+  const contentHtml = searchQuery
+    ? highlightText(parseMessageContent(m.content), searchQuery)
+    : parseMessageContent(m.content);
+
   return `
-  <div style="display:flex;flex-direction:column;align-items:${isMine?'flex-end':'flex-start'}">
-    ${isMine ? `<div class="msg-time-label" style="margin-bottom:2px">${formatTime(m.timestamp)}</div>` : ''}
-    <div class="msg-bubble" id="msg-${m.id}">${parseMessageContent(m.content)}${m.edited?'<span style="font-size:11px;opacity:.6;margin-left:6px">(edited)</span>':''}</div>
+  <div class="msg-bubble-wrap${isMine?' mine':''}" id="msgwrap-${m.id}">
+    ${replyQuote}
+    <div class="msg-bubble${m._optimistic?' optimistic':''}${searchQuery?' search-highlight':''}" id="msg-${m.id}">
+      ${attachHtml}
+      ${m.content ? `<span>${contentHtml}</span>` : ''}
+      ${m.edited?'<span style="font-size:11px;opacity:.6;margin-left:6px">(edited)</span>':''}
+    </div>
+    ${linkPreviewHtml}
     ${emojiHtml ? `<div class="msg-reactions">${emojiHtml}</div>` : ''}
-    ${threadReplies.length ? `<div class="msg-thread-count" onclick="openThread('${m.id}')"><span class="ms">forum</span>${threadReplies.length} ${threadReplies.length===1?'reply':'replies'}</div>` : ''}
+    ${readAvatars}
+    ${threadReplies.length ? `<div class="msg-thread-count" onclick="openThread('${m.id}')"><span class="ms">forum</span>${threadReplies.length} ${threadReplies.length===1?'reply':'replies'} · View thread</div>` : ''}
     <div class="msg-actions">
+      <div class="msg-action-btn ripple" onclick="startInlineReply('${m.id}')" title="Reply"><span class="ms sm">reply</span></div>
       <div class="msg-action-btn ripple" onclick="openEmojiPicker('${m.id}')" title="React">😊</div>
-      <div class="msg-action-btn ripple" onclick="openThread('${m.id}')" title="Reply in thread"><span class="ms sm">reply</span></div>
-      ${isMine ? `<div class="msg-action-btn ripple" onclick="deleteMessage('${m.id}')" title="Delete"><span class="ms sm" style="color:var(--c-error)">delete</span></div>` : ''}
+      <div class="msg-action-btn ripple" onclick="openThread('${m.id}')" title="Thread"><span class="ms sm">forum</span></div>
+      ${isMine ? `
+        <div class="msg-action-btn ripple" onclick="editMessage('${m.id}')" title="Edit"><span class="ms sm">edit</span></div>
+        <div class="msg-action-btn ripple" onclick="deleteMessage('${m.id}')" title="Delete"><span class="ms sm" style="color:var(--c-error)">delete</span></div>
+      ` : ''}
+    </div>
+    <div class="msg-timestamp-tooltip">${formatTime(m.timestamp)}</div>
+  </div>`;
+}
+
+function renderMsgAttachment(att) {
+  if (!att) return '';
+  if (att.type && att.type.startsWith('image/')) {
+    return `<div class="msg-attachment-img-wrap">
+      <img class="msg-attachment-img" src="${escHtml(att.dataUrl||att.url||'')}" alt="${escHtml(att.name)}"
+        onclick="openImageLightbox('${escHtml(att.dataUrl||att.url||'')}','${escHtml(att.name)}')"
+        loading="lazy" />
+      <div class="msg-attachment-label">${escHtml(att.name)} · ${formatSize(att.size||0)}</div>
+    </div>`;
+  }
+  const icon = getFileIcon(att.name);
+  return `<div class="msg-attachment-file ripple" onclick="downloadAttachment('${escHtml(att.dataUrl||att.url||'')}','${escHtml(att.name)}')">
+    <span class="ms" style="font-size:28px;color:var(--c-primary)">${icon}</span>
+    <div class="msg-attachment-file-info">
+      <div class="msg-attachment-file-name">${escHtml(att.name)}</div>
+      <div class="msg-attachment-file-meta">${formatSize(att.size||0)}</div>
+    </div>
+    <span class="ms sm" style="color:var(--c-on-surf-var);margin-left:auto">download</span>
+  </div>`;
+}
+
+function renderLinkPreview(preview) {
+  if (!preview || !preview.title) return '';
+  return `<div class="msg-link-preview" onclick="window.open('${escHtml(preview.url)}','_blank')">
+    ${preview.image ? `<img class="msg-link-preview-img" src="${escHtml(preview.image)}" alt="" loading="lazy" onerror="this.style.display='none'" />` : ''}
+    <div class="msg-link-preview-body">
+      <div class="msg-link-preview-domain">${escHtml(preview.domain||new URL(preview.url).hostname)}</div>
+      <div class="msg-link-preview-title">${escHtml(preview.title)}</div>
+      ${preview.description ? `<div class="msg-link-preview-desc">${escHtml(preview.description.slice(0,120))}${preview.description.length>120?'…':''}</div>` : ''}
     </div>
   </div>`;
+}
+
+function highlightText(html, query) {
+  if (!query) return html;
+  // Only highlight in text nodes (simple approach: use a regex on the final HTML)
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return html.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark class="msg-search-match">$1</mark>');
+}
+
+function getFileIcon(name) {
+  const ext = (name||'').split('.').pop().toLowerCase();
+  const map = { pdf:'picture_as_pdf', doc:'description', docx:'description', xls:'table_chart', xlsx:'table_chart',
+    ppt:'slideshow', pptx:'slideshow', zip:'folder_zip', rar:'folder_zip', mp4:'videocam', mov:'videocam',
+    mp3:'music_note', wav:'music_note', txt:'article', csv:'table_chart' };
+  return map[ext] || 'attach_file';
+}
+
+function downloadAttachment(dataUrl, name) {
+  if (!dataUrl) return;
+  const a = document.createElement('a');
+  a.href = dataUrl; a.download = name;
+  a.click();
+}
+
+function openImageLightbox(src, name) {
+  if (!src) return;
+  const lb = document.createElement('div');
+  lb.className = 'img-lightbox';
+  lb.innerHTML = `
+    <div class="img-lightbox-backdrop" onclick="this.parentElement.remove()"></div>
+    <div class="img-lightbox-content">
+      <img src="${escHtml(src)}" alt="${escHtml(name)}" style="max-width:90vw;max-height:80vh;border-radius:12px;display:block" />
+      <div style="color:#fff;font-size:13px;margin-top:8px;text-align:center">${escHtml(name)}</div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
+        <button onclick="downloadAttachment('${escHtml(src)}','${escHtml(name)}')" style="background:#fff2;color:#fff;border:none;padding:8px 18px;border-radius:20px;cursor:pointer;font-size:13px">Download</button>
+        <button onclick="this.closest('.img-lightbox').remove()" style="background:#fff2;color:#fff;border:none;padding:8px 18px;border-radius:20px;cursor:pointer;font-size:13px">Close</button>
+      </div>
+    </div>`;
+  document.body.appendChild(lb);
 }
 
 function renderMsgInput(channelId) {
@@ -4841,14 +6309,18 @@ function selectChannel(channelId) {
   S.selectedChannelId = channelId;
   S.activeThreadMsgId = null;
   S.notifPanelOpen = false;
-  S.mobileShowChannelList = false; // On mobile: switch to chat view after selecting
+  S.mobileShowChannelList = false;
+  S._typingUsers = [];
   saveState();
+  // Subscribe to new Firestore thread
+  if (isFirestoreEnabled()) fsSubscribeThread(channelId);
   render();
-  // Scroll to bottom
   setTimeout(() => {
     const feed = document.getElementById('msg-feed');
     if (feed) feed.scrollTop = feed.scrollHeight;
-  }, 50);
+    // Mark read in Firestore
+    if (isFirestoreEnabled()) fsMarkAllRead(channelId);
+  }, 80);
 }
 
 function msgInput(e, channelId) {
@@ -4856,6 +6328,8 @@ function msgInput(e, channelId) {
   S.msgInput[channelId] = val;
   const sendBtn = e.target.closest('.msg-input-area')?.querySelector('.msg-send-btn');
   if (sendBtn) sendBtn.disabled = !val.trim();
+  // Typing indicator
+  if (isFirestoreEnabled() && val.trim()) fsSetTyping(channelId, true);
 
   const cursor = e.target.selectionStart;
   const textBefore = val.slice(0, cursor);
@@ -5011,9 +6485,29 @@ function sendMessage(channelId) {
   const input = document.getElementById('msg-input-'+channelId);
   const content = (input?.value || S.msgInput[channelId] || '').trim();
   if (!content) return;
+
+  // If Firestore is enabled, send via Firebase (onSnapshot will add to S.messages)
+  if (isFirestoreEnabled()) {
+    const replyToId = S._replyToMsgId;
+    S._replyToMsgId = null;
+    document.querySelector('.reply-banner')?.remove();
+    S.msgInput[channelId] = '';
+    if (input) input.value = '';
+    fsSendMessage(channelId, content, replyToId).catch(e => toast('Send failed: ' + e.message, 'error'));
+    // Optimistic local append
+    const msg = { id: uid(), channelId, userId: S.currentUser.id, content, timestamp: Date.now(), reactions: {}, threadId: null, replyTo: replyToId, edited: false, readBy: [S.currentUser.id], _read: true, _optimistic: true };
+    S.messages.push(msg);
+    const feed = document.getElementById('msg-feed');
+    if (feed) { renderPageContent(); feed.scrollTop = feed.scrollHeight; }
+    notifyMentions(channelId, content);
+    triggerLinkUnfurl(msg);
+    return;
+  }
+
+  // Offline / localStorage path
   const msg = {
     id: uid(), channelId, userId: S.currentUser.id,
-    content, timestamp: Date.now(), reactions: {}, threadId: null, edited: false, _read: true
+    content, timestamp: Date.now(), reactions: {}, threadId: null, edited: false, readBy: [S.currentUser.id], _read: true
   };
   S.messages.push(msg);
   S.msgInput[channelId] = '';
@@ -5042,33 +6536,71 @@ function sendMessage(channelId) {
       }
     }
   });
-  // Re-render messages area only
+  // Re-render messages area
   const feed = document.getElementById('msg-feed');
+  if (feed) { renderPageContent(); feed.scrollTop = feed.scrollHeight; }
+  triggerLinkUnfurl(msg);
+  notifyMentions(channelId, content);
+}
+
+function editMessage(msgId) {
+  const m = S.messages.find(x => x.id === msgId);
+  if (!m || m.userId !== S.currentUser.id) return;
+  const newContent = prompt('Edit message:', m.content);
+  if (newContent === null || newContent.trim() === m.content) return;
+  const trimmed = newContent.trim();
+  if (!trimmed) return;
+  m.content = trimmed;
+  m.edited = true;
+  saveState();
+  renderPageContent();
+  if (isFirestoreEnabled() && _firestore) {
+    try {
+      _firestore.collection('threads').doc(m.channelId)
+        .collection('messages').doc(m.id)
+        .update({ content: trimmed, edited: true });
+    } catch(e) {}
+  }
+}
+
+function startInlineReply(msgId) {
+  S._replyToMsgId = S._replyToMsgId === msgId ? null : msgId;
   const inputArea = document.querySelector('.msg-input-area');
-  if (feed) {
-    feed.insertAdjacentHTML('beforeend', (() => {
-      const isMine = true;
-      return `<div class="msg-group mine">
-        <div class="msg-group-avatar">${renderAvatar(S.currentUser.id)}</div>
-        <div class="msg-group-content" style="align-items:flex-end">
-          <div style="display:flex;flex-direction:column;align-items:flex-end">
-            <div class="msg-time-label" style="margin-bottom:2px">${formatTime(msg.timestamp)}</div>
-            <div class="msg-bubble" id="msg-${msg.id}" style="border-radius:var(--r-lg) var(--r-lg) 4px var(--r-lg)">${parseMessageContent(msg.content)}</div>
-          </div>
-        </div>
-      </div>`;
-    })());
-    feed.scrollTop = feed.scrollHeight;
-  }
   if (inputArea) {
-    const sendBtn = inputArea.querySelector('.msg-send-btn');
-    if (sendBtn) sendBtn.disabled = true;
+    const banner = inputArea.querySelector('.reply-banner');
+    if (S._replyToMsgId) {
+      const m = S.messages.find(x => x.id === msgId);
+      const u = getUser(m?.userId);
+      const bannerHtml = `<div class="reply-banner">
+        <span class="ms sm" style="color:var(--c-primary)">reply</span>
+        <span style="flex:1;font-size:13px;color:var(--c-on-surf-var)">Replying to <strong>${escHtml(u?.name||'?')}</strong>: ${escHtml((m?.content||'').slice(0,60))}</span>
+        <div class="icon-btn ripple" onclick="S._replyToMsgId=null;this.parentElement.remove()" style="width:24px;height:24px"><span class="ms sm">close</span></div>
+      </div>`;
+      if (banner) banner.outerHTML = bannerHtml;
+      else inputArea.insertAdjacentHTML('afterbegin', bannerHtml);
+    } else {
+      banner?.remove();
+    }
   }
+  document.querySelector('[id^="msg-input-"]')?.focus();
 }
 
 function addInAppNotif(text, type, channelId) {
   S.notifications.unshift({ id: uid(), type, text, time: Date.now(), read: false, page: 'messages', channelId });
   if (S.notifications.length > 50) S.notifications = S.notifications.slice(0, 50);
+}
+
+function notifyMentions(channelId, content) {
+  const mentionedNames = [...content.matchAll(/@([\w]+(?:\s[\w]+)?)/g)].map(m => m[1]);
+  mentionedNames.forEach(name => {
+    const u = S.users.find(u => u.name.toLowerCase().startsWith(name.toLowerCase()) && u.id !== S.currentUser.id);
+    if (u) {
+      const notifText = `${S.currentUser.name} mentioned you in #${getChannel(channelId)?.name}`;
+      addInAppNotif(notifText, 'mention', channelId);
+      sendBrowserNotif(`${S.currentUser.name} mentioned you`, content, 'mention-'+u.id);
+      if (window._fcmToken) sendFCMPush(window._fcmToken, `${S.currentUser.name} mentioned you`, content.slice(0,100), { type:'mention', channelId });
+    }
+  });
 }
 
 function openThread(msgId) {
@@ -5200,9 +6732,145 @@ function openAddChannelPrompt() {
 function handleMsgFile(input, channelId) {
   const f = input.files[0];
   if (!f) return;
-  const content = `📎 Attached: ${f.name} (${formatSize(f.size)})`;
-  S.msgInput[channelId] = content;
-  sendMessage(channelId);
+  input.value = '';
+
+  const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+  if (f.size > MAX_SIZE) {
+    toast('File too large (max 10MB)', 'error');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const attachment = { name: f.name, type: f.type, size: f.size, dataUrl: e.target.result };
+    sendMessageWithAttachment(channelId, attachment);
+  };
+  reader.readAsDataURL(f);
+}
+
+function sendMessageWithAttachment(channelId, attachment) {
+  const input = document.getElementById(`msg-input-${channelId}`);
+  const content = (input?.value || S.msgInput[channelId] || '').trim();
+
+  const replyToId = S._replyToMsgId;
+  S._replyToMsgId = null;
+  document.querySelector('.reply-banner')?.remove();
+
+  const msg = {
+    id: uid(), channelId, userId: S.currentUser.id,
+    content, attachment, timestamp: Date.now(),
+    reactions: {}, replyTo: replyToId || null,
+    edited: false, readBy: [S.currentUser.id], _read: true, _optimistic: true
+  };
+  S.messages.push(msg);
+  if (input) input.value = '';
+  S.msgInput[channelId] = '';
+  saveState();
+  renderPageContent();
+  setTimeout(() => { const feed = document.getElementById('msg-feed'); if (feed) feed.scrollTop = feed.scrollHeight; }, 50);
+
+  if (isFirestoreEnabled()) {
+    fsSendMessage(channelId, content, replyToId, attachment).catch(err => {
+      console.warn('Firestore send failed:', err);
+    });
+  }
+  if (content) notifyMentions(channelId, content);
+  toast('File sent 📎', 'success', 1500);
+}
+
+// ── Message Search ──────────────────────────
+function openMsgSearch() {
+  S.msgSearchOpen = true;
+  S.msgSearchQuery = '';
+  renderPageContent();
+  setTimeout(() => document.getElementById('msg-search-input')?.focus(), 60);
+}
+
+function closeMsgSearch() {
+  S.msgSearchOpen = false;
+  S.msgSearchQuery = '';
+  renderPageContent();
+}
+
+function onMsgSearch(val) {
+  S.msgSearchQuery = val;
+  // Debounce slightly
+  clearTimeout(window._msgSearchTimer);
+  window._msgSearchTimer = setTimeout(() => renderPageContent(), 120);
+}
+
+// ── Link Unfurl ─────────────────────────────
+const _linkCache = {};
+const URL_REGEX = /https?:\/\/[^\s<>"]+[^\s<>".,:;!?)]/g;
+
+function extractFirstUrl(text) {
+  const m = text.match(URL_REGEX);
+  return m ? m[0] : null;
+}
+
+async function fetchLinkPreview(url, msgId) {
+  if (_linkCache[url] !== undefined) {
+    if (_linkCache[url] && msgId) applyLinkPreview(msgId, _linkCache[url]);
+    return;
+  }
+  _linkCache[url] = null; // mark pending
+
+  try {
+    // Use allorigins.win CORS proxy to fetch OG tags
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxy, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return;
+    const data = await res.json();
+    const html = data.contents || '';
+
+    const getTag = (prop) => {
+      const m = html.match(new RegExp('<meta[^>]+(?:property|name)=["\']' + prop.replace(/:/g,'[:/]') + '["\'][^>]+content=["\']([^"\']+)["\']', 'i'))
+        || html.match(new RegExp('<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']' + prop.replace(/:/g,'[:/]') + '["\']', 'i'));
+      return m ? m[1] : null;
+    };
+
+    const titleEl = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    const preview = {
+      url,
+      title: getTag('og:title') || (titleEl ? titleEl[1].trim() : null),
+      description: getTag('og:description') || getTag('description'),
+      image: getTag('og:image'),
+      domain: new URL(url).hostname.replace('www.', '')
+    };
+
+    if (!preview.title) return;
+    _linkCache[url] = preview;
+    if (msgId) applyLinkPreview(msgId, preview);
+  } catch(e) {
+    // Silently fail
+  }
+}
+
+function applyLinkPreview(msgId, preview) {
+  const m = S.messages.find(x => x.id === msgId);
+  if (!m) return;
+  m.linkPreview = preview;
+  // Patch the DOM without full re-render
+  const wrap = document.getElementById(`msgwrap-${msgId}`);
+  if (wrap) {
+    const existing = wrap.querySelector('.msg-link-preview');
+    if (existing) existing.remove();
+    const previewHtml = renderLinkPreview(preview);
+    if (previewHtml) {
+      const temp = document.createElement('div');
+      temp.innerHTML = previewHtml;
+      const bubble = wrap.querySelector('.msg-bubble');
+      if (bubble) bubble.insertAdjacentElement('afterend', temp.firstElementChild);
+    }
+  }
+}
+
+function triggerLinkUnfurl(msg) {
+  if (msg.linkPreview || msg.attachment) return;
+  const url = extractFirstUrl(msg.content || '');
+  if (!url) return;
+  // Delay slightly so message renders first
+  setTimeout(() => fetchLinkPreview(url, msg.id), 300);
 }
 
 // ═══════════════════════════
@@ -5381,7 +7049,7 @@ function renderAdminPage() {
           <span style="color:var(--c-on-surf-var)">App Name</span><span style="font-weight:500">BLURRD Links</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
-          <span style="color:var(--c-on-surf-var)">Version</span><span style="font-weight:500">1.0.0</span>
+          <span style="color:var(--c-on-surf-var)">Version</span><span style="font-weight:500">v${APP_VERSION}</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--c-outline-var)">
           <span style="color:var(--c-on-surf-var)">Total Users</span><span style="font-weight:500">${S.users.length}</span>
@@ -5422,6 +7090,22 @@ function renderAdminPage() {
     </div>
 
     ${renderFirebaseSection()}
+    ${renderFirestoreSection()}
+    ${renderClaudeSection()}
+
+    <!-- Integrations moved here from nav -->
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">extension</span>
+        <div>
+          <div class="admin-section-title">Integrations <span class="admin-section-badge live" style="margin-left:6px">Integrations</span></div>
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">Connect external services</div>
+        </div>
+      </div>
+      <div class="admin-section-body" id="integrations-embed">
+        ${renderIntegrationsPageInline()}
+      </div>
+    </div>
 
   </div>`;
 }
@@ -5572,6 +7256,153 @@ function renderFirebaseSection() {
 
     </div>
   </div>`;
+}
+
+// ── Firestore Real-Time Section ──
+function renderFirestoreSection() {
+  const cfg = getIntegration('firebase');
+  const ready = S._firestoreReady;
+  return `
+  <div class="admin-section">
+    <div class="admin-section-header">
+      <span class="ms">sync</span>
+      <div>
+        <div class="admin-section-title">🔥 Firestore Real-Time Messaging</div>
+        <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">
+          Live two-way sync across all devices — messages appear instantly the moment they're sent
+        </div>
+      </div>
+      <div class="admin-section-badge ${ready ? 'connected' : 'disconnected'}">
+        ${ready ? '● Live' : '○ Offline'}
+      </div>
+    </div>
+    <div class="admin-section-body" style="display:flex;flex-direction:column;gap:12px">
+
+      <div style="background:${ready ? '#E8F5E9' : 'var(--c-surf2)'};border-radius:var(--r-lg);padding:14px 16px;display:flex;align-items:center;gap:12px">
+        <span class="ms" style="color:${ready ? '#1A5C2A' : 'var(--c-on-surf-var)'}">
+          ${ready ? 'check_circle' : 'cloud_off'}
+        </span>
+        <div style="flex:1">
+          <div style="font-weight:600;font-size:14px">${ready ? 'Connected — Real-time sync active' : 'Not connected — using local storage only'}</div>
+          <div style="font-size:12px;color:var(--c-on-surf-var);margin-top:2px">${ready ? `Firestore project: ${cfg.projectId || '—'}` : 'Uses the same Firebase project as Push Notifications. Fill in the config above first.'}</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Database URL <span style="font-weight:400;opacity:.7">(for Realtime Presence)</span></label>
+        <div class="field-input">
+          <input id="fs-databaseURL" type="text" placeholder="https://your-project-default-rtdb.firebaseio.com"
+            value="${escHtml(cfg.databaseURL||'')}"
+            oninput="setIntegration('firebase',{databaseURL:this.value})" autocomplete="off" />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn filled ripple" onclick="initFirestore()" ${ready ? 'disabled' : ''} style="flex:1;min-width:160px">
+          <span class="ms sm">${ready ? 'check_circle' : 'rocket_launch'}</span>
+          ${ready ? 'Connected' : 'Connect Firestore'}
+        </button>
+        ${ready ? `
+        <button class="btn btn-tonal ripple" onclick="if(confirm('Disconnect Firestore?')){S._firestoreReady=false;if(_threadUnsub)_threadUnsub();if(_typingUnsub)_typingUnsub();_firestore=null;render();toast('Firestore disconnected')}">
+          <span class="ms sm">cloud_off</span> Disconnect
+        </button>` : ''}
+      </div>
+
+      <div style="background:var(--c-surf2);border-radius:var(--r-lg);padding:14px;font-size:13px;line-height:1.7;color:var(--c-on-surf-var)">
+        <div style="font-weight:600;color:var(--c-on-surface);margin-bottom:6px;display:flex;align-items:center;gap:6px"><span class="ms sm" style="color:var(--c-primary)">menu_book</span> Firestore Security Rules (paste in Firebase Console)</div>
+        <pre style="background:var(--c-surf1);padding:12px;border-radius:var(--r-md);font-size:11px;overflow-x:auto;line-height:1.5">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+    match /threads/{threadId} {
+      allow read, write: if request.auth != null;
+      match /messages/{msgId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+}</pre>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Claude AI Section ──
+function renderClaudeSection() {
+  const cfg = getIntegration('claude');
+  const hasKey = !!cfg.apiKey;
+  const models = ['claude-sonnet-4-6','claude-opus-4-6','claude-haiku-4-5-20251001'];
+  return `
+  <div class="admin-section">
+    <div class="admin-section-header">
+      <span style="font-size:18px;line-height:1">✦</span>
+      <div>
+        <div class="admin-section-title">Claude AI Assistant</div>
+        <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">
+          Ask Claude to summarize workload, draft messages, create tasks, and more — directly inside BLURRD Links
+        </div>
+      </div>
+      <div class="admin-section-badge ${hasKey ? 'connected' : 'disconnected'}">${hasKey ? '● Active' : '○ Off'}</div>
+    </div>
+    <div class="admin-section-body" style="display:flex;flex-direction:column;gap:12px">
+
+      <div class="field">
+        <label class="field-label">Anthropic API Key</label>
+        <div class="field-input">
+          <input id="claude-apiKey" type="password" placeholder="sk-ant-api03-…"
+            value="${escHtml(cfg.apiKey||'')}"
+            oninput="setIntegration('claude',{apiKey:this.value})" autocomplete="off" />
+          <span class="ms sm" style="color:var(--c-on-surf-var);cursor:pointer" onclick="this.previousElementSibling.type=this.previousElementSibling.type==='password'?'text':'password'">visibility</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Model</label>
+        <div class="field-input">
+          <select id="claude-model" onchange="setIntegration('claude',{model:this.value})">
+            ${models.map(m => `<option value="${m}" ${cfg.model===m?'selected':''}>${m}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">CORS Proxy URL <span style="font-weight:400;opacity:.7">(optional — needed in some hosting environments)</span></label>
+        <div class="field-input">
+          <input type="text" placeholder="https://your-proxy.com" value="${escHtml(cfg.proxyUrl||'')}"
+            oninput="setIntegration('claude',{proxyUrl:this.value})" />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn filled ripple" onclick="testClaudeAPI()" style="flex:1;min-width:160px">
+          <span style="font-size:14px">✦</span> Test Connection
+        </button>
+        ${hasKey ? `<button class="btn btn-tonal ripple" onclick="S._aiPanelOpen=true;renderAIPanel()">Open AI Chat</button>` : ''}
+      </div>
+
+      <div style="background:var(--c-surf2);border-radius:var(--r-lg);padding:14px;font-size:13px;color:var(--c-on-surf-var);line-height:1.6">
+        <strong style="color:var(--c-on-surface)">What the AI can do:</strong>
+        Answer questions about tasks and team · Draft messages · Create tasks from natural language · Summarize workload · Suggest priorities · Analyze Shopify data
+        <br><br>
+        Get your API key at <strong>console.anthropic.com</strong>. Direct browser API calls are enabled via the <code style="background:var(--c-surf1);padding:1px 5px;border-radius:4px">anthropic-dangerous-direct-browser-access</code> header.
+      </div>
+    </div>
+  </div>`;
+}
+
+async function testClaudeAPI() {
+  const cfg = getIntegration('claude');
+  if (!cfg.apiKey) { toast('Add API key first', 'error'); return; }
+  toast('Testing Claude API…');
+  try {
+    const reply = await callClaudeAPI([{ role:'user', content:'Say "BLURRD Links AI is connected!" and nothing else.' }]);
+    if (reply) toast(`✅ ${reply.slice(0,60)}`);
+  } catch(e) {
+    toast('API test failed: ' + e.message, 'error');
+  }
 }
 
 // ═══════════════════════════
@@ -5802,7 +7633,7 @@ function renderAddUserModal() {
         <div class="field-input"><input id="new-user-name" type="text" placeholder="e.g. Alex Johnson" /></div>
       </div>
       <div class="field">
-        <label class="field-label">Email Address</label>
+        <label class="field-label">Email Address *</label>
         <div class="field-input"><input id="new-user-email" type="email" placeholder="alex@company.com" /></div>
       </div>
       <div class="field">
@@ -5817,9 +7648,24 @@ function renderAddUserModal() {
           ${COLORS.map((c,i) => `<div class="color-swatch${i===0?' active':''}" style="background:${c.value}" data-color="${c.value}" onclick="selectNewUserColor('${c.value}')"></div>`).join('')}
         </div>
       </div>
+      <div class="field" style="background:var(--c-primary-cont);border-radius:var(--r-xl);padding:12px 14px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span class="ms sm" style="color:var(--c-primary)">mail</span>
+          <div style="font-size:13px;font-weight:600">Send Invite Email</div>
+          <label class="toggle-switch" style="margin-left:auto">
+            <input type="checkbox" id="new-user-send-invite" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div style="font-size:12px;color:var(--c-on-surf-var);line-height:1.4">
+          The user will receive an invite link to set their password and join the team.
+        </div>
+      </div>
       <div class="modal-actions">
         <button class="btn btn-outlined btn-sm ripple" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-filled btn-sm ripple" onclick="saveNewUser()">Add User</button>
+        <button class="btn btn-filled btn-sm ripple" onclick="saveNewUser()">
+          <span class="ms sm">person_add</span> Add &amp; Invite
+        </button>
       </div>
     </div>
   </div>`;
@@ -5846,21 +7692,102 @@ function saveNewUser() {
   const name = document.getElementById('new-user-name')?.value?.trim();
   if (!name) { toast('Please enter a name', 'error'); return; }
   const email = document.getElementById('new-user-email')?.value?.trim() || '';
+  const sendInvite = document.getElementById('new-user-send-invite')?.checked !== false;
+
+  // Generate invite token
+  const inviteToken = uid() + uid();
   const u = {
     id: uid(), name, email, role: _newUserRole || 'member',
     color: _newUserColor || COLORS[0].value,
-    initials: initials(name), online: false
+    initials: initials(name), online: false,
+    inviteToken, invitePending: true
   };
   S.users.push(u);
   saveState();
   closeModal();
-  render();
-  toast(`${name} added to the team! 🎉`);
+
+  if (sendInvite && email) {
+    // Show the invite modal with the link
+    S.modal = { type: 'invite', userId: u.id, token: inviteToken, name, email };
+    render();
+  } else {
+    render();
+    toast(`${name} added to the team! 🎉`);
+  }
+}
+
+function renderInviteModal() {
+  const { userId, token, name, email } = S.modal;
+  const baseUrl = window.location.href.split('?')[0];
+  const inviteUrl = `${baseUrl}?invite=${token}`;
+
+  return `
+  <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
+    <div class="modal" id="invite-modal" style="max-width:440px">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h2 class="modal-title">Invite Sent 🎉</h2>
+        <div class="modal-close ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+      <div style="padding:0 20px 20px;display:flex;flex-direction:column;gap:16px">
+        <div style="background:var(--c-primary-cont);border-radius:var(--r-xl);padding:14px 16px;display:flex;gap:12px;align-items:center">
+          <span class="ms" style="font-size:32px;color:var(--c-primary)">person_add</span>
+          <div>
+            <div style="font-weight:600;font-size:15px">${escHtml(name)}</div>
+            <div style="font-size:13px;color:var(--c-on-surf-var)">${escHtml(email)}</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--c-on-surf-var);margin-bottom:6px">Invite Link</div>
+          <div class="invite-link-box">
+            <input id="invite-link-input" type="text" value="${escHtml(inviteUrl)}" readonly
+              style="flex:1;border:none;background:transparent;outline:none;font-size:12px;font-family:var(--font-ui);color:var(--c-on-surface);min-width:0" />
+            <button class="btn btn-tonal btn-sm ripple" onclick="copyInviteLink()">
+              <span class="ms sm">content_copy</span> Copy
+            </button>
+          </div>
+          <div style="font-size:11px;color:var(--c-on-surf-var);margin-top:4px">Share this link with ${escHtml(name)} so they can set their password and sign in.</div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--c-on-surf-var);margin-bottom:6px">Send by Email</div>
+          <a class="btn filled ripple" style="display:flex;gap:8px;text-decoration:none"
+            href="mailto:${escHtml(email)}?subject=You've been invited to BLURRD Links&body=Hi ${encodeURIComponent(name)},%0A%0AYou've been invited to join BLURRD Links.%0A%0AClick the link below to set your password and get started:%0A${encodeURIComponent(inviteUrl)}%0A%0ASee you inside! 🏌️">
+            <span class="ms sm">mail</span> Open Email App
+          </a>
+        </div>
+      </div>
+      <div class="modal-actions" style="border-top:1px solid var(--c-outline-var)">
+        <button class="btn btn-outlined btn-sm ripple" onclick="closeModal()">Done</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function copyInviteLink() {
+  const input = document.getElementById('invite-link-input');
+  if (!input) return;
+  navigator.clipboard.writeText(input.value).then(() => {
+    toast('Invite link copied! 📋', 'success');
+  }).catch(() => {
+    input.select();
+    document.execCommand('copy');
+    toast('Link copied!', 'success');
+  });
 }
 
 // ═══════════════════════════
 // INTEGRATIONS PAGE
 // ═══════════════════════════
+function renderIntegrationsPageInline() {
+  // Strip outer page wrapper — just the cards
+  const full = renderIntegrationsPage();
+  // Return content between the first <div class="page-integrations"> wrapper
+  const m = full.match(/<div class="page-integrations">([\s\S]*)<\/div>\s*$/);
+  return m ? m[1] : full;
+}
+
 function renderIntegrationsPage() {
   const cfg = loadIntegrations();
   const shopify = cfg.shopify || {};
@@ -6154,6 +8081,191 @@ function deleteTag(tagId) {
   saveState();
   renderPageContent();
   toast('Label deleted');
+}
+
+// ═══════════════════════════
+// QUICK LABEL MODAL
+// ═══════════════════════════
+function openQuickLabelModal() {
+  S.modal = 'labels';
+  render();
+}
+
+function renderQuickLabelModal() {
+  const colors = ['#0057B8','#00695C','#6750A4','#B5294C','#B45309','#BA1A1A','#334155','#0D9488','#F59E0B','#10B981'];
+  return `
+  <div class="modal-overlay" onclick="closeModal()">
+    <div class="modal-card" style="max-width:480px;width:100%" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title"><span class="ms">label</span> Manage Labels</div>
+        <div class="icon-btn ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+      <div class="modal-body" style="max-height:60vh;overflow-y:auto">
+
+        <!-- Create new label -->
+        <div style="padding:16px;background:var(--c-surf2);border-radius:var(--r-xl);margin-bottom:16px">
+          <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.5px">New Label</div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input id="ql-name" type="text" placeholder="Label name…" maxlength="32"
+              style="flex:1;min-width:120px;padding:10px 14px;border-radius:var(--r-lg);border:1.5px solid var(--c-outline-var);background:var(--c-surface);font-size:14px;font-family:var(--font-ui);color:var(--c-on-surface);outline:none"
+              onfocus="this.style.borderColor='var(--c-primary)'" onblur="this.style.borderColor='var(--c-outline-var)'"
+              onkeydown="if(event.key==='Enter')quickCreateLabel()" />
+            <div style="display:flex;gap:4px;flex-wrap:wrap">
+              ${colors.map(c => `<div onclick="selectLabelColor('${c}')" id="lc-${c.slice(1)}"
+                style="width:24px;height:24px;border-radius:50%;background:${c};cursor:pointer;border:2px solid transparent;transition:transform .1s,border-color .1s"
+                class="label-color-swatch"></div>`).join('')}
+            </div>
+            <input type="color" id="ql-color" value="${colors[0]}" style="width:0;height:0;opacity:0;position:absolute" />
+            <button class="btn filled ripple" onclick="quickCreateLabel()" style="padding:10px 20px">
+              <span class="ms sm">add</span> Create
+            </button>
+          </div>
+        </div>
+
+        <!-- Existing labels -->
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.5px">
+          ${S.tags.length} Label${S.tags.length !== 1 ? 's' : ''}
+        </div>
+        ${S.tags.length === 0 ? `<div style="text-align:center;padding:24px;color:var(--c-on-surf-var);font-size:14px">No labels yet — create one above.</div>` :
+          S.tags.map(tag => {
+            const taskCount = S.tasks.filter(t => t.tags?.includes(tag.id)).length;
+            return `
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--r-lg);margin-bottom:6px;background:var(--c-surf1);border:1px solid var(--c-outline-var)">
+              <div style="width:16px;height:16px;border-radius:50%;background:${tag.color};flex-shrink:0"></div>
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:500;font-size:14px">${escHtml(tag.name)}</div>
+                <div style="font-size:12px;color:var(--c-on-surf-var)">${taskCount} task${taskCount !== 1 ? 's' : ''}</div>
+              </div>
+              <input type="color" value="${tag.color}" style="width:28px;height:28px;border:none;border-radius:50%;cursor:pointer;padding:0;background:none"
+                onchange="updateTagColor('${tag.id}',this.value)" title="Change color" />
+              ${canEdit() ? `<div class="icon-btn ripple" onclick="deleteTag('${tag.id}')" title="Delete label">
+                <span class="ms sm" style="color:var(--c-error)">delete</span>
+              </div>` : ''}
+            </div>`;
+          }).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+let _selectedLabelColor = '#0057B8';
+function selectLabelColor(color) {
+  _selectedLabelColor = color;
+  document.querySelectorAll('.label-color-swatch').forEach(el => {
+    el.style.borderColor = 'transparent';
+    el.style.transform = 'scale(1)';
+  });
+  const el = document.getElementById('lc-' + color.slice(1));
+  if (el) { el.style.borderColor = '#fff'; el.style.transform = 'scale(1.2)'; el.style.boxShadow = `0 0 0 2px ${color}`; }
+  const colorInput = document.getElementById('ql-color');
+  if (colorInput) colorInput.value = color;
+}
+
+function quickCreateLabel() {
+  const name = document.getElementById('ql-name')?.value?.trim();
+  const colorInput = document.getElementById('ql-color');
+  const color = colorInput?.value || _selectedLabelColor || '#0057B8';
+  if (!name) { toast('Enter a label name', 'error'); return; }
+  if (S.tags.find(t => t.name.toLowerCase() === name.toLowerCase())) { toast('Label already exists', 'error'); return; }
+  S.tags.push({ id: uid(), name, color });
+  saveState();
+  toast(`Label "${name}" created ✅`);
+  S.modal = 'labels'; // re-render same modal
+  render();
+}
+
+function updateTagColor(tagId, color) {
+  const tag = S.tags.find(t => t.id === tagId);
+  if (tag) { tag.color = color; saveState(); }
+}
+
+// ═══════════════════════════
+// KANBAN BOARD MANAGEMENT
+// ═══════════════════════════
+function openBoardManager() {
+  S.modal = 'boards';
+  render();
+}
+
+function renderBoardManagerModal() {
+  return `
+  <div class="modal-overlay" onclick="closeModal()">
+    <div class="modal-card" style="max-width:500px;width:100%" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title"><span class="ms">view_kanban</span> Manage Boards</div>
+        <div class="icon-btn ripple" onclick="closeModal()"><span class="ms">close</span></div>
+      </div>
+      <div class="modal-body" style="max-height:60vh;overflow-y:auto">
+
+        ${canEdit() ? `
+        <!-- Create board -->
+        <div style="padding:16px;background:var(--c-surf2);border-radius:var(--r-xl);margin-bottom:16px">
+          <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.5px">New Board</div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <input id="new-board-name" type="text" placeholder="Board name…" maxlength="48"
+              style="flex:1;padding:10px 14px;border-radius:var(--r-lg);border:1.5px solid var(--c-outline-var);background:var(--c-surface);font-size:14px;font-family:var(--font-ui);color:var(--c-on-surface);outline:none"
+              onfocus="this.style.borderColor='var(--c-primary)'" onblur="this.style.borderColor='var(--c-outline-var)'"
+              onkeydown="if(event.key==='Enter')createBoard()" />
+            <button class="btn filled ripple" onclick="createBoard()" style="padding:10px 20px">
+              <span class="ms sm">add</span> Create
+            </button>
+          </div>
+        </div>` : ''}
+
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--c-on-surf-var);text-transform:uppercase;letter-spacing:.5px">
+          ${S.boards.length} Board${S.boards.length !== 1 ? 's' : ''}
+        </div>
+        ${S.boards.map(b => {
+          const taskCount = S.tasks.filter(t => t.boardId === b.id || (!t.boardId && b.id === 'board1')).length;
+          const isActive = S.selectedBoardId === b.id;
+          return `
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-lg);margin-bottom:8px;background:var(--c-surf1);border:${isActive ? '2px solid var(--c-primary)' : '1px solid var(--c-outline-var)'}">
+            <span class="ms" style="color:${isActive ? 'var(--c-primary)' : 'var(--c-on-surf-var)'}">view_kanban</span>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:${isActive ? 700 : 500};font-size:14px">${escHtml(b.name)} ${isActive ? '<span style="font-size:11px;color:var(--c-primary)">● Active</span>' : ''}</div>
+              <div style="font-size:12px;color:var(--c-on-surf-var)">${taskCount} task${taskCount !== 1 ? 's' : ''}</div>
+            </div>
+            <button class="btn btn-tonal btn-sm ripple" onclick="switchBoard('${b.id}')">
+              ${isActive ? 'Active' : 'Switch'}
+            </button>
+            ${canEdit() && S.boards.length > 1 ? `<div class="icon-btn ripple" onclick="deleteBoard('${b.id}')"><span class="ms sm" style="color:var(--c-error)">delete</span></div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function createBoard() {
+  const name = document.getElementById('new-board-name')?.value?.trim();
+  if (!name) { toast('Enter a board name', 'error'); return; }
+  const newBoard = { id: uid(), name, description: '' };
+  S.boards.push(newBoard);
+  S.selectedBoardId = newBoard.id;
+  saveState();
+  toast(`Board "${name}" created`);
+  S.modal = 'boards';
+  render();
+}
+
+function switchBoard(boardId) {
+  S.selectedBoardId = boardId;
+  saveState();
+  S.modal = null;
+  navigate('kanban');
+}
+
+function deleteBoard(boardId) {
+  if (S.boards.length <= 1) { toast('Cannot delete the last board', 'error'); return; }
+  if (!confirm('Delete this board? Tasks on it will move to the main board.')) return;
+  // Move tasks to board1
+  S.tasks.forEach(t => { if (t.boardId === boardId) t.boardId = 'board1'; });
+  S.boards = S.boards.filter(b => b.id !== boardId);
+  if (S.selectedBoardId === boardId) S.selectedBoardId = S.boards[0].id;
+  saveState();
+  toast('Board deleted');
+  S.modal = 'boards';
+  render();
 }
 
 // ═══════════════════════════
