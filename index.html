@@ -1033,6 +1033,202 @@ img { max-width: 100%; display: block; }
 .nav-item, .btn, .chip, .icon-btn, .task-card, .kanban-card { user-select: none; }
 
 /* ══════════════════════════════════════
+   INTEGRATIONS PAGE
+══════════════════════════════════════ */
+.page-integrations { padding: 24px; max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.integration-card {
+  background: var(--c-surf1); border-radius: var(--r-2xl); border: 1px solid var(--c-outline-var);
+  overflow: hidden; transition: box-shadow var(--dur-med);
+}
+.integration-card:hover { box-shadow: var(--el2); }
+.integration-card-header {
+  display: flex; align-items: center; gap: 16px; padding: 20px 22px;
+  cursor: pointer; user-select: none;
+}
+.integration-icon {
+  width: 48px; height: 48px; border-radius: var(--r-lg); display: flex; align-items: center; justify-content: center;
+  font-size: 26px; flex-shrink: 0;
+}
+.integration-icon.gmail { background: #FEE2E2; }
+.integration-icon.gcal { background: #DBEAFE; }
+.integration-icon.shopify { background: #D1FAE5; }
+.integration-icon.drive { background: #FEF3C7; }
+.integration-icon.dropbox { background: #DBEAFE; }
+.integration-icon.onedrive { background: #EDE9FE; }
+.integration-icon.digest { background: var(--c-primary-cont); }
+.integration-title { font-family: var(--font-ui); font-size: 16px; font-weight: 600; }
+.integration-sub { font-size: 13px; color: var(--c-on-surf-var); margin-top: 2px; }
+.integration-status { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.integration-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-outline); }
+.integration-status-dot.connected { background: #22C55E; }
+.integration-body { padding: 0 22px 20px; border-top: 1px solid var(--c-outline-var); }
+.integration-body.hidden { display: none; }
+.integration-field-group { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.integration-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.integration-info-box {
+  background: var(--c-primary-cont); color: var(--c-on-primary-cont);
+  border-radius: var(--r-lg); padding: 12px 16px; font-size: 13px; line-height: 1.6;
+  display: flex; gap: 10px; align-items: flex-start; margin-top: 12px;
+}
+.integration-info-box .ms { flex-shrink: 0; margin-top: 1px; }
+.integration-section-label { font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase; color: var(--c-on-surf-var); margin-bottom: 8px; margin-top: 16px; }
+.integration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 8px; }
+.integration-mini-card {
+  background: var(--c-surf2); border-radius: var(--r-xl); padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.integration-mini-icon { font-size: 28px; width: 40px; text-align: center; flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   CLOUD STORAGE LINKS
+══════════════════════════════════════ */
+.cloud-link-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  background: var(--c-surf1); border-radius: var(--r-lg); border: 1px solid var(--c-outline-var);
+  transition: border-color var(--dur-fast);
+}
+.cloud-link-item:hover { border-color: var(--c-primary); }
+.cloud-link-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
+.cloud-link-name { flex: 1; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cloud-link-service { font-size: 11px; color: var(--c-on-surf-var); flex-shrink: 0; }
+.cloud-link-url-input { display: flex; gap: 8px; margin-top: 8px; }
+
+/* ══════════════════════════════════════
+   SHOPIFY ORDER PREVIEW
+══════════════════════════════════════ */
+.shopify-order-card {
+  background: var(--c-surf1); border-radius: var(--r-xl); border: 1px solid var(--c-outline-var);
+  padding: 12px 14px; margin-top: 4px; cursor: pointer; transition: border-color var(--dur-fast);
+}
+.shopify-order-card:hover { border-color: #22C55E; }
+.shopify-order-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.shopify-logo { font-size: 18px; }
+.shopify-order-num { font-family: var(--font-ui); font-size: 14px; font-weight: 700; }
+.shopify-order-status { margin-left: auto; }
+.shopify-order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; }
+.shopify-order-field label { color: var(--c-on-surf-var); display: block; margin-bottom: 2px; }
+.shopify-order-field span { font-weight: 600; }
+
+/* ══════════════════════════════════════
+   EMAIL DIGEST
+══════════════════════════════════════ */
+.digest-preview {
+  background: var(--c-surf1); border-radius: var(--r-xl); border: 1px solid var(--c-outline-var);
+  overflow: hidden; margin-top: 12px;
+}
+.digest-preview-header {
+  background: var(--c-primary); color: var(--c-on-primary); padding: 14px 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.digest-preview-body { padding: 16px 18px; }
+.digest-section { margin-bottom: 14px; }
+.digest-section-title { font-family: var(--font-ui); font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--c-on-surf-var); margin-bottom: 8px; }
+.digest-task-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--c-outline-var); font-size: 13px; }
+.digest-task-row:last-child { border-bottom: none; }
+
+/* ══════════════════════════════════════
+   CALENDAR EXPORT
+══════════════════════════════════════ */
+.cal-export-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.cal-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-full); font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity var(--dur-fast); }
+.cal-btn:hover { opacity: .85; }
+.cal-btn.gcal { background: #4285F4; color: #fff; }
+.cal-btn.outlook { background: #0078D4; color: #fff; }
+.cal-btn.ics { background: var(--c-surf2); color: var(--c-on-surface); border: 1px solid var(--c-outline-var); }
+
+/* ══════════════════════════════════════
+   SUBTASKS / CHECKLIST
+══════════════════════════════════════ */
+.subtask-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.subtask-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  background: var(--c-surf1); border-radius: var(--r-md); transition: background var(--dur-fast);
+}
+.subtask-item:hover { background: var(--c-surf2); }
+.subtask-check {
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--c-outline);
+  display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+  transition: all var(--dur-fast);
+}
+.subtask-check.done { background: var(--c-primary); border-color: var(--c-primary); color: var(--c-on-primary); }
+.subtask-check.done::after { content: '✓'; font-size: 11px; font-weight: 700; }
+.subtask-text { flex: 1; font-size: 14px; }
+.subtask-text.done { text-decoration: line-through; color: var(--c-on-surf-var); }
+.subtask-del { opacity: 0; transition: opacity var(--dur-fast); }
+.subtask-item:hover .subtask-del { opacity: 1; }
+.subtask-add-row { display: flex; gap: 8px; margin-top: 8px; }
+.subtask-progress { height: 6px; background: var(--c-outline-var); border-radius: var(--r-full); overflow: hidden; margin-top: 8px; }
+.subtask-progress-fill { height: 100%; background: var(--c-primary); border-radius: var(--r-full); transition: width .4s var(--ease-out); }
+.subtask-progress-label { font-size: 11px; color: var(--c-on-surf-var); margin-top: 4px; }
+
+/* ══════════════════════════════════════
+   TAGS / LABELS
+══════════════════════════════════════ */
+.task-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: var(--r-full); font-size: 11px; font-weight: 600;
+  letter-spacing: .3px; white-space: nowrap;
+}
+.task-tag .ms { font-size: 12px; cursor: pointer; opacity: .7; }
+.task-tag .ms:hover { opacity: 1; }
+.tag-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: var(--r-full); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: opacity var(--dur-fast);
+}
+.tag-chip:hover { opacity: .8; }
+.tag-chip.selected { box-shadow: 0 0 0 2px var(--c-on-surface); }
+.tag-picker { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tags-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.admin-tags-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.admin-tag-item { display: flex; align-items: center; gap: 6px; }
+.tag-color-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.tag-filter-chip {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+  border-radius: var(--r-full); font-size: 12px; font-weight: 500; cursor: pointer;
+  border: 1.5px solid var(--c-outline-var); background: none; color: var(--c-on-surface);
+  transition: all var(--dur-fast);
+}
+.tag-filter-chip.active { border-color: var(--c-primary); background: var(--c-primary-cont); color: var(--c-on-primary-cont); }
+
+/* ══════════════════════════════════════
+   TIME TRACKING
+══════════════════════════════════════ */
+.time-tracking-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-top: 8px; }
+.time-stat-pill {
+  display: flex; align-items: center; gap: 6px; padding: 8px 14px;
+  background: var(--c-surf1); border-radius: var(--r-lg); font-size: 13px;
+}
+.time-stat-pill .ms { font-size: 16px; color: var(--c-primary); }
+.time-stat-pill strong { font-weight: 600; }
+.time-log-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; max-height: 140px; overflow-y: auto; }
+.time-log-entry {
+  display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+  background: var(--c-surf1); border-radius: var(--r-sm); font-size: 13px;
+}
+.time-log-entry .time-hours { font-weight: 600; color: var(--c-primary); min-width: 40px; }
+.time-log-entry .time-note { flex: 1; color: var(--c-on-surf-var); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.time-log-entry .time-who { font-size: 11px; color: var(--c-on-surf-var); flex-shrink: 0; }
+.time-progress-bar { height: 6px; background: var(--c-outline-var); border-radius: var(--r-full); overflow: hidden; margin-top: 6px; }
+.time-progress-fill { height: 100%; border-radius: var(--r-full); transition: width .4s var(--ease-out); }
+
+/* ══════════════════════════════════════
+   ACTIVITY LOG / AUDIT TRAIL
+══════════════════════════════════════ */
+.activity-log { display: flex; flex-direction: column; gap: 0; }
+.activity-entry { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--c-outline-var); }
+.activity-entry:last-child { border-bottom: none; }
+.activity-dot {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--c-surf2);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+}
+.activity-dot .ms { font-size: 14px; color: var(--c-on-surf-var); }
+.activity-body { flex: 1; min-width: 0; }
+.activity-text { font-size: 13px; line-height: 1.5; }
+.activity-text strong { font-weight: 600; }
+.activity-time { font-size: 11px; color: var(--c-on-surf-var); margin-top: 2px; }
+
+/* ══════════════════════════════════════
    MY TASKS PAGE
 ══════════════════════════════════════ */
 .page-mytasks { padding: 24px; max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
@@ -1295,6 +1491,173 @@ img { max-width: 100%; display: block; }
 const APP_VERSION = '1.2.0';
 const STATE_SCHEMA_VERSION = 3;
 
+// ═══════════════════════════
+// INTEGRATIONS CONFIG
+// ═══════════════════════════
+const INTEGRATIONS_KEY = 'blurrd_integrations';
+
+function loadIntegrations() {
+  try { return JSON.parse(localStorage.getItem(INTEGRATIONS_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveIntegrations(cfg) {
+  try { localStorage.setItem(INTEGRATIONS_KEY, JSON.stringify(cfg)); } catch(e) {}
+}
+function getIntegration(key) { return loadIntegrations()[key] || {}; }
+function setIntegration(key, data) {
+  const cfg = loadIntegrations();
+  cfg[key] = { ...cfg[key], ...data };
+  saveIntegrations(cfg);
+}
+
+// Cloud storage URL detection
+function detectCloudService(url) {
+  if (!url) return null;
+  try { new URL(url); } catch(e) { return null; }
+  if (/drive\.google\.com|docs\.google\.com|sheets\.google\.com|slides\.google\.com/.test(url)) {
+    const t = /\/document\//i.test(url) ? 'Google Doc' : /\/spreadsheets\//i.test(url) ? 'Google Sheet' : /\/presentation\//i.test(url) ? 'Google Slides' : 'Google Drive';
+    return { service:'Google Drive', icon:'📄', type:t, color:'#FEF3C7' };
+  }
+  if (/dropbox\.com/.test(url)) return { service:'Dropbox', icon:'📦', type:'Dropbox File', color:'#DBEAFE' };
+  if (/onedrive\.live\.com|1drv\.ms|sharepoint\.com/.test(url)) return { service:'OneDrive', icon:'☁️', type:'OneDrive File', color:'#EDE9FE' };
+  if (/figma\.com/.test(url)) return { service:'Figma', icon:'🎨', type:'Figma File', color:'#FFE4E6' };
+  if (/notion\.so/.test(url)) return { service:'Notion', icon:'📝', type:'Notion Page', color:'#F1F5F9' };
+  if (/loom\.com/.test(url)) return { service:'Loom', icon:'🎥', type:'Loom Video', color:'#FEF3C7' };
+  return { service:'Link', icon:'🔗', type:'External Link', color:'var(--c-surf2)' };
+}
+
+function extractLinkName(url, cloudInfo) {
+  try {
+    const u = new URL(url);
+    // Try to extract a readable name from the URL
+    const segments = u.pathname.split('/').filter(Boolean);
+    const last = segments[segments.length - 1];
+    if (last && last.length > 3 && !last.match(/^[a-f0-9-]{8,}$/i)) return decodeURIComponent(last);
+    return cloudInfo?.type || u.hostname;
+  } catch(e) { return url.slice(0, 40); }
+}
+
+// ── Calendar Export ──
+function generateICS(task) {
+  if (!task.dueDate) { toast('Task has no due date', 'error'); return null; }
+  const dtStart = task.dueDate.replace(/-/g, '') + 'T090000Z';
+  const dtEnd = task.dueDate.replace(/-/g, '') + 'T100000Z';
+  const created = new Date(task.createdAt || Date.now()).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const ics = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'CALSCALE:GREGORIAN',
+    'PRODID:-//BLURRD Links//EN', 'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${task.id}@blurrd-links`,
+    `DTSTAMP:${created}`,
+    `DTSTART;VALUE=DATE:${task.dueDate.replace(/-/g,'')}`,
+    `DTEND;VALUE=DATE:${task.dueDate.replace(/-/g,'')}`,
+    `SUMMARY:${task.title}`,
+    `DESCRIPTION:${(task.description || task.notes || '').replace(/\n/g,'\\n').slice(0,500)}`,
+    `STATUS:${task.status === 'done' ? 'COMPLETED' : 'NEEDS-ACTION'}`,
+    `PRIORITY:${({urgent:1,high:5,medium:5,low:9})[task.priority]||5}`,
+    'END:VEVENT', 'END:VCALENDAR'
+  ].join('\r\n');
+  return ics;
+}
+
+function exportTaskToICS(taskId) {
+  const t = getTask(taskId);
+  if (!t) return;
+  const ics = generateICS(t);
+  if (!ics) return;
+  const blob = new Blob([ics], { type:'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `${t.title.slice(0,40).replace(/[^a-z0-9]/gi,'_')}.ics`;
+  a.click(); URL.revokeObjectURL(url);
+  toast('Calendar event downloaded! 📅');
+}
+
+function exportAllTasksToICS() {
+  const tasks = S.tasks.filter(t => t.dueDate && t.assignees?.includes(S.currentUser?.id));
+  if (!tasks.length) { toast('No tasks with due dates assigned to you', 'error'); return; }
+  const events = tasks.map(generateICS).filter(Boolean);
+  // Merge into single ICS
+  const merged = events.map(e => e.split('\r\n').filter(l => !l.startsWith('BEGIN:VCALENDAR') && !l.startsWith('END:VCALENDAR') && !l.startsWith('VERSION') && !l.startsWith('CALSCALE') && !l.startsWith('PRODID') && !l.startsWith('METHOD')).join('\r\n')).join('\r\n');
+  const full = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nCALSCALE:GREGORIAN\r\nPRODID:-//BLURRD Links//EN\r\n${merged}\r\nEND:VCALENDAR`;
+  const blob = new Blob([full], { type:'text/calendar' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'blurrd-links-my-tasks.ics'; a.click(); URL.revokeObjectURL(url);
+  toast(`Exported ${tasks.length} tasks to calendar! 📅`);
+}
+
+function googleCalendarUrl(task) {
+  if (!task.dueDate) return '#';
+  const d = task.dueDate.replace(/-/g,'');
+  const title = encodeURIComponent(task.title);
+  const details = encodeURIComponent(task.description || task.notes || 'BLURRD Links task');
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${d}/${d}&details=${details}`;
+}
+
+function outlookCalendarUrl(task) {
+  if (!task.dueDate) return '#';
+  const title = encodeURIComponent(task.title);
+  const body = encodeURIComponent(task.description || task.notes || '');
+  const start = task.dueDate + 'T09:00:00';
+  const end = task.dueDate + 'T10:00:00';
+  return `https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&body=${body}&startdt=${start}&enddt=${end}`;
+}
+
+// ── Email Digest ──
+function generateDigest() {
+  const today = new Date().toISOString().split('T')[0];
+  const myId = S.currentUser?.id;
+  const overdue = S.tasks.filter(t => t.assignees?.includes(myId) && t.status !== 'done' && t.dueDate && t.dueDate < today);
+  const dueToday = S.tasks.filter(t => t.assignees?.includes(myId) && t.status !== 'done' && t.dueDate === today);
+  const upcoming = S.tasks.filter(t => t.assignees?.includes(myId) && t.status !== 'done' && t.dueDate && t.dueDate > today).slice(0,5);
+  return { overdue, dueToday, upcoming };
+}
+
+function digestToText() {
+  const d = generateDigest();
+  const name = S.currentUser?.name?.split(' ')[0] || 'there';
+  const date = new Date().toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+  let lines = [`BLURRD Links — Daily Digest for ${name}`, date, ''];
+  if (d.overdue.length) {
+    lines.push(`⚠️ OVERDUE (${d.overdue.length})`);
+    d.overdue.forEach(t => lines.push(`  • ${t.title} — was due ${formatDate(t.dueDate)}`));
+    lines.push('');
+  }
+  if (d.dueToday.length) {
+    lines.push(`🎯 DUE TODAY (${d.dueToday.length})`);
+    d.dueToday.forEach(t => lines.push(`  • ${t.title}`));
+    lines.push('');
+  }
+  if (d.upcoming.length) {
+    lines.push(`📅 COMING UP`);
+    d.upcoming.forEach(t => lines.push(`  • ${t.title} — due ${formatDate(t.dueDate)}`));
+    lines.push('');
+  }
+  if (!d.overdue.length && !d.dueToday.length && !d.upcoming.length) {
+    lines.push("⛳ All clear — no tasks due soon. Hole in one!");
+  }
+  return lines.join('\n');
+}
+
+// ── Email to Task ──
+function createTaskFromEmail(subject, body) {
+  if (!subject) return;
+  const t = {
+    id: uid(), title: subject.slice(0, 120),
+    description: body || '',
+    status: 'todo', priority: 'medium',
+    dueDate: '', assignees: [S.currentUser.id],
+    tags: [], notes: 'Imported from email',
+    attachments: [], comments: [], subtasks: [],
+    timeEstimate: 0, timeLogs: [],
+    activityLog: [{ id: uid(), userId: S.currentUser.id, action:'created', details:'Task created from email', timestamp: Date.now() }],
+    createdBy: S.currentUser.id, createdAt: Date.now(), updatedAt: Date.now()
+  };
+  S.tasks.unshift(t);
+  saveState();
+  return t;
+}
+
 const CHANGELOG = [
   {
     version: '1.2.0',
@@ -1347,11 +1710,21 @@ const CHANGELOG = [
 // ═══════════════════════════
 // CONSTANTS
 // ═══════════════════════════
-const STATUSES = ['todo','in_progress','review','done'];
-const STATUS_LABELS = { todo:'To Do', in_progress:'In Progress', review:'In Review', done:'Done' };
+const STATUSES = ['todo','in_progress','blocked','review','done'];
+const STATUS_LABELS = { todo:'To Do', in_progress:'In Progress', blocked:'Blocked', review:'In Review', done:'Done' };
+const STATUS_ICONS = { todo:'radio_button_unchecked', in_progress:'pending', blocked:'block', review:'rate_review', done:'check_circle' };
 const PRIORITIES = ['low','medium','high','urgent'];
 const PRIORITY_LABELS = { low:'Low', medium:'Medium', high:'High', urgent:'Urgent' };
-const ROLES = ['admin','manager','member'];
+const ROLES = ['admin','manager','member','read_only'];
+const ROLE_LABELS = { admin:'Admin', manager:'Manager', member:'Member', read_only:'Read Only' };
+
+const DEFAULT_TAGS = [
+  { id:'tag1', name:'Design', color:'#6750A4' },
+  { id:'tag2', name:'Development', color:'#0057B8' },
+  { id:'tag3', name:'Marketing', color:'#B45309' },
+  { id:'tag4', name:'Bug', color:'#BA1A1A' },
+  { id:'tag5', name:'Feature', color:'#00695C' },
+];
 const EMOJIS = ['👍','❤️','😂','🔥','👏','😮'];
 const COLORS = [
   { name:'Ocean', value:'#0057B8' }, { name:'Emerald', value:'#00695C' },
@@ -1389,11 +1762,11 @@ const now = Date.now();
 const D = (d) => new Date(Date.now() + d * 86400000).toISOString().split('T')[0];
 
 const DEFAULT_TASKS = [
-  { id:'t1', title:'Finalize Q2 campaign brief', description:'Complete the full creative brief for the summer campaign including target audience, messaging pillars, and channel strategy.', status:'in_progress', priority:'high', dueDate: D(2), assignees:['u1','u2'], notes:'Check with Mordechai on budget approval first.', attachments:[], comments:[{ id:'c1', userId:'u2', text:'Brief template is in the shared drive', timestamp: now - 3600000 }], createdBy:'u1', createdAt: now - 86400000, updatedAt: now - 3600000 },
-  { id:'t2', title:'BLURRD Links app testing & QA', description:'Full QA pass on the new internal communications platform across all devices.', status:'todo', priority:'urgent', dueDate: D(1), assignees:['u3','u4'], notes:'', attachments:[], comments:[], createdBy:'u1', createdAt: now - 7200000, updatedAt: now - 7200000 },
-  { id:'t3', title:'Brand identity refresh — typography update', description:'Update the primary font across all brand touchpoints to reflect the new expressive direction.', status:'review', priority:'medium', dueDate: D(5), assignees:['u2'], notes:'See Google Slides deck for before/after comparison.', attachments:[], comments:[], createdBy:'u2', createdAt: now - 172800000, updatedAt: now - 43200000 },
-  { id:'t4', title:'Social media content calendar — May', description:'Plan and schedule all social posts for May across Instagram, LinkedIn, and X.', status:'done', priority:'low', dueDate: D(-1), assignees:['u3'], notes:'', attachments:[], comments:[], createdBy:'u2', createdAt: now - 259200000, updatedAt: now - 86400000 },
-  { id:'t5', title:'Client deck for onboarding presentation', description:'Build a polished deck for the new client onboarding session next week.', status:'todo', priority:'high', dueDate: D(3), assignees:['u1','u2','u3'], notes:'Use the updated brand template from the drive.', attachments:[], comments:[], createdBy:'u1', createdAt: now - 43200000, updatedAt: now - 43200000 }
+  { id:'t1', title:'Finalize Q2 campaign brief', description:'Complete the full creative brief for the summer campaign including target audience, messaging pillars, and channel strategy.', status:'in_progress', priority:'high', dueDate: D(2), assignees:['u1','u2'], notes:'Check with Mordechai on budget approval first.', tags:['tag3'], timeEstimate:4, timeLogs:[], subtasks:[{id:'st1',text:'Define target audience',done:true},{id:'st2',text:'Write messaging pillars',done:false},{id:'st3',text:'Get budget approval',done:false}], attachments:[], comments:[{ id:'c1', userId:'u2', text:'Brief template is in the shared drive', timestamp: now - 3600000 }], activityLog:[{id:uid(),userId:'u1',action:'created',details:'Task created',timestamp:now-86400000},{id:uid(),userId:'u2',action:'commented',details:'Added a comment',timestamp:now-3600000}], createdBy:'u1', createdAt: now - 86400000, updatedAt: now - 3600000 },
+  { id:'t2', title:'BLURRD Links app testing & QA', description:'Full QA pass on the new internal communications platform across all devices.', status:'todo', priority:'urgent', dueDate: D(1), assignees:['u3','u4'], notes:'', tags:['tag2','tag4'], timeEstimate:8, timeLogs:[], subtasks:[{id:'st4',text:'Test on Android',done:false},{id:'st5',text:'Test on iOS',done:false},{id:'st6',text:'Test on Desktop',done:false}], attachments:[], comments:[], activityLog:[{id:uid(),userId:'u1',action:'created',details:'Task created',timestamp:now-7200000}], createdBy:'u1', createdAt: now - 7200000, updatedAt: now - 7200000 },
+  { id:'t3', title:'Brand identity refresh — typography update', description:'Update the primary font across all brand touchpoints to reflect the new expressive direction.', status:'review', priority:'medium', dueDate: D(5), assignees:['u2'], notes:'See Google Slides deck for before/after comparison.', tags:['tag1'], timeEstimate:6, timeLogs:[{id:uid(),userId:'u2',hours:3,note:'Initial research and selection',date:D(-2)}], subtasks:[{id:'st7',text:'Research font options',done:true},{id:'st8',text:'Apply to brand kit',done:false}], attachments:[], comments:[], activityLog:[{id:uid(),userId:'u2',action:'created',details:'Task created',timestamp:now-172800000},{id:uid(),userId:'u2',action:'status_changed',details:'Status changed to In Review',timestamp:now-43200000}], createdBy:'u2', createdAt: now - 172800000, updatedAt: now - 43200000 },
+  { id:'t4', title:'Social media content calendar — May', description:'Plan and schedule all social posts for May across Instagram, LinkedIn, and X.', status:'done', priority:'low', dueDate: D(-1), assignees:['u3'], notes:'', tags:['tag3'], timeEstimate:3, timeLogs:[{id:uid(),userId:'u3',hours:3,note:'Completed ahead of schedule',date:D(-3)}], subtasks:[{id:'st9',text:'Instagram posts',done:true},{id:'st10',text:'LinkedIn content',done:true},{id:'st11',text:'X/Twitter threads',done:true}], attachments:[], comments:[], activityLog:[{id:uid(),userId:'u2',action:'created',details:'Task created',timestamp:now-259200000},{id:uid(),userId:'u3',action:'status_changed',details:'Status changed to Done',timestamp:now-86400000}], createdBy:'u2', createdAt: now - 259200000, updatedAt: now - 86400000 },
+  { id:'t5', title:'Client deck for onboarding presentation', description:'Build a polished deck for the new client onboarding session next week.', status:'blocked', priority:'high', dueDate: D(3), assignees:['u1','u2','u3'], notes:'Use the updated brand template from the drive.', tags:['tag1','tag3'], timeEstimate:5, timeLogs:[], subtasks:[{id:'st12',text:'Create slide structure',done:false},{id:'st13',text:'Add brand assets',done:false},{id:'st14',text:'Review with team',done:false}], attachments:[], comments:[], activityLog:[{id:uid(),userId:'u1',action:'created',details:'Task created',timestamp:now-43200000},{id:uid(),userId:'u1',action:'status_changed',details:'Status changed to Blocked — awaiting client brief',timestamp:now-10000000}], createdBy:'u1', createdAt: now - 43200000, updatedAt: now - 43200000 }
 ];
 
 const DEFAULT_MESSAGES = [
@@ -1427,6 +1800,7 @@ let S = {
   channels: JSON.parse(JSON.stringify(DEFAULT_CHANNELS)),
   messages: JSON.parse(JSON.stringify(DEFAULT_MESSAGES)),
   notifications: JSON.parse(JSON.stringify(DEFAULT_NOTIFICATIONS)),
+  tags: JSON.parse(JSON.stringify(DEFAULT_TAGS)),
   theme: { primary: '#0057B8', font: "'Google Sans', sans-serif", mode: 'auto' },
   // UI state
   modal: null,
@@ -1434,7 +1808,7 @@ let S = {
   selectedChannelId: 'ch1',
   activeThreadMsgId: null,
   notifPanelOpen: false,
-  taskFilter: { status: 'all', priority: 'all' },
+  taskFilter: { status: 'all', priority: 'all', assignee: 'all', tag: 'all' },
   calDate: new Date(),
   calSelectedDate: null,
   searchOpen: false,
@@ -1449,7 +1823,12 @@ let S = {
   snoozeTarget: null,
   msgFromTask: null,
   _showWhatsNew: false,
-  _loginUserId: null  // used for password step
+  _loginUserId: null,
+  _taskActivityOpen: false,
+  _taskTimeLogOpen: false,
+  _integrationOpen: {},   // which integration panels are expanded
+  _digestVisible: false,
+  _emailToTaskOpen: false
 };
 
 // ═══════════════════════════
@@ -1462,7 +1841,8 @@ function saveState() {
       _appVersion: APP_VERSION,
       users: S.users, tasks: S.tasks, channels: S.channels,
       messages: S.messages, notifications: S.notifications,
-      theme: S.theme, currentUserId: S.currentUser?.id,
+      tags: S.tags, theme: S.theme,
+      currentUserId: S.currentUser?.id,
       selectedChannelId: S.selectedChannelId
     };
     localStorage.setItem('blurrd_state', JSON.stringify(toSave));
@@ -1474,28 +1854,26 @@ function loadState() {
     const raw = localStorage.getItem('blurrd_state');
     if (!raw) return;
     const d = JSON.parse(raw);
-    // Schema migration — merge saved data with defaults, preserving user data
-    const schemaOk = d._schemaVersion >= STATE_SCHEMA_VERSION;
     if (d.users?.length) {
-      // Merge: preserve saved users but ensure new fields exist
-      S.users = d.users.map(u => ({
-        avatar: null, password: '', ...u
+      S.users = d.users.map(u => ({ avatar: null, password: '', ...u }));
+    }
+    if (d.tasks?.length) {
+      // Forward-migrate tasks — ensure new fields exist
+      S.tasks = d.tasks.map(t => ({
+        subtasks: [], tags: [], timeEstimate: 0, timeLogs: [], activityLog: [], ...t
       }));
     }
-    if (d.tasks?.length) S.tasks = d.tasks;
     if (d.channels?.length) S.channels = d.channels;
     if (d.messages?.length) S.messages = d.messages;
     if (d.notifications?.length) S.notifications = d.notifications;
+    if (d.tags?.length) S.tags = d.tags;
     if (d.theme) S.theme = { ...S.theme, ...d.theme };
     if (d.selectedChannelId) S.selectedChannelId = d.selectedChannelId;
     if (d.currentUserId) {
       const u = S.users.find(u => u.id === d.currentUserId);
       if (u) S.currentUser = u;
     }
-    // Check if this is a fresh version the user hasn't seen yet
-    if (d._appVersion !== APP_VERSION) {
-      S._showWhatsNew = true;
-    }
+    if (d._appVersion !== APP_VERSION) S._showWhatsNew = true;
   } catch(e) {
     console.warn('State load failed, using defaults', e);
   }
@@ -1614,10 +1992,9 @@ function parseMentions(text) {
   });
 }
 
-// Full message content parser — handles @mentions AND [task:id] embeds
+// Full message content parser — handles @mentions, [task:id] embeds, [order:num] Shopify refs
 function parseMessageContent(text) {
-  // Split on [task:id] tokens, preserve them
-  const parts = text.split(/(\[task:[a-z0-9]+\])/gi);
+  const parts = text.split(/(\[task:[a-z0-9]+\]|\[order:#?[\d]+\])/gi);
   return parts.map(part => {
     const taskMatch = part.match(/^\[task:([a-z0-9]+)\]$/i);
     if (taskMatch) {
@@ -1625,8 +2002,32 @@ function parseMessageContent(text) {
       if (t) return renderTaskRef(t);
       return `<span style="opacity:.5;font-size:12px">[task not found]</span>`;
     }
+    const orderMatch = part.match(/^\[order:#?([\d]+)\]$/i);
+    if (orderMatch) {
+      return renderShopifyOrderRef(orderMatch[1]);
+    }
     return parseMentions(part);
   }).join('');
+}
+
+function renderShopifyOrderRef(orderNum) {
+  const cfg = getIntegration('shopify');
+  const storeUrl = cfg.storeUrl || '';
+  const orderUrl = storeUrl ? `${storeUrl.replace(/\/$/, '')}/admin/orders/${orderNum}` : '#';
+  return `<div class="shopify-order-card" onclick="event.stopPropagation();${storeUrl ? `window.open('${orderUrl}','_blank')` : `toast('Configure Shopify in Integrations first','error')`}">
+    <div class="shopify-order-header">
+      <span class="shopify-logo">🛍️</span>
+      <span class="shopify-order-num">Order #${orderNum}</span>
+      <span class="shopify-order-status"><span class="badge">Shopify</span></span>
+    </div>
+    <div class="shopify-order-grid">
+      <div class="shopify-order-field"><label>Status</label><span id="sorder-status-${orderNum}">—</span></div>
+      <div class="shopify-order-field"><label>Total</label><span id="sorder-total-${orderNum}">—</span></div>
+      <div class="shopify-order-field"><label>Customer</label><span id="sorder-customer-${orderNum}">—</span></div>
+      <div class="shopify-order-field"><label>Fulfillment</label><span id="sorder-fulfil-${orderNum}">—</span></div>
+    </div>
+    <div style="font-size:11px;color:var(--c-on-surf-var);margin-top:6px">${storeUrl ? `Click to view in Shopify ↗` : '⚙️ Connect Shopify in Integrations to fetch details'}</div>
+  </div>`;
 }
 
 function renderTaskRef(t) {
@@ -1663,7 +2064,38 @@ function getPriorityClass(p) {
 }
 
 function getStatusColor(s) {
-  return { todo:'', in_progress:'warn', review:'', done:'success' }[s] || '';
+  return { todo:'', in_progress:'warn', blocked:'error', review:'', done:'success' }[s] || '';
+}
+
+function getTag(id) { return S.tags.find(t => t.id === id); }
+
+function canEdit() {
+  return S.currentUser?.role !== 'read_only';
+}
+
+function logActivity(taskId, action, details) {
+  const t = getTask(taskId);
+  if (!t) return;
+  if (!t.activityLog) t.activityLog = [];
+  t.activityLog.push({ id: uid(), userId: S.currentUser?.id, action, details, timestamp: Date.now() });
+}
+
+function activityIcon(action) {
+  const icons = { created:'add_circle', status_changed:'swap_horiz', commented:'chat_bubble',
+    assigned:'person_add', attachment:'attach_file', edited:'edit', time_logged:'schedule',
+    subtask:'check_box', tag:'label', deleted:'delete' };
+  return icons[action] || 'circle';
+}
+
+function totalTimeLogged(task) {
+  return (task.timeLogs || []).reduce((s, l) => s + (l.hours || 0), 0);
+}
+
+function subtaskProgress(task) {
+  const subs = task.subtasks || [];
+  if (!subs.length) return { total: 0, done: 0, pct: 0 };
+  const done = subs.filter(s => s.done).length;
+  return { total: subs.length, done, pct: Math.round((done / subs.length) * 100) };
 }
 
 function unreadCount(channelId) {
@@ -1873,6 +2305,7 @@ function renderApp() {
       ${navItem('messages','forum','Messages', msgUnread)}
       ${navItem('mytasks','person','My Tasks')}
       ${navItem('accountability','leaderboard','Accountability')}
+      ${navItem('integrations','extension','Integrations')}
       ${navItem('changelog','history','Changelog')}
       ${S.currentUser?.role === 'admin' ? navItem('admin','admin_panel_settings','Admin') : ''}
       <div class="nav-spacer"></div>
@@ -1940,7 +2373,7 @@ function navItem(page, icon, label, badge = 0) {
 }
 
 function pageTitle() {
-  const titles = { tasks:'Tasks', kanban:'Kanban Board', calendar:'Calendar', messages:'Messages', admin:'Admin Dashboard', mytasks:'My Tasks', accountability:'Accountability', changelog:'Changelog' };
+  const titles = { tasks:'Tasks', kanban:'Kanban Board', calendar:'Calendar', messages:'Messages', admin:'Admin Dashboard', mytasks:'My Tasks', accountability:'Accountability', changelog:'Changelog', integrations:'Integrations' };
   return titles[S.page] || 'BLURRD Links';
 }
 
@@ -1999,6 +2432,7 @@ function renderPage() {
     case 'mytasks': return renderMyTasksPage();
     case 'accountability': return renderAccountabilityPage();
     case 'changelog': return renderChangelogPage();
+    case 'integrations': return renderIntegrationsPage();
     default: return renderTasksPage();
   }
 }
@@ -2015,6 +2449,8 @@ function renderTasksPage() {
   let tasks = S.tasks;
   if (S.taskFilter.status !== 'all') tasks = tasks.filter(t => t.status === S.taskFilter.status);
   if (S.taskFilter.priority !== 'all') tasks = tasks.filter(t => t.priority === S.taskFilter.priority);
+  if (S.taskFilter.assignee !== 'all') tasks = tasks.filter(t => t.assignees?.includes(S.taskFilter.assignee));
+  if (S.taskFilter.tag !== 'all') tasks = tasks.filter(t => t.tags?.includes(S.taskFilter.tag));
   if (S.searchQuery) {
     const q = S.searchQuery.toLowerCase();
     tasks = tasks.filter(t => t.title.toLowerCase().includes(q) || t.description?.toLowerCase().includes(q));
@@ -2022,24 +2458,39 @@ function renderTasksPage() {
 
   const counts = {};
   STATUSES.forEach(s => counts[s] = S.tasks.filter(t => t.status === s).length);
+  const overdueCount = S.tasks.filter(t => isOverdue(t.dueDate) && t.status !== 'done').length;
 
   return `
   <div class="page-tasks">
     <!-- Stats row -->
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      ${['todo','in_progress','review','done'].map(s => `
-        <div class="card elevated" style="flex:1;min-width:120px;padding:16px 20px;cursor:pointer" onclick="setTaskFilter('status','${s}')">
-          <div class="body-sm" style="color:var(--c-on-surf-var);margin-bottom:4px">${STATUS_LABELS[s]}</div>
+      ${STATUSES.map(s => `
+        <div class="card elevated" style="flex:1;min-width:100px;padding:14px 16px;cursor:pointer;border-left:3px solid ${{todo:'#78909C',in_progress:'#FF9800',blocked:'#BA1A1A',review:'#0057B8',done:'#4CAF50'}[s]}" onclick="setTaskFilter('status','${s}')">
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-bottom:2px;display:flex;align-items:center;gap:4px">
+            <span class="ms" style="font-size:14px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}
+          </div>
           <div class="headline-sm" style="font-family:var(--font-display)">${counts[s]}</div>
         </div>`).join('')}
+      ${overdueCount > 0 ? `
+        <div class="card elevated" style="flex:1;min-width:100px;padding:14px 16px;cursor:pointer;border-left:3px solid var(--c-error)" onclick="setTaskFilter('status','all')">
+          <div class="body-sm" style="color:var(--c-error);margin-bottom:2px;display:flex;align-items:center;gap:4px">
+            <span class="ms" style="font-size:14px">warning</span>Overdue
+          </div>
+          <div class="headline-sm" style="font-family:var(--font-display);color:var(--c-error)">${overdueCount}</div>
+        </div>` : ''}
     </div>
 
     <!-- Filters -->
-    <div class="task-filters">
-      <div class="chip${S.taskFilter.status==='all'?' active':''} ripple" onclick="setTaskFilter('status','all')">All</div>
-      ${STATUSES.map(s => `<div class="chip${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')">${STATUS_LABELS[s]}</div>`).join('')}
-      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 4px"></div>
+    <div class="task-filters" style="flex-wrap:wrap;gap:6px">
+      <div class="chip${S.taskFilter.status==='all'?' active':''} ripple" onclick="setTaskFilter('status','all')">All status</div>
+      ${STATUSES.map(s => `<div class="chip${S.taskFilter.status===s?' active':''} ripple" onclick="setTaskFilter('status','${s}')"><span class="ms" style="font-size:14px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}</div>`).join('')}
+      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
       ${PRIORITIES.map(p => `<div class="chip${S.taskFilter.priority===p?' active':''} ripple" onclick="setTaskFilter('priority','${p}')"><span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}</div>`).join('')}
+      <div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
+      ${S.users.map(u => `<div class="chip${S.taskFilter.assignee===u.id?' active':''} ripple" onclick="setTaskFilter('assignee','${u.id}')" title="${escHtml(u.name)}">${renderAvatar(u.id,'sm')}<span style="font-size:12px">${escHtml(u.name.split(' ')[0])}</span></div>`).join('')}
+      ${S.tags.length ? `<div style="width:1px;height:24px;background:var(--c-outline-var);margin:0 2px;align-self:center"></div>
+        ${S.tags.map(tag => `<div class="tag-filter-chip${S.taskFilter.tag===tag.id?' active':''}" onclick="setTaskFilter('tag','${tag.id}')" style="border-color:${tag.color}"><span class="tag-color-dot" style="background:${tag.color}"></span>${escHtml(tag.name)}</div>`).join('')}` : ''}
+      ${Object.values(S.taskFilter).some(v => v !== 'all') ? `<button class="btn btn-text btn-sm ripple" onclick="clearTaskFilters()" style="font-size:12px"><span class="ms sm">filter_alt_off</span>Clear</button>` : ''}
     </div>
 
     <!-- Task List -->
@@ -2050,9 +2501,7 @@ function renderTasksPage() {
   </div>
 
   <!-- FAB -->
-  <div class="fab ripple" onclick="openTaskModal(null)">
-    <span class="ms">add</span> New Task
-  </div>`;
+  ${canEdit() ? `<div class="fab ripple" onclick="openTaskModal(null)"><span class="ms">add</span> New Task</div>` : ''}`;
 }
 
 function renderTaskCard(t) {
@@ -2060,23 +2509,30 @@ function renderTaskCard(t) {
   const today = isDueToday(t.dueDate);
   const assigneeHtml = t.assignees.slice(0,3).map(id => renderAvatar(id, 'sm')).join('');
   const extra = t.assignees.length > 3 ? `<div class="avatar sm" style="background:var(--c-outline)">+${t.assignees.length-3}</div>` : '';
+  const sp = subtaskProgress(t);
+  const totalLogged = totalTimeLogged(t);
+  const taskTags = (t.tags || []).map(tid => getTag(tid)).filter(Boolean);
   return `
   <div class="task-card ripple${t.status==='done'?' done':''}" onclick="openTaskModal('${t.id}')">
     <div class="task-card-left">
       <div class="task-check${t.status==='done'?' checked':''} ripple" onclick="toggleTaskDone(event,'${t.id}')">
         ${t.status==='done' ? '<span class="ms sm">check</span>' : ''}
       </div>
-      <div class="task-meta">
+      <div class="task-meta" style="flex:1;min-width:0">
         <div class="task-title">${escHtml(t.title)}</div>
+        ${taskTags.length ? `<div class="tags-row">${taskTags.map(tag => `<span class="task-tag" style="background:${tag.color}22;color:${tag.color}">${escHtml(tag.name)}</span>`).join('')}</div>` : ''}
         <div class="task-sub">
           <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
-          <span class="badge ${getStatusColor(t.status)}">${STATUS_LABELS[t.status]}</span>
-          ${t.dueDate ? `<span class="task-due${overdue?' overdue':''}">
+          <span class="badge ${getStatusColor(t.status)}" style="display:flex;align-items:center;gap:3px"><span class="ms" style="font-size:12px">${STATUS_ICONS[t.status]}</span>${STATUS_LABELS[t.status]}</span>
+          ${t.dueDate ? `<span class="task-due${overdue?' overdue':today?' warn':''}">
             <span class="ms">schedule</span>${overdue ? 'Overdue' : today ? 'Today' : formatDateShort(t.dueDate)}
           </span>` : ''}
+          ${sp.total > 0 ? `<span class="task-attach-count" title="${sp.done}/${sp.total} subtasks"><span class="ms">checklist</span>${sp.done}/${sp.total}</span>` : ''}
           ${t.comments.length ? `<span class="task-attach-count"><span class="ms">chat_bubble</span>${t.comments.length}</span>` : ''}
+          ${totalLogged > 0 ? `<span class="task-attach-count"><span class="ms">schedule</span>${totalLogged}h</span>` : ''}
           ${t.attachments.length ? `<span class="task-attach-count"><span class="ms">attach_file</span>${t.attachments.length}</span>` : ''}
         </div>
+        ${sp.total > 0 ? `<div class="subtask-progress" style="margin-top:6px"><div class="subtask-progress-fill" style="width:${sp.pct}%"></div></div>` : ''}
       </div>
     </div>
     <div class="task-card-right">
@@ -2085,16 +2541,23 @@ function renderTaskCard(t) {
         <div class="icon-btn ripple" onclick="event.stopPropagation();messageAboutTask('${t.id}')" title="Message about this task">
           <span class="ms sm">forum</span>
         </div>
-        <div class="icon-btn ripple" onclick="deleteTask(event,'${t.id}')" title="Delete">
+        ${canEdit() ? `<div class="icon-btn ripple" onclick="deleteTask(event,'${t.id}')" title="Delete">
           <span class="ms sm" style="color:var(--c-error)">delete</span>
-        </div>
+        </div>` : ''}
       </div>
     </div>
   </div>`;
 }
 
 function setTaskFilter(type, val) {
-  S.taskFilter[type] = val;
+  // Toggle off if already active
+  if (S.taskFilter[type] === val) S.taskFilter[type] = 'all';
+  else S.taskFilter[type] = val;
+  renderPageContent();
+}
+
+function clearTaskFilters() {
+  S.taskFilter = { status: 'all', priority: 'all', assignee: 'all', tag: 'all' };
   renderPageContent();
 }
 
@@ -2121,11 +2584,6 @@ function deleteTask(e, taskId) {
 // ═══════════════════════════
 // TASK MODAL
 // ═══════════════════════════
-function openTaskModal(taskId) {
-  S.modal = { type: 'task', taskId };
-  S.editingTaskId = taskId;
-  render();
-}
 
 function renderModal() {
   if (!S.modal) return '';
@@ -2138,13 +2596,30 @@ function renderModal() {
   }
 }
 
+let _editingTags = [];
+
+function openTaskModal(taskId) {
+  S.modal = { type: 'task' };
+  S.editingTaskId = taskId;
+  _editingTags = taskId ? [...(getTask(taskId)?.tags || [])] : [];
+  S._taskActivityOpen = false;
+  S._taskTimeLogOpen = false;
+  render();
+}
+
 function renderTaskModal() {
   const isNew = !S.editingTaskId;
   const t = isNew ? {
     id: null, title:'', description:'', status:'todo', priority:'medium',
-    dueDate:'', assignees:[], notes:'', attachments:[], comments: []
+    dueDate:'', assignees:[], notes:'', attachments:[], comments:[],
+    subtasks:[], tags:[], timeEstimate:0, timeLogs:[], activityLog:[]
   } : getTask(S.editingTaskId);
   if (!t) { closeModal(); return ''; }
+
+  // Subtask progress
+  const sp = subtaskProgress(t);
+  const totalLogged = totalTimeLogged(t);
+  const taskTags = (t.tags || []).map(tid => getTag(tid)).filter(Boolean);
 
   return `
   <div class="modal-backdrop" id="modal-backdrop" onclick="backdropClick(event)">
@@ -2159,7 +2634,7 @@ function renderTaskModal() {
       <div class="field">
         <label class="field-label">Task Title *</label>
         <div class="field-input">
-          <input id="task-title" type="text" placeholder="What needs to be done?" value="${escHtml(t.title)}" />
+          <input id="task-title" type="text" placeholder="What needs to be done?" value="${escHtml(t.title)}" ${!canEdit()?'readonly':''} />
         </div>
       </div>
 
@@ -2167,7 +2642,7 @@ function renderTaskModal() {
       <div class="field">
         <label class="field-label">Description</label>
         <div class="field-input">
-          <textarea id="task-desc" placeholder="Add more details…">${escHtml(t.description)}</textarea>
+          <textarea id="task-desc" placeholder="Add more details…" ${!canEdit()?'readonly':''}>${escHtml(t.description)}</textarea>
         </div>
       </div>
 
@@ -2176,25 +2651,48 @@ function renderTaskModal() {
         <div class="field">
           <label class="field-label">Status</label>
           <div class="status-select">
-            ${STATUSES.map(s => `<div class="status-btn${t.status===s?' active':''}" data-status="${s}" onclick="setEditStatus('${s}')">${STATUS_LABELS[s]}</div>`).join('')}
+            ${STATUSES.map(s => `<div class="status-btn${t.status===s?' active':''}" data-status="${s}" onclick="${canEdit()?`setEditStatus('${s}')`:''}">
+              <span class="ms" style="font-size:14px">${STATUS_ICONS[s]}</span>${STATUS_LABELS[s]}
+            </div>`).join('')}
           </div>
         </div>
         <div class="field">
           <label class="field-label">Priority</label>
           <div class="chip-group">
-            ${PRIORITIES.map(p => `<div class="chip${t.priority===p?' active':''} ripple" onclick="setEditPriority('${p}')"><span class="priority-dot ${getPriorityClass(p)}"></span>${PRIORITY_LABELS[p]}</div>`).join('')}
+            ${PRIORITIES.map(p => `<div class="chip${t.priority===p?' active':''} ripple" onclick="${canEdit()?`setEditPriority('${p}')`:''}">${PRIORITY_LABELS[p]}</div>`).join('')}
           </div>
         </div>
       </div>
 
-      <!-- Due Date -->
-      <div class="field">
-        <label class="field-label">Due Date</label>
-        <div class="field-input">
-          <span class="ms sm" style="color:var(--c-on-surf-var)">calendar_today</span>
-          <input id="task-due" type="date" value="${t.dueDate || ''}" />
+      <!-- Due Date + Time Estimate -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="field">
+          <label class="field-label">Due Date</label>
+          <div class="field-input">
+            <span class="ms sm" style="color:var(--c-on-surf-var)">calendar_today</span>
+            <input id="task-due" type="date" value="${t.dueDate || ''}" ${!canEdit()?'readonly':''} />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Time Estimate (hours)</label>
+          <div class="field-input">
+            <span class="ms sm" style="color:var(--c-on-surf-var)">timer</span>
+            <input id="task-time-estimate" type="number" min="0" step="0.5" placeholder="0" value="${t.timeEstimate || ''}" ${!canEdit()?'readonly':''} />
+          </div>
         </div>
       </div>
+
+      <!-- Tags / Labels -->
+      ${S.tags.length ? `<div class="task-section">
+        <div class="task-section-title">Labels</div>
+        <div class="tag-picker">
+          ${S.tags.map(tag => {
+            const sel = _editingTags.includes(tag.id);
+            return `<span class="tag-chip${sel?' selected':''}" style="background:${tag.color}22;color:${tag.color};border:1.5px solid ${sel?tag.color:'transparent'}"
+              onclick="${canEdit()?`toggleEditTag('${tag.id}')`:''}">${escHtml(tag.name)}</span>`;
+          }).join('')}
+        </div>
+      </div>` : ''}
 
       <!-- Assignees -->
       <div class="task-section">
@@ -2202,49 +2700,125 @@ function renderTaskModal() {
         <div class="assignee-chips" id="assignee-chips">
           ${S.users.map(u => {
             const assigned = t.assignees.includes(u.id);
-            return `<div class="chip${assigned?' active':''} ripple" onclick="toggleAssignee('${u.id}')">
-              <div class="avatar sm" style="background:${u.color||userColor(u.name)}">${escHtml(u.initials||initials(u.name))}</div>
-              ${escHtml(u.name.split(' ')[0])}
+            const onclk = canEdit() ? `toggleAssignee('${u.id}')` : '';
+            return `<div class="chip${assigned?' active':''} ripple" onclick="${onclk}">
+              ${renderAvatar(u.id,'sm')} ${escHtml(u.name.split(' ')[0])}
             </div>`;
           }).join('')}
         </div>
       </div>
 
+      <!-- Subtasks / Checklist -->
+      <div class="task-section">
+        <div class="task-section-title" style="display:flex;align-items:center;gap:8px">
+          <span>Checklist</span>
+          ${sp.total > 0 ? `<span style="font-size:12px;color:var(--c-on-surf-var);font-weight:400">${sp.done}/${sp.total} · ${sp.pct}%</span>` : ''}
+        </div>
+        ${sp.total > 0 ? `<div class="subtask-progress"><div class="subtask-progress-fill" style="width:${sp.pct}%"></div></div>` : ''}
+        <div class="subtask-list" id="subtask-list">
+          ${(t.subtasks||[]).map(sub => `
+            <div class="subtask-item" id="sub-${sub.id}">
+              <div class="subtask-check${sub.done?' done':''}" onclick="toggleSubtask('${t.id}','${sub.id}')"></div>
+              <span class="subtask-text${sub.done?' done':''}">${escHtml(sub.text)}</span>
+              ${canEdit() ? `<div class="icon-btn ripple subtask-del" onclick="deleteSubtask('${t.id}','${sub.id}')"><span class="ms sm" style="color:var(--c-error)">close</span></div>` : ''}
+            </div>`).join('')}
+        </div>
+        ${canEdit() ? `<div class="subtask-add-row">
+          <div class="field-input" style="flex:1"><input type="text" id="new-subtask" placeholder="Add a checklist item…" onkeydown="if(event.key==='Enter')addSubtask('${t.id||''}')"/></div>
+          <button class="btn btn-tonal btn-sm ripple" onclick="addSubtask('${t.id||''}')">Add</button>
+        </div>` : ''}
+      </div>
+
+      <!-- Time Log -->
+      ${!isNew ? `<div class="task-section">
+        <div class="task-section-title" style="display:flex;align-items:center;gap:8px;cursor:pointer" onclick="toggleTimeLog()">
+          <span class="ms" style="font-size:18px">schedule</span>
+          Time Tracking
+          <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
+            ${t.timeEstimate ? `<span style="font-size:12px;color:var(--c-on-surf-var)">Est: ${t.timeEstimate}h · Logged: ${totalLogged}h</span>` : `<span style="font-size:12px;color:var(--c-on-surf-var)">${totalLogged}h logged</span>`}
+            <span class="ms sm">${S._taskTimeLogOpen?'expand_less':'expand_more'}</span>
+          </div>
+        </div>
+        ${t.timeEstimate && totalLogged > 0 ? `
+          <div class="time-progress-bar"><div class="time-progress-fill" style="width:${Math.min(100,(totalLogged/t.timeEstimate)*100)}%;background:${totalLogged>t.timeEstimate?'var(--c-error)':'var(--c-primary)'}"></div></div>
+        ` : ''}
+        ${S._taskTimeLogOpen ? `
+          <div class="time-log-list">
+            ${(t.timeLogs||[]).map(l => {
+              const u = getUser(l.userId);
+              return `<div class="time-log-entry">
+                <span class="time-hours">${l.hours}h</span>
+                <span class="time-note">${escHtml(l.note||'')}</span>
+                <span class="time-who">${escHtml(u?.name?.split(' ')[0]||'')} · ${l.date||''}</span>
+              </div>`;
+            }).join('') || '<div style="font-size:13px;color:var(--c-on-surf-var)">No time logged yet.</div>'}
+          </div>
+          ${canEdit() ? `<div class="subtask-add-row" style="margin-top:8px">
+            <div class="field-input" style="width:80px"><input type="number" id="log-hours" min="0.25" step="0.25" placeholder="hrs" style="width:100%"/></div>
+            <div class="field-input" style="flex:1"><input type="text" id="log-note" placeholder="What did you work on?"/></div>
+            <button class="btn btn-tonal btn-sm ripple" onclick="logTime('${t.id}')">Log</button>
+          </div>` : ''}
+        ` : ''}
+      </div>` : ''}
+
       <!-- Notes -->
       <div class="field">
         <label class="field-label">Notes</label>
         <div class="field-input">
-          <textarea id="task-notes" placeholder="Add internal notes, links, or context…">${escHtml(t.notes)}</textarea>
+          <textarea id="task-notes" placeholder="Add internal notes, links, or context…" ${!canEdit()?'readonly':''}>${escHtml(t.notes)}</textarea>
         </div>
       </div>
 
-      <!-- Attachments -->
+      <!-- Attachments & Cloud Links -->
       <div class="task-section">
-        <div class="task-section-title">Attachments (${t.attachments.length})</div>
+        <div class="task-section-title" style="display:flex;align-items:center;gap:8px">
+          Attachments & Links (${t.attachments.length})
+          ${t.dueDate ? `<div style="margin-left:auto;display:flex;gap:6px">
+            <a class="cal-btn gcal" href="${googleCalendarUrl(t)}" target="_blank" rel="noopener" title="Add to Google Calendar" style="padding:4px 10px;font-size:11px">📅 GCal</a>
+            <a class="cal-btn outlook" href="${outlookCalendarUrl(t)}" target="_blank" rel="noopener" title="Add to Outlook" style="padding:4px 10px;font-size:11px">📅 Outlook</a>
+            <button class="cal-btn ics" onclick="exportTaskToICS('${t.id}')" style="padding:4px 10px;font-size:11px">⬇ .ics</button>
+          </div>` : ''}
+        </div>
         ${t.attachments.length ? `<div class="attachments-list">
-          ${t.attachments.map((a,i) => `
-            <div class="attachment-item">
+          ${t.attachments.map((a,i) => {
+            if (a.linkType) {
+              // Cloud link
+              return `<div class="cloud-link-item">
+                <span class="cloud-link-icon">${a.icon || '🔗'}</span>
+                <a href="${escHtml(a.url)}" target="_blank" rel="noopener" class="cloud-link-name" title="${escHtml(a.url)}">${escHtml(a.name)}</a>
+                <span class="cloud-link-service">${escHtml(a.service || '')}</span>
+                ${canEdit() ? `<div class="icon-btn ripple" onclick="removeAttachment(${i})"><span class="ms sm" style="color:var(--c-error)">close</span></div>` : ''}
+              </div>`;
+            }
+            return `<div class="attachment-item">
               <span class="ms">${a.type?.startsWith('image') ? 'image' : 'attach_file'}</span>
               <span class="attachment-name">${escHtml(a.name)}</span>
               <span class="attachment-size">${formatSize(a.size)}</span>
-              <div class="icon-btn ripple" onclick="removeAttachment(${i})" title="Remove">
-                <span class="ms sm" style="color:var(--c-error)">close</span>
-              </div>
-            </div>`).join('')}
+              ${canEdit() ? `<div class="icon-btn ripple" onclick="removeAttachment(${i})"><span class="ms sm" style="color:var(--c-error)">close</span></div>` : ''}
+            </div>`;
+          }).join('')}
         </div>` : ''}
-        <div class="attach-drop" id="attach-drop" onclick="document.getElementById('attach-input').click()"
-          ondragover="event.preventDefault();this.classList.add('dragging')"
-          ondragleave="this.classList.remove('dragging')"
-          ondrop="handleAttachDrop(event)">
-          <span class="ms" style="font-size:32px;opacity:.5">cloud_upload</span>
-          <div style="font-size:14px;margin-top:8px">Drop files here or <strong>click to browse</strong></div>
-          <div style="font-size:12px;opacity:.7;margin-top:4px">Images, PDFs, docs — up to 5MB each</div>
-        </div>
-        <input type="file" id="attach-input" style="display:none" multiple onchange="handleAttachInput(this)" />
+        ${canEdit() ? `
+          <!-- Cloud / Link attachment -->
+          <div class="cloud-link-url-input">
+            <div class="field-input" style="flex:1">
+              <span class="ms sm" style="color:var(--c-on-surf-var)">link</span>
+              <input type="url" id="cloud-link-input" placeholder="Paste Google Drive, Dropbox, Figma, or any URL…" />
+            </div>
+            <button class="btn btn-tonal btn-sm ripple" onclick="addCloudLink('${t.id||''}')">Attach Link</button>
+          </div>
+          <div class="attach-drop" id="attach-drop" onclick="document.getElementById('attach-input').click()"
+            ondragover="event.preventDefault();this.classList.add('dragging')"
+            ondragleave="this.classList.remove('dragging')"
+            ondrop="handleAttachDrop(event)" style="margin-top:8px">
+            <span class="ms" style="font-size:28px;opacity:.5">cloud_upload</span>
+            <div style="font-size:13px;margin-top:6px">Drop files or <strong>click to browse</strong></div>
+          </div>
+          <input type="file" id="attach-input" style="display:none" multiple onchange="handleAttachInput(this)" />` : ''}
       </div>
 
-      <!-- Comments -->
-      ${!isNew ? `<div class="task-section">
+      <!-- Comments (Task-Specific Thread) -->
+      <div class="task-section">
         <div class="task-section-title">Comments (${t.comments.length})</div>
         <div class="comments-list">
           ${t.comments.length ? t.comments.map(c => {
@@ -2255,10 +2829,10 @@ function renderTaskModal() {
                 <div style="display:flex;align-items:center;gap:8px">
                   <span class="comment-author">${escHtml(u?.name || 'Unknown')}</span>
                   <span class="comment-time">${timeAgo(c.timestamp)}</span>
-                  <button class="btn btn-text btn-sm ripple" style="padding:2px 6px;font-size:11px;margin-left:auto"
-                    onclick="messageAboutComment('${t.id}','${escHtml(c.text.replace(/'/g,'&#39;'))}')" title="Share this comment in a message">
+                  ${!isNew ? `<button class="btn btn-text btn-sm ripple" style="padding:2px 6px;font-size:11px;margin-left:auto"
+                    onclick="messageAboutComment('${t.id}','${escHtml(c.text.replace(/'/g,'&#39;'))}')">
                     <span class="ms sm" style="font-size:14px">forum</span>
-                  </button>
+                  </button>` : ''}
                 </div>
                 <div class="comment-text">${escHtml(c.text)}</div>
               </div>
@@ -2270,17 +2844,37 @@ function renderTaskModal() {
           <textarea class="comment-input" id="new-comment" placeholder="Add a comment…" rows="1"></textarea>
           <button class="btn btn-tonal btn-sm ripple" onclick="addComment()">Post</button>
         </div>
+      </div>
+
+      <!-- Activity Log / Audit Trail -->
+      ${!isNew ? `<div class="task-section">
+        <div class="task-section-title" style="cursor:pointer;display:flex;align-items:center;gap:8px" onclick="toggleActivityLog()">
+          <span class="ms" style="font-size:18px">history</span> Activity Log
+          <span class="ms sm" style="margin-left:auto">${S._taskActivityOpen?'expand_less':'expand_more'}</span>
+        </div>
+        ${S._taskActivityOpen ? `<div class="activity-log">
+          ${(t.activityLog||[]).slice().reverse().map(entry => {
+            const u = getUser(entry.userId);
+            return `<div class="activity-entry">
+              <div class="activity-dot"><span class="ms">${activityIcon(entry.action)}</span></div>
+              <div class="activity-body">
+                <div class="activity-text"><strong>${escHtml(u?.name||'Someone')}</strong> ${escHtml(entry.details)}</div>
+                <div class="activity-time">${timeAgo(entry.timestamp)}</div>
+              </div>
+            </div>`;
+          }).join('') || '<div style="font-size:13px;color:var(--c-on-surf-var)">No activity yet.</div>'}
+        </div>` : ''}
       </div>` : ''}
 
       <!-- Actions -->
       <div class="modal-actions" style="flex-wrap:wrap">
         <button class="btn btn-outlined btn-sm ripple" onclick="closeModal()">Cancel</button>
         ${!isNew ? `
-        <button class="btn btn-tonal btn-sm ripple" onclick="messageAboutTask('${t.id}')" title="Open a message pre-linked to this task">
+        <button class="btn btn-tonal btn-sm ripple" onclick="messageAboutTask('${t.id}')">
           <span class="ms sm">forum</span> Message
         </button>
-        <button class="btn btn-error btn-sm ripple" onclick="deleteTask(event,'${t.id}');closeModal()">Delete</button>` : ''}
-        <button class="btn btn-filled btn-sm ripple" onclick="saveTask()">${isNew ? 'Create Task' : 'Save Changes'}</button>
+        ${canEdit() ? `<button class="btn btn-error btn-sm ripple" onclick="deleteTask(event,'${t.id}');closeModal()">Delete</button>` : ''}` : ''}
+        ${canEdit() ? `<button class="btn btn-filled btn-sm ripple" onclick="saveTask()">${isNew ? 'Create Task' : 'Save Changes'}</button>` : ''}
       </div>
     </div>
   </div>`;
@@ -2334,14 +2928,19 @@ function saveTask() {
   const title = document.getElementById('task-title')?.value?.trim();
   if (!title) { toast('Please enter a task title', 'error'); return; }
   const isNew = !S.editingTaskId;
+  const timeEst = parseFloat(document.getElementById('task-time-estimate')?.value) || 0;
+
   if (isNew) {
     const t = {
       id: uid(), title,
       description: document.getElementById('task-desc')?.value || '',
       status: 'todo', priority: 'medium',
       dueDate: document.getElementById('task-due')?.value || '',
-      assignees: [], notes: document.getElementById('task-notes')?.value || '',
-      attachments: [], comments: [],
+      assignees: [], tags: _editingTags || [],
+      notes: document.getElementById('task-notes')?.value || '',
+      attachments: [], comments: [], subtasks: [],
+      timeEstimate: timeEst, timeLogs: [],
+      activityLog: [{ id: uid(), userId: S.currentUser.id, action:'created', details:'Task created', timestamp: Date.now() }],
       createdBy: S.currentUser.id, createdAt: Date.now(), updatedAt: Date.now()
     };
     S.tasks.unshift(t);
@@ -2349,17 +2948,22 @@ function saveTask() {
     const t = getTask(S.editingTaskId);
     if (t) {
       const prevStatus = t.status;
+      const prevTitle = t.title;
       t.title = title;
       t.description = document.getElementById('task-desc')?.value || '';
       t.dueDate = document.getElementById('task-due')?.value || '';
       t.notes = document.getElementById('task-notes')?.value || '';
+      t.tags = _editingTags || t.tags || [];
+      t.timeEstimate = timeEst || t.timeEstimate;
       t.updatedAt = Date.now();
+      if (prevTitle !== title) logActivity(t.id, 'edited', 'Title updated');
       // Golf celebration when task is marked done
       if (t.status === 'done' && prevStatus !== 'done') {
         setTimeout(() => golfCelebrate('task'), 300);
       }
     }
   }
+  _editingTags = [];
   saveState();
   closeModal();
   renderPageContent();
@@ -2373,10 +2977,85 @@ function addComment() {
   const t = getTask(S.editingTaskId);
   if (!t) return;
   t.comments.push({ id: uid(), userId: S.currentUser.id, text, timestamp: Date.now() });
+  logActivity(t.id, 'commented', 'Added a comment');
   saveState();
   const mc = document.getElementById('modal-container');
   if (mc) mc.innerHTML = renderModal();
   toast('Comment added');
+}
+
+function addSubtask(taskId) {
+  const input = document.getElementById('new-subtask');
+  const text = input?.value?.trim();
+  if (!text) return;
+  const t = getTask(taskId) || (S.editingTaskId ? getTask(S.editingTaskId) : null);
+  if (!t) return;
+  if (!t.subtasks) t.subtasks = [];
+  t.subtasks.push({ id: uid(), text, done: false });
+  logActivity(t.id, 'subtask', `Checklist item added: "${text}"`);
+  saveState();
+  if (input) input.value = '';
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function toggleSubtask(taskId, subtaskId) {
+  const t = getTask(taskId);
+  if (!t) return;
+  const sub = (t.subtasks||[]).find(s => s.id === subtaskId);
+  if (!sub) return;
+  sub.done = !sub.done;
+  if (sub.done) logActivity(t.id, 'subtask', `Completed: "${sub.text}"`);
+  saveState();
+  // Check if all subtasks done → golf celebrate
+  const sp = subtaskProgress(t);
+  if (sp.pct === 100 && sp.total > 0) setTimeout(() => golfCelebrate('task'), 200);
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function deleteSubtask(taskId, subtaskId) {
+  const t = getTask(taskId);
+  if (!t) return;
+  t.subtasks = (t.subtasks||[]).filter(s => s.id !== subtaskId);
+  saveState();
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function toggleEditTag(tagId) {
+  const idx = _editingTags.indexOf(tagId);
+  if (idx >= 0) _editingTags.splice(idx, 1); else _editingTags.push(tagId);
+  // Re-render tag picker only
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function logTime(taskId) {
+  const hours = parseFloat(document.getElementById('log-hours')?.value);
+  const note = document.getElementById('log-note')?.value?.trim() || '';
+  if (!hours || hours <= 0) { toast('Enter a valid number of hours', 'error'); return; }
+  const t = getTask(taskId);
+  if (!t) return;
+  if (!t.timeLogs) t.timeLogs = [];
+  t.timeLogs.push({ id: uid(), userId: S.currentUser.id, hours, note, date: new Date().toISOString().split('T')[0] });
+  logActivity(t.id, 'time_logged', `Logged ${hours}h — ${note||'no note'}`);
+  saveState();
+  toast(`${hours}h logged! ⛳`);
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function toggleActivityLog() {
+  S._taskActivityOpen = !S._taskActivityOpen;
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function toggleTimeLog() {
+  S._taskTimeLogOpen = !S._taskTimeLogOpen;
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
 }
 
 // "Message about this task" — navigates to messages and pre-seeds the input with [task:id]
@@ -2460,6 +3139,24 @@ function removeAttachment(idx) {
   if (!t) return;
   t.attachments.splice(idx, 1);
   saveState();
+  const mc = document.getElementById('modal-container');
+  if (mc) mc.innerHTML = renderModal();
+}
+
+function addCloudLink(taskId) {
+  const input = document.getElementById('cloud-link-input');
+  const url = input?.value?.trim();
+  if (!url) { toast('Paste a URL first', 'error'); return; }
+  const cloud = detectCloudService(url);
+  if (!cloud) { toast('Invalid URL', 'error'); return; }
+  const t = getTask(taskId) || (S.editingTaskId ? getTask(S.editingTaskId) : null);
+  if (!t) return;
+  const name = extractLinkName(url, cloud);
+  t.attachments.push({ id: uid(), linkType: true, url, name, service: cloud.service, icon: cloud.icon, type: cloud.type });
+  logActivity(t.id, 'attachment', `Linked ${cloud.service}: ${name}`);
+  saveState();
+  if (input) input.value = '';
+  toast(`${cloud.icon} ${cloud.service} link attached!`);
   const mc = document.getElementById('modal-container');
   if (mc) mc.innerHTML = renderModal();
 }
@@ -2762,6 +3459,8 @@ function renderKanbanPage() {
 
 function renderKanbanCard(t) {
   const overdue = isOverdue(t.dueDate) && t.status !== 'done';
+  const sp = subtaskProgress(t);
+  const taskTags = (t.tags || []).map(tid => getTag(tid)).filter(Boolean);
   return `
   <div class="kanban-card ripple" id="kcard-${t.id}"
     draggable="true"
@@ -2772,6 +3471,8 @@ function renderKanbanCard(t) {
       <span class="priority-dot ${getPriorityClass(t.priority)}" style="margin-top:6px;flex-shrink:0"></span>
       <div class="kanban-card-title">${escHtml(t.title)}</div>
     </div>
+    ${taskTags.length ? `<div class="tags-row" style="margin-top:4px">${taskTags.map(tag => `<span class="task-tag" style="background:${tag.color}22;color:${tag.color};font-size:10px;padding:1px 6px">${escHtml(tag.name)}</span>`).join('')}</div>` : ''}
+    ${sp.total > 0 ? `<div style="margin-top:6px"><div class="subtask-progress"><div class="subtask-progress-fill" style="width:${sp.pct}%"></div></div><div style="font-size:10px;color:var(--c-on-surf-var);margin-top:2px">${sp.done}/${sp.total} items</div></div>` : ''}
     ${t.dueDate ? `<div class="task-due${overdue?' overdue':''}" style="font-size:12px;display:flex;align-items:center;gap:4px">
       <span class="ms" style="font-size:14px">schedule</span>${overdue ? 'Overdue' : formatDateShort(t.dueDate)}
     </div>` : ''}
@@ -2781,6 +3482,7 @@ function renderKanbanCard(t) {
         ${t.assignees.length > 3 ? `<div class="avatar sm" style="background:var(--c-outline)">+${t.assignees.length-3}</div>` : ''}
       </div>
       ${t.comments.length ? `<span class="task-attach-count" style="margin-left:auto"><span class="ms" style="font-size:14px">chat_bubble</span>${t.comments.length}</span>` : ''}
+      ${totalTimeLogged(t) > 0 ? `<span class="task-attach-count"><span class="ms" style="font-size:14px">schedule</span>${totalTimeLogged(t)}h</span>` : ''}
       ${t.attachments.length ? `<span class="task-attach-count"><span class="ms" style="font-size:14px">attach_file</span>${t.attachments.length}</span>` : ''}
     </div>
   </div>`;
@@ -3559,7 +4261,7 @@ function renderAdminPage() {
               </div>
               <div class="user-row-role">
                 <select class="role-badge role-${u.role}" onchange="changeUserRole('${u.id}',this.value)" style="background:transparent;border:none;cursor:pointer;font-family:var(--font-ui);font-size:12px;font-weight:600">
-                  ${ROLES.map(r => `<option value="${r}"${u.role===r?' selected':''}>${r.charAt(0).toUpperCase()+r.slice(1)}</option>`).join('')}
+                  ${ROLES.map(r => `<option value="${r}"${u.role===r?' selected':''}>${ROLE_LABELS[r]||r}</option>`).join('')}
                 </select>
               </div>
               ${u.id !== S.currentUser.id ? `
@@ -3567,6 +4269,37 @@ function renderAdminPage() {
                 <span class="ms sm" style="color:var(--c-error)">person_remove</span>
               </div>` : '<div style="width:40px"></div>'}
             </div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags / Labels -->
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="ms">label</span>
+        <div>
+          <div class="admin-section-title">Labels & Tags</div>
+          <div class="body-sm" style="color:var(--c-on-surf-var);margin-top:2px">Create colour-coded labels to categorize tasks</div>
+        </div>
+      </div>
+      <div class="admin-section-body">
+        <div class="admin-tags-list" id="admin-tags-list">
+          ${S.tags.map(tag => `
+            <div class="admin-tag-item">
+              <span class="task-tag" style="background:${tag.color}22;color:${tag.color}">${escHtml(tag.name)}</span>
+              <div class="icon-btn ripple" onclick="deleteTag('${tag.id}')" title="Delete tag">
+                <span class="ms sm" style="color:var(--c-error)">close</span>
+              </div>
+            </div>`).join('')}
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-top:8px">
+          <div class="field-input" style="flex:1;min-width:140px">
+            <input type="text" id="new-tag-name" placeholder="Label name…" maxlength="24" />
+          </div>
+          <input type="color" id="new-tag-color" value="#0057B8" style="height:38px;width:48px;border:none;background:none;cursor:pointer;border-radius:var(--r-md)" title="Pick a colour" />
+          <button class="btn btn-tonal btn-sm ripple" onclick="addTag()">
+            <span class="ms sm">add</span> Add Label
+          </button>
         </div>
       </div>
     </div>
@@ -4147,6 +4880,304 @@ function saveNewUser() {
   closeModal();
   render();
   toast(`${name} added to the team! 🎉`);
+}
+
+// ═══════════════════════════
+// INTEGRATIONS PAGE
+// ═══════════════════════════
+function renderIntegrationsPage() {
+  const cfg = loadIntegrations();
+  const shopify = cfg.shopify || {};
+  const gmail = cfg.gmail || {};
+  const digest = cfg.digest || {};
+  const drive = cfg.drive || {};
+
+  function toggleIntegration(key) {
+    S._integrationOpen[key] = !S._integrationOpen[key];
+    renderPageContent();
+  }
+
+  function card(key, iconClass, iconEmoji, title, subtitle, connected, bodyHtml) {
+    const open = S._integrationOpen[key];
+    return `
+    <div class="integration-card">
+      <div class="integration-card-header" onclick="toggleIntegrationPanel('${key}')">
+        <div class="integration-icon ${iconClass}">${iconEmoji}</div>
+        <div>
+          <div class="integration-title">${title}</div>
+          <div class="integration-sub">${subtitle}</div>
+        </div>
+        <div class="integration-status">
+          <div class="integration-status-dot${connected ? ' connected' : ''}"></div>
+          <span style="font-size:12px;color:var(--c-on-surf-var)">${connected ? 'Connected' : 'Not connected'}</span>
+          <span class="ms sm">${open ? 'expand_less' : 'expand_more'}</span>
+        </div>
+      </div>
+      <div class="integration-body${open ? '' : ' hidden'}">${bodyHtml}</div>
+    </div>`;
+  }
+
+  // ── Email to Task body ──
+  const emailBody = `
+  <div class="integration-field-group">
+    <div class="integration-section-label">Import email as task</div>
+    <div class="field-input">
+      <span class="ms sm" style="color:var(--c-on-surf-var)">subject</span>
+      <input type="text" id="email-subject" placeholder="Email subject → becomes task title" />
+    </div>
+    <div class="field-input">
+      <textarea id="email-body" placeholder="Email body → becomes task description" rows="4" style="resize:vertical"></textarea>
+    </div>
+    <div class="integration-actions">
+      <button class="btn btn-filled btn-sm ripple" onclick="createTaskFromEmailUI()">
+        <span class="ms sm">task_alt</span> Create Task from Email
+      </button>
+    </div>
+  </div>
+  <div class="integration-info-box">
+    <span class="ms">info</span>
+    <div><strong>Automation tip:</strong> Use <a href="https://zapier.com" target="_blank" style="color:inherit">Zapier</a> or <a href="https://make.com" target="_blank" style="color:inherit">Make</a> to forward emails to a webhook that auto-creates tasks. Paste your webhook URL in the Gmail/Outlook integration settings in those platforms and point them at your team's workflow.</div>
+  </div>`;
+
+  // ── Calendar Sync body ──
+  const calBody = `
+  <div class="integration-field-group">
+    <div class="integration-section-label">Export your tasks to calendar</div>
+    <p style="font-size:13px;color:var(--c-on-surf-var);margin-bottom:8px">Export all your assigned tasks with due dates as a single calendar file, or add individual tasks directly to Google Calendar or Outlook.</p>
+    <div class="cal-export-row">
+      <button class="cal-btn gcal" onclick="exportAllTasksToICS();toast('Opening Google Calendar import…');setTimeout(()=>window.open('https://calendar.google.com/calendar/r/settings/export','_blank'),500)">📅 Subscribe in Google Calendar</button>
+      <button class="cal-btn outlook" onclick="exportAllTasksToICS()">📅 Import to Outlook</button>
+      <button class="cal-btn ics" onclick="exportAllTasksToICS()">⬇ Download .ics file</button>
+    </div>
+  </div>
+  <div class="integration-info-box">
+    <span class="ms">info</span>
+    <div><strong>For live sync:</strong> Use <a href="https://zapier.com" target="_blank" style="color:inherit">Zapier</a> to watch for task updates and push them to Google Calendar automatically. Download the .ics file to import all current due dates into any calendar app.</div>
+  </div>`;
+
+  // ── Shopify body ──
+  const shopifyBody = `
+  <div class="integration-field-group">
+    <div class="integration-section-label">Shopify store settings</div>
+    <div class="field-input">
+      <span class="ms sm" style="color:var(--c-on-surf-var)">store</span>
+      <input type="url" id="shopify-store-url" placeholder="https://yourstore.myshopify.com"
+        value="${escHtml(shopify.storeUrl || '')}" />
+    </div>
+    <div class="field-input">
+      <span class="ms sm" style="color:var(--c-on-surf-var)">key</span>
+      <input type="password" id="shopify-token" placeholder="Admin API access token"
+        value="${escHtml(shopify.token || '')}" />
+    </div>
+    <div class="integration-actions">
+      <button class="btn btn-filled btn-sm ripple" onclick="saveShopifyConfig()">
+        <span class="ms sm">save</span> Save & Connect
+      </button>
+      ${shopify.storeUrl ? `<button class="btn btn-outlined btn-sm ripple" onclick="testShopifyConnection()">Test Connection</button>` : ''}
+    </div>
+  </div>
+  <div class="integration-info-box">
+    <span class="ms">info</span>
+    <div><strong>Order previews in chat:</strong> Type <code style="background:rgba(0,0,0,.1);padding:1px 5px;border-radius:4px">[order:1001]</code> in any message to show a rich Shopify order card inline.</div>
+  </div>
+  <div class="integration-section-label" style="margin-top:20px">Webhook — auto-create tasks from Shopify events</div>
+  <p style="font-size:13px;color:var(--c-on-surf-var);margin-bottom:8px">In Shopify Admin → Settings → Notifications → Webhooks, add a webhook for the events below and point it at a Zapier/Make zap that calls your BLURRD Links workflow.</p>
+  <div class="integration-grid">
+    ${[['🚨 High fraud risk order','orders/create (fraud score > 0.8)'],['📦 Stock out alert','inventory_levels/update (quantity = 0)'],['💰 Large wholesale order','orders/create (total > threshold)'],['🔄 Order cancelled','orders/cancelled']].map(([label,event]) => `
+      <div class="integration-mini-card">
+        <div class="integration-mini-icon">${label.split(' ')[0]}</div>
+        <div>
+          <div style="font-size:13px;font-weight:600">${label.replace(/^[^\s]+\s/,'')}</div>
+          <div style="font-size:11px;color:var(--c-on-surf-var);margin-top:2px"><code>${event}</code></div>
+        </div>
+      </div>`).join('')}
+  </div>`;
+
+  // ── Cloud Storage body ──
+  const cloudBody = `
+  <p style="font-size:13px;color:var(--c-on-surf-var);margin-top:16px;margin-bottom:12px">Attach live links from any cloud storage directly to tasks — no file upload required. Just paste the URL in the task's Attachments & Links section. Supported services:</p>
+  <div class="integration-grid">
+    ${[['📄','Google Drive','drive.google.com or docs.google.com'],['📊','Google Sheets','sheets.google.com'],['📑','Google Slides','slides.google.com'],['📦','Dropbox','dropbox.com'],['☁️','OneDrive / SharePoint','onedrive.live.com'],['🎨','Figma','figma.com'],['📝','Notion','notion.so'],['🎥','Loom','loom.com']].map(([icon,name,domain]) => `
+      <div class="integration-mini-card">
+        <div class="integration-mini-icon">${icon}</div>
+        <div>
+          <div style="font-size:13px;font-weight:600">${name}</div>
+          <div style="font-size:11px;color:var(--c-on-surf-var)">${domain}</div>
+        </div>
+      </div>`).join('')}
+  </div>
+  <div class="integration-info-box" style="margin-top:16px">
+    <span class="ms">security</span>
+    <div><strong>Permission reminder:</strong> When you attach a Google Doc or Drive file to a task, make sure you've set the sharing permissions so your teammates can actually open the link. Open the file in Drive → Share → set to "Anyone with the link can view".</div>
+  </div>`;
+
+  // ── Email Digest body ──
+  const digestData = generateDigest();
+  const digestBody = `
+  <div class="integration-field-group">
+    <div class="integration-section-label">Digest settings</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer">
+        <input type="checkbox" id="digest-daily" ${digest.daily !== false ? 'checked' : ''} onchange="saveDigestConfig()" />
+        Daily digest
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer">
+        <input type="checkbox" id="digest-weekly" ${digest.weekly ? 'checked' : ''} onchange="saveDigestConfig()" />
+        Weekly summary (Mondays)
+      </label>
+    </div>
+    <div class="field-input">
+      <span class="ms sm" style="color:var(--c-on-surf-var)">email</span>
+      <input type="email" id="digest-email" placeholder="your@email.com" value="${escHtml(digest.email || S.currentUser?.email || '')}" onchange="saveDigestConfig()" />
+    </div>
+    <div class="integration-actions">
+      <button class="btn btn-tonal btn-sm ripple" onclick="sendDigestEmail()">
+        <span class="ms sm">send</span> Send Digest Now
+      </button>
+      <button class="btn btn-outlined btn-sm ripple" onclick="copyDigestText()">
+        <span class="ms sm">content_copy</span> Copy as Text
+      </button>
+    </div>
+  </div>
+  <!-- Digest Preview -->
+  <div class="integration-section-label">Preview — your current digest</div>
+  <div class="digest-preview">
+    <div class="digest-preview-header">
+      <span class="ms">mark_email_read</span>
+      <div>
+        <div style="font-weight:700;font-size:15px">BLURRD Links · Daily Digest</div>
+        <div style="font-size:12px;opacity:.8">${new Date().toLocaleDateString('en-US', {weekday:'long',month:'long',day:'numeric'})}</div>
+      </div>
+    </div>
+    <div class="digest-preview-body">
+      ${digestData.overdue.length ? `<div class="digest-section">
+        <div class="digest-section-title" style="color:var(--c-error)">⚠️ Overdue (${digestData.overdue.length})</div>
+        ${digestData.overdue.map(t => `<div class="digest-task-row">
+          <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
+          <span style="flex:1">${escHtml(t.title)}</span>
+          <span style="color:var(--c-error);font-size:12px">was due ${formatDate(t.dueDate)}</span>
+        </div>`).join('')}
+      </div>` : ''}
+      ${digestData.dueToday.length ? `<div class="digest-section">
+        <div class="digest-section-title" style="color:#B45309">🎯 Due Today (${digestData.dueToday.length})</div>
+        ${digestData.dueToday.map(t => `<div class="digest-task-row">
+          <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
+          <span>${escHtml(t.title)}</span>
+        </div>`).join('')}
+      </div>` : ''}
+      ${digestData.upcoming.length ? `<div class="digest-section">
+        <div class="digest-section-title">📅 Upcoming</div>
+        ${digestData.upcoming.map(t => `<div class="digest-task-row">
+          <span class="priority-dot ${getPriorityClass(t.priority)}"></span>
+          <span style="flex:1">${escHtml(t.title)}</span>
+          <span style="font-size:12px;color:var(--c-on-surf-var)">${formatDate(t.dueDate)}</span>
+        </div>`).join('')}
+      </div>` : ''}
+      ${!digestData.overdue.length && !digestData.dueToday.length && !digestData.upcoming.length ? `
+        <div style="text-align:center;padding:20px;color:var(--c-on-surf-var)">
+          <div style="font-size:32px;margin-bottom:8px">⛳</div>
+          All clear — no tasks due soon. Hole in one!
+        </div>` : ''}
+    </div>
+  </div>
+  <div class="integration-info-box" style="margin-top:12px">
+    <span class="ms">info</span>
+    <div><strong>Automated sending:</strong> Use <a href="https://zapier.com" target="_blank" style="color:inherit">Zapier</a> with a scheduled trigger → Webhook to call a digest endpoint. The "Send Digest Now" button opens your email client with a pre-filled digest so you can send it manually right now.</div>
+  </div>`;
+
+  return `
+  <div class="page-integrations">
+    <div style="margin-bottom:4px">
+      <div class="headline-md" style="margin-bottom:4px">Integrations</div>
+      <div class="body-md" style="color:var(--c-on-surf-var)">Connect BLURRD Links with your tools — calendar, email, Shopify, and cloud storage. ⛳</div>
+    </div>
+
+    ${card('email','gmail','📧','Email → Task','Forward emails to instantly create tasks. Paste email content to convert it.', false, emailBody)}
+    ${card('calendar','gcal','📅','Calendar Sync','Export task due dates to Google Calendar, Outlook, or any .ics app.', false, calBody)}
+    ${card('digest','digest','📊','Automated Digest','Daily and weekly email summaries of overdue and upcoming tasks.', !!digest.email, digestBody)}
+    ${card('shopify','shopify','🛍️','Shopify','Link orders in chat, trigger tasks from store events, track fulfillment.', !!shopify.storeUrl, shopifyBody)}
+    ${card('cloud','drive','☁️','Cloud Storage Links','Attach Google Drive, Dropbox, OneDrive, Figma, Notion, and Loom files to tasks.', true, cloudBody)}
+  </div>`;
+}
+
+function toggleIntegrationPanel(key) {
+  S._integrationOpen[key] = !S._integrationOpen[key];
+  renderPageContent();
+}
+
+function saveShopifyConfig() {
+  const storeUrl = document.getElementById('shopify-store-url')?.value?.trim().replace(/\/$/, '');
+  const token = document.getElementById('shopify-token')?.value?.trim();
+  if (!storeUrl) { toast('Enter your Shopify store URL', 'error'); return; }
+  setIntegration('shopify', { storeUrl, token });
+  renderPageContent();
+  toast('Shopify connected! 🛍️');
+}
+
+function testShopifyConnection() {
+  const cfg = getIntegration('shopify');
+  if (!cfg.storeUrl) { toast('Save your config first', 'error'); return; }
+  const url = `${cfg.storeUrl}/admin/api/2024-01/shop.json`;
+  fetch(url, { headers: { 'X-Shopify-Access-Token': cfg.token, 'Content-Type': 'application/json' } })
+    .then(r => r.json())
+    .then(d => { if (d.shop) toast(`Connected to: ${d.shop.name} ✅`); else toast('Connected but no shop data returned', 'error'); })
+    .catch(() => toast('Connection failed — check your store URL and token', 'error'));
+}
+
+function saveDigestConfig() {
+  const email = document.getElementById('digest-email')?.value?.trim();
+  const daily = document.getElementById('digest-daily')?.checked;
+  const weekly = document.getElementById('digest-weekly')?.checked;
+  setIntegration('digest', { email, daily, weekly });
+}
+
+function sendDigestEmail() {
+  saveDigestConfig();
+  const cfg = getIntegration('digest');
+  const to = cfg.email || '';
+  const subject = encodeURIComponent(`BLURRD Links Digest — ${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})}`);
+  const body = encodeURIComponent(digestToText());
+  window.open(`mailto:${to}?subject=${subject}&body=${body}`, '_blank');
+}
+
+function copyDigestText() {
+  const text = digestToText();
+  navigator.clipboard?.writeText(text).then(() => toast('Digest copied to clipboard!')).catch(() => toast('Copy failed — check clipboard permissions', 'error'));
+}
+
+function createTaskFromEmailUI() {
+  const subject = document.getElementById('email-subject')?.value?.trim();
+  const body = document.getElementById('email-body')?.value?.trim();
+  if (!subject) { toast('Enter the email subject', 'error'); return; }
+  const t = createTaskFromEmail(subject, body);
+  if (t) {
+    toast('✅ Task created from email!');
+    setTimeout(() => { navigate('tasks'); }, 400);
+  }
+}
+
+// ═══════════════════════════
+// TAG / LABEL MANAGEMENT
+// ═══════════════════════════
+function addTag() {
+  const name = document.getElementById('new-tag-name')?.value?.trim();
+  const color = document.getElementById('new-tag-color')?.value || '#0057B8';
+  if (!name) { toast('Enter a label name', 'error'); return; }
+  if (S.tags.find(t => t.name.toLowerCase() === name.toLowerCase())) { toast('Label already exists', 'error'); return; }
+  S.tags.push({ id: uid(), name, color });
+  saveState();
+  renderPageContent();
+  toast(`Label "${name}" created`);
+}
+
+function deleteTag(tagId) {
+  if (!confirm('Delete this label? It will be removed from all tasks.')) return;
+  S.tags = S.tags.filter(t => t.id !== tagId);
+  // Remove from all tasks
+  S.tasks.forEach(t => { if (t.tags) t.tags = t.tags.filter(id => id !== tagId); });
+  saveState();
+  renderPageContent();
+  toast('Label deleted');
 }
 
 // ═══════════════════════════
